@@ -1,4 +1,4 @@
-# Astro Starter Template
+# Dolce Villa
 
 ## Project Structure
 
