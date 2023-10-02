@@ -1,0 +1,211 @@
+---
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import SwiperPagination from '@components/modules/swiper/SwiperPagination.astro';
+
+interface Props {
+    type?: 'rooms' | 'hotel'
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type,
+	class: className,
+	...rest
+} = Astro.props;
+
+const menuRegions = [
+    'Регион Innsbruck-Nordkette',
+    'Инсбрук Olympiaworld Skipass',
+    'Инсбрук Olympiaworld Skipass',
+    'Muttereralmpark – Mutters/Götzens',
+    'Axamer Lizum',
+    'Glungezer – Tulfes',
+    'Patscherkofel – Innsbruck-Igls',
+]
+const menuRooms = [
+    'Экстерьер',
+    'Гостиная',
+    'Спальни (4)',
+    'Развлечения',
+    'Винный погреб',
+    'Спальная зона',
+    'План этажей',
+]
+const menuHotel = [
+    'Экстерьер',
+    'Номера и люксы',
+    'Развлечения',
+    'Винный погреб',
+    'Спальная зона',
+    'План этажей',
+]
+const menu = type === 'rooms' ? menuRooms : type === 'hotel' ? menuHotel : menuRegions;
+const parameters1 = [
+    {
+        name: 'Зона катания',
+        value: '850—3210 м',
+    },
+    {
+        name: 'Общая протяженность трасс ',
+        value: '270 км',
+    },
+    {
+        name: 'Синие трассы',
+        value: '155 км',
+    },
+    {
+        name: 'Красные трассы',
+        value: '155 км',
+    },
+    {
+        name: 'Черные трассы',
+        value: '30 км',
+    },
+    {
+        name: 'Самая длинная трасса',
+        value: '10 км',
+    },
+    {
+        name: 'Количество подъемников',
+        value: '67',
+    },
+]
+const parameters2 = [
+    {
+        name: 'Трассы для беговых лыж',
+        value: '200 км',
+    },
+    {
+        name: 'Оборудованные туристские тропы',
+        value: '20 км',
+    },
+    {
+        name: 'Хаф-пайпы',
+        value: '3',
+    },
+    {
+        name: 'Cноуборд-парки',
+        value: '4',
+    },
+]
+---
+
+<div
+    class:list={[
+        'tabs-info',
+        className,
+    ]}
+    data-tabs
+    {...rest}
+>
+    <div class="tabs-info__menu" data-tabs-menu>
+        {
+            type !== 'rooms' && type !== 'hotel' ?
+            <button type="button" class="tabs-info__menu-button" data-tabs-button>
+                <span data-tabs-button-text set:html={menu[0]}></span>
+            </button>
+            : ''
+        }
+
+        <ul class="tabs-info__menu-list" data-tabs-list>
+            {menu.map((item, index) => (
+                <li><a href="javascript:"
+                    class:list={[
+                        'tabs-info__menu-link',
+                        index === 0 ? 'is-active' : ''
+                    ]} data-tabs-item={`tab_region_${index + 1}`} data-text={item} set:html={item}></a></li>
+            ))}
+        </ul>
+    </div>
+    <div class="tabs-info__content">
+        {menu.map((item, index) => (
+            <div class:list={[
+                    'tabs-info__pane',
+                    index === 0 ? 'is-active' : ''
+                ]} data-tabs-pane={`tab_region_${index + 1}`}>
+
+                {
+                    type === 'rooms' || type === 'hotel' ?
+                    <Swiper class="tabs-info__slider js-tabs-slider">
+                        <SwiperSlide class="tabs-info__slide">
+                            {
+                                type === 'rooms' ?
+                                <div class="tabs-info__slide-image-box">
+                                    <img class="tabs-info__slide-image lazy" data-src="img/exterior.jpg" data-srcset="img/exterior@2x.jpg" alt="" width="970" height="492" />
+                                </div>
+                                <div class="tabs-info__slide-caption">Внешний вид реконструированного шале, изначально построенного
+                                    в&nbsp;1597&nbsp;году.</div>
+                                :
+                                <div class="tabs-info__slide-image-box">
+                                    <img class="tabs-info__slide-image lazy" data-src="img/exterior-hotel.jpg" data-srcset="img/exterior-hotel@2x.jpg" alt="" width="970" height="492" />
+                                </div>
+                                <div class="tabs-info__slide-caption">53&nbsp;номера и&nbsp;люкса отеля L&rsquo;Apogee оформлены в&nbsp;современном стиле дизайнером Индией Махдави.</div>
+                            }
+                        </SwiperSlide>
+                        <SwiperSlide class="tabs-info__slide">
+                            {
+                                type === 'rooms' ?
+                                <div class="tabs-info__slide-image-box">
+                                    <img class="tabs-info__slide-image lazy" data-src="img/exterior.jpg" data-srcset="img/exterior@2x.jpg" alt="" width="970" height="492" />
+                                </div>
+                                <div class="tabs-info__slide-caption">Внешний вид реконструированного шале, изначально построенного
+                                    в&nbsp;1597&nbsp;году.</div>
+                                :
+                                <div class="tabs-info__slide-image-box">
+                                    <img class="tabs-info__slide-image lazy" data-src="img/exterior-hotel.jpg" data-srcset="img/exterior-hotel@2x.jpg" alt="" width="970" height="492" />
+                                </div>
+                                <div class="tabs-info__slide-caption">53&nbsp;номера и&nbsp;люкса отеля L&rsquo;Apogee оформлены в&nbsp;современном стиле дизайнером Индией Махдави.</div>
+                            }
+                        </SwiperSlide>
+                        <SwiperSlide class="tabs-info__slide">
+                            {
+                                type === 'rooms' ?
+                                <div class="tabs-info__slide-image-box">
+                                    <img class="tabs-info__slide-image lazy" data-src="img/exterior.jpg" data-srcset="img/exterior@2x.jpg" alt="" width="970" height="492" />
+                                </div>
+                                <div class="tabs-info__slide-caption">Внешний вид реконструированного шале, изначально построенного
+                                    в&nbsp;1597&nbsp;году.</div>
+                                :
+                                <div class="tabs-info__slide-image-box">
+                                    <img class="tabs-info__slide-image lazy" data-src="img/exterior-hotel.jpg" data-srcset="img/exterior-hotel@2x.jpg" alt="" width="970" height="492" />
+                                </div>
+                                <div class="tabs-info__slide-caption">53&nbsp;номера и&nbsp;люкса отеля L&rsquo;Apogee оформлены в&nbsp;современном стиле дизайнером Индией Махдави.</div>
+                            }
+                        </SwiperSlide>
+                        <SwiperPagination slot="after" type='line' class="tabs-info__slider-pagination js-tabs-slider-pagination"></SwiperPagination>
+                        <SwiperControl slot="after" class="tabs-info__slider-prev js-tabs-slider-prev" direction="prev"></SwiperControl>
+                        <SwiperControl slot="after" class="tabs-info__slider-next js-tabs-slider-next" direction="next"></SwiperControl>
+                    </Swiper>
+                     :
+                    <h3 class="tabs-info__title" set:html={item}></h3>
+                    <div class="tabs-info__row">
+                        <div class="tabs-info__column">
+                            <div class="tabs-info__parameters">
+                                {parameters1.map((item) => (
+                                    <div class="tabs-info__parameters-item">
+                                        <div class="tabs-info__parameters-name" set:html={item.name}></div>
+                                        <div class="tabs-info__parameters-value" set:html={item.value}></div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div class="tabs-info__column">
+                            <div class="tabs-info__parameters">
+                                {parameters2.map((item) => (
+                                    <div class="tabs-info__parameters-item">
+                                        <div class="tabs-info__parameters-title" set:html={item.name}></div>
+                                        <div class="tabs-info__parameters-value" set:html={item.value}></div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        ))}
+    </div>
+</div>

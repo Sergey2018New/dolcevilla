@@ -1,0 +1,147 @@
+---
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import ResortItem from '@components/blocks/ResortItem.astro';
+
+interface Props {
+    type?: 'popular' | 'amazing';
+    title?: string;
+    textMore?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type,
+    title,
+    textMore,
+	class: className,
+	...rest
+} = Astro.props;
+
+const itemsPopular = [
+	{
+		image: "img/popular-resorts/2.jpg",
+		image2x: "img/popular-resorts/2@2x.jpg",
+		title: "Санкт-Антон",
+		list: false
+	},
+    {
+		image: "img/popular-resorts/7.jpg",
+		image2x: "img/popular-resorts/7@2x.jpg",
+		title: "Лех",
+		list: false
+	},
+	{
+		image: "img/popular-resorts/3.jpg",
+		image2x: "img/popular-resorts/3@2x.jpg",
+		title: "Куршевель",
+		list: false
+	},
+	{
+		image: "img/popular-resorts/4.jpg",
+		image2x: "img/popular-resorts/4@2x.jpg",
+		title: "Циллерталь",
+		list: false
+	},
+	{
+		image: "img/popular-resorts/5.jpg",
+		image2x: "img/popular-resorts/5@2x.jpg",
+		title: "Андерматт",
+		list: false
+	},
+]
+
+const itemsAmazing = [
+	{
+		image: "img/popular-resorts/1.jpg",
+		image2x: "img/popular-resorts/1@2x.jpg",
+		title: "Валь Торанс",
+		list: false
+	},
+	{
+		image: "img/popular-resorts/2.jpg",
+		image2x: "img/popular-resorts/2@2x.jpg",
+		title: "Санкт-Антон",
+		list: false
+	},
+	{
+		image: "img/popular-resorts/3.jpg",
+		image2x: "img/popular-resorts/3@2x.jpg",
+		title: "Куршевель",
+		list: false
+	},
+	{
+		image: "img/popular-resorts/4.jpg",
+		image2x: "img/popular-resorts/4@2x.jpg",
+		title: "Циллерталь",
+		list: false
+	},
+	{
+		image: "img/popular-resorts/5.jpg",
+		image2x: "img/popular-resorts/5@2x.jpg",
+		title: "Андерматт",
+		list: false
+	},
+	{
+		image: "img/popular-resorts/6.jpg",
+		image2x: "img/popular-resorts/6@2x.jpg",
+		title: "Андорра",
+		list: false
+	},
+	{
+		image: "img/popular-resorts/7.jpg",
+		image2x: "img/popular-resorts/7@2x.jpg",
+		title: "Лех",
+		list: false
+	},
+]
+
+const items = type === 'amazing' ? itemsAmazing : itemsPopular;
+---
+<section
+	class:list={[
+		'section popular-resorts',
+		`popular-resorts_${type}`,
+		className
+	]}
+	{...rest}
+>
+	<div class="popular-resorts__container container">
+		<div class="popular-resorts__content">
+			<h2 class="popular-resorts__title section-title" set:html={`${title ? title : 'Популярные курорты'}`}></h2>
+			<Swiper class="popular-resorts__slider js-popular-resorts">
+				<SwiperSlide class="popular-resorts__slide">
+					<div class="popular-resorts__items">
+						{items.map((item) => (
+							<ResortItem class="popular-resorts__item" title={item.title} image={item.image} image2x={item.image2x} list={item.list}></ResortItem>
+						))}
+					</div>
+				</SwiperSlide>
+				<SwiperSlide class="popular-resorts__slide">
+					<div class="popular-resorts__items">
+						{items.map((item) => (
+							<ResortItem class="popular-resorts__item" title={item.title} image={item.image} image2x={item.image2x} list={item.list}></ResortItem>
+						))}
+					</div>
+				</SwiperSlide>
+				<SwiperSlide class="popular-resorts__slide">
+					<div class="popular-resorts__items">
+						{items.map((item) => (
+							<ResortItem class="popular-resorts__item" title={item.title} image={item.image} image2x={item.image2x} list={item.list}></ResortItem>
+						))}
+					</div>
+				</SwiperSlide>
+				<div slot="after" class="popular-resorts__controls slider-controls">
+					<SwiperControl class="popular-resorts__prev slider-controls__prev js-popular-resorts-prev" direction="prev"></SwiperControl>
+					<SwiperControl class="popular-resorts__next slider-controls__next js-popular-resorts-next" direction="next" ></SwiperControl>
+				</div>
+			</Swiper>
+			<div class="popular-resorts__more">
+				<ButtonMore type='link'>{textMore ? textMore : 'Смотреть все'}</ButtonMore>
+			</div>
+		</div>
+	</div>
+</section>

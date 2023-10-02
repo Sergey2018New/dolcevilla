@@ -1,0 +1,254 @@
+---
+import Layout from '@layouts/layout.astro';
+import Icon from '@components/modules/Icon.astro';
+import Button from '@components/modules/Button.astro';
+import ButtonIcon from '@components/modules/ButtonIcon.astro';
+import SwitchBlock from '@components/modules/SwitchBlock.astro';
+import SwiperPagination from '@components/modules/swiper/SwiperPagination.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+import DetailedDescription from '@components/blocks/DetailedDescription.astro';
+import TabsInfo from '@components/blocks/TabsInfo.astro';
+
+import AvailabilitySection from '@components/sections/AvailabilitySection.astro';
+import ChaletLocations from '@components/sections/ChaletLocations.astro';
+import SimilarChalets  from '@components/sections/SimilarChalets.astro';
+import Feedback  from '@components/sections/Feedback.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+
+const features = [
+    {
+        icon: 'pool',
+        text: 'Бассейн',
+    },
+    {
+        icon: 'shower',
+        text: 'Хаммам',
+    },
+    {
+        icon: 'tv',
+        text: 'Телевизор',
+    },
+    {
+        icon: 'router',
+        text: 'Wi-Fi',
+    },
+    {
+        icon: 'animal',
+        text: 'Можно с животными',
+    },
+    {
+        icon: 'children-slide',
+        text: 'Детская площадка',
+    },
+    {
+        icon: 'skating',
+        text: 'Каток',
+    },
+    {
+        icon: 'help',
+        text: 'Круглосуточная поддержка',
+    },
+]
+
+const galleryImages = [1,2,3,4,5,6,1,2,3,4];
+
+---
+
+<Layout title="Страница шале" isMap={true}>
+    <Breadcrumbs list={['Каталог шале']} title="Chalet Le Rocher"></Breadcrumbs>
+    <div class="p-detail p-detail_chalet">
+        <div class="container">
+            <div class="p-detail__heading">
+                <div class="p-detail__heading-left">
+                    <h1 class="p-detail__title heading-title">Chalet Le Rocher</h1>
+                </div>
+                <div class="p-detail__heading-right">
+                    <div class="p-detail__info">
+                        <div class="p-detail__info-item">
+                            <span>Франция</span>
+                        </div>
+                        <div class="p-detail__info-item">
+                            <span>Альп д'Юэз</span>
+                        </div>
+                    </div>
+                    <Button class="p-detail__info-button" data-modal-open="#modal_booking">Забронировать</Button>
+                    <div class="p-detail__control">
+                        <ButtonIcon class={`p-detail__control-button p-detail__control-button_share`} icon="share" style="second" size='sm'></ButtonIcon>
+                        <ButtonIcon class={`p-detail__control-button p-detail__control-button_favorite`} icon="star" style="second" size='sm' mod="favorite" title="Добавить в избранное" aria-label="Добавить в избранное"></ButtonIcon>
+                        <ButtonIcon class={`p-detail__control-button p-detail__control-button_compare`} icon="scales" icon2="scales-fill" style="second" size='sm' title="Добавить в сравнение" aria-label="Добавить в сравнение"></ButtonIcon>
+                    </div>
+                </div>
+            </div>
+            <div class="p-detail__gallery p-detail__gallery_chalet js-detail-gallery">
+                <div class="p-detail__gallery-slider swiper js-detail-slider">
+                    <div class="swiper-wrapper">
+                        {galleryImages.map((item) => (
+                            <a href={`img/chalet-gallery/${item}_big.jpg`} data-fancybox="slider" data-thumb={`img/chalet-gallery/${item}_thumb.jpg`} class="p-detail__gallery-slide swiper-slide">
+                                <div class="p-detail__gallery-image-box">
+                                    <img class="p-detail__gallery-image lazy" data-src={`img/chalet-gallery/${item}_big.jpg`} alt="" width="1126" height="596" />
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                    <SwiperControl class="p-detail__gallery-prev js-detail-slider-prev" direction="prev"></SwiperControl>
+                    <SwiperControl class="p-detail__gallery-next js-detail-slider-next" direction="next"></SwiperControl>
+                    <SwiperPagination  type='line' class="p-detail__gallery-pagination js-detail-slider-pagination"></SwiperPagination>
+                </div>
+                <div class="p-detail__gallery-items">
+                    {galleryImages.map((item) => (
+                        <a href={`img/chalet-gallery/${item}_big.jpg`} data-thumb={`img/chalet-gallery/${item}_thumb.jpg`} class="p-detail__gallery-link js-detail-gallery-link" data-fancybox="gallery">
+                            <div class="p-detail__gallery-image-box">
+                                <img class="p-detail__gallery-image lazy" data-src={`img/chalet-gallery/${item}.jpg`} alt="" width="1126" height="596" />
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+            <div class="p-detail__row">
+                <div class="p-detail__content">
+                    <div class="p-detail__gallery-control">
+                        <SwitchBlock name="detail_gallery_type" class="p-detail__gallery-switch js-detail-gallery-switch" items={[
+                            {
+                                text: 'Слайдер фото',
+                                isActive: true,
+                                checked: true,
+                                value: 'slider',
+                            },
+                            {
+                                text: 'Галерея',
+                                value: 'gallery',
+                            }
+                        ]}></SwitchBlock>
+                        <button type="button" class="p-detail__gallery-see-all js-detail-gallery-all">
+                            <span class="p-detail__gallery-see-all-text"><span>Смотреть </span> все фото</span>
+                            <Icon class="p-detail__gallery-see-all-icon" name="fullscreen"></Icon>
+                        </button>
+                    </div>
+                    <div class="p-detail__main-description">
+                        <p>Благодаря идеальному расположению лыжных трасс недалеко от&nbsp;центра деревни, Tivoli Lodge является одним из&nbsp;самых привлекательных мест для отдыха в&nbsp;горах по&nbsp;всей Швейцарии.</p>
+                    </div>
+                    <div class="p-detail__book-adaptive js-detail-book-adaptive"></div>
+                    <div class="p-detail__features">
+                        <div class="p-detail__features-items">
+                            {features.map((item) => (
+                                <div class="p-detail__features-item">
+                                    <Icon class="p-detail__features-icon" name={item.icon}></Icon>
+                                    <div class="p-detail__features-name" set:html={item.text}></div>
+                                </div>
+                            ))}
+                         </div>
+                    </div>
+                    <div class="p-detail__content-desktop-wrapper">
+                        <div class="p-detail__content-desktop" data-da=".js-detail-content-adaptive,1299.98,first">
+                            <TabMenu class="p-detail__tab-menu" type="navigation" list={[
+                                {
+                                    text: 'Описание',
+                                    goto: '#chalet_description',
+                                },
+                                {
+                                    text: 'Цена и доступность',
+                                    goto: '#chalet_availability',
+                                },
+                                {
+                                    text: 'Местоположение',
+                                    goto: '#chalet_location',
+                                },
+                            ]}></TabMenu>
+                            <div class="p-detail__section p-detail__section_description" id="chalet_description" data-navigation-section>
+                                <DetailedDescription class="p-detail__description" text={`<p>Стильное и&nbsp;изысканное шале CHALET LA&nbsp;MAISON расположено на&nbsp;возвышенности, откуда открывается панорамный вид на&nbsp;долину и&nbsp;окружающие вершины, которым можно наслаждаться с&nbsp;балконов или обширной террасы. Для этого проекта были заказаны архитекторы интерьера MM&nbsp;Design из&nbsp;Франкфурта, которые провели реконструкцию знаменитого отеля Brenners Park в&nbsp;Баден-Бадене среди многих других престижных объектов недвижимости. Интерьер представляет собой мастер-класс по&nbsp;мастерству и&nbsp;современному альпийскому дизайну.</p>
+                                    <p>Шале расположено на&nbsp;четырех этажах, в&nbsp;общей сложности 12&nbsp;спальных мест в&nbsp;шести очень хорошо оборудованных спальнях с&nbsp;ванными комнатами, где пять спален могут быть сконфигурированы как двухместные или двухместные спальни в&nbsp;зависимости от&nbsp;группы. Две спальни на&nbsp;первом этаже и&nbsp;две на&nbsp;втором имеют отдельные балконы, и&nbsp;во&nbsp;всех есть небольшие гардеробные. Во&nbsp;всех спальнях есть телевизор с&nbsp;плоским экраном, сейф и&nbsp;собственная ванная комната с&nbsp;ванной/душем.</p>
+                                    <p>Шале расположено на&nbsp;четырех этажах, в&nbsp;общей сложности 12&nbsp;спальных мест в&nbsp;шести очень хорошо оборудованных спальнях с&nbsp;ванными комнатами, где пять спален могут быть сконфигурированы как двухместные или двухместные спальни в&nbsp;зависимости от&nbsp;группы. Две спальни на&nbsp;первом этаже и&nbsp;две на&nbsp;втором имеют отдельные балконы, и&nbsp;во&nbsp;всех есть небольшие гардеробные. Во&nbsp;всех спальнях есть телевизор с&nbsp;плоским экраном, сейф и&nbsp;собственная ванная комната с&nbsp;ванной/душем.</p>`}></DetailedDescription>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="p-detail__sidebar">
+                    <div class="p-detail__book-wrapper">
+                        <div class="p-detail__book" data-da=".js-detail-book-adaptive,767.98,first">
+                            <div class="p-detail__book-info">
+                                <div class="p-detail__book-info-item">
+                                    <div class="p-detail__book-info-name">Обслуживание</div>
+                                    <div class="p-detail__book-info-value">Включено</div>
+                                </div>
+                                <div class="p-detail__book-info-item">
+                                    <div class="p-detail__book-info-name">Спален</div>
+                                    <div class="p-detail__book-info-value">7</div>
+                                </div>
+                                <div class="p-detail__book-info-item">
+                                    <div class="p-detail__book-info-name">Мест</div>
+                                    <div class="p-detail__book-info-value">14</div>
+                                </div>
+                                <div class="p-detail__book-info-item">
+                                    <div class="p-detail__book-info-name">Площадь</div>
+                                    <div class="p-detail__book-info-value">475м²</div>
+                                </div>
+                            </div>
+                            <div class="p-detail__book-price-box">
+                                <div class="p-detail__book-price">от € 16 909</div>
+                                <div class="p-detail__book-period">7 ночей</div>
+                            </div>
+                            <div class="p-detail__book-buttons">
+                                <Button class="p-detail__book-button js-detail-booking-button" data-modal-open="#modal_booking">Забронировать шале</Button>
+                                <Button class="p-detail__book-button" style='outline'>Добавить в избранное</Button>
+                                <Button class="p-detail__book-button" style='outline'>Добавить в сравнение</Button>
+                                <Button class="p-detail__book-button" style='outline'>Скачать PDF описание</Button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="p-detail__content-adaptive js-detail-content-adaptive"></div>
+            <div class="p-detail__book p-detail__book_mobile u-mobile-visible">
+                <div class="p-detail__book-info">
+                    <div class="p-detail__book-info-item">
+                        <div class="p-detail__book-info-name">Обслуживание</div>
+                        <div class="p-detail__book-info-value">Включено</div>
+                    </div>
+                    <div class="p-detail__book-info-item">
+                        <div class="p-detail__book-info-name">Спален</div>
+                        <div class="p-detail__book-info-value">7</div>
+                    </div>
+                    <div class="p-detail__book-info-item">
+                        <div class="p-detail__book-info-name">Мест</div>
+                        <div class="p-detail__book-info-value">14</div>
+                    </div>
+                    <div class="p-detail__book-info-item">
+                        <div class="p-detail__book-info-name">Площадь</div>
+                        <div class="p-detail__book-info-value">475м²</div>
+                    </div>
+                </div>
+                <div class="p-detail__book-price-box">
+                    <div class="p-detail__book-price">€ 16 909—39 809</div>
+                    <div class="p-detail__book-period">7 ночей</div>
+                </div>
+                <div class="p-detail__book-buttons">
+                    <Button class="p-detail__book-button" data-modal-open="#modal_booking">Забронировать шале</Button>
+                </div>
+            </div>
+            <TabsInfo class="p-detail__tabs-info" type="rooms"></TabsInfo>
+            <div class="p-detail__booking js-detail-booking-fixed">
+                <div class="p-detail__booking-inner">
+                    <div class="p-detail__booking-dates">
+                        <div class="p-detail__booking-date">Cб 09.12.2023</div>
+                        <span class="p-detail__booking-line"></span>
+                        <div class="p-detail__booking-date">Cб 16.12.2023</div>
+                    </div>
+                    <div class="p-detail__booking-row">
+                        <div class="p-detail__booking-period">7 ночей</div>
+                        <div class="p-detail__booking-price">€ 210</div>
+                        <Button class="p-detail__booking-button" data-modal-open="#modal_booking">Забронировать шале</Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <AvailabilitySection id="chalet_availability"></AvailabilitySection>
+    <ChaletLocations type="chalet" id="chalet_location" title="Местоположение" data-navigation-section></ChaletLocations>
+    <Feedback title='Забронировать шале'></Feedback>
+    <SimilarChalets type="similar" title="Похожие шале на&nbsp;курорте Валь-Торанс"></SimilarChalets>
+    <SimilarChalets type="similarOthers" title="Похожие шале на&nbsp;других курортах"></SimilarChalets>
+    <WhyWe></WhyWe>
+
+</Layout>

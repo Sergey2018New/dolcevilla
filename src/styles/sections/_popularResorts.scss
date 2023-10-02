@@ -1,0 +1,202 @@
+/* ------- popularResorts -------- */
+.popular-resorts {
+
+    &__title {
+        margin-bottom: var(--title-section-margin);
+        padding-right: 17rem;
+
+        @include media(mob) {
+            padding-right: 0;
+        }
+    }
+
+    &__content {
+        position: relative;
+    }
+
+    &__slider {
+        position: static;
+
+        @include media(tab-l) {
+            overflow: visible;
+        }
+    }
+
+    &__controls {
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        @include media(mob) {
+            display: none;
+        }
+    }
+
+    &__items {
+        display: grid;
+        gap: $space-default;
+        grid-template-rows: auto auto;
+
+        @include grid-columns(3);
+    }
+
+    &__item {
+        .resort-item__title {
+            width: fit-content;
+        }
+    }
+
+    &__slide {
+
+    }
+
+    &__more {
+        display: flex;
+        justify-content: center;
+        margin-top: $section-space-sm;
+
+        @include media(tab-l) {
+            margin-top: 4rem;
+        }
+
+        @include media(mob) {
+            margin-top: 3rem;
+        }
+    }
+
+    &_popular {
+        .resort-item__inner {
+            height: d-adaptive(310);
+            max-height: 31rem;
+            padding-top: 0;
+
+            @include media(tab-l) {
+                height: tab-adaptive(310);
+            }
+
+            @include media(mob) {
+                padding-top: 0;
+                height: m-adaptive(228);
+            }
+        }
+
+        .popular-resorts {
+            &__title {
+                @include media(tab-l) {
+                    padding-bottom: 2rem;
+                }
+
+                @include media(mob) {
+                    padding-bottom: 1rem;
+                }
+            }
+
+            &__items {
+                @include media(tab) {
+                    @include grid-columns(2);
+                }
+
+                @include media(mob) {
+                    @include grid-columns(3);
+                }
+            }
+
+            &__item {
+                &:first-child {
+                    grid-column: span 2;
+                }
+            }
+
+            &__more {
+                @include media(tab-l) {
+                    padding-top: 2rem;
+                }
+
+                @include media(mob) {
+                    padding-top: 1rem;
+                }
+            }
+
+            &__slide {
+                @include media(mob) {
+                    width: m-adaptive(795);
+                }
+            }
+        }
+    }
+
+    &_amazing {
+        .resort-item__inner {
+            @include media(tab-l) {
+                padding-top: 0;
+                height: tab-adaptive(200);
+            }
+
+            @include media(mob) {
+                height: m-adaptive(110);
+            }
+        }
+
+        .popular-resorts {
+            &__title {
+                @include media(tab-l) {
+                    padding-right: 0;
+                }
+            }
+
+            &__items {
+                grid-template-rows: auto auto auto;
+
+                @include grid-columns(4);
+            }
+
+            &__item {
+                &:first-child {
+                    grid-column: span 2;
+                    grid-row: span 2;
+                }
+
+                &:nth-child(2),
+                &:nth-child(5) {
+                    grid-column: span 2;
+
+                    .resort-item__inner {
+                        padding-top: 46.9697%;
+
+                        @include media(tab-l) {
+                            padding-top: 0;
+                        }
+                    }
+                }
+
+                &:first-child {
+                    .resort-item__inner {
+                        @include media(tab-l) {
+                            height: tab-adaptive(418);
+                        }
+
+                        @include media(mob) {
+                            height: m-adaptive(235);
+                        }
+                    }
+                }
+            }
+
+            &__slide {
+                @include media(tab-l) {
+                    width: 119.27vw;
+                }
+
+                @include media(mob) {
+                    width: m-adaptive(525);
+                }
+            }
+
+            &__controls {
+                @include media(tab-l) {
+                    display: none;
+                }
+            }
+        }
+    }
+}

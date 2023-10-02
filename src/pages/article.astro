@@ -1,0 +1,155 @@
+---
+import Layout from '@layouts/layout.astro';
+import Icon from '@components/modules/Icon.astro';
+import Button from '@components/modules/Button.astro';
+import ButtonIcon from '@components/modules/ButtonIcon.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import Rating from '@components/blocks/Rating.astro';
+import Share from '@components/blocks/Share.astro';
+
+import SimilarChalets  from '@components/sections/SimilarChalets.astro';
+import OtherArticles from '@components/sections/OtherArticles.astro';
+import PopularResorts from '@components/sections/PopularResorts.astro';
+
+---
+
+<Layout title="Журнал детальная" isMap={true}>
+    <Breadcrumbs list={['Журнал']} title="6&nbsp;главных причин поехать кататься на&nbsp;лыжах в&nbsp;Швейцарию"></Breadcrumbs>
+    <div class="p-default p-article">
+        <div class="p-article__section">
+            <div class="container">
+                <div class="p-article__heading">
+                    <div class="p-article__heading-left">
+                        <h1 class="p-article__title heading-title">ТОП-6 летних шале с&nbsp;открытыми бассейнами</h1>
+                    </div>
+                    <div class="p-article__heading-right">
+                        <div class="p-article__rating-box">
+                            <Rating class="p-article__rating" name="rating_heading" data-rating-select></Rating>
+                        </div>
+                        <div class="p-article__control">
+                            <ButtonIcon class={`p-article__control-button`} icon="share" style="second" size='sm'></ButtonIcon>
+                            <ButtonIcon class={`p-article__control-button`} icon="star" style="second" size='sm' mod="favorite"></ButtonIcon>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-article__row p-article__row_main">
+                    <div class="p-article__column p-article__column_flex">
+                        <div class="p-article__head-info">
+                            <div class="p-article__date">23 декабря 2022</div>
+                            <a href="" class="p-article__category">Путешествия</a>
+                        </div>
+                        <div class="p-article__author p-article__author_adaptive">
+                            <div class="p-article__author-photo">
+                                <img class="p-article__author-photo-image lazy" data-src="img/article/author.jpg" data-srcset="img/article/author@2x.jpg" alt="">
+                            </div>
+                            <div class="p-article__author-name">
+                                <span>Автор</span>
+                                Alicia Bryan
+                            </div>
+                        </div>
+                        <div class="p-article__caption-photo">Фото: Pascal Gertschen</div>
+                    </div>
+                    <div class="p-article__column">
+                        <div class="p-article__main-image-box">
+                            <img class="p-article__main-image lazy" data-src="img/article/main-photo.jpg" data-srcset="img/article/main-photo.jpg" width="893" height="597" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-article__section">
+            <div class="container">
+                <div class="p-article__row">
+                    <div class="p-article__column">
+                        <div class="p-article__description description">
+                            <div class="h2">С&nbsp;увеличением числа людей, переведенных на&nbsp;удаленную работу из-за COVID-19, мы&nbsp;решили составить список наших лучших шале с&nbsp;кабинетами с&nbsp;захватывающими видами на&nbsp;горы. Попробуйте скрыться в&nbsp;Альпах от&nbsp;повседневной суеты и&nbsp;насладиться балансом работы и&nbsp;личной жизни в&nbsp;одном из&nbsp;этих роскошных шале класса люкс.</div>
+                            <p>Кампания Clean and Safe, запущенная этим летом, чтобы убедить гостей в&nbsp;том, что <a href="">Швейцария</a> является безопасным и&nbsp;экологически чистым местом для путешествий, при поддержке Офиса по&nbsp;Туризму Швейцарии сигнализирует гостям о&nbsp;том, что поставщики туристических услуг взяли на&nbsp;себя твердое обязательство соблюдать правила защиты от&nbsp;вируса Covid-19. С&nbsp;безупречной репутацией своей природной чистоты, Швейцария продолжает упорно работать в&nbsp;этом направлении, чтобы у&nbsp;любителей горнолыжного спорта не&nbsp;осталось ни&nbsp;тени сомнений в&nbsp;безопасности поездки на&nbsp;местные курорты.Некоторые швейцарские курорты, в&nbsp;том числе <a href="">Давос</a>, установили оборудование для так называемого &laquo;холодного тумана&raquo; для обработки подъемников, позволяющей уничтожить до&nbsp;99,9% вирусов и&nbsp;бактерий. В&nbsp;то&nbsp;же время другие курорты установили санитарные станции и&nbsp;сделали обязательным ношение лицевых масок.</p>
+                        </div>
+                    </div>
+                    <div class="p-article__column p-article__column_sticky">
+                        <div class="p-article__sticky sticky">
+                            <div class="sticky__container" data-sticky-container>
+                                <div class="sticky__block" data-sticky data-sticky-offset="30" data-sticky-is-header>
+                                    <div class="p-article__author">
+                                        <div class="p-article__author-photo">
+                                            <img class="p-article__author-photo-image lazy" data-src="img/article/author.jpg" data-srcset="img/article/author@2x.jpg" width="64" height="64" alt="">
+                                        </div>
+                                        <div class="p-article__author-name">
+                                            <span>Автор</span>
+                                            Alicia Bryan
+                                        </div>
+                                    </div>
+                                    <div class="p-article__estimate p-article__estimate_justify">
+                                        <div class="p-article__estimate-title">Оцените статью</div>
+                                        <Rating class="p-article__rating" name="rating_heading" data-rating-select></Rating>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="p-article__section">
+            <img class="p-article__full-image lazy" data-src="img/article/full-image.jpg" data-srcset="img/article/full-image@2x.jpg" width="1920" height="587" alt="">
+        </div>
+        <div class="p-article__section">
+            <div class="container">
+                <div class="p-article__row">
+                    <div class="p-article__column">
+                        <div class="p-article__description description">
+                            <h2>Восхитительная кухня</h2>
+                            <p>Находясь на&nbsp;отдыхе в&nbsp;так называемой стране сыра и&nbsp;шоколада, нет ничего лучше, чем согреться горячим сырным фондю после утреннего катания на&nbsp;склонах. Курорты Санкт-Мориц и&nbsp;Церматт, известные своей изысканной кухней, изобилуют ресторанами, отмеченными звездами Мишлен, в&nbsp;то&nbsp;время как даже в&nbsp;самых маленьких горных заведениях подают аппетитные традиционные блюда, приготовленные исключительно из&nbsp;свежих местных продуктов.</p>
+                            <figure>
+                                <img class="lazy" data-src="img/article/photo-1.jpg" data-srcset="img/article/photo-1@2x.jpg" alt="" width="544" height="352">
+                                <figcaption>Фото: Pascal Gertschen</figcaption>
+                            </figure>
+                            <h2>Эффективность</h2>
+                            <p>В&nbsp;стране, одной из&nbsp;отличительных черт которой является эффективных подход в&nbsp;решении любого вопроса, вы&nbsp;можете быть уверены в&nbsp;обеспечении правильных мер и&nbsp;процессов, позволяющих вам насладиться горнолыжным отдыхом, не&nbsp;сомневаясь в&nbsp;безопасности вашего здоровья.</p>
+                            <figure>
+                                <img class="lazy" data-src="img/article/photo-2.jpg" data-srcset="img/article/photo-2@2x.jpg" alt="" width="544" height="352">
+                                <figcaption>Фото: Pascal Gertschen</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="p-article__column p-article__column_sticky">
+                        <div class="p-article__sticky sticky">
+                            <div class="sticky__container" data-sticky-container>
+                                <div class="sticky__block" data-sticky data-sticky-offset="30" data-sticky-is-header>
+                                    <div class="p-article__author">
+                                        <div class="p-article__author-photo">
+                                            <img class="p-article__author-photo-image lazy" data-src="img/article/author.jpg" data-srcset="img/article/author@2x.jpg" alt="">
+                                        </div>
+                                        <div class="p-article__author-name">
+                                            <span>Автор</span>
+                                            Alicia Bryan
+                                        </div>
+                                    </div>
+                                    <div class="p-article__estimate p-article__estimate_justify">
+                                        <div class="p-article__estimate-title">Оцените статью</div>
+                                        <Rating class="p-article__rating" name="rating_heading" data-rating-select></Rating>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="p-article__footer">
+                <div class="p-article__estimate">
+                    <div class="p-article__estimate-title">Оцените статью</div>
+                    <Rating class="p-article__rating" name="rating_heading" data-rating-select></Rating>
+                </div>
+                <Share class="p-article__share"></Share>
+            </div>
+        </div>
+    </div>
+    <OtherArticles></OtherArticles>
+    <SimilarChalets type="bestChalets" title="Топ шале"></SimilarChalets>
+    <PopularResorts type='popular'></PopularResorts>
+</Layout>

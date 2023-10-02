@@ -1,0 +1,226 @@
+// Mixins
+@import "mixins";
+
+// Functions
+@import "functions";
+
+// Base
+$base-font-family: var(--font-family);
+$base-font-weight: 400;
+$base-font-size: var(--text-size);
+$base-line-height: var(--text-line-height);
+$base-color: var(--color-base);
+$base-background: var(--background-color);
+
+// Fonts
+$font-primary: var(--font-family);
+$font-alethia-pro: var(--font-family-alethia-pro);
+$font-alethia-next: var(--font-family-alethia-next);
+
+// Font sizes
+$text-size: var(--text-size);
+$text-size-desktop: var(--text-size-desktop);
+
+// Colors
+$black: #000;
+$white: #fff;
+$grey: var(--color-grey);
+
+$accent: var(--color-accent);
+$second: var(--color-second);
+$second-2: var(--color-second-2);
+
+$primary: var(--color-base);
+$backdrop: var(--color-backdrop);
+
+$input-border: var(--color-placeholder);
+$placeholder: var(--color-placeholder);
+$disabled-color: #aaa;
+$disabled-background: #aaa;
+
+$error: var(--color-error);
+$success: var(--color-success);
+$link: var(--color-link);
+
+// Container
+$container: var(--container-max-width);
+$min-width: 320px;
+$gutters: var(--gutters);
+$gutters-sm: var(--gutters-sm);
+$section-space: var(--section-space);
+$section-space-sm: var(--section-space-sm);
+$section-space-xs: var(--section-space-xs);
+
+$space-default: var(--space-default);
+$space-default-sm: var(--space-default-sm);
+$space-default-md: var(--space-default-md);
+
+// Breakpoints
+$grid-breakpoints: (
+	mob-xxs: 375px,
+	mob-xs: 420px,
+	mob-sm: 480px,
+	mob-m: 576px,
+	mob: 768px,
+	tab: 992px,
+	tab-l: 1101px,
+	pc: 1200px,
+	pc-md: 1300px,
+	netbook: 1367px,
+	pc-l: 1440px,
+	pc-lg: 1600px,
+	pc-xl: 1680px,
+	pc-xxl: 1920px
+);
+
+// Header
+$header: var(--header-height);
+
+// Logo
+$logo-width: var(--logo-width);
+$logo-height: var(--logo-height);
+
+// Button
+$button-height: var(--button-height);
+$button-height-sm: var(--button-height-sm);
+$button-icon: var(--button-icon);
+$button-icon-sm: var(--button-icon-sm);
+
+// Input
+$input-height: var(--input-height);
+
+// Animation
+$duration: var(--transition-duration);
+$duration-lazy: 0.6s;
+
+// Radius
+$radius: 1rem;
+
+:root {
+	--background-color: #fff;
+	--color-base: #1A1A1A;
+	--color-base-rgb: 26, 26, 26;
+
+	--color-accent: #D7926D;
+	--color-accent-light: #f5a77d;
+	--color-second: #4E8580;
+	--color-second-2: #093C38;
+	--color-second-3: #2BA399;
+	--color-grey: #7A8084;
+	--color-grey-second: #9db1af;
+
+	--color-light-50: rgba(255, 255, 255, 0.5);
+	--color-light-60: rgba(255, 255, 255, 0.6);
+
+	--color-bg: #F2FBFA;
+	--color-line: #E1E4E7;
+	--color-placeholder: #7A8084;
+
+    --color-track-green: #4E8580;
+    --color-track-blue: #4E6E85;
+    --color-track-red: #974F4F;
+    --color-track-black: #383C3B;
+
+	--color-backdrop: rgba(9, 60, 56, 0.5);
+	--color-error: #EA6E5E;
+	--color-success: green;
+
+	--color-link: inherit;
+
+	--container-max-width: 136rem;
+	--gutters: 4rem;
+	--gutters-sm: 2rem;
+	--space-default: 4rem;
+	--space-default-md: 8rem;
+	--space-default-sm: 2rem;
+
+	--section-space: 12rem;
+	--section-space-sm: 8rem;
+	--section-space-xs: 4rem;
+
+	--header-height: 12.8rem;
+	--header-height-fixed: 5.4rem;
+	--header-search: var(--header-height);
+
+	--logo-width: 26rem;
+	--logo-height: 4rem;
+
+	--button-height: 4.8rem;
+	--button-height-sm: 3.8rem;
+	--button-icon: 6.4rem;
+	--button-icon-sm: 4.8rem;
+	--input-height: 6.7rem;
+	--transition-duration: 0.3s;
+	--scale-image: 1.15;
+	--scale-image-big: 1.3;
+
+	--font-family: "Lab Grotesque", "Arial", sans-serif;
+	--font-family-alethia-pro: 'Alethia Pro', "Arial", sans-serif;
+	--font-family-alethia-next: 'Alethia Next', "Arial", sans-serif;
+
+    --text-size-sm: 1.4rem;
+	--text-size: 1.8rem;
+	--text-size-desktop: 1.8rem;
+    --text-size-2: 2rem;
+	--text-size-md: 2.4rem;
+
+    --text-line-height: 1.5;
+
+	--title-section-margin: 8rem;
+	--title-size: 4.8rem;
+	--title-size-sm: 3.6rem;
+
+	--arrow-width: 4.8rem;
+	--arrow-height: 2rem;
+
+	@include media(pc) {
+		--gutters: 3rem;
+		--space-default: 3rem;
+		--space-default-md: 6rem;
+		--section-space: 10rem;
+		--section-space-sm: 6rem;
+		--section-space-xs: 3rem;
+		--title-section-margin: 6rem;
+	}
+
+	@include media(tab-l) {
+		--header-height: 8.8rem;
+
+		--gutters: 2rem;
+		--space-default: 2rem;
+		--space-default-md: 4rem;
+		--section-space: 8rem;
+		--section-space-sm: 6rem;
+		--section-space-xs: 2rem;
+
+		--text-size-md: 2rem;
+		--title-section-margin: 4rem;
+		--title-size: 3.6rem;
+
+		--arrow-width: 4rem;
+		--arrow-height: 1.6rem;
+
+	}
+
+	@include media(mob) {
+		--gutters: 1.5rem;
+
+		--logo-width: 23.4rem;
+		--logo-height: 3.6rem;
+		--header-height: 7.8rem;
+
+		--space-default: 1.5rem;
+        --section-space: 6rem;
+		--section-space-xs: 1.5rem;
+        --input-height: 5.8rem;
+
+		--text-size: 1.4rem;
+		--text-size-md: 1.6rem;
+
+		--title-size: 3.2rem;
+		--title-section-margin: 3rem;
+
+		--arrow-width-sm: 3.2rem;
+		--arrow-height-sm: 1.2rem;
+	}
+}

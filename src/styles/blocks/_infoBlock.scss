@@ -1,0 +1,131 @@
+/* ------- Info Block -------- */
+.info-block {
+    &__title {
+        margin-top: 0;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--color-line);
+        font-family: $font-alethia-pro;
+        font-weight: 400;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+
+        @include media(mob) {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+    }
+
+    &__content {
+
+    }
+
+    &__services {
+        display: grid;
+        gap: $space-default;
+
+        @include grid-columns(3);
+
+        @include media(mob) {
+            gap: 1rem;
+
+            @include grid-columns(1);
+        }
+    }
+
+    &__services-column {
+
+    }
+
+    &__services-list {
+        display: grid;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        > li {
+            position: relative;
+            padding-left: 1.9rem;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 2.7rem * 0.5;
+                left: 0;
+                border: 1px solid $accent;
+                width: 0.6rem;
+                height: 0.6rem;
+                margin-top: -0.3rem;
+                transform: rotate(45deg);
+
+                @include media(mob) {
+                    top: 1rem;
+                }
+            }
+        }
+    }
+
+    &__get-there {
+        display: grid;
+        gap: 1rem;
+        padding-top: 2rem;
+
+        @include media(mob) {
+            padding-top: 1rem;
+            gap: $space-default;
+        }
+
+        .info-block {
+            &__parameters {
+                gap: 0;
+
+                &-name {
+                    color: $accent;
+                }
+            }
+        }
+    }
+
+    &__get-there-row {
+        display: grid;
+        grid-template-columns: minmax(0, 31.8fr) minmax(0, 68.2fr);
+        gap: $space-default;
+
+        @include media(tab-l) {
+            grid-template-columns: minmax(0, 32.4fr) minmax(0, 67.6fr);
+        }
+
+        @include media(mob-m) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 0.5rem;
+        }
+    }
+
+    &__get-there-column {
+    }
+
+    &__get-there-title {
+        color: $grey;
+    }
+
+    &__parameters {
+        display: grid;
+        gap: 1rem;
+
+        @include media(mob) {
+            gap: 0.5rem;
+        }
+    }
+
+    &__parameters-item {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    &__parameters-name {
+        color: $grey;
+    }
+}

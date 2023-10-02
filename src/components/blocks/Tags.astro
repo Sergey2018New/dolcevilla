@@ -1,0 +1,44 @@
+---
+import Icon from '@components/modules/Icon.astro';
+
+interface Props {
+	// type?: 'full' | 'short';
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+	list = [],
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<div
+	class:list={[
+		'tags',
+		className,
+	]}
+	data-tags
+	{...rest}
+>
+	{ list ?
+		<div class="tags__list">
+			{list.map((item, index) => (
+				<button type="button" data-tags-item title={`${item.text}`} aria-label={`${item.text}`} class:list={
+					[
+						'tags__item',
+						item.isActive ? 'is-active' : ''
+					]
+				}>
+					<span class="tags__item-text" set:html={item.text}></span>
+					<Icon class="tags__item-remove-icon" name="cross"></Icon>
+				</button>
+			))}
+		</div>
+		<button class="tags__button-clear" type="button" title="Очистить теги" aria-label="Очистить теги" data-tags-clear>
+			<Icon class="tags__button-clear-icon" name="cross"></Icon>
+		</button>
+		: ''
+	}
+</div>

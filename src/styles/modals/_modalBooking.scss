@@ -1,0 +1,132 @@
+/* ------- Modal Booking -------- */
+.modal-booking {
+    .modal__content {
+        padding: 4rem;
+
+        @include media(mob) {
+            padding: 2rem;
+        }
+    }
+
+    .modal__title {
+        font-size: var(--title-size-sm);
+
+        @include media(mob) {
+            font-size: 3.2rem;
+        }
+    }
+
+    .modal__row {
+        grid-template-columns: 34.6rem minmax(0, 1fr);
+        gap: 8rem;
+
+        @include media(tab-l) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        @include media(mob) {
+            gap: 4rem;
+        }
+    }
+
+    .modal__column {
+        &::before {
+            left: -4rem;
+
+            @include media(tab-l) {
+                left: 0;
+                width: 100%;
+                top: -4rem;
+                height: 1px;
+            }
+
+            @include media(mob) {
+                top: -2rem;
+            }
+        }
+    }
+
+    .modal__icon-arrow {
+        @include media(tab-l) {
+            display: none;
+        }
+    }
+
+    .modal-request__form {
+        @include media(tab-l) {
+            margin-top: -2rem;
+        }
+
+        @include media(mob) {
+            margin-top: -1rem;
+        }
+    }
+
+    .form__agreement {
+        margin-top: 0;
+        text-align: right;
+
+        @include media(mob) {
+            text-align: left;
+        }
+    }
+
+    &__form-footer {
+        display: grid;
+        margin-top: 4rem;
+        gap: 1rem;
+
+        @include media(mob) {
+            margin-top: 2rem;
+        }
+    }
+
+    &__button-wrapper {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) max-content max-content;
+        align-items: center;
+        gap: 1rem 2rem;
+
+        @include media(mob-m) {
+            grid-template-columns: minmax(0, 1fr) auto;
+        }
+    }
+
+    &__submit {
+        @include media(mob-m) {
+            grid-column: span 2;
+            width: 100%;
+        }
+    }
+
+    &__price {
+        font-family: $font-alethia-pro;
+        font-size: var(--title-size-md);
+        line-height: 140%;
+
+        @include media(tab-l) {
+            font-size: 2rem;
+        }
+
+    }
+
+    &__period {
+        font-size: $text-size-desktop;
+    }
+
+    &__field-date-to {
+        @include media-between(tab-l, netbook) {
+            .flatpickr-calendar {
+                left: auto;
+                right: 0;
+            }
+        }
+
+        @include media(tab) {
+            .flatpickr-calendar {
+                left: auto;
+                right: 0;
+            }
+        }
+    }
+}

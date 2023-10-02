@@ -1,0 +1,13 @@
+/* ------- Modal Favorites -------- */
+.modal-favorites {
+	&__items {
+        display: grid;
+        gap: calc($space-default * 2) $space-default;
+
+        @include grid-columns(3);
+
+        @include media(mob-m) {
+            @include grid-columns(2);
+        }
+    }
+}

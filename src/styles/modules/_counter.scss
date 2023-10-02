@@ -1,0 +1,79 @@
+/* ------- UI - Counter ------- */
+.ui-counter {
+    position: relative;
+
+    &__button {
+        position: absolute;
+        top: -0.15rem;
+        width: 3rem;
+        height: 3rem;
+        transition: $duration opacity;
+
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -0.5rem;
+            margin-top: -1px;
+            width: 1rem;
+            height: 1px;
+            background: $base-color;
+            transition: $duration background;
+        }
+
+        &::after {
+            transform: rotate(90deg);
+        }
+
+        &:hover {
+            &::before,
+            &::after {
+                background: $accent;
+            }
+        }
+
+        &_decrease {
+            left: -0.9rem;
+
+            &::after {
+                display: none;
+            }
+        }
+
+        &_increase {
+            right: -0.9rem;
+        }
+
+        &.is-disabled {
+            opacity: 0.2;
+            cursor: default;
+
+            &::before,
+            &::after {
+                background: $base-color;
+            }
+        }
+    }
+
+    &__input {
+        padding-left: 3rem;
+        padding-right: 3rem;
+        padding-bottom: 2rem;
+        height: 4.7rem;
+        text-align: center;
+        -moz-appearance: textfield;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        @include media(mob) {
+            padding-bottom: 1rem;
+            height: 3.7rem;
+        }
+    }
+}

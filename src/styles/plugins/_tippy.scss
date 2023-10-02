@@ -1,0 +1,23 @@
+/* ------------ Tippy ------------ */
+/*	https://github.com/atomiks/tippyjs */
+/* -------------------------------- */
+
+@import 'tippy.js/dist/tippy';
+
+.tippy-tooltip {
+	font-size: $text-size-desktop;
+	background-color: $white;
+    box-shadow: 0 0.4rem 3rem 0 rgba(var(--color-base-rgb), 0.07);
+}
+
+.tippy-content {
+    padding: 1rem;
+    font-size: var(--text-size-sm);
+    line-height: 1.4;
+    color: var(--color-grey);
+}
+
+.tippy-arrow {
+	color: $base-color;
+    opacity: 0;
+}

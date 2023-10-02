@@ -1,0 +1,96 @@
+---
+import Layout from '@layouts/layout.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import ResortItem from '@components/blocks/ResortItem.astro';
+import EliteChalets  from '@components/sections/EliteChalets.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+
+const items1 = [
+    {
+        title: 'Лыжные шале Ski-In/Ski-Out',
+        size: 'lg'
+    },
+    {
+        title: 'Шале с&nbsp;кинотеатром или телевизором',
+        size: 'sm'
+    },
+    {
+        title: 'Шале с&nbsp;услугой водителя',
+        size: 'sm'
+    },
+    {
+        title: 'Шале с&nbsp;тренажерным залом/фитнес-зоной',
+        size: 'sm'
+    },
+    {
+        title: 'Шале с&nbsp;гидро&shy;массажными ваннами',
+        size: 'sm'
+    },
+    {
+        title: 'Шале со&nbsp;спа-услугами',
+        size: 'sm'
+    },
+    {
+        title: 'Шале с&nbsp;бассейнами',
+        size: 'sm'
+    },
+]
+
+const items2 = [
+    {
+        title: 'Шале для рождественских праздников',
+        size: 'sm'
+    },
+    {
+        title: 'Шале для летнего катания на&nbsp;лыжах',
+        size: 'sm'
+    },
+    {
+        title: 'Шале для больших групп',
+        size: 'sm'
+    },
+    {
+        title: 'Шале для зимней свадьбы',
+        size: 'sm'
+    },
+    {
+        title: 'Шале для празднования Нового года',
+        size: 'lg'
+    },
+]
+---
+
+<Layout title="Коллекции" isMap={true}>
+    <Breadcrumbs title="Коллекции"></Breadcrumbs>
+    <div class="p-collections">
+        <div class="p-collections__section">
+            <div class="container">
+                <h2 class="p-collections__title heading-title">Шале по&nbsp;удобствам</h2>
+                <div class="p-collections__items">
+                    {items1.map((item, index) => (
+                        <ResortItem class={`p-collections__item _size_${item.size}`} title={item.title} image={`img/collections/convenience/${index + 1}.jpg`} image2x={`img/collections/convenience/${index + 1}@2x.jpg`}></ResortItem>
+                    ))}
+                </div>
+                <div class="p-collections__more">
+                    <ButtonMore class="p-collections__more-button">Смотреть все шале</ButtonMore>
+                </div>
+            </div>
+        </div>
+        <div class="p-collections__section">
+            <div class="container">
+                <h2 class="p-collections__title heading-title">Шале по&nbsp;праздникам</h2>
+                <div class="p-collections__items">
+                    {items2.map((item, index) => (
+                        <ResortItem class={`p-collections__item _size_${item.size}`} title={item.title} image={`img/collections/holidays/${index + 1}.jpg`} image2x={`img/collections/holidays/${index + 1}@2x.jpg`}></ResortItem>
+                    ))}
+                </div>
+                <div class="p-collections__more">
+                    <ButtonMore class="p-collections__more-button">Смотреть все шале</ButtonMore>
+                </div>
+            </div>
+        </div>
+    </div>
+    <EliteChalets></EliteChalets>
+    <WhyWe></WhyWe>
+</Layout>

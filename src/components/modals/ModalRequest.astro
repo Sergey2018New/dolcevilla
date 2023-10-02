@@ -1,0 +1,27 @@
+---
+import Input from '@components/modules/Input.astro';
+import Button from '@components/modules/Button.astro';
+import FieldBox from '@components/modules/FieldBox.astro';
+import Checkbox from '@components/modules/Checkbox.astro';
+import Modal from '@components/modules/Modal.astro';
+---
+<Modal id="modal_request" class="modal-request" title="Оставить заявку" text="Заполните форму и&nbsp;мы свяжемся с&nbsp;вами и&nbsp;дадим подробную консультацию" isForm={true}>
+    <form action="" class="modal-request__form form" autocomplete="off" data-js-form>
+        <div class="modal-request__form-top">
+            <div class="form__grid">
+                <FieldBox class="form__field " label="Ваше имя" name="name" isRequired={true} required></FieldBox>
+                <FieldBox class="form__field" label="Почта или номер телефона" name="email" isRequired={true} required></FieldBox>
+            </div>
+        </div>
+        <div class="modal-request__form-center">
+            <FieldBox class="form__field modal-request__form-message" label="Ваш вопрос" name="message" type="textarea" rows="6"></FieldBox>
+        </div>
+        <div class="form__button-wrapper">
+            <Checkbox class="form__checkbox" name="receive_newsletter" checked={true}>Я хочу получать информационную рассылку</Checkbox>
+            <Button type="submit" class="form__submit">Отправить</Button>
+        </div>
+        <div class="form__agreement">
+            Нажимая кнопку отправить вы&nbsp;соглашаетесь с&nbsp;<a href="">политикой конфиденциальности</a>
+        </div>
+    </form>
+</Modal>

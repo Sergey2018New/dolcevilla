@@ -1,0 +1,76 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import Button from '@components/modules/Button.astro';
+
+interface Props {
+    id?: string;
+    [x: string]: any;
+}
+
+const {
+    id,
+    ...rest
+} = Astro.props;
+
+
+const shedule = [
+    {
+        dateFrom: 'Cб&nbsp;02.12.2023',
+        dateTo: 'Cб&nbsp;09.12.2023',
+        period: '7 ночей',
+        price: '€ 120',
+    },
+    {
+        dateFrom: 'Cб&nbsp;16.12.2023',
+        dateTo: 'Cб&nbsp;23.12.2023',
+        period: '7 ночей',
+        price: '€ 120',
+    },
+    {
+        dateFrom: 'Cб&nbsp;09.12.2023',
+        dateTo: 'Cб&nbsp;16.12.2023',
+        period: '7 ночей',
+        price: '€ 210',
+    },
+    {
+        dateFrom: 'Cб&nbsp;23.12.2023',
+        dateTo: 'Cб&nbsp;30.12.2023',
+        period: '7 ночей',
+        price: '€ 180',
+    },
+];
+---
+
+<section class="section estimated-prices" id={id} data-navigation-section>
+	<div class="container">
+        <h2 class="estimated-prices__title section-title">Ориентировочные цены зима 2023/24</h2>
+        <table class="estimated-prices__table">
+            <tr>
+                <th></th>
+                <th>Низкий сезон</th>
+                <th>Высокий сезон</th>
+            </tr>
+            <tr>
+                <td>Номера</td>
+                <td>от € 120<span class="u-mobile-hidden"> за ночь</span></td>
+                <td>от € 150<span class="u-mobile-hidden"> за ночь</span></td>
+            </tr>
+            <tr>
+                <td>Полулюкс</td>
+                <td>от € 150<span class="u-mobile-hidden"> за ночь</span></td>
+                <td>от € 180<span class="u-mobile-hidden"> за ночь</span></td>
+            </tr>
+            <tr>
+                <td>Люкс</td>
+                <td>от € 250<span class="u-mobile-hidden"> за ночь</span></td>
+                <td>от € 350<span class="u-mobile-hidden"> за ночь</span></td>
+            </tr>
+        </table>
+        <div class="estimated-prices__footer">
+            <div class="estimated-prices__note-text">
+                <p>Обратите внимание, что приведенная выше цена является ориентировочной. Из-за динамического ценообразования, используемого отелями, пожалуйста, свяжитесь с&nbsp;командой, которая будет рада поделиться конкретными ценами на&nbsp;желаемые даты.</p>
+            </div>
+            <Button class="estimated-prices__button" data-modal-open="#modal_booking">Забронировать номер</Button>
+        </div>
+	</div>
+</section>

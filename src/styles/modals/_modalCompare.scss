@@ -1,0 +1,189 @@
+/* ------- Modal Compare -------- */
+.modal-compare {
+    .modal__window {
+        width: 120.8rem;
+
+        @include media(tab-l) {
+            width: calc(100% - 9.4rem);
+        }
+
+        @include media(mob) {
+            width: 100%;
+        }
+    }
+
+    &__heading {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2;
+        width: 23.4rem;
+        min-height: 100%;
+        background: $white;
+
+        @include media(tab-l) {
+            width: 18.7rem;
+        }
+
+        @include media(mob) {
+            width: 18rem;
+        }
+    }
+
+    &__heading-item {
+        padding-top: 12.9rem;
+
+        @include media(tab-l) {
+            padding-top: 11rem;
+        }
+
+        .chalet-item__title,
+        .chalet-item__price {
+            font-family: inherit;
+        }
+
+        .chalet-item__row {
+            grid-template-columns: minmax(0, 1fr);
+            padding-right: $space-default;
+        }
+
+        .chalet-item__services {
+            margin-top: 1rem;
+
+            @include media(mob) {
+                margin-top: 0.5rem;
+            }
+        }
+
+        .chalet-item__services-item {
+            padding-right: $space-default;
+        }
+
+        .chalet-item__services-name {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+
+    &__slider-wrapper {
+        position: relative;
+        margin-right: calc($space-default * -1);
+        padding-right: $space-default;
+        overflow: hidden;
+    }
+
+    &__slider {
+        // position: static;
+        z-index: auto;
+        overflow: visible;
+
+        // width: 1000px;
+
+        .modal-compare__heading-item {
+            width: 18rem;
+
+            @include media-min(mob) {
+                opacity: 0;
+            }
+        }
+
+        > .swiper-scrollbar {
+            position: relative;
+        }
+    }
+
+    &__items {
+        display: flex;
+        width: fit-content;
+        padding-left: 23.4rem;
+        padding-bottom: 4rem;
+
+        @include media(tab-l) {
+            padding-bottom: 2rem;
+            padding-left: 18.7rem;
+        }
+
+        @include media(mob) {
+            padding-left: 0;
+            padding-bottom: 1.5rem;
+        }
+    }
+
+    &__scrollbar {
+        position: static;
+        overflow: auto;
+
+        &[data-simplebar="init"] {
+
+            .modal-compare__items {
+                padding-bottom: 6rem;
+
+                @include media(tab-l) {
+                    padding-bottom: 4rem;
+                }
+
+                @include media(mob) {
+                    padding-bottom: 3.5rem;
+                }
+            }
+        }
+    }
+
+    &__item {
+        width: 19.3rem;
+        flex: none;
+        margin-right: $space-default;
+        user-select: none;
+
+        @include media(tab-l) {
+            width: 16.7rem;
+        }
+
+        @include media(mob) {
+            width: 16.5rem;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        .chalet-item__title,
+        .chalet-item__price {
+            font-family: inherit;
+        }
+
+        .chalet-item__title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chalet-item__row {
+            margin-right: calc($space-default * -1);
+            padding-right: $space-default;
+        }
+
+        .chalet-item__slider-wrapper {
+            height: 12.9rem;
+            padding-top: 0;
+
+            @include media(tab-l) {
+                height: 11rem;
+            }
+        }
+
+        .chalet-item__services {
+            margin-right: calc($space-default * -1);
+
+            @include media(mob) {
+                margin-top: -0.5rem;
+            }
+        }
+
+        .chalet-item__services-item {
+            padding-right: $space-default;
+        }
+    }
+}

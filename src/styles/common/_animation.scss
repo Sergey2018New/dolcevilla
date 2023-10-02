@@ -1,0 +1,105 @@
+/* ------- Animation ------- */
+@keyframes pulse {
+	from {
+	  transform: scale3d(1, 1, 1);
+	}
+
+	50% {
+	  transform: scale3d(1.08, 1.08, 1.08);
+	}
+
+	to {
+	  transform: scale3d(1, 1, 1);
+	}
+}
+
+.anim {
+	opacity: 0;
+	transition: 0.3s opacity, 0.8s transform;
+	animation-duration: 0.8s;
+	// will-change: opacity, transform;
+
+	&_visible {
+		opacity: 1;
+	}
+
+	&__item {
+		opacity: 0;
+		transition: 0.8s opacity, 0.8s transform;
+	}
+
+	&_slideUp {
+		transform: translate(0, 6rem);
+
+		&.is-anim {
+			transform: none;
+		}
+	}
+
+	&_slideUpLarge {
+		transform: translate(0, 10rem);
+
+		&.is-anim {
+			transform: none;
+		}
+	}
+
+	&_slideLeft {
+		transform: translate(4rem, 0);
+
+		&.is-anim {
+			transform: translate(0, 0);
+		}
+	}
+
+	&_slideRight {
+		transform: translate(-4rem, 0);
+
+		&.is-anim {
+			transform: translate(0, 0);
+		}
+	}
+
+	&_zoomIn {
+		transform: scale(0.5);
+
+		&.is-anim {
+			transform: scale(1);
+		}
+	}
+
+	&_zoomRotationIn {
+		transform: rotate(90deg) scale(0.5);
+
+		&.is-anim {
+			transform: rotate(0) scale(1);
+		}
+	}
+
+	&_scaleLeft {
+		transform-origin: 100% 50%;
+		transform: scaleX(0);
+
+		&.is-anim {
+			transform: scaleX(1);
+		}
+	}
+
+	&_pulse {
+		&.is-anim {
+			animation-name: pulse;
+		}
+	}
+
+	&.is-anim {
+		opacity: 1;
+
+		.anim__item {
+			opacity: 1;
+		}
+	}
+}
+
+
+
+

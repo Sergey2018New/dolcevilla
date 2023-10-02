@@ -1,0 +1,35 @@
+---
+import ButtonMore from '@components/modules/ButtonMore.astro';
+---
+
+<section class="section home-section">
+	<div class="home-section__bg js-home-background is-active" data-season="winter">
+		<div class="home-section__bg-item">
+			<div class="home-section__bg-parallax js-home-parallax">
+				<div class="home-section__bg-image" style="background-image: url('img/home-bg.png')"></div>
+			</div>
+		</div>
+	</div>
+	<div class="home-section__bg js-home-background" data-season="summer">
+		<div class="home-section__bg-item">
+			<div class="home-section__bg-parallax js-home-parallax">
+				<div class="home-section__bg-image" style="background-image: url('img/home-bg-summer.png')"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="home-section__inner">
+		<div class="home-section__content">
+			<div class="home-section__content-inner">
+				<div class="home-section__container container">
+					<div class="home-section__column">
+						<h1 class="home-section__title">Подберите лучший курорт для отдыха</h1>
+					</div>
+					<div class="home-section__column">
+						<ButtonMore class="js-scroll-to" direction="down" noBorder={true} style='light' data-goto="#choose_chalet">Подобрать шале</ButtonMore>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

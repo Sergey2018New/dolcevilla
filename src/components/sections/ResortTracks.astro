@@ -1,0 +1,76 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import SwitchBlock from '@components/modules/SwitchBlock.astro';
+
+const tracks = [
+    {
+        type: 'green',
+        title: 'Зеленые трассы',
+        count: '46',
+        distance: '12 км',
+    },
+    {
+        type: 'blue',
+        title: 'Синие трассы',
+        count: '160',
+        distance: '23 км',
+    },
+    {
+        type: 'red',
+        title: 'Красные трассы',
+        count: '36',
+        distance: '45 км',
+    },
+    {
+        type: 'black',
+        title: 'Черные трассы',
+        count: '12',
+        distance: '56 км',
+    },
+]
+---
+
+<section class="section resort-tracks" id="resort_tracks" data-navigation-section>
+	<div class="container">
+        <div class="resort-tracks__heading">
+            <h2 class="resort-tracks__title section-title">Трассы Инсбрука</h2>
+            <SwitchBlock name="map_type" class="resort-tracks__switch-block" items={[
+                {
+                    text: 'Карта Туроператора',
+                    value: 'tour_operator',
+                    isActive: true,
+                    checked: true,
+                },
+                {
+                    text: 'Google Maps',
+                    value: 'google',
+                }
+            ]}></SwitchBlock>
+        </div>
+        <div class="resort-tracks__distance">
+            <div class="resort-tracks__distance-title">Общая продолжительность трасс</div>
+            <div class="resort-tracks__distance-value">300 км</div>
+        </div>
+	</div>
+    <div class="resort-tracks__items">
+        {tracks.map((item) => (
+            <div class:list={[
+                'resort-tracks__item',
+                `resort-tracks__item_${item.type}`
+            ]}>
+                <div class="resort-tracks__item-title" set:html={item.title}></div>
+                <div class="resort-tracks__item-distance">
+                    <span set:html={item.count}></span>
+                    <svg class="resort-tracks__item-arrow" width="17" height="14" viewBox="0 0 17 14" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.936 0.827383L16.074 6.96538L9.936 13.1034L8.982 12.1494L13.572 7.61338H0.954V6.29938H13.554L8.982 1.78138L9.936 0.827383Z"/>
+                    </svg>
+                    <span set:html={item.distance}></span>
+                </div>
+            </div>
+        ))}
+    </div>
+    <div class="resort-tracks__map">
+        <img src="img/map-tracks.jpg" alt="">
+        <div id="map-tracks"></div>
+    </div>
+</section>

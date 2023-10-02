@@ -1,0 +1,88 @@
+/* ------- UI - Button Icon ------- */
+.ui-button-icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	padding: 0;
+	width: $button-icon;
+	height: $button-icon;
+	color: $white;
+
+	&__icon {
+		width: 56.25%;
+		height: 56.25%;
+		fill: currentColor;
+	}
+
+    &:focus-visible {
+		outline-color: $second;
+	}
+
+	&:hover,
+    &:focus-visible {
+		background: $second;
+  	}
+
+	&_style_second {
+		background: $second;
+
+		&:hover,
+        &:focus-visible {
+			background: $accent;
+		}
+
+        &:focus-visible {
+            outline-color: $accent;
+        }
+	}
+
+	&_size_sm {
+		width: $button-icon-sm;
+		height: $button-icon-sm;
+
+		.ui-button-icon__icon {
+			width: 50%;
+			height: 50%;
+		}
+	}
+
+	&_favorite {
+		.ui-button-icon__icon {
+			fill: none;
+			stroke: currentColor;
+		}
+	}
+
+	&_close {
+		color: $base-color;
+		border: 1px solid $accent;
+		background: none;
+
+		.ui-button-icon__icon {
+			width: 39%;
+			height: 39%;
+		}
+
+        &:focus-visible {
+            background: none;
+        }
+
+		&:hover {
+			color: $accent;
+			background: none;
+		}
+	}
+
+
+	@include disabled {
+		color: $white;
+		background: $disabled-background;
+		cursor: default;
+
+		&:hover {
+			color: $white;
+			background: $disabled-background;
+		}
+	}
+}

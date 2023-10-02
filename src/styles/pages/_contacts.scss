@@ -1,0 +1,168 @@
+/* ------- Contacts page -------- */
+.p-contacts {
+    padding: calc( $section-space - var(--space-default)) 0 calc($section-space * 0.5);
+
+    &:last-child {
+        padding-bottom: $section-space;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: minmax(0, 51fr) minmax(0, 48fr);
+
+        @include media(tab-l) {
+            grid-template-columns: minmax(0, 1fr);
+            gap: 4rem;
+        }
+    }
+
+    &__location-wrapper {
+        padding-top: 24.6rem;
+
+        @include media(tab-l) {
+            padding-top: 6rem;
+            height: 23rem;
+        }
+
+        @include media(mob) {
+            padding-top: 0.4rem;
+            height: 14rem;
+        }
+    }
+
+    &__location {
+        position: relative;
+        left: 1rem;
+        width: 7.8rem;
+        height: 7.8rem;
+        margin: 0 auto;
+
+        @include media(tab-l) {
+            left: 0;
+        }
+
+        @include media(mob) {
+            left: 1rem;
+            width: 6.4rem;
+            height: 6.4rem;
+        }
+    }
+
+    &__location-map {
+        position: absolute;
+        bottom: -9.2rem;
+        left: 50%;
+        z-index: -1;
+        width: 143.6rem;
+        height: 92.5rem;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center 0;
+        transform: translate(-65.2%, 0);
+
+        @include media(tab-l) {
+            bottom: -9rem;
+        }
+
+        @include media(mob) {
+            bottom: -7.5rem;
+            width: 116.2rem;
+            height: 74.9rem;
+        }
+    }
+
+    &__location-pointer {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 7.8rem;
+        height: 7.8rem;
+        border-radius: 50%;
+        background: $second;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -0.8rem;
+            margin-left: -0.85rem;
+            border-top: 1.8rem solid $second;
+            border-right: 0.9rem solid transparent;
+            border-left: 0.9rem solid transparent;
+
+            @include media(mob) {
+                bottom: -0.6rem;
+                border-top-width: 1.4rem;
+            }
+        }
+
+        @include media(mob) {
+            width: 6.4rem;
+            height: 6.4rem;
+        }
+    }
+
+    &__location-pointer-logo {
+        position: relative;
+    }
+
+    &__content {
+        position: relative;
+        display: grid;
+        gap: $space-default-md;
+        padding-bottom: 3.6rem;
+
+        @include media(tab-l) {
+            gap: var(--section-space-sm);
+            padding-bottom: 0;
+        }
+
+        @include media(mob) {
+            gap: 4rem;
+        }
+    }
+
+    &__block {
+        display: grid;
+        gap: 1rem;
+    }
+
+    &__phone {
+        width: fit-content;
+        font-family: $font-alethia-next;
+        font-size: var(--title-size);
+        font-weight: 350;
+        line-height: 120%;
+        text-decoration: none;
+        white-space: nowrap;
+        color: $second;
+
+        &:hover {
+            color: $accent;
+        }
+    }
+
+    &__email {
+        width: fit-content;
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+        text-decoration: none;
+        white-space: nowrap;
+        color: $second;
+
+        &:hover {
+            color: $accent;
+        }
+    }
+
+    &__address {
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+    }
+
+    &__button-more {
+    }
+}

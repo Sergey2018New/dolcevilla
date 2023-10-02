@@ -1,0 +1,385 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import Modal from '@components/modules/Modal.astro';
+import ChaletItem from '@components/blocks/ChaletItem.astro';
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperScrollbar from '@components/modules/swiper/SwiperScrollbar.astro';
+
+const items = [
+    {
+        image: "img/favorites/1.jpg",
+        image2x: "img/favorites/1@2x.jpg",
+        title: "Chalet Alpin Roc",
+        price: "€ 12 890",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Цюрс",
+        listServices: [
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+        ],
+    },
+    {
+        image: "img/favorites/2.jpg",
+        image2x: "img/favorites/2@2x.jpg",
+        title: "Пентхаус Altesse",
+        price: "€ 4 890",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Альп д'Юэз",
+        listServices: [
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+        ],
+    },
+
+    {
+        image: "img/favorites/3.jpg",
+        image2x: "img/favorites/3@2x.jpg",
+        title: "Пентхаус Balegia",
+        price: "€ 790",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Цюрс",
+        listServices: [
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+        ],
+    },
+    {
+        image: "img/favorites/4.jpg",
+        image2x: "img/favorites/4@2x.jpg",
+        title: "Пентхаус Altesse",
+        price: "€ 789",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Альп д'Юэз",
+        listServices: [
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+        ],
+    },
+    {
+        image: "img/favorites/1.jpg",
+        image2x: "img/favorites/1@2x.jpg",
+        title: "Chalet Alpin Roc",
+        price: "€ 12 890",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Цюрс",
+        listServices: [
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+        ],
+    },
+    {
+        image: "img/favorites/2.jpg",
+        image2x: "img/favorites/2@2x.jpg",
+        title: "Пентхаус Altesse",
+        price: "€ 4 890",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Альп д'Юэз",
+        listServices: [
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+        ],
+    },
+
+    {
+        image: "img/favorites/3.jpg",
+        image2x: "img/favorites/3@2x.jpg",
+        title: "Пентхаус Balegia",
+        price: "€ 790",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Цюрс",
+        listServices: [
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+        ],
+    },
+    {
+        image: "img/favorites/4.jpg",
+        image2x: "img/favorites/4@2x.jpg",
+        title: "Пентхаус Altesse",
+        price: "€ 789",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Альп д'Юэз",
+        listServices: [
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+            {
+                text: 'Есть',
+                presense: true,
+            },
+            {
+                text: 'Нет',
+                presense: false,
+            },
+        ],
+    },
+]
+---
+<Modal id="modal_compare" type={'side'} class="modal-compare" title="Сравнение" isFooter={true}>
+    <div class="modal-compare__slider-wrapper">
+        <div class="modal-compare__heading u-mobile-hidden">
+            <ChaletItem isServicesCompare={true} isCompareCaption={true} class="modal-compare__heading-item" type="short" title={'Название'} price={'Стоимость'} country={'Расположение'} isServicesCompare={true} listServices={['Бассейн', 'Хаммам', 'Телевизор', 'Wi-Fi', 'Можно с животными', 'Детская площадка', 'Каток', 'Круглосуточная поддержка']}></ChaletItem>
+        </div>
+
+        <Swiper class="modal-compare__slider js-slider-compare">
+            <ChaletItem isServicesCompare={true} isCompareCaption={true} class="swiper-slide modal-compare__heading-item u-mobile-visible" type="short" title={'Название'} price={'Стоимость'} country={'Расположение'} isServicesCompare={true} listServices={['Бассейн', 'Хаммам', 'Телевизор', 'Wi-Fi', 'Можно с животными', 'Детская площадка', 'Каток', 'Круглосуточная поддержка']}></ChaletItem>
+
+            <div class="modal-compare__items swiper-slide">
+                {items.map((item) => (
+                    <ChaletItem class="modal-compare__item" type="short" title={item.title} price={item.price} period={item.period} country={item.country} location={item.location} image={item.image} image2x={item.image2x} isCompare={true} isBook={true} isServicesCompare={true} listServices={item.listServices}></ChaletItem>
+                ))}
+            </div>
+
+            <SwiperScrollbar slot='after' class="modal-compare__slider-scrollbar js-slider-compare-scrollbar"></SwiperScrollbar>
+        </Swiper>
+    </div>
+
+    <button class="modal__clear-button" slot="footer">
+        <Icon class="modal__clear-button-icon" name="cross"></Icon>
+        <span>Очистить список</span>
+    </button>
+</Modal>

@@ -1,0 +1,71 @@
+---
+import Layout from '@layouts/layout.astro';
+import SwitchBlock from '@components/modules/SwitchBlock.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import Filters from '@components/blocks/Filters.astro';
+import Tags from '@components/blocks/Tags.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+import EliteChalets  from '@components/sections/EliteChalets.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+
+---
+
+<Layout title="Каталог курортов" isMap={true}>
+    <Breadcrumbs title="Курорты"></Breadcrumbs>
+    <div class="p-catalog p-catalog p-catalog_resorts">
+        <div class="container">
+            <div class="p-catalog__row">
+                <aside class="p-catalog__sidebar">
+                    <Filters type="catalog" subtype="resorts" class="p-catalog__filters"></Filters>
+                </aside>
+                <div class="p-catalog__content">
+                    <Tags class="p-catalog__tags" list={[
+                        {
+                            text: 'Швейцария',
+                            isActive: true
+                        },
+                        {
+                            text: 'Франция',
+                            isActive: true
+                        },
+                        {
+                            text: 'Италия',
+                            isActive: false
+                        },
+                        {
+                            text: 'Австрия',
+                            isActive: false
+                        },
+                    ]}></Tags>
+                    <div class="p-catalog__sorting">
+                        <div class="p-catalog__sorting-left">
+                            <TabMenu class="p-catalog__sorting-menu" list={['Рейтинговые', 'Дорогие', 'Дешевые']} size='sm'></TabMenu>
+                        </div>
+                        <div class="p-catalog__sorting-right">
+                             <SwitchBlock name="catalog_view" isToggle={true} isShort={true} class="p-catalog__switch-block" items={[
+                                {
+                                    text: 'Списком',
+                                    icon: 'grid',
+                                    value: 'list',
+                                },
+                                {
+                                    text: 'На карте',
+                                    icon: 'location',
+                                    value: 'map',
+                                    isActive: true,
+                                    checked: true,
+                                }
+                            ]}></SwitchBlock>
+                        </div>
+                    </div>
+                    <div class="p-catalog__map p-catalog__map_resorts">
+                        <div id="map_resorts" style="width: 100%; height: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <EliteChalets></EliteChalets>
+    <WhyWe></WhyWe>
+</Layout>

@@ -1,0 +1,51 @@
+/* ------- Nav Panel -------- */
+.nav-panel {
+    position: fixed;
+    z-index: 50;
+    display: grid;
+    gap: 1rem;
+    right: $gutters;
+    bottom: $gutters;
+
+    .with-fancybox & {
+        margin-right: var(--fancybox-scrollbar-compensate);
+    }
+
+    .is-menu-active & {
+        margin-right: var(--lock-padding-right);
+    }
+
+    .is-modal-active & {
+        margin-right: var(--modal-lock-padding-right);
+    }
+
+    @include media(tab-l) {
+        gap: 0.5rem;
+    }
+
+    @include media(mob) {
+        bottom: 2rem;
+        right: 2rem;
+    }
+
+    &__button {
+        @include media(tab-l) {
+            width: var(--button-icon-sm);
+            height: var(--button-icon-sm);
+        }
+
+        &_up {
+            display: none;
+
+            .ui-button-icon__icon {
+                width: var(--arrow-width);
+                height: var(--arrow-height);
+                transform: rotate(-90deg);
+            }
+
+            &.is-active {
+                display: flex;
+            }
+        }
+    }
+}

@@ -1,0 +1,40 @@
+---
+import ResortItem from '@components/blocks/ResortItem.astro';
+
+const items = [
+	{
+		image: "img/best-resorts/1.jpg",
+		image2x: "img/best-resorts/1@2x.jpg",
+		title: "Швейцария",
+		list: true
+	},
+	{
+		image: "img/best-resorts/2.jpg",
+		image2x: "img/best-resorts/2@2x.jpg",
+		title: "Франция",
+		list: false
+	},
+	{
+		image: "img/best-resorts/3.jpg",
+		image2x: "img/best-resorts/3@2x.jpg",
+		title: "Италия",
+		list: false
+	},
+	{
+		image: "img/best-resorts/4.jpg",
+		image2x: "img/best-resorts/4@2x.jpg",
+		title: "Австрия",
+		list: false
+	},
+]
+---
+
+<section class="section best-resorts">
+	<div class="container">
+		<div class="best-resorts__items">
+			{items.map((item) => (
+				<ResortItem class="best-resorts__item" title={item.title} image={item.image} image2x={item.image2x} list={item.list}></ResortItem>
+			))}
+		</div>
+	</div>
+</section>

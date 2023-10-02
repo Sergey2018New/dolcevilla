@@ -1,0 +1,73 @@
+---
+import Icon from '@components/modules/Icon.astro';
+
+interface Props {
+    type?: "button" | "link";
+    style?: "second";
+    size?: "sm";
+    mod?: string;
+    icon?: string;
+    icon2?: string;
+    href?: string;
+    ariaLabel?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type = "button",
+    style,
+    size,
+    mod,
+    icon,
+    icon2,
+    href = "",
+    ariaLabel,
+    class: className,
+    ...rest
+} = Astro.props;
+
+const buttonClass = 'ui-button-icon';
+
+
+const styles = {
+  second: `${buttonClass}_style_second`,
+};
+
+const sizes = {
+  sm: `${buttonClass}_size_sm`,
+};
+
+const classList =[
+    'ui-button',
+    buttonClass,
+    styles[style],
+    sizes[size],
+    mod ? `${buttonClass}_${mod}` : '',
+    className,
+]
+---
+{type == 'link' ?
+    <a
+        href={href}
+        class:list={classList}
+        aria-label={ariaLabel}
+        {...rest}
+    >
+        <Icon class={`${buttonClass}__icon`} name={icon}></Icon>
+        {
+            icon2 ?  <Icon class={`${buttonClass}__icon`} name={icon2}></Icon> : ''
+        }
+    </a>
+:  <button
+        type={type}
+        class:list={classList}
+        aria-label={ariaLabel}
+        {...rest}
+    >
+        <Icon class={`${buttonClass}__icon`} name={icon}></Icon>
+        {
+            icon2 ?  <Icon class={`${buttonClass}__icon`} name={icon2}></Icon> : ''
+        }
+    </button>
+}

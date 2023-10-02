@@ -1,0 +1,33 @@
+---
+import Layout from '@layouts/layout.astro';
+import Button from '@components/modules/Button.astro';
+
+---
+
+<Layout title="Страница не найдена">
+    <div class="p-default p-not-found">
+        <div class="container">
+            <div class="p-not-found__row">
+                <div class="p-not-found__column">
+                    <div class="p-not-found__content">
+                        <h1 class="p-not-found__title">Страница не&nbsp;найдена</h1>
+                        <div class="p-not-found__text">
+                            <p>Пожалуйста, воспользуйтесь поиском по&nbsp;сайту <br>или вернитесь на&nbsp;главную</p>
+                        </div>
+                        <div class="p-not-found__buttons">
+                            <Button class="p-not-found__button" type="link">Перейти на&nbsp;главную</Button>
+                            <Button class="p-not-found__button" type="link" style="outline">Поиск по&nbsp;сайту</Button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-not-found__column">
+                    <div class="p-not-found__image-wrapper">
+                        <div class="p-not-found__image-box">
+                            <img class="p-not-found__image" src="img/404.svg" alt="" width="680" height="445">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

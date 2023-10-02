@@ -1,0 +1,75 @@
+/* ------- elite chalets -------- */
+.elite-chalets {
+    position: relative;
+
+    &__row {
+        display: grid;
+        gap: 4rem $space-default;
+
+        @include grid-columns(2);
+
+        @include media(tab-l) {
+            @include grid-columns(1);
+        }
+
+        @include media(mob) {
+            row-gap: 3rem;
+        }
+    }
+
+    &__column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        margin-bottom: var(--title-section-margin);
+    }
+
+    &__logo {
+        margin-top: auto;
+    }
+
+    &__logo-image {
+        display: block;
+
+        @include media(tab-l) {
+            width: 15.7rem;
+            height: 12.6rem;
+        }
+
+        @include media(mob) {
+            width: 17.3rem;
+            height: 13.8rem;
+        }
+    }
+
+    &__text {
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+
+        a {
+            text-decoration: none;
+            color: $accent;
+
+            &:hover {
+                color: $second;
+            }
+        }
+    }
+
+    &__more-wrapper {
+        margin-top: auto;
+        padding-top: 8rem;
+
+        @include media(tab-l) {
+            padding-top: 6rem;
+        }
+
+        @include media(mob) {
+            padding-top: 2rem;
+        }
+    }
+
+}

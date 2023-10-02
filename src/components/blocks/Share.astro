@@ -1,0 +1,62 @@
+---
+import Icon from '@components/modules/Icon.astro';
+
+interface Props {
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+	class: className,
+	...rest
+} = Astro.props;
+
+const list = [
+    {
+        name: 'ВКонтакте',
+        icon: 'vk'
+    },
+    {
+        name: 'Одноклассники',
+        icon: 'ok'
+    },
+    {
+        name: 'Twitter',
+        icon: 'twitter'
+    },
+    {
+        name: 'Google',
+        icon: 'google'
+    },
+    {
+        name: 'LinkedIn',
+        icon: 'linkedin'
+    },
+    {
+        name: 'Yandex',
+        icon: 'yandex'
+    },
+]
+---
+<div
+    class:list={[
+        'share',
+        className,
+    ]}
+    {...rest}
+>
+    <div class="share__title">Поделиться</div>
+    <div class="share__list">
+        {list.map((item) => (
+            <a href="" class:list={
+                [
+                    'share__link',
+                    `share__link_${item.icon}`,
+                ]
+            } aria-label={item.name} title={item.name}>
+                <Icon class="share__icon" name={item.icon}></Icon>
+            </a>
+        ))}
+    </div>
+</div>
+

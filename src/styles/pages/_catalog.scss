@@ -1,0 +1,310 @@
+/* ------- Catalog page -------- */
+.p-catalog {
+    padding-bottom: calc($section-space * 0.5);
+
+    &:last-child {
+        padding-bottom: calc(var(--section-space));
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: max-content minmax(0, 1fr);
+        gap: 4rem $space-default;
+
+        @include media(pc) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        @include media(mob) {
+            gap: 3rem;
+        }
+    }
+
+    &__sidebar {
+        width: 31rem;
+
+        @include media(pc) {
+            width: 100%;
+        }
+    }
+
+    &__content {
+
+    }
+
+    &__tags {
+        margin-bottom: calc($space-default - 1rem);
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__sorting {
+        display: grid;
+        grid-template-columns: auto auto;
+        align-items: center;
+        gap: $space-default;
+        justify-content: space-between;
+        margin-bottom: $space-default;
+
+        @include media(mob) {
+            grid-template-columns: minmax(0, 1fr);
+            justify-content: flex-start;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__sorting-menu {
+        padding-top: 1rem;
+
+        @include media(mob) {
+            padding-top: 0;
+        }
+    }
+
+    &__sorting-right {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-end;
+        gap: 2rem 1rem;
+
+        @include media(mob) {
+            justify-content: flex-start;
+            grid-auto-flow: row;
+            align-items: flex-start;
+        }
+    }
+
+    &__sorting-menu {
+    }
+
+    &__switch-block {
+        width: fit-content;
+
+        .ui-switch-block_short {
+            .ui-switch-block__button {
+                &:not(.is-active) {
+                    width: 5rem;
+                }
+            }
+        }
+    }
+
+    &__items {
+        display: grid;
+        gap: 8rem $space-default;
+
+        @include grid-columns(3);
+
+        @include media(mob) {
+            row-gap: 4rem;
+        }
+
+        @include media(tab-l) {
+            row-gap: 6rem;
+        }
+
+        &_resorts {
+            @include media(pc) {
+                @include grid-columns(3);
+            }
+
+            @include media(tab) {
+                @include grid-columns(2);
+            }
+
+            @include media(mob-m) {
+                @include grid-columns(1);
+            }
+        }
+
+        &_chalet {
+            @include grid-columns(2);
+
+            @include media(mob-m) {
+                @include grid-columns(1);
+            }
+        }
+    }
+
+    &__item {
+        &_resort {
+            @include media-min(mob) {
+                .chalet-item {
+                    &__row {
+                        grid-template-columns: minmax(0, 1fr) max-content;
+                        grid-template-rows: auto;
+                        column-gap: 1rem;
+                    }
+
+                    &__info-item {
+                        margin-right: 0;
+                    }
+
+                    &__info {
+                        flex-direction: column;
+                    }
+
+                    &__title,
+                    &__price {
+                        font-size: var(--text-size-2);
+                    }
+
+                    &__content {
+                        gap: 2rem;
+                    }
+
+                    &__row {
+                        padding-bottom: 2rem;
+                    }
+                }
+            }
+        }
+
+        &_chalet {
+            .chalet-item__slider-pagination {
+                display: none;
+            }
+
+            .chalet-item__row {
+                @include media-min(tab-l) {
+                    grid-template-columns: minmax(0, 1fr) max-content;
+                    grid-template-rows: auto auto;
+                }
+            }
+
+            .chalet-item__title {
+                @include media-min(tab-l) {
+                    grid-column: span 2;
+                }
+            }
+
+            &:nth-child(8n + 3),
+            &:nth-child(8n + 8) {
+                @include media-min(pc) {
+                    .chalet-item__slider-pagination {
+                        display: flex;
+                    }
+                }
+                @include media-min(pc) {
+                    width: calc(136.085%);
+
+                    .chalet-item__row {
+                        grid-template-columns: minmax(0, 1fr) max-content max-content;
+                        grid-template-rows: auto;
+                    }
+
+                    .chalet-item__title {
+                        grid-column: auto;
+                    }
+
+                    .chalet-item__control {
+                        top: 4rem;
+                        right: 4rem;
+                    }
+                }
+            }
+
+            &:nth-child(8n + 8) {
+                @include media-min(pc) {
+                    justify-self: flex-end;
+                }
+            }
+
+            &:nth-child(8n + 4),
+            &:nth-child(8n + 7) {
+                @include media-min(pc) {
+                    width: calc(63.92%);
+
+                    .chalet-item__slider-next, .chalet-item__slider-prev {
+                        display: none;
+                    }
+                }
+            }
+
+            &:nth-child(8n + 4) {
+                @include media-min(pc) {
+                    justify-self: flex-end;
+                }
+            }
+        }
+
+        .chalet-item__location {
+            @include media(mob) {
+                margin-top: 0;
+            }
+        }
+    }
+
+    &__more {
+        margin-top: calc($space-default * 2);
+        margin-bottom: calc(var(--section-space) * 0.5);
+
+        @include media(tab-l) {
+            margin-top: 6rem;
+        }
+
+        @include media(mob) {
+            margin-top: 4rem;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__popular-resorts {
+        .popular-resorts__container {
+            max-width: none;
+            padding: 0;
+        }
+
+        .popular-resorts__more {
+            justify-content: flex-start;
+        }
+
+        &:last-child {
+            padding-bottom: 0;
+        }
+    }
+
+    &__map {
+        position: relative;
+        width: 100%;
+        height: 55rem;
+    }
+
+    &_chalet {
+        .p-catalog__row {
+            @include media(tab) {
+                gap: 2rem;
+            }
+        }
+
+        .p-catalog__sorting-menu {
+            .tab-menu__item {
+                @include media-between(mob, tab) {
+                    margin-right: 1.5rem;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        .p-catalog__sorting {
+            @include media-between(mob, tab) {
+                gap: 1rem;
+            }
+        }
+    }
+
+    &_resorts {
+        .chalet-small-card__title {
+            border-bottom: none;
+        }
+    }
+}

@@ -1,0 +1,224 @@
+---
+import SwitchBlock from '@components/modules/SwitchBlock.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import Filters from '@components/blocks/Filters.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+import ChaletItem from '@components/blocks/ChaletItem.astro';
+
+const items = [
+	{
+		images: [
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Пентхаус Balegia",
+		price: "€ 16 909—39 809",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "7"
+			},
+			{
+				title: "Мест",
+				value: "14"
+			}
+		],
+		country: "Франция",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			}
+		],
+		title: "Шале Narnia",
+		price: "€ 24 880—48 980",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "6"
+			},
+			{
+				title: "Мест",
+				value: "8"
+			}
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "₣ 7 455—9 790",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "3"
+			},
+			{
+				title: "Мест",
+				value: "6"
+			}
+		],
+		country: "Щвейцария",
+		location: "Санкт-Мориц"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Arielle",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+]
+---
+
+<section class="section choose-chalet" id="choose_chalet" aria-labelledby="choose_chalet_title">
+	<div class="container">
+		<div class="choose-chalet__content">
+			<div class="choose-chalet__heading anim anim_slideUpLarge" data-animation>
+                <h2 id="choose_chalet_title" class="choose-chalet__title section-title">Подберите шале для отдыха в&nbsp;Альпах</h2>
+				<SwitchBlock ariaLabel="Сезон" name="choice_season" type="switch" class="choose-chalet__switch-block" items={[
+					{
+						text: 'Зима',
+                        value: 'winter',
+						icon: 'snowflake',
+						isActive: true,
+                        checked: true,
+                    },
+					{
+						text: 'Лето',
+						icon: 'sun',
+                        value: 'summer',
+					}
+				]}></SwitchBlock>
+			</div>
+			<Filters type="choose" class="choose-chalet__filters anim anim_slideUpLarge" data-animation></Filters>
+			<div class="choose-chalet__items-wrapper anim anim_slideUpLarge" data-animation>
+				<div class="choose-chalet__sorting" >
+					<TabMenu class="choose-chalet__sorting-menu" list={['Рейтинговые', 'Дорогие', 'Дешевые']} size='sm'></TabMenu>
+				</div>
+				<div class="choose-chalet__items">
+					{items.map((item) => (
+						<ChaletItem class="choose-chalet__item" title={item.title} price={item.price} period={item.period} infoList={item.infoList} country={item.country} location={item.location} images={item.images}></ChaletItem>
+					))}
+				</div>
+			</div>
+			<div class="choose-chalet__more">
+				<ButtonMore type='link' class="choose-chalet__more-button">Все шале</ButtonMore>
+				<ButtonMore type='link' class="choose-chalet__more-button">Коллекции</ButtonMore>
+			</div>
+		</div>
+	</div>
+</section>

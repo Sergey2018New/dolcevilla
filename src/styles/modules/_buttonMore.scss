@@ -1,0 +1,139 @@
+/* ------- UI - Button More ------- */
+@keyframes pulseRight {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+
+	50% {
+		transform: translate3d(0.5rem, 0, 0);
+	}
+
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes pulseDown {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+
+	50% {
+		transform: translate3d(0, 0.5rem, 0);
+	}
+
+	to {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.ui-button-more {
+	appearance: none;
+	display: grid;
+	grid-auto-flow: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 0 0 2rem;
+	border: none;
+	border-bottom: 1px solid $accent;
+	border-radius: 0;
+	box-shadow: none;
+	width: fit-content;
+	height: auto;
+	font-family: $font-alethia-pro;
+	font-weight: 400;
+	font-size: var(--text-size-md);
+	line-height: 140%;
+	text-align: center;
+	text-decoration: none;
+	color: $primary;
+	background: none;
+	transition: $duration background, $duration color, $duration border-color, $duration box-shadow;
+	cursor: pointer;
+	user-select: none;
+
+	@include media(tab-l) {
+		padding-bottom: 1rem;
+	}
+
+	@include media(mob) {
+		gap: 1.5rem;
+        padding-bottom: 1rem;
+	}
+
+	&__icon {
+		position: relative;
+		top: 0.2rem;
+		width: var(--arrow-width);
+		height: var(--arrow-height);
+		transition: $duration transform, $duration fill, $duration stroke;
+		will-change: transform;
+
+		@include media(mob) {
+			width: var(--arrow-width-sm);
+			height: var(--arrow-height-sm);
+		}
+	}
+
+	&:hover,
+	&:active,
+	&:focus-visible {
+		color: $accent;
+	}
+
+	&:focus-visible {
+		outline: none;
+	}
+
+	&:focus-visible {
+		.ui-button-more__icon {
+			transform: translate3d(0.5rem, 0, 0);
+			animation: 1s infinite alternate pulseRight linear;
+		}
+	}
+
+	@include hover {
+		.ui-button-more__icon {
+			transform: translate3d(0.5rem, 0, 0);
+		}
+	}
+
+	&_no-border {
+		padding-bottom: 0;
+		border-bottom: none;
+	}
+
+	&_style_light {
+		color: $white;
+	}
+
+	&_direction_down {
+		.ui-button-more {
+			&__icon {
+				width: var(--arrow-height);
+				height: var(--arrow-width);
+
+				@include media(mob) {
+					width: var(--arrow-height-sm);
+					height: var(--arrow-width-sm);
+				}
+			}
+		}
+
+		&:focus-visible {
+			.ui-button-more__icon {
+				animation: 1s infinite alternate pulseDown linear;
+			}
+		}
+
+        @include media(mob) {
+            padding-bottom: 0.5rem;
+        }
+
+		@include hover {
+			.ui-button-more__icon {
+				transform: translate3d(0, 0, 0);
+			}
+		}
+	}
+}

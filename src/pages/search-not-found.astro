@@ -1,0 +1,22 @@
+---
+import Layout from '@layouts/layout.astro';
+import Button from '@components/modules/Button.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+---
+
+<Layout title="Результаты поиска">
+    <Breadcrumbs title="Результаты поиска"></Breadcrumbs>
+    <div class="p-search p-search_not-found">
+        <div class="container">
+            <div class="p-search__not-found">
+                <div class="p-search__content">
+                    <h1 class="p-search__title heading-title">По&nbsp;вашему запросу ничего не&nbsp;нашлось</h1>
+                    <div class="p-search__buttons">
+                        <Button type="link" class="p-search__button">Попробовать еще раз</Button>
+                        <Button type="link" class="p-search__button" style='outline'>Перейти на главную</Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

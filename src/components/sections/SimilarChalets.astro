@@ -1,0 +1,1792 @@
+---
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import ChaletItem from '@components/blocks/ChaletItem.astro';
+
+interface Props {
+    type?: 'similar' | 'resort' | 'similarOthers' | 'bestChalets' | 'similarHotels';
+    title?: string;
+    textMore?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type,
+    title,
+    textMore,
+	class: className,
+	...rest
+} = Astro.props;
+
+const itemsSimilar = [
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "₣ 7 455—9 790",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "3"
+			},
+			{
+				title: "Мест",
+				value: "6"
+			}
+		],
+		country: "Щвейцария",
+		location: "Санкт-Мориц"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+    {
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "₣ 7 455—9 790",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "3"
+			},
+			{
+				title: "Мест",
+				value: "6"
+			}
+		],
+		country: "Щвейцария",
+		location: "Санкт-Мориц"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+]
+
+const itemsSimilarOthers = [
+	{
+		images: [
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/3.jpg",
+				image2x: "img/similar-chalets/3@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/3.jpg",
+				image2x: "img/similar-chalets/3@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/3.jpg",
+				image2x: "img/similar-chalets/3@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 7 089",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/4.jpg",
+				image2x: "img/similar-chalets/4@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/3.jpg",
+				image2x: "img/similar-chalets/3@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/3.jpg",
+				image2x: "img/similar-chalets/3@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/3.jpg",
+				image2x: "img/similar-chalets/3@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 7 089",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/4.jpg",
+				image2x: "img/similar-chalets/4@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/3.jpg",
+				image2x: "img/similar-chalets/3@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/3.jpg",
+				image2x: "img/similar-chalets/3@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/3.jpg",
+				image2x: "img/similar-chalets/3@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 7 089",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/similar-chalets/4.jpg",
+				image2x: "img/similar-chalets/4@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/1.jpg",
+				image2x: "img/similar-chalets/1@2x.jpg",
+			},
+			{
+				image: "img/similar-chalets/2.jpg",
+				image2x: "img/similar-chalets/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+]
+
+const itemsOnResort = [
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "₣ 7 455—9 790",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "3"
+			},
+			{
+				title: "Мест",
+				value: "6"
+			}
+		],
+		country: "Щвейцария",
+		location: "Санкт-Мориц"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 7 089",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "₣ 7 455—9 790",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "3"
+			},
+			{
+				title: "Мест",
+				value: "6"
+			}
+		],
+		country: "Щвейцария",
+		location: "Санкт-Мориц"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 7 089",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "₣ 7 455—9 790",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "3"
+			},
+			{
+				title: "Мест",
+				value: "6"
+			}
+		],
+		country: "Щвейцария",
+		location: "Санкт-Мориц"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 7 089",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+]
+
+const bestChalets = [
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 7 089",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+    {
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 7 089",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+    {
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 7 089",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Болгария",
+		location: "Альп д'Юэз"
+	},
+]
+
+const itemsHotels = [
+	{
+		images: [
+			{
+				image: "img/hotels/3.jpg",
+				image2x: "img/hotels/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Balegia",
+		price: "₣ 7 455—9 790",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "30"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон",
+        isFavorite: true,
+	},
+	{
+		images: [
+			{
+				image: "img/hotels/4.jpg",
+				image2x: "img/hotels/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			}
+		],
+		title: "Alpin Roc",
+		price: "€ 6 860",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "65"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Alpin Roc",
+		price: "€ 6 860",
+		period: "10 ночей",
+        infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "120"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+    {
+		images: [
+			{
+				image: "img/hotels/3.jpg",
+				image2x: "img/hotels/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Balegia",
+		price: "₣ 7 455—9 790",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "30"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон",
+        isFavorite: true,
+	},
+	{
+		images: [
+			{
+				image: "img/hotels/4.jpg",
+				image2x: "img/hotels/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			}
+		],
+		title: "Alpin Roc",
+		price: "€ 6 860",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "65"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Alpin Roc",
+		price: "€ 6 860",
+		period: "10 ночей",
+        infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "120"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+    {
+		images: [
+			{
+				image: "img/hotels/3.jpg",
+				image2x: "img/hotels/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Balegia",
+		price: "₣ 7 455—9 790",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "30"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон",
+        isFavorite: true,
+	},
+	{
+		images: [
+			{
+				image: "img/hotels/4.jpg",
+				image2x: "img/hotels/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			}
+		],
+		title: "Alpin Roc",
+		price: "€ 6 860",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "65"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Alpin Roc",
+		price: "€ 6 860",
+		period: "10 ночей",
+        infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "120"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+
+]
+
+const items = type === 'resort' ? itemsOnResort : type === 'similar' ? itemsSimilar : type === 'bestChalets' ? bestChalets : type === 'similarOthers' ? itemsSimilarOthers : itemsHotels;
+
+---
+<section
+	class:list={[
+		'section similar-chalets',
+		className
+	]}
+	{...rest}
+>
+	<div class="container">
+		<div class="similar-chalets__content">
+			<h2 class="similar-chalets__title section-title" set:html={`${title ? title : 'Похожие шале на других курортах'}`}></h2>
+			<Swiper class="similar-chalets__slider js-similar-chalets">
+				{items.map((item, index) => (
+                    <ChaletItem class={`similar-chalets__item swiper-slide ${index <= 0 && (type === 'similar' || type === 'resort' || type === 'similarHotels') ? '_size_lg' : '_size_sm'}`} title={item.title} price={item.price} period={item.period} infoList={item.infoList} country={item.country} location={item.location} images={item.images} isFavorite={item.isFavorite}></ChaletItem>
+                ))}
+				<div slot="after" class="similar-chalets__controls slider-controls">
+					<SwiperControl class="similar-chalets__prev slider-controls__prev js-similar-chalets-prev" direction="prev"></SwiperControl>
+					<SwiperControl class="similar-chalets__next slider-controls__next js-similar-chalets-next" direction="next" ></SwiperControl>
+				</div>
+			</Swiper>
+            {
+                type === 'similarHotels' ?
+                <div class="similar-chalets__more similar-chalets__more_center">
+                    <ButtonMore type='link' class="similar-chalets__more-button">Смотреть все</ButtonMore>
+                </div>
+                 :
+                <div class="similar-chalets__more">
+                    <ButtonMore type='link' class="similar-chalets__more-button"><span>Смотреть </span>все шале</ButtonMore>
+                    <ButtonMore type='link' class="similar-chalets__more-button">Все коллекции</ButtonMore>
+                </div>
+
+            }
+		</div>
+	</div>
+</section>

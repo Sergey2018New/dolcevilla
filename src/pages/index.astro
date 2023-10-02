@@ -1,0 +1,125 @@
+---
+import Layout from '@layouts/layout.astro';
+import HomeSection from '@components/sections/HomeSection.astro';
+import EliteChalets  from '@components/sections/EliteChalets.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+
+const list = [
+    {
+        name: 'Главная',
+        link: 'main.html',
+        status: 'Готова'
+    },
+    {
+        name: 'Каталог курортов',
+        link: 'catalog.html',
+        status: 'Готова'
+    },
+    {
+        name: 'Каталог курортов (на карте)',
+        link: 'catalog-map.html',
+        status: 'Готова'
+    },
+    {
+        name: 'Страница курорта',
+        link: 'resort.html',
+        status: 'Готова'
+    },
+    {
+        name: 'Каталог шале',
+        link: 'catalog-chalet.html',
+        status: 'Готова'
+    },
+    {
+        name: 'Каталог шале (на карте)',
+        link: 'catalog-chalet-map.html',
+        status: 'Готова'
+    },
+    {
+        name: 'Каталог отелей',
+        link: 'catalog-hotels.html',
+        status: 'Готова'
+    },
+    {
+        name: 'Детальная шале',
+        link: 'chalet.html',
+        status: 'Готова'
+    },
+    {
+        name: 'Детальная отеля',
+        link: 'hotel.html',
+        status: 'Готова',
+    },
+    {
+        name: '404',
+        link: '404.html',
+        status: 'Готова'
+    },
+    {
+        name: 'Журнал',
+        link: 'articles.html',
+        status: 'Готова',
+    },
+    {
+        name: 'Журнал (детальная)',
+        link: 'article.html',
+        status: 'Готова',
+    },
+    {
+        name: 'Результаты поиска (ничего не найдено)',
+        link: 'search-not-found.html',
+        status: 'Готова',
+    },
+    {
+        name: 'Результаты поиска (везде)',
+        link: 'search.html',
+        status: 'Готова',
+    },
+    {
+        name: 'Результаты поиска (шале)',
+        link: 'search-chalets.html',
+        status: 'Готова',
+    },
+    {
+        name: 'Контакты',
+        link: 'contacts.html',
+        status: 'Готова',
+    },
+    {
+        name: 'Текстовая',
+        link: 'policy.html',
+        status: 'Готова',
+    },
+    {
+        name: 'Коллекции',
+        link: 'collections.html',
+        status: 'Готова',
+    }
+]
+---
+
+<Layout title="Dolce Villa">
+    <div class="container">
+        <div class="dolce-villa">
+            <h1 class="dolce-villa__title">Dolce Villa</h1>
+            <div class="dolce-villa__table">
+                <div class="dolce-villa__head">
+                    <div>Страница</div>
+                    <div>Ссылка</div>
+                    <div>Статус</div>
+                </div>
+                {list.map((item, index) => (
+                    <div class:list={
+                        [
+                            "dolce-villa__item",
+                        ]
+                    }>
+                        <div class="dolce-villa__name" set:html={item.name}></div>
+                        <a class="dolce-villa__link" href={item.link} set:html={item.link}></a>
+                        <div class="dolce-villa__status" set:html={item.status}></div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+</Layout>

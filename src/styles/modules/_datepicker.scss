@@ -1,0 +1,11 @@
+/* ------- Datepicker ------- */
+.ui-datepicker {
+    &__input {
+        pointer-events: auto;
+
+        &_visible {
+            pointer-events: none;
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,78 @@
+---
+import Input from '@components/modules/Input.astro';
+import Counter from '@components/modules/Counter.astro';
+
+interface Props {
+    type?: "text" | "email" | "textarea" | "datepicker" | "phone" | "counter";
+    id?: string;
+    name?: string;
+    label?: string;
+    placeholder?: string;
+    isRequired?: boolean;
+    rows?: number;
+    value?: number | string;
+    valueMin?: number;
+    valueMax?: number;
+    ariaLabel?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type = "text",
+    id,
+    name,
+    label,
+    placeholder,
+    rows,
+    isRequired ,
+    value,
+    valueMin,
+    valueMax,
+    ariaLabel,
+    class: className,
+    ...rest
+} = Astro.props;
+
+const classInputs = () => {
+    return `field-box__input${type === 'textarea' ? ' field-box__textarea' : ''}`
+}
+---
+
+{
+    type === 'counter' ?
+    <div
+        class:list={[
+            'field-box',
+            'field-box_counter',
+            className
+        ]}
+        {...rest}
+        >
+        <div class="field-box__content">
+            <label class="field-box__label" set:html={label}></label>
+            <Counter class="field-box__counter" value={value} ariaLabel={ariaLabel} min={valueMin} max={valueMax} name={name} placeholder={placeholder} ></Counter>
+        </div>
+    </div>
+    :
+    <div
+        class:list={[
+            'field-box',
+            type === 'textarea' ? 'field-box_textarea' : '',
+            className
+        ]}
+        data-field-box
+        {...rest}
+        >
+        <div class="field-box__content">
+            <label class="field-box__label" set:html={label}></label>
+            {
+                isRequired ?
+                <Input class={classInputs()} type={type} name={name} ariaLabel={label} placeholder={placeholder} data-field-box-input  data-js-form-field aria-required></Input>
+                :
+                <Input class={classInputs()} type={type} name={name} ariaLabel={label} placeholder={placeholder} data-field-box-input></Input>
+            }
+        </div>
+    </div>
+}
+

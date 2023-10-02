@@ -1,0 +1,59 @@
+---
+interface Props {
+	type?: 'full' | 'short';
+    title?: string;
+    text?: string;
+    date?: string;
+    category?: string;
+    image?: string;
+    image2x?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+	type,
+	title,
+	text,
+	date,
+	category,
+	image,
+	image2x,
+	class: className,
+	...rest
+} = Astro.props;
+
+
+---
+
+<article
+	class:list={[
+		'article-item',
+		type ? `article-item_${type}` : '',
+		className
+	]}
+	{...rest}
+>
+	<div class="article-item__image-box">
+		<a href="" class="article-item__image-link" set:html={title}>
+			<img class="article-item__image" src={image} srcset={image2x} width="660" height="440" alt="" />
+		</a>
+	</div>
+	<div class="article-item__content">
+		<div class="article-item__title">
+			<a href="" class="article-item__title-link" set:html={title}></a>
+		</div>
+        {
+            text ?
+            <div class="article-item__text">
+                <p set:html={text}></p>
+            </div> : ''
+        }
+
+		<div class="article-item__footer">
+			<div class="article-item__date" set:html={date}></div>
+			<a href="" class="article-item__category-link" set:html={category}></a>
+		</div>
+	</div>
+
+</article>

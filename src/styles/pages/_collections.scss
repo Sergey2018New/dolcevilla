@@ -1,0 +1,89 @@
+/* ------- Collections page -------- */
+.p-collections {
+    padding: calc($section-space-sm - $space-default) 0 calc($section-space);
+
+    @include media(tab-l) {
+        padding-top: calc(4rem - var(--space-default));
+    }
+
+    @include media(mob) {
+        padding-top: calc(3rem - var(--space-default));
+    }
+
+    &:last-child {
+        padding-bottom: $section-space;
+    }
+
+    &__section {
+        margin-top: $section-space;
+
+        @include media(tab-l) {
+            margin-top: var(--section-space-sm);
+        }
+
+
+        @include media(mob) {
+            margin-top: calc($section-space * 0.5);
+        }
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    &__title {
+        margin-bottom: $space-default-md;
+
+        @include media(mob) {
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__items {
+        display: grid;
+        gap: $space-default;
+
+        @include grid-columns(3);
+
+        @include media(tab-l) {
+            @include grid-columns(2);
+
+        }
+    }
+
+    &__item {
+        .resort-item__inner {
+            padding-top: 0;
+            height: 31rem;
+
+            @include media(tab-l) {
+                height: tab-adaptive(257);
+            }
+
+            @include media(mob) {
+                height: m-adaptive(165);
+            }
+        }
+
+        .resort-item__title {
+            width: fit-content;
+        }
+
+        .resort-item__content {
+            @include media(mob-m) {
+                padding: 1rem;
+            }
+        }
+
+        &._size_lg {
+            grid-column: span 2;
+        }
+    }
+
+    &__more {
+        margin-top: $space-default-md;
+    }
+
+    &__more-button {
+    }
+}

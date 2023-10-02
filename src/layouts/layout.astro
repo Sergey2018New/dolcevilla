@@ -1,0 +1,83 @@
+---
+import '@styles/style.scss';
+import ButtonIcon from '@components/modules/ButtonIcon.astro';
+import Header from '@components/header/Header.astro';
+import Footer from '@components/footer/Footer.astro';
+import ModalRequest from '@components/modals/ModalRequest.astro';
+import ModalFavorites from '@components/modals/ModalFavorites.astro';
+import ModalCompare from '@components/modals/ModalCompare.astro';
+import ModalBooking from '@components/modals/ModalBooking.astro';
+
+export interface Props {
+	title: string;
+    isMap?: boolean;
+	headerType?: 'second';
+	booking?: 'hotel';
+	class?: string;
+    [x: string]: any;
+}
+
+const {
+    title,
+    isMap,
+    headerType = 'primary',
+    booking,
+    class: className,
+    ...rest
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width"/>
+		<link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+		<title>{'Dolce Villa - ' + title}</title>
+        <slot name="head" />
+	</head>
+	<body>
+		<div
+			class:list={[
+				'wrapper',
+				className
+			]}
+			{...rest}
+		>
+			<Header type={headerType}></Header>
+			<main class="main">
+				<slot />
+			</main>
+			<Footer></Footer>
+		</div>
+
+        <div class="nav-panel">
+            <ButtonIcon ariaLabel="Позвонить" type='link' href="tel:89999999999" class="nav-panel__button nav-panel__button_phone" icon="phone"></ButtonIcon>
+            <ButtonIcon ariaLabel="Чат" class="nav-panel__button nav-panel__button_chat" icon="chat"></ButtonIcon>
+            <ButtonIcon ariaLabel="Перейти к началу страницы" class="nav-panel__button nav-panel__button_up js-button-up" icon="arrow" style='second'></ButtonIcon>
+        </div>
+
+		<ModalRequest></ModalRequest>
+		<ModalFavorites></ModalFavorites>
+		<ModalCompare></ModalCompare>
+
+        {
+            booking === 'hotel' ?
+            <ModalBooking title="Бронирование Hotel L'Apogee" submitText="Забронировать номер"></ModalBooking>
+            : <ModalBooking></ModalBooking>
+        }
+
+        {
+            isMap ?
+            <script>
+                (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+                    key: "AIzaSyD-5gtd85IYGiki4tKGgU8fHUesqAaXlxo",
+                    v: "weekly",
+                });
+            </script>
+            : ''
+        }
+
+		<script src="../scripts/app.js"></script>
+	</body>
+</html>

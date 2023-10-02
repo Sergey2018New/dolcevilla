@@ -1,0 +1,200 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import Button from '@components/modules/Button.astro';
+import ButtonIcon from '@components/modules/ButtonIcon.astro';
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import SwiperPagination from '@components/modules/swiper/SwiperPagination.astro';
+
+interface Props {
+	type?: 'full' | 'short' | 'resort';
+    title?: string;
+    price?: string;
+    period?: string;
+    isPeriodInfo?: boolean;
+    country?: string;
+    location?: string;
+	image?: string;
+    image2x?: string;
+    isFavorite?: boolean;
+    isCompare?: boolean;
+    isServices?: boolean;
+    isServicesCompare?: boolean;
+    isBook?: boolean;
+    isCompareCaption?: boolean;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+	type,
+	title,
+	price,
+	period,
+	isPeriodInfo,
+	infoList = [],
+	country,
+	location,
+	images = [],
+	image,
+	image2x,
+	isFavorite,
+	isCompare,
+    isServices,
+    isServicesCompare,
+    isBook,
+    isCompareCaption,
+    listServices = ['pool', 'shower', 'tv', 'router', 'animal', 'children-slide', 'skating', 'help'],
+	class: className,
+	...rest
+} = Astro.props;
+
+---
+
+<div
+	class:list={[
+		'chalet-item',
+		type === 'short' ? 'chalet-item_short' : '',
+		className
+	]}
+	{...rest}
+>
+
+
+    {
+        isCompareCaption ?
+        <div class="chalet-item__content">
+            <div class="chalet-item__row">
+                <div class="chalet-item__title" set:html={title}></div>
+                <div class="chalet-item__price" set:html={price}></div>
+            </div>
+            <div class="chalet-item__location">
+                <div class="chalet-item__location-item" set:html={country}></div>
+            </div>
+        </div>
+
+        :
+        <a href="" class="chalet-item__link" aria-label={title}>
+            <div class="chalet-item__slider-wrapper">
+                {
+                    image ?
+                    <img class="chalet-item__image lazy" data-src={image} data-srcset={image2x} width="193" height="128" alt="" />
+                    :
+
+                    <Swiper class="chalet-item__slider js-slider-chalet">
+                        {images.map((item) => (
+                            <SwiperSlide class="chalet-item__slider-item">
+                                <img class="chalet-item__image lazy" data-src={item.image} data-srcset={item.image2x} width="660" height="440" alt="" />
+                            </SwiperSlide>
+                        ))}
+                        <SwiperPagination slot="after" type='line' class="chalet-item__slider-pagination js-slider-chalet-pagination"></SwiperPagination>
+                        <SwiperControl slot="after" class="chalet-item__slider-prev js-slider-chalet-prev" direction="prev" ariaLabel="Предыдущее фото" tabindex="-1"></SwiperControl>
+                        <SwiperControl slot="after" class="chalet-item__slider-next js-slider-chalet-next" direction="next" ariaLabel="Следующее фото" tabindex="-1"></SwiperControl>
+                    </Swiper>
+                }
+                {
+                    type === 'resort' ? '' :
+
+                    <div class="chalet-item__control">
+                        <ButtonIcon class={`chalet-item__favorite-button chalet-item__control-button ${isFavorite ? 'is-active' : ''}`} icon="star" style="second" size='sm' mod="favorite" title={`${isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}`} aria-label={`${isFavorite ? 'Удалить из избранного' : 'Добавить в избранное'}`}></ButtonIcon>
+                        <ButtonIcon class={`chalet-item__compare-button chalet-item__control-button ${isCompare ? 'is-active' : ''}`} icon="scales" icon2="scales-fill" style="second" size='sm' title={`${isCompare ? 'Удалить из сравнения' : 'Добавить в сравнение'}`} aria-label={`${isCompare ? 'Удалить из сравнения' : 'Добавить в сравнение'}`}></ButtonIcon>
+                    </div>
+                }
+
+            </div>
+            <div class="chalet-item__content">
+                <div class="chalet-item__row">
+                    <div class="chalet-item__title" set:html={title}></div>
+                    <div class="chalet-item__price" set:html={price}></div>
+                    {
+                        period ?
+                        <div class="chalet-item__period-box">
+                            {
+                                isPeriodInfo ?
+                                <div class="chalet-item__period-tooltip" data-tooltip data-tooltip-content="Обратите ваше внимание что данное шале невозможно забронировать на&nbsp;весь период">
+                                    <Icon class="chalet-item__period-icon" name={'calendar-warning'}></Icon>
+                                </div> : ''
+                            }
+
+                            <div class="chalet-item__period" set:html={period}></div>
+                        </div> : ''
+                    }
+                </div>
+
+                {
+                    isServices ?
+                    <div class:list={[
+                        'chalet-item__services',
+                    ]}>
+                        {
+                            listServices.map((item) => (
+                                <div class="chalet-item__services-item" data-tooltip data-tooltip-content='<div class="tooltip-title">Телевизор</div><div class="tooltip-text">Включено в стоимость</div>'>
+                                    <Icon class="chalet-item__services-icon" name={item}></Icon>
+                                </div>
+                            ))
+                        }
+                    </div> : ''
+                }
+
+                {
+                    infoList.length ?
+                    <div class="chalet-item__info">
+                        {infoList.map((item) => (
+                            <div class="chalet-item__info-item">
+                                <div class="chalet-item__info-title" set:html={item.title}></div>
+                                <div class="chalet-item__info-value" set:html={item.value}></div>
+                            </div>
+                        ))}
+                    </div> : ''
+                }
+                <div class="chalet-item__location">
+                    <div class="chalet-item__location-item" set:html={country}></div>
+                    {
+                        location ?
+                        <div class="chalet-item__location-item" set:html={location}></div>
+                        : ''
+                    }
+                </div>
+
+                {
+                    isServicesCompare ?
+                    <div class:list={[
+                        'chalet-item__services chalet-item__services_compare',
+                    ]}>
+                        {
+                            listServices.map((item) => (
+                                <div class="chalet-item__services-item">
+                                    {
+                                        item.presense ? <Icon class="chalet-item__services-icon" name={'check-circle'}></Icon> : <Icon class="chalet-item__services-icon" name={'cross-circle'}></Icon>
+                                    }
+                                    <span class="chalet-item__services-name" set:html={item.text ? item.text : item}></span>
+                                </div>
+                            ))
+                        }
+                    </div> : ''
+                }
+            </div>
+        </a>
+    }
+
+    {
+        isServicesCompare && isCompareCaption ?
+        <div class:list={[
+            'chalet-item__services chalet-item__services_compare',
+        ]}>
+            {
+                listServices.map((item) => (
+                    <div class="chalet-item__services-item">
+                        <span class="chalet-item__services-name" set:html={item.text ? item.text : item}></span>
+                    </div>
+                ))
+            }
+        </div> : ''
+    }
+
+
+    {
+        isBook ?  <Button class="chalet-item__book-button" style="outline" size="sm"  data-modal-open="#modal_booking">Забронировать</Button> : ''
+    }
+</div>

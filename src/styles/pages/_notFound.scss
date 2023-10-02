@@ -1,0 +1,107 @@
+/* ------- Not found page -------- */
+.p-not-found {
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    min-height: calc(var(--vh, 1vh) * 100 - $header);
+
+    @include media(tab-l) {
+        padding-top: 8rem;
+        padding-bottom: 0;
+        min-height: 0;
+    }
+
+    @include media(mob) {
+        padding-top: 4rem;
+    }
+
+    &__row {
+        display: grid;
+        align-items: center;
+        gap: 8rem 0;
+
+        @include grid-columns(2);
+
+        @include media(tab-l) {
+             @include grid-columns(1);
+             justify-content: center;
+        }
+
+        @include media(mob) {
+            row-gap: 4rem;
+        }
+    }
+
+    &__column {
+    }
+
+    &__content {
+        padding-right: $gutters;
+        text-align: center;
+
+        @include media(tab-l) {
+            padding-right: 0;
+        }
+    }
+
+    &__title {
+        margin: 0 0 3rem;
+        font-family: $font-alethia-next;
+        font-size: var(--title-size);
+        font-weight: 350;
+        line-height: 120%;
+
+        @include media(tab-l) {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &__text {
+        color: $grey;
+    }
+
+    &__buttons {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: $space-default;
+
+        @include media(mob) {
+            margin-top: 2rem;
+        }
+
+        @include media(mob-m) {
+            grid-auto-flow: row;
+            justify-content: stretch;
+
+        }
+    }
+
+    &__button {
+        @include media(mob-m) {
+            width: 100%;
+        }
+    }
+
+    &__image-wrapper {
+        margin-right: calc($gutters * -1);
+        padding-right: calc($gutters * 0.5);
+        padding-left: calc($gutters * 0.5);
+
+        @include media(tab-l) {
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    &__image-box {
+    }
+
+    &__image {
+        display: block;
+        margin: 0 auto;
+        height: auto;
+    }
+}

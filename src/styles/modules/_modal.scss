@@ -1,0 +1,289 @@
+/* ------- Modal -------- */
+.modal {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 200;
+	display: none;
+	width: 100%;
+	height: calc(var(--vh, 1vh) * 100);
+	overflow: hidden;
+    overflow-y: auto;
+	padding: 0 $gutters;
+	opacity: 0;
+	background: $backdrop;
+	background: var(--color-second-2);
+	transition: $duration opacity;
+
+	&__header {
+		display: grid;
+		grid-auto-flow: column;
+		grid-template-columns: minmax(0, 1fr) auto;
+		align-items: center;
+		gap: $space-default;
+		width: 100%;
+		padding-bottom: $space-default;
+
+		.modal__title {
+			margin-bottom: 0;
+		}
+	}
+
+    &__logo-image {
+        @include media(mob) {
+            width: auto;
+            height: 3.6rem;
+        }
+    }
+
+	&__close {
+		position: relative;
+		z-index: 20;
+		margin-left: auto;
+	}
+
+	&__wrap {
+		display: flex;
+		justify-content: center;
+		flex-shrink: 0;
+		flex-grow: 0;
+		width: 100%;
+		min-height: 100%;
+	}
+
+	&__window {
+		position: relative;
+		flex-shrink: 0;
+		flex-grow: 0;
+		display: flex;
+		flex-direction: column;
+		margin: 0 auto;
+		width: 100%;
+		max-width: calc($container);
+		padding: $space-default 0;
+
+		transition: $duration transform;
+		will-change: transform;
+
+		&:focus-visible {
+			outline: none;
+		}
+	}
+
+	&__content {
+		flex-grow: 1;
+		padding: $space-default-md;
+		background: $white;
+
+        @include media(mob) {
+            padding: 2rem;
+        }
+	}
+
+	&__title {
+		margin: 0 0 4rem;
+		font-family: $font-alethia-next;
+		font-size: var(--title-size);
+		font-weight: 350;
+		line-height: 120%;
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+        }
+	}
+
+	&__text {
+		font-family: $font-alethia-pro;
+		font-size: var(--text-size-md);
+		line-height: 140%;
+	}
+
+	&__row {
+		display: grid;
+		gap: calc($space-default-md * 2);
+		min-height: 100%;
+
+		@include grid-columns(2);
+
+		@include media(tab-l) {
+			gap: 8rem;
+		}
+
+        @include media(mob) {
+            gap: 4rem;
+
+            @include grid-columns(1);
+        }
+	}
+
+	&__column {
+		position: relative;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: calc($space-default-md * -1);
+			width: 1px;
+			background: var(--color-line);
+
+			@include media(tab-l) {
+				left: calc(4rem * -1);
+			}
+
+            @include media(mob) {
+                left: 0;
+                width: 100%;
+                top: -2rem;
+                height: 1px;
+            }
+		}
+
+		&:first-child {
+			&::before {
+				display: none;
+			}
+		}
+	}
+
+	&__icon-arrow {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: var(--arrow-width);
+		height: var(--arrow-height);
+
+        @include media(mob) {
+            display: none;
+        }
+	}
+
+	&__footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+		padding: $space-default $gutters;
+        height: 10.7rem;
+        background: $white;
+
+        @include media(tab-l) {
+            height: 6.7rem;
+        }
+
+        @include media(mob) {
+            height: 5.7rem;
+        }
+	}
+
+    &__clear-button {
+        position: relative;
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        line-height: 1.5;
+        font-size: $text-size-desktop;
+        color: $grey;
+        transition: $duration color;
+
+        &:hover {
+            color: $base-color;
+        }
+    }
+
+    &__clear-button-icon {
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+	&_side {
+		padding: 0;
+        overflow: hidden;
+		background: $backdrop;
+
+		.modal {
+			&__window {
+				width: 74rem;
+				max-width: 100%;
+                height: 100%;
+				margin: 0 0 0 auto;
+				padding: 0 0 10.7rem;
+				background: $white;
+				transform: translate(100%, 0);
+
+				@include media(tab-l) {
+					width: 58rem;
+                    padding-bottom: 6.7rem;
+				}
+
+                @include media(mob) {
+                    padding-bottom: 5.7rem;
+                }
+			}
+
+            &__wrap {
+                height: 100%;
+            }
+
+			&__header {
+				padding: $space-default $gutters;
+                background: $white;
+			}
+
+			&__content {
+				padding: 0 $gutters $space-default $space-default;
+                flex-grow: 1;
+                overflow-x: hidden;
+                overflow-y: auto;
+
+                @include media(mob) {
+                    padding-bottom: 2rem;
+                }
+			}
+		}
+
+		&.is-active {
+			.modal {
+				&__window {
+					transform: none;
+				}
+			}
+		}
+	}
+
+	&_full {
+		.modal {
+			&__close {
+				color: $white;
+
+				&:hover {
+					color: $accent;
+				}
+			}
+		}
+	}
+
+	&.is-visible {
+		display: block;
+	}
+
+	&.is-active {
+		opacity: 1;
+		transition: $duration;
+
+		.modal__window {
+			// transform: scale(1);
+		}
+	}
+}
+
+.is-modal-active {
+	overflow: hidden;
+	touch-action: none;
+	padding-right: var(--modal-lock-padding-right);
+}

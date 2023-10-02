@@ -1,0 +1,37 @@
+/* ------- Modal Request -------- */
+.modal-request {
+    &__form {
+        display: flex;
+        flex-direction: column;
+        min-height: 100%;
+
+        .flatpickr-calendar {
+            max-width: calc(100vw - $gutters * 2 - 2rem);
+        }
+    }
+
+    &__form-center {
+        display: flex;
+        flex-grow: 1;
+        padding-top: 2rem;
+
+        @include media(mob) {
+            padding-top: 1rem;
+        }
+    }
+
+    &__form-message {
+        display: flex;
+        min-height: 100%;
+        width: 100%;
+
+        .field-box__textarea {
+            height: 11.2rem;
+            min-height: 100%;
+
+            @include media(mob) {
+                height: 15.3rem;
+            }
+        }
+    }
+}

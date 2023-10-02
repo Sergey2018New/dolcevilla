@@ -1,0 +1,74 @@
+---
+interface Props {
+	type?: 'default' | 'navigation';
+	size?: 'sm';
+    activeIndex?: number | string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type,
+    size,
+	list = [],
+    activeIndex,
+	class: className,
+	...rest
+} = Astro.props;
+---
+{
+    type === 'navigation' ?
+    <div
+        class:list={[
+            'tab-menu',
+            size ? `tab-menu_size_${size}` : '',
+            'tab-menu_navigation',
+            className,
+        ]}
+        data-navigation
+        {...rest}
+    >
+        <div class="tab-menu__inner">
+            { list ?
+                <div class="tab-menu__list">
+                    {list.map((item, index) => (
+                        <button type="button" class:list={
+                            [
+                                'tab-menu__item',
+                                index == 0 ? 'is-active' : '',
+                            ]
+                        } data-navigation-item data-goto={item.goto} data-offset="54" set:html={item.text}></button>
+                    ))}
+                </div>
+                : ''
+            }
+        </div>
+    </div>
+    :
+    <div
+        class:list={[
+            'tab-menu',
+            size ? `tab-menu_size_${size}` : '',
+            className,
+        ]}
+        data-tab-menu
+        {...rest}
+    >
+        { list ?
+            <div class="tab-menu__inner">
+                <div class="tab-menu__list">
+                    {list.map((item, index) => (
+                        <button type="button" class:list={
+                            [
+                                'tab-menu__item',
+                                activeIndex === index ? 'is-active' : index === 0 && !activeIndex ? 'is-active' : '',
+                            ]
+                        } data-tab-menu-item set:html={item}></button>
+                    ))}
+                </div>
+            </div>
+            : ''
+        }
+    </div>
+}
+

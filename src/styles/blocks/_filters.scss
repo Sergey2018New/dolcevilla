@@ -1,0 +1,460 @@
+/* ------- filters -------- */
+.filters {
+    position: relative;
+
+    &__box {
+        padding: 2rem;
+        background: var(--color-bg);
+
+        @include media(mob) {
+            padding: 1.5rem;
+        }
+    }
+
+    &__items {
+        position: relative;
+        display: grid;
+        gap: $space-default $space-default-sm;
+
+        @include media(mob-m) {
+            row-gap: 3rem;
+        }
+    }
+
+    &__item {
+        .filters__options {
+            padding-top: 0;
+        }
+
+        .filters__options-item {
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        &_dropdown {
+            border-bottom: 1px solid var(--color-line);
+            transition: $duration border-color;
+
+            .filters__item-content {
+                max-height: 0;
+                overflow: hidden;
+                visibility: hidden;
+                opacity: 0;
+                transition: $duration max-height, $duration opacity, $duration visibility;
+            }
+
+            &.is-open {
+                border-bottom-color: $base-color;
+
+                .filters__item-content {
+                    opacity: 1;
+                    visibility: visible;
+                    padding-bottom: 2rem;
+                }
+
+                .filters__item-button-icon {
+                    transform: rotate(180deg);
+                }
+            }
+
+            &.is-visible {
+                .filters__item-content {
+                    max-height: none;
+                    overflow: visible;
+                }
+            }
+        }
+
+        &.is-hidden {
+            display: none;
+        }
+    }
+
+    &__item-title {
+        margin-bottom: 1rem;
+        font-size: $text-size-desktop;
+        color: $grey;
+
+        @include media(mob) {
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    &__item-input {
+        padding-bottom: 1.9rem;
+        border-bottom: 1px solid $base-color;
+        height: 4.7rem;
+
+        &:hover {
+            border-bottom-color: $second;
+        }
+
+        @include media(mob) {
+            padding-bottom: 1rem;
+            height: 3.7rem;
+        }
+    }
+
+    &__item-content {
+    }
+
+    &__item-button {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) max-content;
+        align-items: center;
+        gap: 2rem;
+        width: 100%;
+        padding-bottom: 2rem;
+        font-size: $text-size-desktop;
+        text-align: left;
+
+        @include media(mob) {
+            padding-bottom: 1.5rem;
+        }
+    }
+
+    &__item-button-icon {
+        width: 1.1rem;
+        height: 0.6rem;
+        transition: $duration transform;
+        will-change: transform;
+    }
+
+    &__options {
+        display: flex;
+        flex-direction: column;
+        padding-top: calc($space-default - 1rem);
+    }
+
+    &__options-item {
+        margin-top: 1rem;
+    }
+
+    &__options-checkbox {
+        &._fill {
+            width: 100%;
+        }
+    }
+
+    &__item-popup {
+        @include media(pc) {
+            max-width: 100%;
+        }
+    }
+
+    &__more {
+        margin-left: auto;
+        width: fit-content;
+    }
+
+    &__more-button {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        align-items: center;
+        gap: 1rem;
+        font-size: $text-size-desktop;
+        line-height: 1.5;
+        color: $accent;
+        transition: $duration color;
+
+        &:hover {
+            color: $base-color;
+
+        }
+
+        &.is-active {
+            .filters__more-button-icon {
+                display: none;
+
+                + .filters__more-button-icon {
+                    display: block;
+                }
+            }
+        }
+    }
+
+
+    &__more-button-icon {
+        width: 2.4rem;
+        height: 2.4rem;
+        fill: currentColor;
+
+        + .filters__more-button-icon {
+            display: none;
+            width: 1.6rem;
+            height: 1.6rem;
+        }
+    }
+
+    &__reset-button {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        align-items: center;
+        justify-content: center;
+        margin-top: $space-default;
+        gap: 1rem;
+        width: 100%;
+        height: $button-height;
+        font-size: $text-size-desktop;
+        line-height: 1.5;
+        color: $grey;
+        transition: $duration color;
+
+        &:hover {
+            color: $base-color;
+        }
+
+        &.is-hidden {
+            display: none;
+        }
+    }
+
+    &__reset-button-icon {
+        width: 1.6rem;
+        height: 1.6rem;
+        fill: currentColor;
+    }
+
+    &__toggle-button {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) max-content;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        width: 100%;
+        padding: 1.5rem;
+        font-size: $text-size-desktop;
+        line-height: 1.5;
+        text-align: left;
+        color: $base-color;
+        background: var(--color-bg);
+        transition: $duration color;
+    }
+
+    &__toggle-button-icon {
+        width: 1.1rem;
+        height: 0.7rem;
+        stroke: currentColor;
+        fill: none;
+        transition: $duration transform;
+        will-change: transform;
+    }
+
+    &_choose {
+        .filters__more {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            z-index: 1;
+            margin-top: 4rem;
+
+            @include media(mob) {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-left: 0;
+                margin-top: 3rem;
+            }
+        }
+
+        .filters__items {
+            @include grid-columns(4);
+
+            @include media(tab-l) {
+                @include grid-columns(2);
+            }
+
+            @include media(mob-m) {
+                row-gap: 3rem;
+
+                @include grid-columns(1);
+            }
+        }
+
+        .filters__options {
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-right: -2rem;
+            padding-top: 0;
+
+            @include media(mob-m) {
+                flex-direction: column;
+                margin-right: 0;
+                padding-top: 2rem;
+            }
+        }
+
+        .filters__options-item {
+            margin-top: 2rem;
+            margin-right: 2rem;
+
+            @include media(mob-m) {
+                margin-right: 0;
+                margin-top: 1rem;
+            }
+        }
+    }
+
+    &_catalog_resorts {
+        .filters {
+            &__items {
+                @include media(pc) {
+                    @include grid-columns(3);
+                }
+
+                @include media(mob) {
+                    row-gap: 3rem;
+                    @include grid-columns(1);
+                }
+            }
+
+            &__options {
+                @include media(pc) {
+                    display: grid;
+                    column-gap: $space-default;
+
+                    @include grid-columns(2);
+                }
+
+                @include media(mob-m) {
+                    display: block;
+                    padding-top: 2rem;
+                }
+            }
+
+            &__content {
+                @include media(mob) {
+                    max-height: 0;
+                    visibility: hidden;
+                    overflow: hidden;
+                    opacity: 0;
+                    transition: $duration max-height, $duration opacity, $duration visibility;
+                }
+            }
+
+            &__box {
+                @include media(mob) {
+                    margin-top: 2rem;
+                }
+            }
+
+            &__toggle-button {
+                @include media-min(mob) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &_catalog_chalet,
+    &_catalog_hotels {
+
+        .filters__item_dropdown {
+            @include media(pc) {
+                grid-column: span 3;
+            }
+
+            @include media(tab) {
+                grid-column: auto;
+            }
+        }
+
+        .filters {
+            &__items {
+                @include media(pc) {
+                    row-gap: 3rem;
+                    @include grid-columns(3);
+                }
+
+                @include media(tab) {
+                    @include grid-columns(1);
+                }
+            }
+
+            &__content {
+                @include media(tab) {
+                    max-height: 0;
+                    visibility: hidden;
+                    overflow: hidden;
+                    opacity: 0;
+                    transition: $duration max-height, $duration opacity, $duration visibility;
+                }
+            }
+
+            &__box {
+                @include media(tab) {
+                    margin-top: 2rem;
+                }
+            }
+
+            &__toggle-button {
+                @include media-min(tab) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &_catalog_hotels {
+        .filters__item_dropdown {
+            @include media(pc) {
+                grid-column: span 2;
+            }
+
+            @include media(tab) {
+                grid-column: auto;
+            }
+        }
+
+        .filters {
+            &__items {
+                @include media(pc) {
+                    @include grid-columns(2);
+                }
+
+                @include media(tab) {
+                    @include grid-columns(1);
+                }
+            }
+        }
+    }
+
+    &_availability {
+        .filters {
+            &__items {
+                gap: $space-default;
+
+                @include grid-columns(3);
+
+                @include media(mob) {
+                    gap: 2rem;
+
+                    @include grid-columns(1);
+                }
+            }
+
+            &__box {
+                padding: $space-default;
+            }
+        }
+    }
+
+    &.is-open {
+        .filters__toggle-button-icon {
+            transform: rotate(180deg);
+        }
+
+        .filters__content {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    &.is-visible {
+        .filters__content {
+            max-height: none;
+            overflow: visible;
+        }
+    }
+}

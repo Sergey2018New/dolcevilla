@@ -1,0 +1,525 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import Dropdown from '@components/modules/Dropdown.astro';
+import Input from '@components/modules/Input.astro';
+import Checkbox from '@components/modules/Checkbox.astro';
+import FilterPopup from '@components/blocks/FilterPopup.astro';
+
+interface Props {
+    type?: 'choose' | 'catalog' | 'availability';
+    subtype?: 'resorts' | 'chalet';
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type,
+    subtype,
+	class: className,
+	...rest
+} = Astro.props;
+
+const optionsChoose = [
+	{
+        name: "option_serviced",
+		text: "С&nbsp;обслуживанием",
+		checked: true
+	},
+	{
+        name: "option_pool",
+		text: "C&nbsp;бассейном",
+		checked: true
+	},
+	{
+        name: "option_ski_in",
+		text: "Ски-ин&nbsp;/ Ски-аут",
+		checked: false
+	},
+	{
+        name: "option_sauna",
+		text: "Сауна&nbsp;/ Джакузи",
+		checked: false
+	},
+]
+
+const optionsCatalog = [
+    {
+		name: "option_gourmet_restaurants",
+		text: "Гурме рестораны",
+		checked: false
+	},
+    {
+        name: "option_all_year_round",
+		text: "Катание круглый год",
+		checked: false
+	},
+    {
+        name: "option_with_children",
+		text: "Для семей с детьми",
+		checked: false
+	},
+];
+
+const optionsCatalogSecond = [
+    {
+        name: "option_off_piste",
+		text: "Катание вне трасс",
+		checked: false
+	},
+    {
+        name: "option_rugged_terrain",
+		text: "Катание по пересеченной местности",
+		checked: false
+	},
+];
+
+const optionsAmenities = [
+    {
+        name: "option_wifi",
+		text: "Wi-Fi",
+		info: "5",
+		checked: true
+	},
+    {
+        name: "option_laundry",
+		text: "Частная прачечная",
+		info: "5",
+		checked: false
+	},
+    {
+        name: "option_balconies",
+		text: "Балконы",
+		info: "12",
+		checked: false
+	},
+    {
+        name: "option_hammam",
+		text: "Хаммам",
+		info: "2",
+		checked: false
+	},
+    {
+        name: "option_tv",
+		text: "Телевизор",
+		info: "2",
+		checked: false
+	},
+];
+
+const options = type === 'choose' ? optionsChoose : optionsCatalog;
+const optionsSecond = type === 'catalog' ? optionsCatalogSecond : [];
+---
+
+<div
+	class:list={[
+		'filters',
+		type === 'choose' || type === 'availability' ? `filters_${type}` : `filters_${type}_${subtype}`,
+		className,
+        'js-filters'
+	]}
+	{...rest}
+>
+    {
+        type === 'catalog' ?
+        <button type="button" class="filters__toggle-button js-filters-toggle" data-toggle-text="Закрыть фильтр">
+            <span class="js-filters-toggle-text">Открыть фильтр</span>
+            <Icon class="filters__toggle-button-icon" name="arrow-sm"></Icon>
+        </button>
+        : ''
+    }
+
+    <div class="filters__content js-filters-content">
+        <div class="filters__box">
+            {
+                type === 'choose' ?
+                <div class="filters__items">
+                    <div class="filters__item js-filters-item" role="group" aria-label="Куда вы хотите поехать?">
+                        <div class="filters__item-title">Куда вы хотите поехать?</div>
+                        <div class="filters__item-content">
+                            <Input class="filters__item-input js-filter-popup-input" placeholder="Начните вводить название" data-id="choice-location"></Input>
+                            <FilterPopup class="filters__item-popup" data-id="choice-location"></FilterPopup>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item" role="group" aria-label="Количество гостей?">
+                        <div class="filters__item-title">Количество гостей</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Любое' options={['Любое', '1', '2', '3', '4', '5']} inputName="number_of_guests"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item" role="group" aria-label="Количество спален?">
+                        <div class="filters__item-title">Количество спален</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Любое' options={['Любое', '1', '2', '3', '4', '5']} inputName="number_of_bedrooms"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item">
+                        <div class="filters__item-title">Даты заезда</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="datepickerSelect" buttonTitle="" inputName="check_in_dates" ariaLabel="Выбрать даты заезда"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item is-hidden" data-filter-hidden  role="group" aria-label="Страна">
+                        <div class="filters__item-title">Страна</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Все' options={['Все', 'Франция', 'Швейцария', 'Италия', 'Австрия']} inputName="country"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item is-hidden" data-filter-hidden role="group" aria-label="Количество гостей?">
+                        <div class="filters__item-title">Количество гостей</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Любое' options={['Любое', '1', '2', '3', '4', '5']} inputName="number_of_guests"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item is-hidden" data-filter-hidden role="group" aria-label="Количество спален?">
+                        <div class="filters__item-title">Количество спален</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Любое' options={['Любое', '1', '2', '3', '4', '5']} inputName="number_of_bedrooms"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item is-hidden" data-filter-hidden>
+                        <div class="filters__item-title">Даты заезда</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="datepickerSelect" buttonTitle="" inputName="check_in_dates" ></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item is-hidden" data-filter-hidden role="group" aria-label="Страна">
+                        <div class="filters__item-title">Страна</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Все' options={['Все', 'Франция', 'Швейцария', 'Италия', 'Австрия']} inputName="country"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item is-hidden" data-filter-hidden role="group" aria-label="Количество гостей?">
+                        <div class="filters__item-title">Количество гостей</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Любое' options={['Любое', '1', '2', '3', '4', '5']} inputName="number_of_guests"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item is-hidden" data-filter-hidden role="group" aria-label="Количество спален?">
+                        <div class="filters__item-title">Количество спален</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Любое' options={['Любое', '1', '2', '3', '4', '5']} inputName="number_of_bedrooms"></Dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters__options">
+                    {options.map((item, index) => (
+                        <div class="filters__options-item">
+                            <Checkbox class="filters__options-checkbox" name={item.name} checked={item.checked} set:html={item.text}></Checkbox>
+                        </div>
+                    ))}
+
+                </div>
+                :
+                subtype === 'resorts' ?
+                <div class="filters__items">
+                    <div class="filters__item js-filters-item" role="group" aria-label="Страна">
+                        <div class="filters__item-title">Страна</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Все' options={[
+                                {
+                                    text: "Все",
+                                    value: ""
+                                },
+                                {
+                                    text: "Франция",
+                                    value: "Франция"
+                                },
+                                {
+                                    text: "Швейцария",
+                                    value: "Швейцария"
+                                },
+                                {
+                                    text: "Италия",
+                                    value: "Италия"
+                                },
+                                {
+                                    text: "Австрия",
+                                    value: "Австрия"
+                                }
+                            ]} inputName="country" inputClass="js-filters-input"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item" role="group" aria-label="Длина трасс">
+                        <div class="filters__item-title">Длина трасс</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Все' options={[
+                                {
+                                    text: "Все",
+                                    value: ""
+                                },
+                                {
+                                    text: "от 5000 м",
+                                    value: "5"
+                                },
+                                {
+                                    text: "от 10 км",
+                                    value: "10"
+                                },
+                                {
+                                    text: "от 20 км",
+                                    value: "20"
+                                },
+                                {
+                                    text: "от 50 км",
+                                    value: "50"
+                                },
+                                {
+                                    text: "от 100 км",
+                                    value: "100"
+                                },
+                            ]} inputName="track_length" inputClass="js-filters-input"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item" role="group" aria-label="Тип трасс">
+                        <div class="filters__item-title">Тип трасс</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Все' options={[
+                                {
+                                    text: "Все",
+                                    value: ""
+                                },
+                                {
+                                    text: "Первый тип",
+                                    value: "Первый тип"
+                                },
+                                {
+                                    text: "Второй тип",
+                                    value: "Второй тип"
+                                },
+                                {
+                                    text: "Третий тип",
+                                    value: "Третий тип"
+                                },
+                                {
+                                    text: "Четвертый тип",
+                                    value: "Четвертый тип"
+                                },
+                            ]} inputName="track_type" inputClass="js-filters-input"></Dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters__options">
+                    <div class="filters__options-block">
+                        {options.map((item) => (
+                            <div class="filters__options-item">
+                                <Checkbox class="filters__options-checkbox" name={item.name} checked={item.checked} set:html={item.text}></Checkbox>
+                            </div>
+                        ))}
+                    </div>
+                    <div class="filters__options-block">
+                        {optionsSecond.map((item, index) => (
+                            <div class="filters__options-item">
+                                <Checkbox class="filters__options-checkbox" name={item.name} checked={item.checked} set:html={item.text}></Checkbox>
+                            </div>
+                        ))}
+                    </div>
+
+                </div>
+                :
+                type === 'availability' ?
+                <div class="filters__items">
+                    <div class="filters__item js-filters-item" role="group" aria-label="Сезон">
+                        <div class="filters__item-title">Сезон</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Зима 2022/23' options={
+                                [
+                                    {
+                                        text: "Зима 2022/23",
+                                        value: "1"
+                                    },
+                                    {
+                                        text: "Весна 2023",
+                                        value: "2"
+                                    },
+                                    {
+                                        text: "Лето 2023",
+                                        value: "3"
+                                    },
+                                    {
+                                        text: "Осень 2023",
+                                        value: "4"
+                                    },
+                                ]
+                            } inputName="season"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item" role="group" aria-label="Тип сервиса">
+                        <div class="filters__item-title">Тип сервиса</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Все' options={
+                                [
+                                    {
+                                        text: "Все",
+                                        value: ""
+                                    },
+                                    {
+                                        text: "Тип сервиса 1",
+                                        value: "1"
+                                    },
+                                    {
+                                        text: "Тип сервиса 2",
+                                        value: "2"
+                                    },
+                                    {
+                                        text: "Тип сервиса 3",
+                                        value: "3"
+                                    },
+                                ]
+                            } inputName="service_type"></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item js-filters-item" role="group" aria-label="Валюта">
+                        <div class="filters__item-title">Валюта</div>
+                        <div class="filters__item-content">
+                            <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Любая' options={
+                                [
+                                    {
+                                        text: "Любая",
+                                        value: ""
+                                    },
+                                    {
+                                        text: "Доллар",
+                                        value: "1"
+                                    },
+                                    {
+                                        text: "Евро",
+                                        value: "2"
+                                    },
+                                ]
+                            } inputName="currency"></Dropdown>
+                        </div>
+                    </div>
+                </div>
+                :
+                <div class="filters__items">
+                    <div class="filters__item js-filters-item" role="group" aria-label="Местоположение">
+                        <div class="filters__item-title">Местоположение</div>
+                        <div class="filters__item-content">
+                            <Input class="filters__item-input js-filter-popup-input js-filters-input" value="Франция, Валь-Торанс" placeholder="Начните вводить название" data-id="choice-location"></Input>
+                            <FilterPopup class="filters__item-popup" data-id="choice-location"></FilterPopup>
+                        </div>
+                    </div>
+                    {
+                        subtype === 'chalet' ?
+                        <div class="filters__item js-filters-item" role="group" aria-label="Количество спален">
+                            <div class="filters__item-title">Количество спален</div>
+                            <div class="filters__item-content">
+                                <Dropdown class="filters__item-dropdown" type="select" buttonTitle='Любое' options={
+                                    [
+                                        {
+                                            text: "Любое",
+                                            value: ""
+                                        },
+                                        {
+                                            text: "1",
+                                            value: "1"
+                                        },
+                                        {
+                                            text: "2",
+                                            value: "2"
+                                        },
+                                        {
+                                            text: "3",
+                                            value: "3"
+                                        },
+                                        {
+                                            text: "4",
+                                            value: "4"
+                                        }
+                                    ]
+                                } inputName="number_of_bedrooms" inputClass="js-filters-input"></Dropdown>
+                            </div>
+                        </div>
+                        : ''
+                    }
+
+                    <div class="filters__item js-filters-item">
+                        <div class="filters__item-title">Даты отдыха</div>
+                        <div class="filters__item-content">
+                            <Dropdown ariaLabel='Даты отдыха' class="filters__item-dropdown" type="datepickerSelect" buttonTitle="" inputName="check_in_dates" isInputFilter={true}></Dropdown>
+                        </div>
+                    </div>
+                    <div class="filters__item filters__item_dropdown js-filters-item">
+                        <button type="button" class="filters__item-button js-filters-item-button" aria-haspopup="true" aria-expanded="false">
+                            <span>Удобства в номере</span>
+                            <Icon class="filters__item-button-icon" name="arrow-sm"></Icon>
+                        </button>
+                        <div class="filters__item-content js-filters-item-content">
+                            <div class="filters__options">
+                                {optionsAmenities.map((item, index) => (
+                                    <div class="filters__options-item">
+                                        <Checkbox class="filters__options-checkbox _fill" name={item.name} checked={item.checked} info={item.info} set:html={item.text}></Checkbox>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters__item filters__item_dropdown js-filters-item">
+                        <button type="button" class="filters__item-button js-filters-item-button" aria-haspopup="true" aria-expanded="false">
+                            <span>Коллекция</span>
+                            <Icon class="filters__item-button-icon" name="arrow-sm"></Icon>
+                        </button>
+                        <div class="filters__item-content js-filters-item-content">
+                            <div class="filters__options">
+                                {optionsAmenities.map((item, index) => (
+                                    <div class="filters__options-item">
+                                        <Checkbox class="filters__options-checkbox _fill" name={item.name} checked={item.checked} info={item.info} set:html={item.text}></Checkbox>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters__item filters__item_dropdown js-filters-item">
+                        <button type="button" class="filters__item-button js-filters-item-button" aria-haspopup="true" aria-expanded="false">
+                            <span>Расстояние от центра</span>
+                            <Icon class="filters__item-button-icon" name="arrow-sm"></Icon>
+                        </button>
+                        <div class="filters__item-content js-filters-item-content">
+                            <div class="filters__options">
+                                {optionsAmenities.map((item, index) => (
+                                    <div class="filters__options-item">
+                                        <Checkbox class="filters__options-checkbox _fill" name={item.name} checked={item.checked} info={item.info} set:html={item.text}></Checkbox>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filters__item filters__item_dropdown js-filters-item">
+                        <button type="button" class="filters__item-button js-filters-item-button" aria-haspopup="true" aria-expanded="false">
+                            <span>Тип размещения</span>
+                            <Icon class="filters__item-button-icon" name="arrow-sm"></Icon>
+                        </button>
+                        <div class="filters__item-content js-filters-item-content">
+                            <div class="filters__options">
+                                {optionsAmenities.map((item, index) => (
+                                    <div class="filters__options-item">
+                                        <Checkbox class="filters__options-checkbox _fill" name={item.name} checked={item.checked} info={item.info} set:html={item.text}></Checkbox>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+            {
+                type === 'catalog' ?
+                <button type="button" class="filters__reset-button js-filters-reset is-hidden">
+                    <Icon class="filters__reset-button-icon" name="cross"></Icon>
+                    <span>Очистить</span>
+                </button>
+                : ''
+            }
+        </div>
+        {
+            type === 'choose' ?
+            <div class="filters__more">
+                <button type="button" class="filters__more-button js-filters-more-button">
+                    <span class="js-filters-more-text" data-toggle-text="Меньше параметров">Больше параметров</span>
+                    <Icon class="filters__more-button-icon" name="settings"></Icon>
+                    <Icon class="filters__more-button-icon" name="cross"></Icon>
+                </button>
+            </div> : ''
+        }
+    </div>
+</div>

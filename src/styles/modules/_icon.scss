@@ -1,0 +1,21 @@
+/* ------- UI - Icon ------- */
+.ui-icon {
+	display: block;
+	transition: $duration fill, $duration stroke;
+}
+
+.ui-icon {
+	width: 2.4rem;
+	height: 2.4rem;
+	fill: currentColor;
+
+	&-arrow-sm {
+		fill: none;
+		stroke: currentColor;
+	}
+
+    &-grid {
+        stroke: currentColor;
+        fill: none;
+    }
+}

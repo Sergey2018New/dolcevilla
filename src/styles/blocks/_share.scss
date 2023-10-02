@@ -1,0 +1,63 @@
+/* ------- sidebar menu -------- */
+.share {
+    display: grid;
+    align-items: center;
+    grid-auto-flow: column;
+    justify-content: flex-start;
+    gap: 1rem;
+
+    &__title {
+        font-size: $text-size-desktop;
+        color: $grey;
+    }
+
+    &__list {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+    }
+
+    &__icon {
+        width: 2.4rem;
+        height: 2.4rem;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        color: $second;
+
+        &:hover {
+            color: $accent;
+        }
+
+        &:focus-visible {
+            outline-color: $second;
+        }
+
+        &_google {
+            .share__icon {
+                width: 2.8rem;
+                height: 2.8rem;
+            }
+        }
+
+        &_twitter {
+            .share__icon {
+                width: 2.8rem;
+                height: 2.8rem;
+            }
+        }
+
+        &_linkedin {
+            .share__icon {
+                width: 3.2rem;
+                height: 3.2rem;
+            }
+        }
+    }
+}

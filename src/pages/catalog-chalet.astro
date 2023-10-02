@@ -1,0 +1,370 @@
+---
+import Layout from '@layouts/layout.astro';
+import RadioBlock from '@components/modules/RadioBlock.astro';
+import SwitchBlock from '@components/modules/SwitchBlock.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import Filters from '@components/blocks/Filters.astro';
+import Tags from '@components/blocks/Tags.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+import ChaletItem from '@components/blocks/ChaletItem.astro';
+import EliteChalets  from '@components/sections/EliteChalets.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+
+const listItems = [
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 12 890",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Франция",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			}
+		],
+		title: "Пентхаус Altesse",
+		price: "€ 6 860",
+		period: "10 ночей",
+        isPeriodInfo: true,
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Франция",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Пентхаус Balegia",
+		price: "€ 16 909—39 809",
+		period: "7 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "7"
+			},
+			{
+				title: "Мест",
+				value: "14"
+			}
+		],
+		country: "Франция",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "₣ 7 455",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Arrabelle",
+		price: "€ 16 909—39 809",
+		period: "5 ночей",
+        isPeriodInfo: true,
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Франция",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Arrabelle Retreat",
+		price: "€ 6 860",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "2"
+			},
+			{
+				title: "Мест",
+				value: "4"
+			}
+		],
+		country: "Франция",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/6.jpg",
+				image2x: "img/choose-chalet/6@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet Alpin Roc",
+		price: "€ 6 860",
+		period: "10 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Включено"
+			},
+			{
+				title: "Спален",
+				value: "1"
+			},
+			{
+				title: "Мест",
+				value: "3"
+			}
+		],
+		country: "Австрия",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Шале Narnia",
+		price: "€ 24 880—48 980",
+		period: "5 ночей",
+		infoList: [
+			{
+				title: "Обслуживание",
+				value: "Нет"
+			},
+			{
+				title: "Спален",
+				value: "6"
+			},
+			{
+				title: "Мест",
+				value: "8"
+			}
+		],
+		country: "Франция",
+		location: "Альп д'Юэз"
+	},
+]
+---
+
+<Layout title="Каталог шале и отелей">
+    <Breadcrumbs list={['Курорты']} title="Валь Торанс"></Breadcrumbs>
+    <div class="p-catalog p-catalog_chalet">
+        <div class="container">
+            <div class="p-catalog__row">
+                <aside class="p-catalog__sidebar">
+                    <Filters subtype="chalet" type="catalog" class="p-catalog__filters"></Filters>
+                </aside>
+                <div class="p-catalog__content">
+                    <Tags class="p-catalog__tags" list={[
+                        {
+                            text: 'Санкт-Антон',
+                            isActive: false
+                        },
+                        {
+                            text: 'Церматт',
+                            isActive: false
+                        },
+                        {
+                            text: 'Валь Торанс',
+                            isActive: true
+                        },
+                    ]}></Tags>
+                    <div class="p-catalog__sorting">
+                        <div class="p-catalog__sorting-left">
+                            <TabMenu class="p-catalog__sorting-menu" list={['Рейтинговые', 'Дорогие', 'Дешевые']} size='sm'></TabMenu>
+                        </div>
+                        <div class="p-catalog__sorting-right">
+                            <SwitchBlock name="catalog_type" class="p-catalog__switch-block" items={[
+                                {
+                                    text: 'Шале (24)',
+                                    value: 'chalet',
+                                    checked: true,
+                                    isActive: true,
+                                },
+                                {
+                                    text: 'Отели (7)',
+                                    value: 'hotels',
+                                }
+                            ]}></SwitchBlock>
+                            <SwitchBlock name="catalog_view" isToggle={true} isShort={true} class="p-catalog__switch-block" items={[
+                                {
+                                    text: 'Списком',
+                                    icon: 'grid',
+                                    value: 'list',
+                                    isActive: true,
+                                    checked: true,
+                                },
+                                {
+                                    text: 'На карте',
+                                    icon: 'location',
+                                    value: 'map',
+                                }
+                            ]}></SwitchBlock>
+                        </div>
+                    </div>
+                    <div class="p-catalog__items p-catalog__items_chalet">
+                        {listItems.map((item) => (
+                            <ChaletItem class="p-catalog__item p-catalog__item_chalet" title={item.title} price={item.price} period={item.period} isPeriodInfo={item.isPeriodInfo} infoList={item.infoList} country={item.country} location={item.location} images={item.images} isServices={true}></ChaletItem>
+                        ))}
+                    </div>
+                    <div class="p-catalog__more">
+                        <ButtonMore direction="down">Показать еще 16 шале</ButtonMore>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <EliteChalets></EliteChalets>
+    <WhyWe></WhyWe>
+</Layout>

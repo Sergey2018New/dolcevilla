@@ -1,0 +1,274 @@
+---
+import Layout from '@layouts/layout.astro';
+import SwitchBlock from '@components/modules/SwitchBlock.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import Filters from '@components/blocks/Filters.astro';
+import Tags from '@components/blocks/Tags.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+import ChaletItem from '@components/blocks/ChaletItem.astro';
+import EliteChalets  from '@components/sections/EliteChalets.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+
+const listItems = [
+	{
+		images: [
+			{
+				image: "img/hotels/1.jpg",
+				image2x: "img/hotels/1@2x.jpg",
+			},
+			{
+				image: "img/hotels/2.jpg",
+				image2x: "img/hotels/2@2x.jpg",
+			},
+			{
+				image: "img/hotels/3.jpg",
+				image2x: "img/hotels/3@2x.jpg",
+			}
+		],
+		title: "Alpin Roc",
+		price: "от € 120",
+		period: "1 ночь",
+		infoList: [
+			{
+				title: "Номера и апартаменты",
+				value: "30"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+	{
+		images: [
+			{
+				image: "img/hotels/2.jpg",
+				image2x: "img/hotels/2@2x.jpg",
+			},
+			{
+				image: "img/hotels/3.jpg",
+				image2x: "img/hotels/3@2x.jpg",
+			},
+			{
+				image: "img/hotels/1.jpg",
+				image2x: "img/hotels/1@2x.jpg",
+			}
+		],
+		title: "Altesse",
+		price: "€ 1 027—2 993",
+		period: "1 ночь",
+		infoList: [
+            {
+				title: "Номера и апартаменты",
+				value: "128"
+			},
+		],
+		country: "Франция",
+		location: "Валь Торанс"
+	},
+	{
+		images: [
+			{
+				image: "img/hotels/3.jpg",
+				image2x: "img/hotels/3@2x.jpg",
+			},
+			{
+				image: "img/hotels/2.jpg",
+				image2x: "img/hotels/2@2x.jpg",
+			},
+			{
+				image: "img/hotels/1.jpg",
+				image2x: "img/hotels/1@2x.jpg",
+			}
+		],
+		title: "Balegia",
+		price: "€ 16 909—39 809",
+		period: "7 ночей",
+		infoList: [
+            {
+				title: "Номера и апартаменты",
+				value: "30"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+	{
+		images: [
+			{
+				image: "img/hotels/4.jpg",
+				image2x: "img/hotels/4@2x.jpg",
+			},
+			{
+				image: "img/hotels/1.jpg",
+				image2x: "img/hotels/1@2x.jpg",
+			},
+			{
+				image: "img/hotels/2.jpg",
+				image2x: "img/hotels/2@2x.jpg",
+			}
+		],
+		title: "Alpin Roc",
+		price: "€ 6 860",
+		period: "10 ночей",
+		infoList: [
+            {
+				title: "Номера и апартаменты",
+				value: "30"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+	{
+		images: [
+			{
+				image: "img/hotels/5.jpg",
+				image2x: "img/hotels/5@2x.jpg",
+			},
+			{
+				image: "img/hotels/1.jpg",
+				image2x: "img/hotels/1@2x.jpg",
+			},
+			{
+				image: "img/hotels/2.jpg",
+				image2x: "img/hotels/2@2x.jpg",
+			}
+		],
+		title: "Arrabelle",
+		price: "от € 120",
+		period: "5 ночей",
+		infoList: [
+            {
+				title: "Номера и апартаменты",
+				value: "128"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+	{
+		images: [
+			{
+				image: "img/hotels/6.jpg",
+				image2x: "img/hotels/6@2x.jpg",
+			},
+			{
+				image: "img/hotels/1.jpg",
+				image2x: "img/hotels/1@2x.jpg",
+			},
+			{
+				image: "img/hotels/2.jpg",
+				image2x: "img/hotels/2@2x.jpg",
+			}
+		],
+		title: "Arrabelle Retreat",
+		price: "от € 120",
+		period: "1 ночь",
+		infoList: [
+            {
+				title: "Номера и апартаменты",
+				value: "23"
+			},
+		],
+		country: "Франция",
+		location: "Церматт"
+	},
+	{
+		images: [
+			{
+				image: "img/hotels/7.jpg",
+				image2x: "img/hotels/7@2x.jpg",
+			},
+			{
+				image: "img/hotels/1.jpg",
+				image2x: "img/hotels/1@2x.jpg",
+			},
+			{
+				image: "img/hotels/2.jpg",
+				image2x: "img/hotels/2@2x.jpg",
+			}
+		],
+		title: "Отель Alpin Roc",
+		price: "€ 6 860",
+		period: "10 ночей",
+		infoList: [
+            {
+				title: "Номера и апартаменты",
+				value: "41"
+			},
+		],
+		country: "Австрия",
+		location: "Санкт-Антон"
+	},
+]
+---
+
+<Layout title="Каталог шале и отелей">
+    <Breadcrumbs list={['Отели']} title="Валь Торанс"></Breadcrumbs>
+    <div class="p-catalog p-catalog_chalet">
+        <div class="container">
+            <div class="p-catalog__row">
+                <aside class="p-catalog__sidebar">
+                    <Filters subtype="hotels" type="catalog" class="p-catalog__filters"></Filters>
+                </aside>
+                <div class="p-catalog__content">
+                    <Tags class="p-catalog__tags" list={[
+                        {
+                            text: 'Санкт-Антон',
+                            isActive: false
+                        },
+                        {
+                            text: 'Церматт',
+                            isActive: false
+                        },
+                        {
+                            text: 'Валь Торанс',
+                            isActive: true
+                        },
+                    ]}></Tags>
+                    <div class="p-catalog__sorting">
+                        <div class="p-catalog__sorting-left">
+                            <TabMenu class="p-catalog__sorting-menu" list={['Рейтинговые', 'Дорогие', 'Дешевые']} size='sm'></TabMenu>
+                        </div>
+                        <div class="p-catalog__sorting-right">
+                            <SwitchBlock name="catalog_type" class="p-catalog__switch-block" items={[
+                                {
+                                    text: 'Шале (24)',
+                                    value: 'chalet',
+
+                                },
+                                {
+                                    text: 'Отели (7)',
+                                    value: 'hotels',
+                                    checked: true,
+                                    isActive: true,
+                                }
+                            ]}></SwitchBlock>
+                            <SwitchBlock name="catalog_view" isToggle={true} isShort={true} class="p-catalog__switch-block" items={[
+                                {
+                                    text: 'Списком',
+                                    icon: 'grid',
+                                    value: 'list',
+                                    isActive: true,
+                                    checked: true,
+                                },
+                                {
+                                    text: 'На карте',
+                                    icon: 'location',
+                                    value: 'map',
+                                }
+                            ]}></SwitchBlock>
+                        </div>
+                    </div>
+                    <div class="p-catalog__items p-catalog__items_chalet">
+                        {listItems.map((item) => (
+                            <ChaletItem class="p-catalog__item p-catalog__item_chalet" title={item.title} price={item.price} period={item.period} infoList={item.infoList} country={item.country} location={item.location} images={item.images} isServices={true}></ChaletItem>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <EliteChalets></EliteChalets>
+    <WhyWe></WhyWe>
+</Layout>

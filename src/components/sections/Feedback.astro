@@ -1,0 +1,54 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import Button from '@components/modules/Button.astro';
+import FieldBox from '@components/modules/FieldBox.astro';
+
+interface Props {
+    noContacts?: boolean;
+    title?: string;
+}
+
+const {
+    noContacts,
+    title,
+} = Astro.props;
+---
+
+<section class="section feedback">
+	<div class="container">
+        <div class="feedback__box">
+            <div class="feedback__row">
+                <div class="feedback__column feedback__column_content">
+                    <h2 class="feedback__title section-title" set:html={title ? title : 'Появились вопросы?'}></h2>
+                    <div class="feedback__text">
+                        <p>Заполните форму и&nbsp;мы&nbsp;свяжемся с&nbsp;вами и&nbsp;дадим подробную консультацию</p>
+                    </div>
+                    {
+                        !noContacts ?
+                        <div class="feedback__contacts">
+                            <a href="tel:+441993899420" class="feedback__contacts-phone">+44 (1993) 899-420</a>
+                            <a href="mailto:info@mydolcevilla.com" class="feedback__contacts-email">info@mydolcevilla.com</a>
+                        </div> : ''
+                    }
+
+                    <Icon class="feedback__icon-arrow" name="arrow"></Icon>
+                </div>
+                <div class="feedback__column feedback__column_form">
+                    <form action="" class="feedback__form form" data-js-form>
+                        <div class="form__grid">
+                            <FieldBox class="form__field" label="Ваше имя" name="name" isRequired={true} required></FieldBox>
+                            <FieldBox class="form__field" label="Почта или номер телефона" name="email" isRequired={true} required></FieldBox>
+                            <FieldBox class="form__field feedback__form-email" label="Ваш вопрос" name="message" type="textarea"></FieldBox>
+                        </div>
+                        <div class="form__button-wrapper">
+                            <Button type="submit" class="form__submit">Отправить</Button>
+                        </div>
+                        <div class="form__agreement">
+                            Нажимая кнопку отправить вы&nbsp;соглашаетесь с&nbsp;<a href="">политикой конфиденциальности</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+</section>

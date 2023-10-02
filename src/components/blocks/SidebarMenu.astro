@@ -1,0 +1,35 @@
+---
+interface Props {
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+	list = [],
+    class: className,
+	...rest
+} = Astro.props;
+
+---
+
+<div
+	class:list={[
+		'sidebar-menu js-sidebar-menu',
+		className
+	]}
+	{...rest}
+>
+    <button type="button" class="sidebar-menu__button js-sidebar-menu-button">
+        <span set:html={list[0]}></span>
+    </button>
+    <ul class="sidebar-menu__list">
+        {list.map((item, index) => (
+            <li>
+                <a href="" class:list={[
+                    'sidebar-menu__link',
+                    index === 0 ? 'is-active' : ''
+                ]} set:html={item}></a>
+            </li>
+        ))}
+    </ul>
+</div>

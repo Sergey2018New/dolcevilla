@@ -1,0 +1,235 @@
+---
+import Layout from '@layouts/layout.astro';
+import SwitchBlock from '@components/modules/SwitchBlock.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import Filters from '@components/blocks/Filters.astro';
+import Tags from '@components/blocks/Tags.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+import ChaletItem from '@components/blocks/ChaletItem.astro';
+
+import PopularResorts from '@components/sections/PopularResorts.astro';
+import EliteChalets  from '@components/sections/EliteChalets.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+
+const listItemsResorts = [
+    {
+        image: "img/catalog-resorts/1.jpg",
+        image2x: "img/catalog-resorts/1@2x.jpg",
+        title: "Валь Торанс",
+		price: "от € 40",
+		infoList: [
+			{
+				title: "Длина трасс",
+				value: "400 км"
+			},
+			{
+				title: "Перепад высот",
+				value: "1 322 м"
+			}
+		],
+		country: "Франция",
+    },
+    {
+        image: "img/catalog-resorts/2.jpg",
+        image2x: "img/catalog-resorts/2@2x.jpg",
+        title: "Церматт",
+		price: "от € 50",
+		infoList: [
+			{
+				title: "Длина трасс",
+				value: "320 км"
+			},
+			{
+				title: "Перепад высот",
+				value: "4 890 м"
+			}
+		],
+		country: "Австрия",
+    },
+    {
+        image: "img/catalog-resorts/3.jpg",
+        image2x: "img/catalog-resorts/3@2x.jpg",
+        title: "Санкт-Антон",
+		price: "от € 48",
+		infoList: [
+			{
+				title: "Длина трасс",
+				value: "189 км"
+			},
+			{
+				title: "Перепад высот",
+				value: "380 м"
+			}
+		],
+		country: "Швейцария",
+    },
+    {
+        image: "img/catalog-resorts/4.jpg",
+        image2x: "img/catalog-resorts/4@2x.jpg",
+        title: "Куршевель",
+		price: "от € 120",
+		infoList: [
+			{
+				title: "Длина трасс",
+				value: "200 км"
+			},
+			{
+				title: "Перепад высот",
+				value: "900 м"
+			}
+		],
+		country: "Франция",
+    },
+    {
+        image: "img/catalog-resorts/5.jpg",
+        image2x: "img/catalog-resorts/5@2x.jpg",
+        title: "Циллерталь",
+		price: "от € 30",
+		infoList: [
+			{
+				title: "Длина трасс",
+				value: "300 км"
+			},
+			{
+				title: "Перепад высот",
+				value: "1 290 м"
+			}
+		],
+		country: "Австрия",
+    },
+    {
+        image: "img/catalog-resorts/6.jpg",
+        image2x: "img/catalog-resorts/6@2x.jpg",
+        title: "Андерматт",
+		price: "от € 890",
+		infoList: [
+			{
+				title: "Длина трасс",
+				value: "580 км"
+			},
+			{
+				title: "Перепад высот",
+				value: "1 900 м"
+			}
+		],
+		country: "Швейцария",
+    },
+    {
+        image: "img/catalog-resorts/7.jpg",
+        image2x: "img/catalog-resorts/7@2x.jpg",
+        title: "Лех",
+		price: "от € 410",
+		infoList: [
+			{
+				title: "Длина трасс",
+				value: "120 км"
+			},
+			{
+				title: "Перепад высот",
+				value: "800 м"
+			}
+		],
+		country: "Австрия",
+    },
+    {
+        image: "img/catalog-resorts/8.jpg",
+        image2x: "img/catalog-resorts/8@2x.jpg",
+        title: "Церматт",
+		price: "от € 25",
+		infoList: [
+			{
+				title: "Длина трасс",
+				value: "380 км"
+			},
+			{
+				title: "Перепад высот",
+				value: "320 м"
+			}
+		],
+		country: "Австрия",
+    },
+    {
+        image: "img/catalog-resorts/9.jpg",
+        image2x: "img/catalog-resorts/9@2x.jpg",
+        title: "Санкт-Антон",
+		price: "от € 35",
+		infoList: [
+			{
+				title: "Длина трасс",
+				value: "230 км"
+			},
+			{
+				title: "Перепад высот",
+				value: "322 м"
+			}
+		],
+		country: "Италия",
+    },
+]
+---
+
+<Layout title="Каталог курортов">
+    <Breadcrumbs title="Курорты"></Breadcrumbs>
+    <div class="p-default p-catalog p-catalog_resorts">
+        <div class="container">
+            <div class="p-catalog__row">
+                <aside class="p-catalog__sidebar">
+                    <Filters type="catalog" subtype="resorts" class="p-catalog__filters"></Filters>
+                </aside>
+                <div class="p-catalog__content">
+                    <Tags class="p-catalog__tags" list={[
+                        {
+                            text: 'Швейцария',
+                            isActive: true
+                        },
+                        {
+                            text: 'Франция',
+                            isActive: true
+                        },
+                        {
+                            text: 'Италия',
+                            isActive: false
+                        },
+                        {
+                            text: 'Австрия',
+                            isActive: false
+                        },
+                    ]}></Tags>
+                    <div class="p-catalog__sorting">
+                        <div class="p-catalog__sorting-left">
+                            <TabMenu class="p-catalog__sorting-menu" list={['Рейтинговые', 'Дорогие', 'Дешевые']} size='sm'></TabMenu>
+                        </div>
+                        <div class="p-catalog__sorting-right">
+                            <SwitchBlock name="catalog_view" isToggle={true} isShort={true} class="p-catalog__switch-block" items={[
+                                {
+                                    text: 'Списком',
+                                    icon: 'grid',
+                                    value: 'list',
+                                    isActive: true,
+                                    checked: true,
+                                },
+                                {
+                                    text: 'На карте',
+                                    icon: 'location',
+                                    value: 'map',
+                                }
+                            ]}></SwitchBlock>
+                        </div>
+                    </div>
+                    <div class="p-catalog__items p-catalog__items_resorts">
+                        {listItemsResorts.map((item) => (
+                            <ChaletItem type="resort" class="p-catalog__item p-catalog__item_resort" title={item.title} price={item.price} infoList={item.infoList} country={item.country} image={item.image} image2x={item.image2x}></ChaletItem>
+                        ))}
+                    </div>
+                    <div class="p-catalog__more">
+                        <ButtonMore direction="down">Показать еще 16 курортов</ButtonMore>
+                    </div>
+                    <PopularResorts class="p-catalog__popular-resorts" type="popular"></PopularResorts>
+                </div>
+            </div>
+        </div>
+    </div>
+    <EliteChalets></EliteChalets>
+    <WhyWe></WhyWe>
+</Layout>

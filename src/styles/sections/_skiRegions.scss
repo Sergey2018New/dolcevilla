@@ -1,0 +1,48 @@
+/* ------- ski regions -------- */
+.ski-regions {
+    &__title {
+        margin-bottom: var(--title-section-margin);
+
+        @include media(tab-l) {
+            padding-bottom: 2rem;
+        }
+
+        @include media(mob) {
+            padding-bottom: 0;
+        }
+    }
+
+    &__tabs-info {
+        grid-template-columns: minmax(31rem, 1fr) minmax(0, 90.8rem);
+
+        @include media(tab-l) {
+            grid-template-columns: 24.2rem minmax(0, 1fr);
+        }
+
+        @include media(mob) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    &__image-box {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        margin-top: $section-space;
+        height: d-adaptive(440);
+        min-height: 22rem;
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    + .chalet-locations {
+        @include media(mob) {
+            padding-top: 1rem;
+        }
+    }
+}

@@ -1,0 +1,150 @@
+/* ------- Description -------- */
+.description {
+    h2,
+    .h2 {
+        margin: 4rem 0;
+        font-family: $font-alethia-next;
+        font-size: var(--title-size-sm);
+        font-weight: 350;
+        line-height: 120%;
+
+        @include media(tab) {
+            margin-top: 3rem;
+            margin-bottom: 3rem;
+            font-family: $font-alethia-pro;
+            font-weight: 400;
+            line-height: 140%;
+            font-size: 2.4rem;
+        }
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+            font-size: 2rem;
+        }
+    }
+
+    .h2 {
+        @include media(tab) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    h3,
+    .h3 {
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-2);
+        font-weight: 400;
+        line-height: 140%;
+        margin: 4rem 0 2rem;
+
+        @include media(mob) {
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: var(--text-size-md);
+        }
+    }
+
+    p,
+    ul,
+    ol {
+        margin-bottom: 3rem;
+        color: $grey;
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    ul {
+        list-style: none;
+        margin-top: 0;
+        padding-left: 0;
+
+        > li {
+            position: relative;
+            margin-bottom: 1rem;
+            padding-left: 1.9rem;
+
+            &::before {
+                content: "";
+                position: absolute;
+                left: 1px;
+                top: 1rem;
+                width: 0.6rem;
+                height: 0.6rem;
+                border: 1px solid $accent;
+                transform: rotate(45deg);
+
+                @include media(mob) {
+                    top: 0.6rem;
+                }
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+        }
+    }
+
+    figure {
+        display: grid;
+        grid-template-columns: max-content auto;
+        margin: 4rem 0 8rem;
+        gap: 2rem $space-default;
+
+        @include media(pc) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        @include media(tab) {
+            margin-top: 3rem;
+            margin-bottom: 6rem;
+        }
+
+        @include media(mob) {
+            margin-top: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        img {
+            width: 54.4rem;
+            height: auto;
+        }
+
+        figcaption {
+            display: block;
+            color: $grey;
+        }
+    }
+
+    p,
+    h2,
+    h3,
+    h4,
+    .h2,
+    .h3,
+    .h4,
+    ul,
+    ol,
+    figure {
+        &:first-child {
+            margin-top: 0;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+
+        &:hover {
+            color: $second;
+        }
+    }
+
+
+}

@@ -1,0 +1,137 @@
+/* ------- feedback -------- */
+.feedback {
+
+    &__box {
+        padding: var(--space-default-md);
+        background: var(--color-bg);
+
+        @include media(mob) {
+            padding: 2rem;
+        }
+    }
+
+    &__row {
+        display: grid;
+        gap: 4rem calc(var(--space-default-md) * 2);
+
+        @include grid-columns(2);
+
+        @include media(mob) {
+            @include grid-columns(1);
+        }
+    }
+
+    &__column {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: calc(var(--space-default-md) * -1);
+            width: 1px;
+            height: 100%;
+            background: var(--color-line);
+
+            @include media(mob) {
+                top: -2rem;
+                left: 0;
+                width: 100%;
+                height: 1px;
+            }
+        }
+
+        &:first-child {
+            &::before {
+                display: none;
+            }
+        }
+
+        &_content {
+            position: relative;
+            display: grid;
+            align-content: flex-start;
+            gap: 4rem $space-default;
+            padding-bottom: calc($space-default + var(--arrow-height));
+
+            @include media(mob) {
+                gap: 2rem;
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    &__title {
+        margin-bottom: 0;
+    }
+
+    &__text {
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+    }
+
+    &__contacts {
+        display: grid;
+        justify-content: flex-start;
+        gap: 1rem;
+        color: $second;
+    }
+
+    &__contacts-phone {
+        font-family: $font-alethia-next;
+        font-size: var(--title-size);
+        line-height: 1.2;
+        white-space: nowrap;
+        text-decoration: none;
+
+        &:hover {
+            color: $accent;
+        }
+
+        @include media(pc) {
+            font-size: var(--title-size-sm);
+        }
+
+        @include media(tab-l) {
+            font-family: $font-alethia-pro;
+            font-size: 2.4rem;
+        }
+    }
+
+    &__contacts-email {
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+        white-space: nowrap;
+        text-decoration: none;
+
+        &:hover {
+            color: $accent;
+        }
+    }
+
+    &__icon-arrow {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: var(--arrow-width);
+        height: var(--arrow-height);
+
+        @include media(mob) {
+            display: none;
+        }
+    }
+
+    &__form-email {
+        .field-box__label {
+            background: var(--color-bg);
+        }
+    }
+
+    + .similar-chalets {
+        @include media(mob) {
+            padding-top: 1rem;
+        }
+    }
+}

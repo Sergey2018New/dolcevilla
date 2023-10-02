@@ -1,0 +1,36 @@
+---
+import Icon from '@components/modules/Icon.astro';
+
+interface Props {
+	value?: number;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    value = 3,
+	class: className,
+	...rest
+} = Astro.props;
+
+const values = [1,2,3,4,5];
+---
+<div
+        class:list={[
+            'rating',
+            className,
+        ]}
+        data-rating={value}
+        {...rest}
+    >
+        <div class="rating__group">
+            {values.map((item) => (
+                <button type="button" class="rating__item" value={item} aria-label={`Поставить оценку ${item}`} data-rating-item={item}>
+                    <Icon class="rating__icon" name="star"></Icon>
+                </button>
+             ))}
+        </div>
+        <input type="hidden" data-rating-input value={value}>
+    </div>
+
+

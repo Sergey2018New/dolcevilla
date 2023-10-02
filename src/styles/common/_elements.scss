@@ -1,0 +1,69 @@
+/* ------- Site elements ------- */
+.section-title {
+    margin-top: 0;
+    font-family: $font-alethia-next;
+    font-size: var(--title-size);
+    line-height: 1.2;
+    font-weight: 350;
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        margin: 0;
+        font-size: inherit;
+        line-height: inherit;
+        font-weight: inherit;
+        color: inherit;
+    }
+}
+
+.table-wrapper {
+	overflow: auto;
+
+	table {
+		min-width: 60rem;
+	}
+}
+
+.slider-controls {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-end;
+    gap: 4rem;
+
+    &__prev,
+    &__next {
+        position: relative;
+        top: 0;
+        margin-top: 0;
+
+        transform: none;
+
+
+        @include media(tab-l) {
+            height: 4.3rem;
+            width: 4.2rem;
+        }
+    }
+}
+
+.tooltip-text {
+    font-size: var(--text-size-sm);
+    line-height: 1.4;
+    color: $grey;
+}
+
+.tooltip-title {
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: $base-color;
+}
+
+.heading-title {
+    margin-top: 0;
+    font-family: $font-alethia-next;
+    font-size: var(--title-size);
+    font-weight: 350;
+    line-height: 120%;
+}

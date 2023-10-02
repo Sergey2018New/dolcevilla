@@ -1,0 +1,518 @@
+/* ------- chaletItem -------- */
+.chalet-item {
+    &__slider-wrapper {
+        position: relative;
+        padding-top: 66.6666%;
+        overflow: hidden;
+    }
+
+    &__slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: calc($duration * 1.5) transform;
+        will-change: transform;
+        transform: translateZ(0);
+    }
+
+    &__slider-pagination {
+        align-items: flex-end;
+        padding: 0;
+
+        @include media(tab-l) {
+            display: none;
+        }
+
+        &.swiper-pagination {
+            left: 4rem;
+            bottom: 4rem;
+            top: auto;
+            width: auto;
+        }
+    }
+
+    &__slider-next,
+    &__slider-prev {
+        top: 25%;
+        margin-top: 0;
+        padding: 0 2rem;
+        width: auto;
+        height: 50%;
+        color: $white;
+        transform: none;
+        opacity: 0;
+    }
+
+    &__slider-item {
+        overflow: hidden;
+    }
+
+    &__control {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+
+        @include media(mob-m) {
+            top: 1rem;
+            right: 1rem;
+        }
+    }
+
+    &__control-button {
+        position: relative;
+        z-index: 1;
+        margin-bottom: 1rem;
+
+        @include media(mob-m) {
+            margin-bottom: 0.5rem;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        .ui-button-icon__icon {
+            @include media(mob-m) {
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+
+        &.is-active {
+            background: $accent;
+
+            svg {
+                fill: currentColor;
+            }
+
+            &:hover {
+                background: $second;
+            }
+        }
+
+        @include media(mob-m) {
+            width: 3.2rem;
+            height: 3.2rem;
+
+            svg {
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+
+    }
+
+    &__compare-button {
+
+        .ui-button-icon__icon {
+            &:last-child {
+                display: none;
+            }
+        }
+
+        &.is-active {
+            .ui-button-icon__icon {
+                &:first-child {
+                    display: none;
+                }
+
+                &:last-child {
+                    display: block;
+                }
+            }
+        }
+    }
+
+	&__image-box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            background: var(--color-second-2);
+            transition: $duration opacity;
+        }
+    }
+
+    &__link {
+        display: block;
+        text-decoration: none;
+
+        &:focus-visible {
+            outline: none;
+
+            .chalet-item {
+                &__image {
+                    transform: scale(var(--scale-image));
+                }
+
+                &__title {
+                    color: $accent;
+                }
+            }
+        }
+
+        &:hover {
+            .chalet-item {
+                &__title {
+                    color: $accent;
+                }
+            }
+        }
+
+        @include hover {
+            .chalet-item {
+                &__image {
+                    transform: translateZ(0) scale(1.1);
+                }
+            }
+        }
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+
+        gap: 2rem;
+        padding-top: 2rem;
+
+        @include media(tab-l) {
+            gap: 1rem;
+        }
+
+        @include media(mob) {
+            padding-top: 1rem;
+        }
+    }
+
+    &__row {
+        display: grid;
+        gap: 2rem;
+        grid-auto-flow: column;
+        grid-template-columns: minmax(0, 1fr) max-content max-content;
+        align-items: center;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid;
+
+        @include media(netbook) {
+            grid-template-columns: minmax(0, 1fr) max-content;
+            grid-template-rows: auto auto;
+        }
+
+        @include media(tab-l) {
+            padding-bottom: 1rem;
+            gap: 0 2rem;
+        }
+
+        @include media(mob) {
+            row-gap: 0.4rem;
+        }
+
+        + .chalet-item__location {
+            @include media(mob) {
+                margin-top: -0.5rem;
+            }
+        }
+    }
+
+    &__title {
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 1.4;
+        transition: $duration color;
+
+        @include media(netbook) {
+            grid-column: span 2;
+        }
+
+        @include media(mob) {
+            font-size: $text-size-desktop;
+        }
+    }
+
+    &__price {
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 1.4;
+        white-space: nowrap;
+
+        @include media(mob) {
+            font-size: $text-size-desktop;
+        }
+    }
+
+    &__period-box {
+        display: grid;
+        justify-content: flex-end;
+        grid-auto-flow: column;
+        align-items: center;
+        gap: 1rem;
+        width: fit-content;
+
+    }
+
+    &__period-icon {
+        width: 3.2rem;
+        height: 3.2rem;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+
+        @include media(mob) {
+            width: 2.4rem;
+            height: 2.4rem;
+        }
+
+    }
+
+    &__period-tooltip {
+        color: $grey;
+        transition: $duration color;
+
+        &[data-tooltip] {
+            &:hover {
+                color: $accent;
+            }
+        }
+    }
+
+    &__period {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1.5rem;
+        border: 1px solid $accent;
+        border-radius: calc($button-height-sm * 0.5);
+        width: fit-content;
+        height: $button-height-sm;
+
+        @include media(mob) {
+            height: auto;
+            padding: 0.2rem 1rem;
+        }
+    }
+
+    &__info {
+        margin-top: -1rem;
+        display: flex;
+        flex-wrap: wrap;
+
+        @include media(mob) {
+            margin-top: -0.5rem;
+        }
+    }
+
+    &__info-item {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 1rem 2rem 0 0;
+
+        @include media(tab-l) {
+            margin-right: 1rem;
+
+            &:first-child {
+                width: calc(100% - 1rem);
+            }
+        }
+
+        @include media(mob) {
+            margin-top: 0;
+        }
+
+        @include media(mob-m) {
+            margin-right: 0.5rem;
+
+        }
+    }
+
+    &__info-title {
+        margin-right: 1rem;
+        color: $grey;
+    }
+
+    &__location {
+        margin-top: -1rem;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__location-item {
+        margin: 1rem 1rem 0 0;
+
+        @include media(mob) {
+            margin-top: 0;
+        }
+    }
+
+    &__book-button {
+        margin-top: 2rem;
+        padding-left: 3.2rem;
+        padding-right: 3.2rem;
+
+        @include media(tab-l) {
+            height: 3rem;
+            font-size: var(--text-size-sm);
+        }
+    }
+
+    &_short {
+        .chalet-item {
+            &__control {
+                top: 1rem;
+                right: 1rem;
+            }
+
+            &__control-button {
+                width: 3.2rem;
+                height: 3.2rem;
+                margin-bottom: 0.5rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                .ui-button-icon__icon {
+                    @include media(mob) {
+                        width: 1.6rem;
+                        height: 1.6rem;
+                    }
+                }
+            }
+
+            &__content {
+                padding-top: 1rem;
+                gap: 1rem;
+            }
+
+            &__row {
+                grid-auto-flow: row;
+                grid-template-columns: minmax(0, 1fr) max-content;
+                gap: 1rem;
+                padding-bottom: 1rem;
+
+                @include media(mob) {
+                    row-gap: 0.5rem;
+                    padding-bottom: 0.5rem;
+                }
+            }
+
+            &__title {
+                grid-column: span 2;
+                line-height: $base-line-height;
+                font-size: $base-font-size;
+            }
+
+            &__price {
+                font-size: $base-font-size;
+                line-height: $base-line-height;
+            }
+
+            &__period {
+                border: none;
+                border-radius: 0;
+                padding: 0;
+                height: auto;
+                font-size: var(--text-size-sm);
+                line-height: 1.4;
+            }
+
+            &__location {
+                font-size: var(--text-size-sm);
+            }
+        }
+    }
+
+    &__services {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+        gap: 1rem;
+
+        @include media(mob) {
+            display: none;
+        }
+
+        &_compare {
+            display: grid;
+            grid-auto-flow: row;
+            justify-content: stretch;
+            gap: 0.5rem;
+
+            .chalet-item__services-item {
+                display: grid;
+                align-items: center;
+                grid-template-columns: auto minmax(0, 1fr);
+                gap: 0.5rem;
+                padding-top: 1px;
+                font-size: var(--text-size-sm);
+                font-style: normal;
+                line-height: 1.4;
+                color: $base-color;
+
+                &:nth-child(2n + 1) {
+                    background: var(--color-bg);
+                }
+            }
+
+            .chalet-item__services-icon {
+                width: 1.6rem;
+                height: 1.6rem;
+                stroke: none;
+                stroke-width: 0;
+                fill: var(--color-second-3);
+            }
+
+            .ui-icon-cross-circle {
+                fill: var(--color-error)
+            }
+        }
+    }
+
+    &__services-item {
+        position: relative;
+        transition: $duration color;
+        color: $grey;
+
+        transform: translateZ(0);
+
+        &[data-tooltip] {
+            &:hover {
+                color: $accent;
+            }
+        }
+    }
+
+    &__services-icon {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.5;
+
+        + .chalet-item__services-name {
+            position: relative;
+            top: 1px;
+        }
+    }
+}

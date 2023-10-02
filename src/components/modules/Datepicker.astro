@@ -1,0 +1,53 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import Button from '@components/modules/Button.astro';
+
+interface Props {
+    inputClass?: string;
+    isDropdown?: boolean;
+    name?: string;
+    value?: string;
+    ariaLabel?: string;
+    readonly?: boolean;
+    isInputFilter?: boolean;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    inputClass,
+    isDropdown,
+    readonly,
+    name,
+    value,
+    isInputFilter,
+    ariaLabel,
+    class: className,
+    ...rest
+} = Astro.props;
+
+const datepickerClass = 'ui-datepicker';
+
+const getInput = () => {
+    return `<input type="text" ${ariaLabel ? `aria-label="${ariaLabel}"` : ''} class="ui-input ${datepickerClass}__input ${inputClass ? inputClass : ''}" data-datepicker-input ${readonly ? 'readonly' : ''} />`
+}
+
+const getInputSelected = () => {
+    return `<input type="text" class="ui-input ${datepickerClass}__input ${datepickerClass}__input_visible ${inputClass ? inputClass : ''} ${isInputFilter ? 'js-filters-input' : ''}" value="${value}" name="${name}" data-datepicker-input-selected tabindex="-1" readonly="readonly" />`
+}
+
+---
+
+<div
+    class:list={
+        [
+            datepickerClass,
+            className
+        ]
+    }
+   data-datepicker
+    {...rest}
+>
+    <Fragment set:html={getInput()}></Fragment>
+    <Fragment set:html={getInputSelected()}></Fragment>
+</div>

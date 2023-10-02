@@ -1,0 +1,14 @@
+---
+import TabsInfo from '@components/blocks/TabsInfo.astro';
+---
+
+<section class="section ski-regions">
+	<div class="container">
+        <h2 class="ski-regions__title section-title">Лыжные регионы Инсбрука</h2>
+        <TabsInfo class="ski-regions__tabs-info"></TabsInfo>
+	</div>
+    <picture class="ski-regions__image-box">
+        <source srcset="img/ski-region-mobile.jpg" media="(max-width: 767px)" />
+        <img class="ski-regions__image" width="1440" height="440" src="img/ski-region.jpg" alt="" />
+    </picture>
+</section>

@@ -1,0 +1,56 @@
+---
+interface Props {
+	type?: 'full' | 'short';
+    title?: string;
+    list?: boolean;
+    date?: string;
+    category?: string;
+    image?: string;
+    image2x?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+	type,
+	title,
+	list,
+	date,
+	category,
+	image,
+	image2x,
+	class: className,
+	...rest
+} = Astro.props;
+
+const listResorts = ['Андерматт', 'Вейзонна', 'Вербье', 'Гриндельвальд', 'Виллар-сюр-Оллон', 'Гштаад', 'Давос', 'Клостерс', 'Кран-Монтана', 'Ла Тцума', 'Ла Тцума', 'Саас-Фе', 'Санкт-Мориц', 'Церматт'];
+
+---
+
+<div
+	class:list={[
+		'resort-item',
+		className
+	]}
+	{...rest}
+>
+	<div class="resort-item__inner">
+		<a href="" class="resort-item__link" aria-label={title}>
+			<div class="resort-item__image-box">
+				<img class="resort-item__image lazy" data-src={image} data-srcset={image2x} width="660" height="660" alt="" />
+			</div>
+		</a>
+
+		<div class="resort-item__content">
+			<div class="resort-item__title" set:html={title}></div>
+			{ list ?
+				<ul class="resort-item__list">
+					{listResorts.map((item) => (
+						<li><a href="" class="resort-item__list-link" set:html={item}></a></li>
+					))}
+				</ul>
+				: ''
+			}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,89 @@
+---
+import Layout from '@layouts/layout.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import SidebarMenu from '@components/blocks/SidebarMenu.astro';
+import ArticleItem from '@components/blocks/ArticleItem.astro';
+
+const items = [
+	{
+		type: 'full',
+		image: "img/latest-articles/1.jpg",
+		image2x: "img/latest-articles/1@2x.jpg",
+		title: "ТОП-6 летних шале с&nbsp;открытыми бассейнами",
+		text: "С&nbsp;увеличением числа людей, переведенных на&nbsp;удаленную работу из-за COVID-19, мы&nbsp;решили составить список наших лучших шале с&nbsp;кабинетами с&nbsp;захватывающими видами на&nbsp;горы. Попробуйте скрыться в&nbsp;Альпах от&nbsp;повседневной суеты и&nbsp;насладиться балансом работы и&nbsp;личной жизни в&nbsp;одном из&nbsp;этих роскошных шале класса люкс.",
+		date: "23&nbsp;декабря 2022",
+		category: "Путешествия"
+	},
+	{
+		type: '',
+		image: "img/latest-articles/2.jpg",
+		image2x: "img/latest-articles/2@2x.jpg",
+		title: "Как добраться до&nbsp;Санкт-Морица",
+        text: "Text",
+		date: "26&nbsp;января 2023",
+		category: "Путеводители"
+	},
+	{
+		type: '',
+		image: "img/latest-articles/3.jpg",
+		image2x: "img/latest-articles/3@2x.jpg",
+		title: "Гид по&nbsp;катанию в&nbsp;Порт дю&nbsp;Солей",
+        text: "Text",
+		date: "18&nbsp;мая 2021",
+		category: "Лето"
+	},
+	{
+		type: '',
+		image: "img/latest-articles/4.jpg",
+		image2x: "img/latest-articles/4@2x.jpg",
+		title: "6&nbsp;главных причин поехать кататься на&nbsp;лыжах в&nbsp;Швейцарию",
+        text: "Text",
+		date: "26 января 2023",
+		category: "Путеводители"
+	},
+	{
+		type: '',
+		image: "img/latest-articles/5.jpg",
+		image2x: "img/latest-articles/5@2x.jpg",
+		title: "Полезные советы по&nbsp;бронированию горнолыжного отдыха зимой 2021/2022",
+        text: "Text",
+		date: "12 января 2023",
+		category: "Советы"
+	},
+	{
+		type: '',
+		image: "img/latest-articles/6.jpg",
+		image2x: "img/latest-articles/6@2x.jpg",
+		title: "6&nbsp;роскошных альпийских шале с&nbsp;кабинетами",
+        text: "Text",
+		date: "01 января 2023",
+		category: "Как добраться"
+	},
+]
+---
+
+<Layout title="Журнал">
+    <Breadcrumbs title="Журнал"></Breadcrumbs>
+    <div class="p-articles">
+        <div class="container">
+            <div class="p-articles__row">
+                <aside class="p-articles__sidebar">
+                    <SidebarMenu list={
+                        ['Советы', 'Путеводители по&nbsp;курортам', 'Шале', 'Опыт', 'Лето', 'Новости']
+                    }></SidebarMenu>
+                </aside>
+                <div class="p-articles__content">
+                    <div class="p-articles__items">
+                        {items.map((item) => (
+                           <ArticleItem class="p-articles__item" title={item.title} text={item.text} image={item.image} image2x={item.image2x} date={item.date} category={item.category}></ArticleItem>
+                        ))}
+                    </div>
+                    <div class="p-articles__more">
+                        <ButtonMore direction="down">Показать еще</ButtonMore>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

@@ -1,0 +1,96 @@
+---
+interface Props {
+    title?: string;
+    getThere?: boolean;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    title,
+    getThere,
+    services = [],
+    parameters = [],
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<div
+    class:list={[
+        'info-block',
+        className,
+    ]}
+    {...rest}
+>
+    <h3 class="info-block__title" set:html={title}></h3>
+    <div class="info-block__content">
+        {
+            services.length ?
+            <div class="info-block__services">
+                {services.map((servicesList) => (
+                    <div class="info-block__services-column">
+                        <ul class="info-block__services-list">
+                            {servicesList.map((item) => (
+                                <li set:html={item}></li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+            : ''
+        }
+        {
+            getThere ?
+            <div class="info-block__get-there">
+                <div class="info-block__get-there-row">
+                    <div class="info-block__get-there-column">
+                        <div class="info-block__get-there-title">Ближайший ж/д вокзал</div>
+                    </div>
+                    <div class="info-block__get-there-column">
+                        <div class="info-block__parameters">
+                            <div class="info-block__parameters-item">
+                                <div class="info-block__parameters-name">Мутье</div>
+                                <div class="info-block__parameters-value">37 км</div>
+                            </div>
+                            <div class="info-block__parameters-item">
+                                <div class="info-block__parameters-name">Еще один вокзал</div>
+                                <div class="info-block__parameters-value">129 км</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="info-block__get-there-row">
+                    <div class="info-block__get-there-column">
+                        <div class="info-block__get-there-title">Ближайший аэропорт</div>
+                    </div>
+                    <div class="info-block__get-there-column">
+                        <div class="info-block__parameters">
+                            <div class="info-block__parameters-item">
+                                <div class="info-block__parameters-name">Шамбери (CMF)</div>
+                                <div class="info-block__parameters-value">112 км</div>
+                            </div>
+                            <div class="info-block__parameters-item">
+                                <div class="info-block__parameters-name">Еще один аэропорт (CMF)</div>
+                                <div class="info-block__parameters-value">248 км</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            : ''
+        }
+        {
+            parameters.length ?
+            <div class="info-block__parameters">
+                {parameters.map((item) => (
+                    <div class="info-block__parameters-item">
+                        <div class="info-block__parameters-name" set:html={item.name}></div>
+                        <div class="info-block__parameters-value" set:html={item.value}></div>
+                    </div>
+                ))}
+            </div>
+            : ''
+        }
+    </div>
+</div>

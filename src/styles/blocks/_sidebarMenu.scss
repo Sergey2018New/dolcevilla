@@ -1,0 +1,115 @@
+/* ------- sidebar menu -------- */
+.sidebar-menu {
+    position: relative;
+
+    &__button {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        min-height: 2.7rem;
+        text-align: left;
+        font-size: var(--text-size-desktop);
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 1rem;
+            right: 0;
+            width: 1.1rem;
+            height: 0.7rem;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' viewBox='0 0 11 7' fill='none'%3E%3Cpath d='M1 1.25L5.5 5.75L10 1.25' stroke='%231A1A1A'/%3E%3C/svg%3E");
+            mask-repeat: no-repeat;
+            mask-size: 100%;
+            background-color: $base-color;
+            transition: $duration transform;
+        }
+
+        @include media-min(tab) {
+            display: none;
+        }
+    }
+
+    &__list {
+        display: grid;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        @include media(tab) {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            gap: 0;
+            margin-top: 1rem;
+            padding: 0.75rem 0;
+            opacity: 0;
+            visibility: hidden;
+            background: var(--color-bg);
+            transition: $duration opacity, $duration visibility;
+        }
+    }
+
+    &__link {
+        position: relative;
+        display: block;
+        padding-right: 1.3rem;
+        font-size: var(--text-size-desktop);
+        text-decoration: none;
+        color: $grey;
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 0.6rem;
+            height: 1.1rem;
+            margin-top: -0.55rem;
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='11' viewBox='0 0 6 11' fill='none'%3E%3Cpath d='M0.5 10.0674L5 5.56738L0.5 1.06738' stroke='%231A1A1A'/%3E%3C/svg%3E");
+            mask-repeat: no-repeat;
+            mask-size: 100%;
+            background-color: $base-color;
+            opacity: 0;
+            transition: $duration opacity;
+
+            @include media(tab) {
+                display: none;
+            }
+        }
+
+        &:hover {
+            color: $base-color;
+        }
+
+        @include media(tab) {
+            padding: 0.5rem 1rem;
+        }
+
+        &.is-active {
+            color: $base-color;
+
+            &::after {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.is-active {
+        .sidebar-menu {
+            &__button {
+                &::after {
+                    transform: rotate(180deg);
+                }
+            }
+
+            &__list {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+        }
+    }
+}

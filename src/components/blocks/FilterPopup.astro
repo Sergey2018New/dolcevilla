@@ -1,0 +1,103 @@
+---
+import Icon from '@components/modules/Icon.astro';
+
+interface Props {
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+	class: className,
+	...rest
+} = Astro.props;
+
+const resortsItems = [
+	'Андерматт',
+	'Вейзонна',
+	'Вербье',
+	'Гриндельвальд',
+	'Виллар-сюр-Оллон',
+	'Гштаад',
+	'Давос',
+	'Клостерс',
+	'Кран-Монтана',
+	'Ла Тцума',
+	'Ненда',
+	'Санкт-Мориц',
+	'Церматт',
+	'Flims Laax Falera',
+]
+---
+<div
+	class:list={[
+		'filter-popup js-filter-popup',
+		className
+	]}
+	data-filter-input=""
+	{...rest}
+>
+	<div class="filter-popup__header">
+		<button class="filter-popup__control filter-popup__control_clear js-filter-popup-clear" type="button">
+			<span>Очистить поле</span>
+			<svg class="filter-popup__control-icon" width="16" height="17" viewBox="0 0 16 17" xmlns="http://www.w3.org/2000/svg">
+				<path d="M16 1.178L15.322 0.5L8 7.82296L0.677999 0.5L0 1.178L7.32296 8.5L0 15.822L0.677999 16.5L8 9.17704L15.322 16.5L16 15.822L8.67704 8.5L16 1.178Z"/>
+			</svg>
+		</button>
+		<button class="filter-popup__control filter-popup__control_close js-filter-popup-close" type="button">Закрыть окно</button>
+	</div>
+	<div class="filter-popup__content">
+		<ul class="filter-popup__menu js-filter-popup-menu">
+			<li class="filter-popup__menu-item js-filter-popup-item is-active">
+				<a href="" class="filter-popup__menu-link js-filter-popup-link">
+					<span>Швейцария</span>
+					<Icon class="filter-popup__menu-arrow" name="arrow"></Icon>
+				</a>
+				<ul class="filter-popup__submenu js-filter-popup-submenu">
+					{resortsItems.map((item, index) => (
+						<li><a href="" tabindex="-1" set:html={item}></a></li>
+					))}
+				</ul>
+			</li>
+			<li class="filter-popup__menu-item js-filter-popup-item">
+				<a href="" class="filter-popup__menu-link js-filter-popup-link">
+					<span>Франция</span>
+					<Icon class="filter-popup__menu-arrow" name="arrow"></Icon>
+				</a>
+				<ul class="filter-popup__submenu js-filter-popup-submenu">
+					{resortsItems.map((item, index) => (
+						index < 8 ? <li><a href="" tabindex="-1" set:html={item}></a></li> : ''
+					))}
+				</ul>
+			</li>
+			<li class="filter-popup__menu-item js-filter-popup-item">
+				<a href="" class="filter-popup__menu-link js-filter-popup-link">
+					<span>Австрия</span>
+					<Icon class="filter-popup__menu-arrow" name="arrow"></Icon>
+				</a>
+				<ul class="filter-popup__submenu js-filter-popup-submenu">
+					{resortsItems.map((item, index) => (
+						index < 6 ? <li><a href="" tabindex="-1" set:html={item}></a></li> : ''
+					))}
+				</ul>
+			</li>
+			<li class="filter-popup__menu-item js-filter-popup-item">
+				<a href="" class="filter-popup__menu-link js-filter-popup-link">
+					<span>Италия</span>
+					<Icon class="filter-popup__menu-arrow" name="arrow"></Icon>
+				</a>
+				<ul class="filter-popup__submenu js-filter-popup-submenu">
+					{resortsItems.map((item, index) => (
+						index < 10 ? <li><a href="" tabindex="-1" set:html={item}></a></li> : ''
+					))}
+				</ul>
+			</li>
+		</ul>
+		<div class="filter-popup__result">
+			<ul class="filter-popup__result-list">
+				{resortsItems.map((item, index) => (
+					<li><a href="" set:html={item}></a></li>
+				))}
+			</ul>
+		</div>
+	</div>
+</div>

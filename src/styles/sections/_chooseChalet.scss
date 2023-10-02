@@ -1,0 +1,186 @@
+/* ------- chooseChalet -------- */
+.choose-chalet {
+    &__content {
+        position: relative;
+    }
+
+    &__heading {
+        display: grid;
+        margin-bottom: 4rem;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: flex-start;
+        gap: 3rem 4rem;
+
+        @include media(mob) {
+            grid-template-columns: auto;
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__title {
+        margin-bottom: 0;
+    }
+
+    &__switch-block {
+        margin-top: 0.5rem;
+        width: fit-content;
+
+        @include media(mob) {
+            margin-top: 0;
+        }
+
+        .ui-switch-block__button {
+            &:not(.is-active) {
+                color: $accent;
+            }
+        }
+    }
+
+    &__filters {
+        margin-bottom: 4rem;
+
+        .filters__item-popup {
+            max-width: 100%;
+        }
+
+        @include media(mob) {
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__sorting {
+        margin-bottom: 3rem;
+
+        .tags__button-clear {
+            @include media(mob) {
+                display: none;
+            }
+        }
+    }
+
+    &__items {
+        display: grid;
+        gap: calc($space-default * 2) $space-default;
+        min-height: 60rem;
+
+        @include grid-columns(4);
+
+        @include media(tab-l) {
+            @include grid-columns(2);
+        }
+
+        @include media(mob-m) {
+            @include grid-columns(1);
+        }
+    }
+
+    &__item {
+        grid-column: span 2;
+
+        .chalet-item__control {
+            @include media-min(tab-l) {
+                top: 4rem;
+                right: 4rem;
+            }
+        }
+
+        @include media(tab-l) {
+            grid-column: auto;
+        }
+
+        &:nth-last-child(1),
+        &:nth-last-child(2) {
+            grid-column: auto;
+
+            .chalet-item__row {
+                grid-template-columns: minmax(0, 1fr) max-content;
+                grid-template-rows: auto auto;
+            }
+
+            .chalet-item__title {
+                grid-column: span 2;
+            }
+
+            .chalet-item__control {
+                top: 2rem;
+                right: 2rem;
+            }
+
+            .chalet-item__info-item {
+                @include media-min(tab-l) {
+                    margin-right: 1rem;
+
+                    &:first-child {
+                        width: calc(100% - 1rem);
+                    }
+                }
+            }
+
+            .chalet-item__slider-pagination,
+            .chalet-item__slider-next, .chalet-item__slider-prev {
+                display: none;
+            }
+        }
+
+        &:nth-last-child(3) {
+            @include media-min(tab-l) {
+                order: 1;
+            }
+
+            @include media(tab-l) {
+                grid-column: span 2;
+            }
+
+            @include media(mob-m) {
+                grid-column: auto;
+            }
+
+            .chalet-item__row {
+                @include media-between(mob-m, tab-l) {
+                    grid-template-columns: minmax(0, 1fr) max-content max-content;
+                    grid-template-rows: auto;
+                }
+            }
+
+            .chalet-item__title {
+                @include media-between(mob-m, tab-l) {
+                    grid-column: auto;
+                }
+            }
+
+            .chalet-item__info-item {
+                @include media-between(mob-m, tab-l) {
+                    &:first-child {
+                        width: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    &__more {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        display: grid;
+        gap: calc($space-default * 2) $space-default;
+        pointer-events: none;
+
+        @include grid-columns(4);
+
+        @include media(tab-l) {
+            position: relative;
+            margin-top: 4rem;
+            @include grid-columns(2);
+        }
+
+        @include media(mob) {
+            margin-top: 3rem;
+        }
+    }
+
+    &__more-button {
+        pointer-events: auto;
+    }
+}

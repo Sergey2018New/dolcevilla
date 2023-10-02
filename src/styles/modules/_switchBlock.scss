@@ -1,0 +1,167 @@
+/* ------- UI - Switch Block ------- */
+.ui-switch-block {
+	position: relative;
+	padding: 0.5rem;
+	border: 1px solid $accent;
+	border-radius: 3rem;
+
+	&__button {
+		display: grid;
+		grid-auto-flow: column;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0 1.5rem;
+		border-radius: calc($button-height-sm * 0.5);
+		height: $button-height-sm;
+		font-size: $text-size-desktop;
+		color: $base-color;
+		transition: $duration color, $duration background;
+        white-space: nowrap;
+		user-select: none;
+        cursor: pointer;
+
+		&.is-active {
+            padding-left: 1.5rem;
+			color: $white;
+		}
+	}
+
+    &__text {
+        position: relative;
+    }
+
+    &__icon {
+        position: relative;
+        margin-left: -0.5rem;
+    }
+
+	&__inner {
+		position: relative;
+	}
+
+	&__background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		border-radius: calc($button-height-sm * 0.5);
+		height: $button-height-sm;
+		background: $accent;
+		transition: $duration width, $duration transform;
+		will-change: width, transform;
+        pointer-events: none;
+	}
+
+	&__menu {
+		display: flex;
+	}
+
+	&__label {
+
+		display: flex;
+		font-weight: inherit;
+		cursor: pointer;
+	}
+
+	&__checkbox {
+		position: absolute;
+		margin: 0;
+		width: 0;
+		height: 0;
+		opacity: 0;
+
+		&:focus-visible {
+			~ .ui-switch-block__checkbox-focused {
+				outline: 0.2rem solid $accent;
+				outline-offset: 0.3rem;
+			}
+		}
+
+	}
+
+	&__checkbox-focused {
+		position: absolute;
+		top: -0.5rem;
+		bottom: -0.5rem;
+		left: -0.5rem;
+		right: -0.5rem;
+		border-radius: 10rem;
+	}
+
+    &__radio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0;
+        cursor: pointer;
+        pointer-events: none;
+
+		&:focus-visible {
+			~ .ui-switch-block__radio-focused {
+				outline: 0.2rem solid $accent;
+				outline-offset: 0.3rem;
+			}
+		}
+
+	}
+
+	&__radio-focused {
+		position: absolute;
+		top: -0.5rem;
+		bottom: -0.5rem;
+		left: -0.5rem;
+		right: -0.5rem;
+		border-radius: 10rem;
+        pointer-events: none;
+	}
+
+    &__fieldset {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+	&_short {
+		.ui-switch-block {
+			&__text {
+				width: 0;
+				overflow: hidden;
+				opacity: 0;
+				transition: $duration opacity;
+			}
+
+			&__button {
+				width: 4.4rem;
+
+				&.is-active {
+					width: auto;
+
+					.ui-switch-block__text {
+						width: auto;
+						overflow: visible;
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+
+    &_toggle {
+        .ui-switch-block__radio {
+            z-index: 1;
+            pointer-events: auto;
+        }
+
+        .ui-switch-block__button {
+            &.is-active {
+                .ui-switch-block__radio {
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+}

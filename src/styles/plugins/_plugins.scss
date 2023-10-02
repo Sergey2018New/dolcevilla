@@ -1,0 +1,12 @@
+/* ------- Plugin styles ------- */
+
+/* Lozad */
+.lazy {
+	opacity: 0;
+	transition: $duration-lazy opacity;
+
+	&[data-loaded="true"],
+	&.loaded{
+		opacity: 1;
+	}
+}

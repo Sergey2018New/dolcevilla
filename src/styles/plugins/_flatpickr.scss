@@ -1,0 +1,305 @@
+/* ------- flatpickr datepicker ------- */
+@import 'flatpickr/dist/flatpickr.min.css';
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.flatpickr-wrapper {
+    display: block;
+}
+
+.flatpickr-calendar {
+    width: 42rem;
+    max-width: calc(100vw - $gutters * 2);
+    padding: 2rem;
+    font-size: $text-size-desktop;
+    line-height: $base-line-height;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 0.4rem 3rem 0 rgba(var(--color-base-rgb), 0.07);
+    background: $white;
+
+    @include media(mob-m) {
+        width: 100vw;
+        max-width: calc(100vw - $gutters * 2 - 3rem);
+    }
+
+    &::before,
+    &::after {
+        display: none;
+    }
+
+    &.animate.open {
+        animation-name: fadeIn;
+    }
+}
+
+.flatpickr-months {
+    position: relative;
+    margin-bottom: 2rem;
+
+    span.cur-month {
+        margin-left: 0;
+        line-height: 1.4;
+        font-weight: 400;
+        font-family: $font-alethia-pro;
+
+        &:hover {
+            background: none;
+        }
+    }
+
+    .flatpickr-month {
+       .numInputWrapper {
+            display: none;
+       }
+    }
+
+    .flatpickr-current-month {
+        position: static;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1.4;
+        font-family: $font-alethia-pro;
+    }
+
+    .flatpickr-prev-month,
+    .flatpickr-next-month {
+        position: relative;
+        width: 4.8rem;
+        height: 3.4rem;
+        padding: 0;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: var(--arrow-width);
+            height: var(--arrow-height);
+            mask-image: url("data:image/svg+xml,%3Csvg width='48' height='20' viewBox='0 0 48 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg clip-path='url(%23clip0_292_41423)'%3E%3Cpath d='M48 10.6667H0.391335V9.33335H48V10.6667ZM0.391335 10C0.391335 9.33335 0.391601 9.33335 0.391335 9.33335C0.390935 9.33335 0.391201 9.33335 0.391335 9.33335C0.392268 9.33335 0.393735 9.33335 0.396935 9.33322C0.403468 9.33322 0.414404 9.33295 0.429604 9.33255C0.460137 9.33175 0.507868 9.33015 0.571068 9.32669C0.697468 9.31989 0.885604 9.30589 1.1224 9.27735C1.59667 9.22029 2.2616 9.10575 3.01414 8.87629C4.52267 8.41655 6.34987 7.50682 7.7256 5.70748L8.7848 6.51748C7.188 8.60562 5.0832 9.63962 3.40294 10.1518C2.56107 10.4083 1.81734 10.5367 1.2816 10.6011C1.01334 10.6334 0.796138 10.6498 0.643471 10.658C0.567204 10.6623 0.506805 10.6644 0.464272 10.6655C0.442939 10.666 0.426134 10.6663 0.413867 10.6666C0.407734 10.6666 0.402804 10.6666 0.399071 10.6667C0.397204 10.6667 0.395603 10.6667 0.39427 10.6667C0.393603 10.6667 0.391868 10.6667 0.391335 10.6667C0.391468 10.6667 0.391068 10.6667 0.391335 10.6667C0.391068 10.6667 0.391335 10.6667 0.391335 10ZM7.7256 5.70748C8.4924 4.70482 8.9432 3.40571 9.19987 2.31862C9.32667 1.78155 9.4028 1.31043 9.4472 0.974859C9.46934 0.807339 9.48334 0.674338 9.49187 0.584645C9.49614 0.539818 9.49894 0.505872 9.50067 0.483912C9.50147 0.472938 9.502 0.464952 9.5024 0.460112C9.50254 0.457698 9.50267 0.456059 9.5028 0.455232C9.5028 0.455245 9.5028 0.454819 9.5028 0.455232C9.5028 0.455352 9.5028 0.455165 10.1681 0.497165C10.8335 0.539178 10.8335 0.539339 10.8335 0.539512C10.8335 0.539365 10.8335 0.539592 10.8335 0.539512C10.8335 0.539819 10.8333 0.540578 10.8333 0.540992C10.8332 0.541805 10.8332 0.542819 10.8331 0.544045C10.8329 0.546499 10.8327 0.549765 10.8324 0.553832C10.8319 0.561979 10.8311 0.573325 10.8299 0.587739C10.8276 0.616579 10.8243 0.657725 10.8193 0.710045C10.8093 0.814632 10.7935 0.964139 10.7689 1.14951C10.7201 1.51973 10.6365 2.03593 10.4975 2.62501C10.2224 3.79023 9.71667 5.29882 8.7848 6.51748L7.7256 5.70748ZM0.391335 10C0.391335 9.33335 0.391601 9.33335 0.391335 9.33335C0.390935 9.33335 0.391201 9.33335 0.391335 9.33335C0.391868 9.33335 0.393603 9.33335 0.39427 9.33335C0.395603 9.33335 0.397204 9.33335 0.399071 9.33335C0.402804 9.33335 0.407734 9.33349 0.413867 9.33349C0.426134 9.33362 0.442939 9.33389 0.464272 9.33455C0.506805 9.33562 0.567204 9.33775 0.643471 9.34189C0.796138 9.35015 1.01334 9.36655 1.2816 9.39882C1.81734 9.46322 2.56107 9.59162 3.40294 9.84829C5.0832 10.3604 7.188 11.3943 8.7848 13.4826L7.7256 14.2924C6.34987 12.4932 4.52267 11.5834 3.01414 11.1236C2.2616 10.8943 1.59667 10.7796 1.1224 10.7227C0.885604 10.6942 0.697468 10.6802 0.571068 10.6732C0.507868 10.6699 0.460137 10.6682 0.429604 10.6674C0.414404 10.667 0.403468 10.6668 0.396935 10.6667C0.393735 10.6667 0.392268 10.6667 0.391335 10.6667C0.391468 10.6667 0.391068 10.6667 0.391335 10.6667C0.391068 10.6667 0.391335 10.6667 0.391335 10ZM8.7848 13.4826C9.71667 14.7012 10.2224 16.2098 10.4975 17.375C10.6365 17.964 10.7201 18.4803 10.7689 18.8504C10.7935 19.0359 10.8093 19.1854 10.8193 19.2899C10.8243 19.3423 10.8276 19.3834 10.8299 19.4123C10.8311 19.4267 10.8319 19.438 10.8324 19.4462C10.8327 19.4503 10.8329 19.4535 10.8331 19.4559C10.8332 19.4572 10.8332 19.4582 10.8333 19.459C10.8333 19.4587 10.8333 19.4594 10.8333 19.459C10.8333 19.4591 10.8335 19.4604 10.8335 19.4604C10.8335 19.4607 10.8335 19.4608 10.1681 19.5028C9.5028 19.5448 9.5028 19.545 9.5028 19.5451C9.50267 19.5442 9.50254 19.5423 9.5024 19.5399C9.502 19.5351 9.50147 19.5271 9.50067 19.516C9.49894 19.4942 9.49614 19.4602 9.49187 19.4154C9.48334 19.3256 9.46934 19.1927 9.4472 19.0251C9.4028 18.6896 9.32667 18.2184 9.19987 17.6814C8.9432 16.5943 8.4924 15.2952 7.7256 14.2924L8.7848 13.4826Z' fill='%231A1A1A'/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id='clip0_292_41423'%3E%3Crect width='48' height='20' transform='matrix(-1 0 0 1 48 0)'/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E%0A");
+            mask-repeat: no-repeat;
+            mask-size: 100%;
+            background-color: $base-color;
+            transition: $duration background-color;
+            transform: translate(-50%, -50%);
+        }
+
+        svg {
+            display: none;
+        }
+
+        &:hover {
+            &::before {
+                background-color: $accent;
+            }
+        }
+
+        &.flatpickr-disabled {
+            display: block;
+            pointer-events: none;
+
+            &::before {
+                background-color: $grey;
+            }
+        }
+    }
+
+    .flatpickr-next-month  {
+        &::before {
+            transform: translate(-50%, -50%) rotate(180deg);
+        }
+    }
+
+    .flatpickr-current-year {
+        margin-left: 0.5rem;
+    }
+}
+
+.flatpickr-current-month {
+    padding-top: 0;
+    font-size: var(--text-size-md);
+
+    @include media(tab-l) {
+        font-size: 2rem;
+    }
+}
+
+.flatpickr-rContainer {
+    width: 100%;
+}
+
+.flatpickr-innerContainer {
+    overflow: visible;
+}
+
+.flatpickr-days {
+    width: 100%;
+    overflow: visible;
+}
+
+.dayContainer {
+    display: grid;
+    gap: 1rem 0;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+
+    @include grid-columns(7);
+
+    @include media(mob-m) {
+        row-gap: 0.3rem;
+    }
+}
+
+.flatpickr-weekdays {
+    margin-bottom: 1rem;
+    padding-top: 1px;
+}
+
+span.flatpickr-weekday {
+    font-weight: 400;
+    font-size: 100%;
+    text-transform: lowercase;
+    user-select: none;
+}
+
+.flatpickr-day {
+    border: none;
+    width: auto;
+    height: 3.7rem;
+    max-width: none;
+    font-size: $text-size-desktop;
+    line-height: 3.6rem;
+    color: $grey;
+    user-select: none;
+
+    @include media(mob-m) {
+        font-size: 1.6rem;
+    }
+
+    &:focus-visible {
+        z-index: 1;
+        outline: 1px solid $second !important;
+
+        &::before {
+            opacity: 0;
+        }
+    }
+
+
+    &.today {
+        &:hover,
+        &:focus {
+            color: $base-color;
+            background: var(--color-bg);
+        }
+    }
+
+    &.inRange {
+        box-shadow: none;
+    }
+
+    &.selected.startRange,
+    &.startRange.startRange,
+    &.endRange.startRange {
+        border-radius: 2rem;
+    }
+
+    &.selected.endRange,
+    &.startRange.endRange,
+    &.endRange.endRange {
+        border-radius: 2rem;
+    }
+
+    &.startRange {
+        &:not(:nth-child(7n + 7)) {
+            + .inRange {
+                &::before {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: -50%;
+                    width: 50%;
+                    height: 100%;
+                    background: var(--color-bg);
+                }
+            }
+        }
+    }
+
+    &.inRange {
+        + .endRange {
+            &::before {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                width: 50%;
+                height: 100%;
+                background: var(--color-bg);
+            }
+        }
+
+        &:nth-child(7n + 7) {
+            + .endRange {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover, .flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay, .flatpickr-day.notAllowed, .flatpickr-day.notAllowed.prevMonthDay, .flatpickr-day.notAllowed.nextMonthDay {
+    color: $grey;
+}
+
+.flatpickr-day.inRange, .flatpickr-day.prevMonthDay.inRange, .flatpickr-day.nextMonthDay.inRange, .flatpickr-day.today.inRange, .flatpickr-day.prevMonthDay.today.inRange, .flatpickr-day.nextMonthDay.today.inRange, .flatpickr-day:hover, .flatpickr-day.prevMonthDay:hover, .flatpickr-day.nextMonthDay:hover, .flatpickr-day:focus, .flatpickr-day.prevMonthDay:focus, .flatpickr-day.nextMonthDay:focus {
+    color: $second;
+    background: var(--color-bg);
+}
+
+.flatpickr-day.selected, .flatpickr-day.startRange, .flatpickr-day.endRange, .flatpickr-day.selected.inRange, .flatpickr-day.startRange.inRange, .flatpickr-day.endRange.inRange, .flatpickr-day.selected:focus, .flatpickr-day.startRange:focus, .flatpickr-day.endRange:focus, .flatpickr-day.selected:hover, .flatpickr-day.startRange:hover, .flatpickr-day.endRange:hover, .flatpickr-day.selected.prevMonthDay, .flatpickr-day.startRange.prevMonthDay, .flatpickr-day.endRange.prevMonthDay, .flatpickr-day.selected.nextMonthDay, .flatpickr-day.startRange.nextMonthDay, .flatpickr-day.endRange.nextMonthDay {
+    color: $white;
+    background: $second;
+
+    &:focus-visible {
+        outline: none;
+    }
+}
+
+
+.flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n+1)), .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n+1)), .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n+1)) {
+    border-radius: 2rem;
+    box-shadow: none;
+}
+
+.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover {
+    background: transparent;
+    opacity: 0.2;
+}
+
+.flatpickr-footer {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+}
+
+.flatpickr-button {
+    margin-top: 1rem;
+    margin-right: 1rem;
+}
+
+
+.rangeMode {
+    .flatpickr-day {
+        margin-top: 0;
+    }
+}

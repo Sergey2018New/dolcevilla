@@ -1,0 +1,97 @@
+/* ------- chaletLocations -------- */
+.chalet-locations {
+    padding-bottom: 0;
+
+    &__heading {
+        display: grid;
+        gap: $space-default;
+        margin-bottom: 4rem;
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__title {
+        margin-bottom: 0;
+
+        @include media(tab-l) {
+            max-width: 50rem;
+        }
+    }
+
+    &__map {
+        position: relative;
+        width: 100%;
+        height: 55rem;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(180deg, var(--color-bg) 1.86%, rgba($white, 0) 100%);
+            pointer-events: none;
+            display: none;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    }
+
+    &__map-container {
+        width: 400px;
+        height: 400px;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &__tags {
+        margin-bottom: -1rem;
+
+        @include media(mob) {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__info-block {
+        margin-top: $space-default;
+
+        @include media-min(tab-l) {
+            .info-block__get-there-row {
+                grid-template-columns: minmax(0, 32.2fr) minmax(0, 67.8fr);
+            }
+        }
+    }
+
+    &_chalet {
+        .chalet-locations__heading {
+            @include media(tab-l) {
+                margin-bottom: 2rem;
+            }
+        }
+    }
+
+    + .section {
+        padding-top: $section-space;
+    }
+
+    + .elite-chalets {
+        padding-top: $section-space-sm;
+    }
+
+    + .feedback {
+        @include media(mob) {
+            padding-top: 4rem;
+        }
+    }
+}

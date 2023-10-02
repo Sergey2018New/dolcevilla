@@ -1,0 +1,79 @@
+---
+import Layout from '@layouts/layout.astro';
+import Icon from '@components/modules/Icon.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import Input from '@components/modules/Input.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+
+const results = [
+    {
+        title: "Высота <span>Альп</span>",
+		breadcrumbs: 'article',
+		text: "Откройте для себя некоторые из&nbsp;самых крутых развлечений, которые могут предложить Альпы, от&nbsp;волнующего катания на&nbsp;льду до&nbsp;величественных вертолетных туров по&nbsp;всемирно известному Маттерхорну. Эти мероприятия наверняка заставят ваше сердце биться быстрее.",
+    },
+    {
+        title: "<span>Альп</span>ийские просторы",
+		breadcrumbs: 'catalog',
+		text: "Инсбрук&nbsp;&mdash; столица Тироля, которая объединяет 9&nbsp;разнообразных лыжных областей катания. В&nbsp;Инсбруке возможен любой вид зимнего спорта! Зоны катания расположены на&nbsp;расстоянии от&nbsp;нескольких минут до&nbsp;часа езды от&nbsp;центра города...",
+    },
+    {
+        title: "Высота <span>Альп</span>",
+		breadcrumbs: 'article',
+		text: "Откройте для себя некоторые из&nbsp;самых крутых развлечений, которые могут предложить Альпы, от&nbsp;волнующего катания на&nbsp;льду до&nbsp;величественных вертолетных туров по&nbsp;всемирно известному Маттерхорну. Эти мероприятия наверняка заставят ваше сердце биться быстрее.",
+    },
+    {
+        title: "<span>Альп</span>ийские просторы",
+		breadcrumbs: 'catalog',
+		text: "Инсбрук&nbsp;&mdash; столица Тироля, которая объединяет 9&nbsp;разнообразных лыжных областей катания. В&nbsp;Инсбруке возможен любой вид зимнего спорта! Зоны катания расположены на&nbsp;расстоянии от&nbsp;нескольких минут до&nbsp;часа езды от&nbsp;центра города...",
+    },
+    {
+        title: "Высота <span>Альп</span>",
+		breadcrumbs: 'article',
+		text: "Откройте для себя некоторые из&nbsp;самых крутых развлечений, которые могут предложить Альпы, от&nbsp;волнующего катания на&nbsp;льду до&nbsp;величественных вертолетных туров по&nbsp;всемирно известному Маттерхорну. Эти мероприятия наверняка заставят ваше сердце биться быстрее.",
+    },
+]
+---
+
+<Layout title="Результаты поиска">
+    <Breadcrumbs title="Результаты поиска"></Breadcrumbs>
+    <div class="p-search">
+        <div class="container">
+            <h1 class="p-search__title heading-title">Результаты поиска</h1>
+            <form action="" class="p-search__form">
+                <div class="p-search__form-box">
+                    <button type="submit" class="p-search__form-submit" title="Найти" aria-label="Найти">
+                        <Icon class="p-search__form-submit-icon" name="search"></Icon>
+                    </button>
+                    <Input class="p-search__form-input" name="search" value="Альпы" autocomplete="off"></Input>
+                    <button class="p-search__form-clear" title="Очистить" aria-label="Очистить">
+                        <Icon class="p-search__form-clear-icon" name="cross"></Icon>
+                    </button>
+                </div>
+                <div class="p-search__form-result">44 результата</div>
+            </form>
+            <TabMenu class="p-search__tab-menu" list={['Везде', 'Каталог шале', 'Журнал', 'Курорты',
+            ]}></TabMenu>
+            <div class="p-search__result">
+                <div class="p-search__result-items">
+                    {results.map((item) => (
+                        <div class="p-search__result-item">
+                            <div class="p-search__result-title"><a href="" class="p-search__result-link" set:html={item.title}></a></div>
+                            {
+                                item.breadcrumbs === 'catalog' ? <Breadcrumbs class="p-search__result-breadcrumbs" title="Каталог шале"></Breadcrumbs>
+                                : <Breadcrumbs class="p-search__result-breadcrumbs" list={['Журнал']} title="6&nbsp;главных причин поехать кататься на&nbsp;лыжах в&nbsp;Швейцарию"></Breadcrumbs>
+                            }
+                            <div class="p-search__result-text">
+                                <p set:html={item.text}></p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <div class="p-search__more">
+                    <ButtonMore class="p-search__more-button" direction="down">Показать еще</ButtonMore>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</Layout>

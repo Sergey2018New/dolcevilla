@@ -1,0 +1,94 @@
+---
+import Icon from '@components/modules/Icon.astro';
+
+interface Props {
+    type?: "switch" | "menu";
+    typeButton?: "button" | "link";
+    href?: string;
+    ariaLabel?: string;
+    isShort?: boolean;
+    isToggle?: boolean;
+    name?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type = "switch",
+    typeButton = "button",
+    href = "",
+    ariaLabel,
+    items = [],
+    isShort,
+    isToggle,
+    name,
+    class: className,
+    ...rest
+} = Astro.props;
+
+let switchClass = 'ui-switch-block';
+
+const classList = [
+    switchClass,
+    isShort ? switchClass + '_short' : '',
+    isToggle ? switchClass + '_toggle' : '',
+    // sizes[size],
+    // styles[style],
+    className,
+]
+
+function getButtonClasses(item) {
+    return [
+        `${switchClass}__button`,
+        item.isActive ? 'is-active' : '',
+        item.className ? item.className : ''
+    ]
+}
+---
+<div
+    class:list={classList}
+    data-switch={isToggle ? 'toggle' : ''}
+    data-switch-type={type}
+    {...rest}
+>
+    <div class={`${switchClass}__inner`}>
+        <span class={`${switchClass}__background`} data-switch-background></span>
+        <!--  -->
+        {
+           type === 'switch' ?
+            <fieldset class={`${switchClass}__fieldset`} role="group" aria-label={ariaLabel} data-switch-fieldset>
+                {items.map((item) => (
+                    <label class:list={[
+                            `${switchClass}__button`,
+                            item.isActive ? 'is-active' : ''
+                        ]}
+                        data-switch-item
+                    >
+                        <input type="radio" class={`${switchClass}__radio`} name={name} value={item.value} aria-label={item.text} checked={item.checked} data-switch-radio/>
+                        {
+                            item.icon ? <Icon class={`${switchClass}__icon`} name={item.icon}></Icon> : ''
+                        }
+                        <span class={`${switchClass}__text`} set:html={item.text}></span>
+                        <span class={`${switchClass}__radio-focused`}></span>
+                    </label>
+                ))}
+            </fieldset>
+            :
+            <div class={`${switchClass}__menu`} data-switch-menu>
+                {items.map((item, index) => (
+                    typeButton == 'link' ?
+                        <a href={href} class:list={getButtonClasses(item)} data-switch-item>
+                            <Icon class={`${switchClass}__icon`} name={item.icon}></Icon>
+                            <span class={`${switchClass}__text`} set:html={item.text}></span>
+                        </a>
+                    :  <button type="button" class:list={getButtonClasses(item)} data-switch-item>
+                        {
+                            item.icon ? <Icon class={`${switchClass}__icon`} name={item.icon}></Icon> : ''
+                        }
+                        <span class={`${switchClass}__text`} set:html={item.text}></span>
+                    </button>
+                ))}
+            </div>
+        }
+    </div>
+</div>

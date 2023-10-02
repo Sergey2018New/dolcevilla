@@ -1,0 +1,110 @@
+// Mixins
+@import "mixins";
+
+// Functions
+@import "functions";
+
+// Variables
+@import "vars";
+
+// Fonts
+@import "fonts";
+
+// Vendor
+@import "vendor";
+
+// Base
+@import "./common/base";
+@import "./common/utilites";
+
+// Plugins
+@import "./plugins/plugins";
+@import "./plugins/tippy";
+@import "./plugins/flatpickr";
+@import "./plugins/swiper";
+@import "./plugins/just-validate";
+@import "./plugins/fancybox";
+@import "./plugins/simplebar";
+
+// Modules
+@import "./modules/icon";
+@import "./modules/button";
+@import "./modules/buttonIcon";
+@import "./modules/buttonMore";
+@import "./modules/input";
+@import "./modules/counter";
+@import "./modules/checkbox";
+@import "./modules/dropdown";
+@import "./modules/datepicker";
+@import "./modules/switchBlock";
+@import "./modules/fieldBox";
+@import "./modules/modal";
+
+// Common elements
+@import "./common/elements";
+@import "./common/form";
+@import "./common/animation";
+
+// Header
+@import "./header/menu";
+@import "./header/header";
+
+// Footer
+@import "./footer/footer";
+
+// Site blocks
+@import "./blocks/resortItem";
+@import "./blocks/chaletItem";
+@import "./blocks/articleItem";
+@import "./blocks/chaletSmallCard";
+@import "./blocks/breadcrumbs";
+@import "./blocks/tabMenu";
+@import "./blocks/tags";
+@import "./blocks/filterPopup";
+@import "./blocks/filters";
+@import "./blocks/tabsInfo";
+@import "./blocks/detailedDescription";
+@import "./blocks/infoBlock";
+@import "./blocks/sidebarMenu";
+@import "./blocks/rating";
+@import "./blocks/share";
+@import "./blocks/description";
+@import "./blocks/sticky";
+@import "./blocks/mapStyles";
+@import "./blocks/navPanel";
+
+// Site sections
+@import "./sections/homeSection";
+@import "./sections/bestResorts";
+@import "./sections/chooseChalet";
+@import "./sections/chaletLocations";
+@import "./sections/eliteChalets";
+@import "./sections/popularResorts";
+@import "./sections/aboutCompany";
+@import "./sections/latestArticles";
+@import "./sections/otherArticles";
+@import "./sections/whyWe";
+@import "./sections/otherResorts";
+@import "./sections/feedback";
+@import "./sections/resortTracks";
+@import "./sections/skiRegions";
+@import "./sections/similarChalets";
+@import "./sections/availability";
+@import "./sections/estimatedPrices";
+
+// Pages
+@import "./pages/catalog";
+@import "./pages/detail";
+@import "./pages/articles";
+@import "./pages/article";
+@import "./pages/notFound";
+@import "./pages/search";
+@import "./pages/contacts";
+@import "./pages/textPage";
+@import "./pages/collections";
+
+// Modals
+@import "./modals/modalFavorites";
+@import "./modals/modalCompare";
+@import "./modals/modalRequest";
+@import "./modals/modalBooking";

@@ -1,0 +1,103 @@
+/* ------- bestResorts -------- */
+.best-resorts {
+    padding-top: $section-space-xs;
+    padding-bottom: $section-space-xs;
+
+    @include media(mob) {
+        padding-bottom: calc($section-space * 0.5);
+    }
+
+    &__items {
+        display: grid;
+        gap: $space-default;
+        grid-template-rows: auto auto;
+
+        @include grid-columns(4);
+
+        @include media(pc) {
+            @include grid-columns(2);
+        }
+    }
+
+    &__item {
+        .resort-item__inner {
+            padding-top: 82.258%;
+        }
+
+        &:first-child {
+            @include media-min(pc) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            @include media(pc) {
+                grid-row: span 3;
+            }
+
+            @include media(mob) {
+                grid-column: span 2;
+                grid-row: auto;
+            }
+
+            .resort-item__inner {
+                height: 100%;
+                min-height: 21rem;
+                padding-top: 0;
+
+                @include media(mob) {
+                    height: m-adaptive(245);
+                }
+            }
+
+            .resort-item__image {
+                @include media(pc) {
+                    object-position: right;
+                }
+            }
+        }
+
+        &:nth-child(2) {
+            @include media-min(pc) {
+                grid-column: span 2;
+            }
+
+            .resort-item__inner {
+                padding-top: 38.63636%;
+
+                @include media(tab-l) {
+                    padding-top: 48.0226%;
+                }
+
+                @include media(mob) {
+                    padding-top: 0;
+                    height: m-adaptive(172);
+                }
+            }
+        }
+
+        &:nth-child(3),
+        &:nth-child(4) {
+            .resort-item__inner {
+                @include media(pc) {
+                    padding-top: 38.63636%;
+                }
+
+                @include media(tab-l) {
+                    padding-top: 48.0226%;
+                }
+
+                @include media(mob) {
+                    padding-top: 0;
+                    height: m-adaptive(172);
+                }
+            }
+        }
+
+        &:nth-child(4) {
+            @include media(mob) {
+                grid-column: span 2;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,70 @@
+---
+const items1 = [
+    'Абтенау',
+    'Альпбах',
+    'Альпендорф',
+    'Альтенмаркт / РадштадтБад',
+    'ГаштайнБад',
+    'КляйнкирххаймБад',
+    'Хофгастайн',
+    'Ваграйн',
+    'Вестендорф',
+    'Вильдер',
+    'Кайзер/Бриксенталь',
+]
+const items2 = [
+    'Гальтюр',
+    'Дорфгаштайн',
+    'Заальбах-Хинтерглемм',
+    'Зеефельд',
+    'Зелль',
+    'Зёльден',
+    'Земмеринг',
+    'Иглс',
+    'Имст',
+    'Ишгль',
+    'Капрун',
+]
+const items3 = [
+    'Каунерталь',
+    'Кирхберг',
+    'Китцбюэль',
+    'Лангенфельд',
+    'Лех',
+    'Майрхофен',
+    'Монтафон',
+    'Нассфельд',
+    'Нойштифт',
+    'Обергургль',
+    'Обертауэрн',
+]
+---
+
+<section class="section other-resorts">
+	<div class="container">
+        <h2 class="other-resorts__title section-title">Другие курорты Австрии</h2>
+        <div class="other-resorts__row">
+            <div class="other-resorts__column">
+                <ul class="other-resorts__list">
+                    {items1.map((item) => (
+                        <li><a href="" set:html={item}></a></li>
+                    ))}
+                </ul>
+            </div>
+            <div class="other-resorts__column">
+                <ul class="other-resorts__list">
+                    {items2.map((item) => (
+                        <li><a href="" set:html={item}></a></li>
+                    ))}
+                </ul>
+            </div>
+            <div class="other-resorts__column">
+                <ul class="other-resorts__list">
+                    {items3.map((item) => (
+                        <li><a href="" set:html={item}></a></li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+	</div>
+</section>

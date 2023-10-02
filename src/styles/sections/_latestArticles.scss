@@ -1,0 +1,125 @@
+/* ------- latestArticles -------- */
+.latest-articles {
+    @include media(mob) {
+        padding-bottom: 4rem;
+    }
+
+    &__content {
+        position: relative;
+    }
+
+    &__title {
+        margin-bottom: var(--title-section-margin);
+        padding-right: 17rem;
+
+        @include media(tab-l) {
+            span {
+                display: none;
+            }
+        }
+
+        @include media(mob) {
+            font-size: 3.6rem;
+        }
+
+        @include media(mob) {
+            padding-right: 0;
+        }
+    }
+
+    &__slider {
+        position: static;
+
+        @include media(mob-m) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .swiper-wrapper {
+            &.anim  {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__slide {
+        /* opacity: 0;
+        transition: $duration opacity;
+
+        &.swiper-slide-active {
+            opacity: 1;
+        }
+        */
+    }
+
+    &__items {
+        display: grid;
+        gap: 4rem $space-default;
+
+        grid-template-rows: auto auto minmax(0, 1fr);
+        align-items: flex-start;
+
+        @include grid-columns(2);
+
+        @include media(tab-l) {
+            grid-template-rows: auto;
+            @include grid-columns(1);
+
+        }
+
+        @include media(mob) {
+            row-gap: 3rem;
+        }
+    }
+
+    &__item {
+
+        &:first-child {
+            grid-row: span 3;
+            min-height: 100%;
+        }
+
+        &:not(.article-item_full) {
+            @include media-between(tab-l, pc) {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+                .article-item__image-box {
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    &__controls {
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        @include media(mob-m) {
+            position: relative;
+            order: -1;
+            justify-content: center;
+            margin-top: -1.3rem;
+            margin-bottom: 1.7rem;
+        }
+    }
+
+    &__prev {
+    }
+
+    &__next {
+    }
+
+    &__more {
+        margin-top: auto;
+        min-height: 22rem;
+        display: flex;
+        align-items: flex-end;
+
+        @include media(tab-l) {
+            min-height: 0;
+        }
+
+
+    }
+}

@@ -1,0 +1,84 @@
+---
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import ArticleItem from '@components/blocks/ArticleItem.astro';
+
+const items = [
+	{
+		type: 'full',
+		image: "img/latest-articles/1.jpg",
+		image2x: "img/latest-articles/1@2x.jpg",
+		title: "ТОП-6 летних шале с&nbsp;открытыми бассейнами",
+		date: "23&nbsp;декабря 2022",
+		category: "Путешествия"
+	},
+	{
+		type: '',
+		image: "img/latest-articles/2.jpg",
+		image2x: "img/latest-articles/2@2x.jpg",
+		title: "Как добраться до&nbsp;Санкт-Морица",
+		date: "26&nbsp;января 2023",
+		category: "Как добраться"
+	},
+	{
+		type: '',
+		image: "img/latest-articles/3.jpg",
+		image2x: "img/latest-articles/3@2x.jpg",
+		title: "Гид по&nbsp;катанию в&nbsp;Порт дю&nbsp;Солей",
+		date: "18&nbsp;мая 2021",
+		category: "Лето"
+	},
+]
+---
+
+<section class="section latest-articles">
+	<div class="container">
+		<div class="latest-articles__content">
+			<h2 class="latest-articles__title section-title">Последние статьи <span>нашего журнала</span></h2>
+			<div class="swiper latest-articles__slider js-latest-articles " >
+				<div class="swiper-wrapper anim anim_slideUp" data-animation>
+
+
+					<SwiperSlide class="latest-articles__slide">
+						<div class="latest-articles__items">
+							{items.map((item) => (
+								<ArticleItem class="latest-articles__item" type={item.type ? item.type : ''} title={item.title} image={item.image} image2x={item.image2x} date={item.date} category={item.category}></ArticleItem>
+							))}
+							<div class="latest-articles__more">
+								<ButtonMore type='link'>Смотреть все статьи</ButtonMore>
+							</div>
+						</div>
+					</SwiperSlide>
+					<SwiperSlide class="latest-articles__slide">
+						<div class="latest-articles__items">
+							{items.map((item) => (
+								<ArticleItem class="latest-articles__item" type={item.type ? item.type : ''} title={item.title} image={item.image} image2x={item.image2x} date={item.date} category={item.category}></ArticleItem>
+							))}
+							<div class="latest-articles__more">
+								<ButtonMore>Смотреть все статьи</ButtonMore>
+							</div>
+						</div>
+					</SwiperSlide>
+					<SwiperSlide class="latest-articles__slide">
+						<div class="latest-articles__items">
+							{items.map((item) => (
+								<ArticleItem class="latest-articles__item" type={item.type ? item.type : ''} title={item.title} image={item.image} image2x={item.image2x} date={item.date} category={item.category}></ArticleItem>
+							))}
+							<div class="latest-articles__more">
+								<ButtonMore>Смотреть все статьи</ButtonMore>
+							</div>
+						</div>
+					</SwiperSlide>
+				</div>
+				<div class="latest-articles__controls slider-controls">
+					<SwiperControl class="latest-articles__prev slider-controls__prev js-latest-articles-prev" direction="prev"></SwiperControl>
+					<SwiperControl class="latest-articles__next slider-controls__next js-latest-articles-next" direction="next"></SwiperControl>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</section>

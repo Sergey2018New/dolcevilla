@@ -1,0 +1,188 @@
+---
+import Layout from '@layouts/layout.astro';
+import Icon from '@components/modules/Icon.astro';
+import Button from '@components/modules/Button.astro';
+import ButtonIcon from '@components/modules/ButtonIcon.astro';
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+import DetailedDescription from '@components/blocks/DetailedDescription.astro';
+import InfoBlock from '@components/blocks/InfoBlock.astro';
+
+import ResortTracks from '@components/sections/ResortTracks.astro';
+import SkiRegions from '@components/sections/SkiRegions.astro';
+import ChaletLocations from '@components/sections/ChaletLocations.astro';
+import SimilarChalets  from '@components/sections/SimilarChalets.astro';
+import Feedback  from '@components/sections/Feedback.astro';
+import OtherResorts from '@components/sections/OtherResorts.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+
+const services1 = [
+    [
+        'Трассы для беговых лыж',
+        'Параглайдинг',
+        'Каток',
+    ],
+    [
+        'Пешие прогулки',
+        'Катание на&nbsp;санях',
+        'Бассейн',
+    ],
+    [
+        'Бассейн',
+        'Сноутюбинг',
+    ],
+]
+
+const services2 = [
+    [
+        'SPA-центры',
+        'Дискотеки и&nbsp;ночные клубы',
+        'Рестораны и бары',
+    ],
+    [
+        'Фитнесс-центры',
+    ],
+]
+
+const infrastructure = [
+    {
+        name: 'Длина трасс',
+        value: '300 км',
+    },
+    {
+        name: 'Перепад высот',
+        value: '800м — 1 322 м',
+    },
+    {
+        name: 'Места на подъемнике',
+        value: '32',
+    },
+    {
+        name: 'Сидячие',
+        value: '21',
+    },
+    {
+        name: 'Фуникулеры',
+        value: '11',
+    },
+    {
+        name: 'Сезон',
+        value: '16 Ноября — 19 Апреля',
+    },
+    {
+        name: 'Лыжная школа',
+        value: 'Есть',
+    },
+]
+
+const galleryImages = [1,2,3,4,1,2,3,4];
+
+---
+
+<Layout title="Страница курорта" isMap={true}>
+    <Breadcrumbs list={['Курорты', 'Австрия']} title="Инсбрук"></Breadcrumbs>
+    <div class="p-detail p-detail_resort">
+        <div class="container">
+            <div class="p-detail__heading">
+                <div class="p-detail__heading-left">
+                    <h1 class="p-detail__title heading-title">Инсбрук</h1>
+                </div>
+                <div class="p-detail__heading-right">
+                    <div class="p-detail__info">
+                        <div class="p-detail__info-item">
+                            <span>Австрия</span>
+                        </div>
+                        <div class="p-detail__info-item">
+                            <Icon class="p-detail__info-icon" name="weather"></Icon>
+                            <span>-15 °C</span>
+                        </div>
+                        <div class="p-detail__info-item">
+                            <Icon class="p-detail__info-icon" name="snowflake"></Icon>
+                            <span>32 см</span>
+                        </div>
+                    </div>
+                    <div class="p-detail__info-item p-detail__info-item_second">Курорт открыт</div>
+                    <div class="p-detail__control">
+                        <ButtonIcon class={`p-detail__control-button`} icon="share" style="second" size='sm'></ButtonIcon>
+                        <ButtonIcon class={`p-detail__control-button`} icon="star" style="second" size='sm' mod="favorite"></ButtonIcon>
+                    </div>
+                </div>
+            </div>
+            <div class="p-detail__row">
+                <div class="p-detail__content">
+                    <TabMenu class="p-detail__tab-menu" type="navigation" list={[
+                        {
+                            text: 'Описание',
+                            goto: '#resort_description',
+                        },
+                        {
+                            text: 'Трассы',
+                            goto: '#resort_tracks',
+                        },
+                        {
+                            text: 'Местоположение',
+                            goto: '#resort_location',
+                        },
+                    ]}></TabMenu>
+                    <div class="p-detail__section p-detail__section_description" id="resort_description" data-navigation-section>
+                        <div class="p-detail__gallery">
+                            <Swiper class="p-detail__gallery-slider js-resort-gallery">
+                                {galleryImages.map((item) => (
+                                    <SwiperSlide class="p-detail__gallery-slide">
+                                        <div class="p-detail__gallery-image-box">
+                                            <img class="p-detail__gallery-image lazy" data-src={`img/resort-gallery/${item}.jpg`} data-srcset={`img/resort-gallery/${item}@2x.jpg`} alt="" width="894" height="474" />
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                            <Swiper class="p-detail__thumbs js-resort-thumbs">
+                                {galleryImages.map((item) => (
+                                    <SwiperSlide class="p-detail__thumbs-slide">
+                                        <div class="p-detail__thumbs-image-box">
+                                            <img class="p-detail__thumbs-image lazy" data-src={`img/resort-gallery/thumb-${item}.png`} data-srcset={`img/resort-gallery/thumb-${item}@2x.png`} alt="" width="193" height="102" />
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                                 <SwiperControl slot="after" class="p-detail__thumbs-prev js-resort-thumbs-prev" direction="prev"></SwiperControl>
+                                 <SwiperControl slot="after" class="p-detail__thumbs-next js-resort-thumbs-next" direction="next"></SwiperControl>
+                            </Swiper>
+                        </div>
+                        <div class="p-detail__infrastructure-adapative js-detail-infrastructure-adaptive"></div>
+                        <DetailedDescription class="p-detail__description" text={`<p>Инсбрук&nbsp;&mdash; столица Тироля, которая объединяет 9&nbsp;разнообразных лыжных областей катания. В&nbsp;Инсбруке возможен любой вид зимнего спорта! Зоны катания расположены на&nbsp;расстоянии от&nbsp;нескольких минут до&nbsp;часа езды от&nbsp;центра города.</p>
+                            <p>Абонемент OlympiaWorld Skipass включает в&nbsp;себя все девять горнолыжных регионов, входящие в&nbsp;этот рай: Нордкете-Зегрубе, Пачеркофел, Аксамер Лицим, Мутерер Альм, Кют.Регион Нордкете объединяет вершины Зегрубе (высота 1905) и&nbsp;Хаферкар(высота 2256).</p>
+                            <p>Отсюда открывается великолепная панорама на&nbsp;город и&nbsp;окружающие горы. Здесь замечательные трассы, а&nbsp;спуск по&nbsp;знаменитому желобу с&nbsp;наклоном 70&nbsp;градусов с&nbsp;вершины Хафелеркар на&nbsp;вершину Зеегрубе доступен только самым опытным любителям зимнего спорта. Для самых маленьких на&nbsp;горе Зеегрубе оборудован детский парк. Для сноубордистов и&nbsp;любителей фри-стайла сооружен отлично подготовленный суперпайп длиной 120 метров и&nbsp;высотой 5&nbsp;метров с&nbsp;великолепным освещением и&nbsp;стереосистемой.</p><p>Отсюда открывается великолепная панорама на&nbsp;город и&nbsp;окружающие горы. Здесь замечательные трассы, а&nbsp;спуск по&nbsp;знаменитому желобу с&nbsp;наклоном 70&nbsp;градусов с&nbsp;вершины Хафелеркар на&nbsp;вершину Зеегрубе доступен только самым опытным любителям зимнего спорта. Для самых маленьких на&nbsp;горе Зеегрубе оборудован детский парк. Для сноубордистов и&nbsp;любителей фри-стайла сооружен отлично подготовленный суперпайп длиной 120 метров и&nbsp;высотой 5&nbsp;метров с&nbsp;великолепным освещением и&nbsp;стереосистемой.</p>`}></DetailedDescription>
+                    </div>
+                    <div class="p-detail__section">
+                        <InfoBlock title="Как добраться" getThere={true}></InfoBlock>
+                    </div>
+                    <div class="p-detail__section">
+                        <InfoBlock title="Спортивные возможности региона" services={services1}></InfoBlock>
+                    </div>
+                    <div class="p-detail__section">
+                        <InfoBlock title="Отдых на территории курорта" services={services2}></InfoBlock>
+                    </div>
+                </div>
+                <aside class="p-detail__sidebar">
+                    <div class="p-detail__infrastructure-wrapper">
+                        <div class="p-detail__infrastructure" data-da=".js-detail-infrastructure-adaptive,1100.98,first">
+                            <InfoBlock class="p-detail__infrastructure-info" title="Инфраструктура" parameters={infrastructure}></InfoBlock>
+                            <div class="p-detail__view-chalet">
+                                <Button class="p-detail__view-chalet-button">Посмотреть шале</Button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+    <ResortTracks></ResortTracks>
+    <SkiRegions></SkiRegions>
+    <ChaletLocations id="resort_location" data-navigation-section></ChaletLocations>
+    <SimilarChalets type="resort" title="Шале на&nbsp;курорте Инсбрук"></SimilarChalets>
+    <Feedback></Feedback>
+    <OtherResorts></OtherResorts>
+    <WhyWe></WhyWe>
+</Layout>

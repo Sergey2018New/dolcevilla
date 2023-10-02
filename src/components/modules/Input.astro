@@ -1,0 +1,105 @@
+---
+interface Props {
+    type?: "text" | "email" | "search" | "textarea" | "datepicker" | "phone" | "number";
+    name?: string;
+    value?: number | string;
+    min?: number;
+    max?: number;
+    placeholder?: string;
+    ariaLabel?: string;
+    rows?: number;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type = "text",
+    name,
+    value,
+    min,
+    max,
+    placeholder,
+    ariaLabel,
+    rows,
+    class: className,
+    ...rest
+} = Astro.props;
+
+const inputClass = type == 'textarea' ? `ui-textarea` : `ui-input`;
+const inputClassPhone = `${inputClass}-phone`;
+const inputClassDatepicker = `${inputClass}-datepicker`;
+
+const classList = [
+    inputClass,
+    className
+];
+
+---
+{type == 'textarea' ?
+    <textarea
+        class:list={classList}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        rows={rows}
+        aria-label={ariaLabel}
+        {...rest}
+    ></textarea>  : ''
+}
+
+{(type === 'text' || type === 'email'|| type === 'search') ?
+<input
+    class:list={classList}
+    type={type}
+    name={name}
+    value={value}
+    placeholder={placeholder}
+    aria-label={ariaLabel}
+    {...rest}
+/> : ''}
+
+{(type === 'number') ?
+<input
+    class:list={classList}
+    type={type}
+    name={name}
+    value={value}
+    min={min}
+    max={max}
+    placeholder={placeholder}
+    aria-label={ariaLabel}
+    {...rest}
+/> : ''}
+
+{type === 'phone' ?
+<input
+    class:list={[
+        inputClass,
+        inputClassPhone,
+        className,
+    ]}
+    type={'text'}
+    name={name}
+    value={value}
+    placeholder={placeholder}
+    aria-label={ariaLabel}
+    autocomplete="off"
+    {...rest}
+/> : ''}
+
+{type === 'datepicker' ?
+<input
+    class:list={[
+        inputClass,
+        inputClassDatepicker,
+        className,
+    ]}
+    type={'text'}
+    name={name}
+    value={value}
+    placeholder={placeholder}
+    aria-label={ariaLabel}
+    data-datepicker
+    autocomplete="off"
+    {...rest}
+/> : ''}

@@ -1,0 +1,22 @@
+---
+interface Props {
+    type?: 'line';
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type,
+	class: className,
+	...rest
+} = Astro.props;
+
+---
+<div
+	class:list={[
+		'swiper-pagination',
+		type ? `swiper-pagination_type_${type}` : '',
+		className
+	]}
+	{...rest}
+></div>

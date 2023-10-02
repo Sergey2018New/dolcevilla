@@ -1,0 +1,207 @@
+/* ------- filter-popup -------- */
+.filter-popup {
+    position: absolute;
+    z-index: 10;
+    margin-top: 2rem;
+    width: 65rem;
+    // height: 63.5rem;
+    padding: 4rem 4rem 3.5rem;
+    display: none;
+    box-shadow: 0 0.4rem 3rem 0 rgba(var(--color-base-rgb), 0.07);
+    background: $white;
+
+    @include media(mob) {
+        margin-top: 1rem;
+        padding: 2rem 2rem 3rem;
+    }
+
+    &__header {
+        display: flex;
+        grid-template-columns: auto auto;
+        margin-bottom: 2rem;
+    }
+
+    &__control {
+        position: relative;
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        margin-right: 2rem;
+        color: $grey;
+        transition: $duration color;
+
+        &:hover {
+            color: $base-color;
+        }
+
+        &_close {
+            margin-left: auto;
+        }
+
+        &_clear {
+            display: none;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.is-hidden {
+            display: none;
+        }
+    }
+
+    &__control-icon {
+        width: 1.6rem;
+        height: 1.6rem;
+        fill: currentColor;
+        transition: $duration fill;
+
+        @include media(mob) {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+    }
+
+    &__content {
+    }
+
+    &__menu {
+        position: relative;
+        display: grid;
+        align-content: flex-start;
+        gap: 2rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        &.is-hidden {
+            display: none;
+        }
+    }
+
+    &__menu-item {
+        max-width: calc(50% - 2rem);
+
+        @include media(mob-m) {
+            max-width: none;
+        }
+
+        &.is-active {
+            .filter-popup__submenu {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .filter-popup {
+                &__menu-arrow {
+                    opacity: 1;
+                }
+
+                &__menu-link {
+                    @include media-min(mob-m) {
+                        color: $base-color;
+                    }
+                }
+            }
+        }
+    }
+
+    &__menu-link {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-auto-flow: column;
+        align-items: center;
+        gap: 2rem;
+        text-decoration: none;
+        font-size: $text-size-desktop;
+        color: $grey;
+    }
+
+    &__menu-arrow {
+        width: 4.8rem;
+        height: 2rem;
+        opacity: 0;
+        fill: currentColor;
+        transition: $duration opacity;
+
+        @include media(mob-m) {
+            display: none;
+        }
+    }
+
+    &__submenu {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        display: grid;
+        gap: 1rem;
+        margin: 0;
+        padding-left: 2rem;
+        border-left: 1px solid #E1E4E7;
+        list-style: none;
+        width: 50%;
+        color: $grey;
+        opacity: 0;
+        visibility: hidden;
+
+        @include media(mob-m) {
+            display: none;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                color: $second;
+            }
+        }
+    }
+
+    &__result {
+        display: none;
+    }
+
+    &__result-list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -1rem 0 0;
+        padding: 0;
+        list-style: none;
+        color: $grey;
+
+        li {
+            margin: 0 1rem 0.5rem 0;
+        }
+
+        a {
+            text-decoration: none;
+
+            &:hover {
+                color: $second;
+            }
+        }
+    }
+
+    &.is-active {
+        display: block;
+    }
+
+    &.is-result {
+        .filter-popup {
+            &__menu {
+                display: none;
+            }
+
+            &__result {
+                display: block;
+            }
+
+            &__control_clear {
+                display: grid;
+            }
+        }
+    }
+}

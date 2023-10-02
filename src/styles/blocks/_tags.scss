@@ -1,0 +1,131 @@
+/* ------- tags -------- */
+.tags {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    align-items: flex-start;
+    gap: 4rem;
+
+    @include media(mob) {
+        gap: 1rem;
+    }
+
+    @include media(mob) {
+        display: flex;
+        margin-right: calc($gutters * (-1));
+        margin-left: calc($gutters * (-1));
+        padding-left: $gutters;
+        padding-right: $gutters;
+        overflow: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+
+        @include media(mob) {
+            flex-wrap: nowrap;
+            flex-grow: 1;
+        }
+    }
+
+    &__item {
+        display: grid;
+        align-items: center;
+        grid-auto-flow: column;
+        gap: 1rem;
+        margin-right: 1rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem 1.5rem;
+        border: 1px solid $accent;
+        border-radius: 1.9rem;
+        min-height: 3.8rem;
+        line-height: 1.5;
+        text-decoration: none;
+        color: $base-color;
+        transition: $duration border-color, $duration background, $duration color;
+
+        @include hover {
+            color: $accent;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &.is-active {
+            border-color: $accent;
+            color: $white;
+            background: $accent;
+
+            @include hover {
+                border-color: $second;
+                background: $second;
+            }
+
+            .tags__item-remove-icon {
+                display: block;
+            }
+        }
+
+        @include media(mob) {
+            margin-bottom: 0;
+            padding: 0.2rem 1rem;
+            height: auto;
+            min-height: 0;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+    }
+
+    &__item-remove-icon {
+        margin-right: -0.5rem;
+        width: 1.6rem;
+        height: 1.6rem;
+        display: none;
+
+        @include media(mob) {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+    }
+
+    &__button-clear {
+        position: relative;
+        left: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3.6rem;
+        height: 3.8rem;
+
+        transition: $duration color;
+
+        &:hover {
+            color: $accent;
+        }
+
+        &.is-hidden {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        @include media(mob) {
+            left: 0.4rem;
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+    }
+
+    &__button-clear-icon {
+        width: 1.6rem;
+        height: 1.6rem;
+
+    }
+}

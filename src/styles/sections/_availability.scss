@@ -1,0 +1,394 @@
+/* ------- availability -------- */
+.availability {
+    @include media(mob) {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    &__title {
+        margin-bottom: 4rem;
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__filters {
+        margin-bottom: var(--space-default-md);
+
+        @include media(mob) {
+            margin-bottom: 3rem;
+        }
+    }
+
+    &__slider {
+        margin-bottom: var(--space-default-md);
+
+        @include media(pc-l) {
+            overflow: visible;
+        }
+
+        @include media(mob) {
+            margin-bottom: 3rem;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__shedule {
+        margin-bottom: var(--space-default-md);
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &_section {
+            .availability__shedule-items {
+
+                @include media(pc-l) {
+                    grid-template-columns: repeat(4, auto);
+                    margin-right: calc($gutters * (-1));
+                    margin-left: calc($gutters * (-1));
+                    padding-left: $gutters;
+                    padding-right: $gutters;
+                    overflow-x: auto;
+                    overflow-y: visible;
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                }
+            }
+
+            @include media(mob) {
+                margin-bottom: 3rem;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    &__shedule-title {
+        margin-bottom: 4rem;
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+
+        @include media(tab-l) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__slide-row {
+        display: grid;
+        gap: $space-default;
+
+        @include grid-columns(2);
+
+        @include media(pc-md) {
+            @include grid-columns(1);
+        }
+    }
+
+    &__slide-column {
+    }
+    &__shedule-items {
+        display: grid;
+        min-height: 100%;
+
+        @include grid-columns(4);
+
+    }
+
+    &__shedule-item {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        align-content: space-between;
+        gap: 2rem;
+        padding: 2rem;
+        min-width: 34rem;
+        transition: $duration background;
+        cursor: pointer;
+        user-select: none;
+
+        @include media(mob) {
+            min-width: 26rem;
+        }
+
+        @include media(mob-m) {
+            padding: 1rem;
+            width: m-adaptive(165);
+            min-width: 0;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            border: 1px solid $second;
+            border-left-width: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            transition: $duration border-color;
+        }
+
+        &:first-child {
+            &::before {
+                border-left-width: 1px;
+            }
+        }
+
+
+
+        &.is-active {
+            color: $white;
+            background: $second;
+
+            &::before {
+                border-top-color: $second;
+                border-bottom-color: $second;
+            }
+
+            .availability__shedule-dates {
+                color: inherit;
+            }
+        }
+
+        &.is-no-selected {
+            cursor: default;
+            pointer-events: none;
+            background: var(--color-bg);
+
+            &::before {
+                border-top-color: var(--color-bg);
+                border-bottom-color: var(--color-bg);
+                border-left-color: var(--color-bg);
+            }
+
+            &:last-child {
+                &::before {
+                    border-right-color: var(--color-bg);
+                }
+            }
+        }
+    }
+
+    &__shedule-dates {
+        position: relative;
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: space-between;
+        gap: 1rem;
+        color: $grey;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -1px;
+            width: 15.882%;
+            height: 1px;
+            background: currentColor;
+            transform: translate3d(-50%, 0, 0);
+
+            @include media(mob-m) {
+                left: 0;
+                width: 100%;
+                transform: none;
+            }
+        }
+
+        @include media(mob-m) {
+            grid-auto-flow: row;
+            justify-content: flex-start;
+        }
+    }
+
+    &__shedule-date {
+
+    }
+
+    &__shedule-info {
+        display: grid;
+        grid-auto-flow: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+
+        @include media(mob-m) {
+            grid-auto-flow: row;
+            justify-content: flex-start;
+        }
+    }
+
+    &__shedule-period {
+    }
+
+    &__shedule-price {
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+    }
+
+    &__slide {
+        opacity: 0;
+        transition: $duration opacity;
+
+        .availability__shedule-title {
+            padding-right: 10rem;
+
+            @include media(mob-m) {
+                margin-bottom: 6.2rem;
+                padding-right: 0;
+            }
+        }
+
+        .availability__shedule-items {
+            @include grid-columns(2);
+        }
+
+        .availability__shedule-item {
+            min-width: 0;
+
+            &::before {
+                border-top-width: 0;
+            }
+
+            &:nth-child(1),
+            &:nth-child(2) {
+                margin-top: 0;
+
+                &::before {
+                    border-top-width: 1px;
+                }
+            }
+
+            &:nth-child(2n + 1) {
+                &::before {
+                    border-left-width: 1px;
+                }
+            }
+
+            &:nth-child(2n) {
+                &.is-no-selected {
+                    &::before {
+                        border-right-color: var(--color-bg);
+                    }
+                }
+            }
+
+            @include media(mob-m) {
+                width: auto;
+            }
+        }
+
+        .availability__shedule-dates::before {
+            @include media-between(pc-md, netbook) {
+                width: 8%;
+            }
+
+            @include media(pc-md) {
+                width: 23%;
+            }
+
+            @include media(mob) {
+                width: 18%;
+            }
+
+            @include media(mob-m) {
+                width: 100%;
+            }
+        }
+
+        &.swiper-slide-active {
+            opacity: 1;
+        }
+    }
+
+    &__slider-controls {
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        @include media(mob) {
+            top: -0.4rem;
+        }
+
+        @include media(mob-m) {
+            top: 3.7rem;
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+
+    &__slider-prev,
+    &__slider-next {
+        height: 3.4rem;
+    }
+
+    &__slider-prev {
+    }
+
+    &__slider-next {
+    }
+
+    &__calendar {
+        padding: $space-default;
+        background: var(--color-bg);
+
+        .flatpickr-months {
+            display: none;
+        }
+
+        .flatpickr-calendar {
+            width: 100%;
+            padding: 0;
+        }
+
+        .flatpickr-weekdays {
+            @include media(mob-m) {
+                height: 2.2rem;
+            }
+        }
+
+        span.flatpickr-weekday {
+            @include media(mob-m) {
+                font-size: var(--text-size);
+            }
+        }
+
+        .flatpickr-day {
+            pointer-events: none;
+            cursor: default;
+            user-select: none;
+
+            &.is-selected {
+                color: $white;
+                background: var(--color-second-3);
+
+                &.inRange + .endRange::before {
+                    background: var(--color-second-3);
+                }
+            }
+
+            &.startRange:not(:nth-child(7n+7)) + .inRange.is-selected::before {
+                background: var(--color-second-3);
+            }
+
+            &.flatpickr-disabled {
+                opacity: 1;
+            }
+
+
+        }
+    }
+}

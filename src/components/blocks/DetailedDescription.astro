@@ -1,0 +1,33 @@
+---
+import Icon from '@components/modules/Icon.astro';
+
+interface Props {
+	// type?: 'full' | 'short';
+    text?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+	text,
+	class: className,
+	...rest
+} = Astro.props;
+---
+
+<div
+	class:list={[
+		'detailed-description',
+		className,
+	]}
+    data-detailed-description
+	{...rest}
+>
+    <div class="detailed-description__text" data-detailed-text set:html={text}></div>
+    <div class="detailed-description__more">
+        <button type="button" class="detailed-description__more-button" data-detailed-more>
+            <span data-detailed-more-text data-toggle-text="Скрыть">Читать больше</span>
+            <Icon class="detailed-description__more-icon" name="arrow-sm"></Icon>
+        </button>
+    </div>
+</div>

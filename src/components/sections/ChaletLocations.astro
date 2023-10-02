@@ -1,0 +1,76 @@
+---
+import Tags from '@components/blocks/Tags.astro';
+import ChaletSmallCard from '@components/blocks/ChaletSmallCard.astro';
+import InfoBlock from '@components/blocks/InfoBlock.astro';
+
+interface Props {
+    type?: 'chalet';
+    title?: string;
+    id?: string;
+    isTags?: boolean;
+    [x: string]: any;
+}
+
+const {
+    type,
+    title,
+    isTags,
+    id,
+    ...rest
+} = Astro.props;
+
+---
+
+<section
+    class:list={[
+        "section chalet-locations",
+        type === 'chalet' ? "chalet-locations_chalet" : '',
+    ]}
+    id={id}
+    {...rest}
+>
+	<div class="container">
+        <div class="chalet-locations__heading">
+            <h2 class="chalet-locations__title section-title" set:html={title ? title : 'Наши шале на карте'}></h2>
+            {
+                isTags ?
+                <Tags class="chalet-locations__tags" list={[
+                    {
+                        text: 'Швейцария',
+                        isActive: true
+                    },
+                    {
+                        text: 'Франция',
+                        isActive: true
+                    },
+                    {
+                        text: 'Италия',
+                        isActive: false
+                    },
+                    {
+                        text: 'Австрия',
+                        isActive: false
+                    },
+                ]}></Tags>
+                : ''
+            }
+        </div>
+	</div>
+	<div class="chalet-locations__map">
+
+        {
+            type === 'chalet' ?
+            <div id="map_chalet" style="width: 100%; height: 100%"></div>
+            :
+            <div id="map" style="width: 100%; height: 100%"></div>
+        }
+	</div>
+    {
+        type === 'chalet' ?
+        <div class="container">
+            <InfoBlock class="chalet-locations__info-block" title="Как добраться" getThere={true}></InfoBlock>
+        </div>
+        : ''
+    }
+
+</section>

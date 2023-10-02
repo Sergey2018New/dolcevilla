@@ -1,0 +1,61 @@
+/* ------- latestArticles -------- */
+.other-resorts {
+
+    &__title {
+        margin-bottom: 4rem;
+        padding-bottom: 4rem;
+        border-bottom: 1px solid;
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+        }
+    }
+
+    &__row {
+        display: grid;
+        gap: $space-default;
+
+        @include grid-columns(3);
+
+        @include media(mob-m) {
+            grid-template-columns: min-content min-content min-content;
+            margin-left: calc($gutters * -1);
+            margin-right: calc($gutters * -1);
+            padding-left: $gutters;
+            padding-right: $gutters;
+            overflow: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+
+    &__column {
+        @include media(mob-m) {
+            width: m-adaptive(254);
+            min-width: 25.4rem;
+        }
+    }
+
+    &__list {
+        display: grid;
+        // gap: 1rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        a {
+            display: inline-block;
+            line-height: 200%;
+            text-decoration: none;
+
+            &:hover {
+                color: var(--color-second);
+            }
+        }
+    }
+}

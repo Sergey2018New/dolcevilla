@@ -1,0 +1,46 @@
+/* ------- Estimated prices -------- */
+.estimated-prices {
+
+    @include media(mob) {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    &__title {
+        margin-bottom: 4rem;
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__table {
+        table-layout: fixed;
+    }
+
+    &__footer {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 2rem $space-default;
+        margin-top: 4rem;
+
+        @include media(mob) {
+            margin-top: 2rem;
+        }
+
+        @include media(mob-m) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    &__note-text {
+        max-width: 89rem;
+        color: $grey;
+    }
+
+    &__button {
+        @include media(mob-m) {
+            width: 100%;
+        }
+    }
+}

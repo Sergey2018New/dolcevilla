@@ -1,0 +1,214 @@
+---
+import Layout from '@layouts/layout.astro';
+import Icon from '@components/modules/Icon.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import Input from '@components/modules/Input.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+import ChaletItem from '@components/blocks/ChaletItem.astro';
+
+const listItems = [
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Chalet <span>Alp</span>in Roc",
+		price: "€ 12 890",
+		period: "5 ночей",
+		country: "Франция",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			}
+		],
+		title: "Пентхаус <span>Al</span>tesse",
+		price: "€ 6 860",
+		period: "5 ночей",
+		country: "Франция",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Пент<span>хаус</span> Balegia",
+		price: "₣ 12 920",
+		period: "10 ночей",
+		country: "Франция",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet <span>Alp</span>in Roc",
+		price: "€ 12 890",
+		period: "10 ночей",
+		country: "Франция",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/4.jpg",
+				image2x: "img/choose-chalet/4@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet <span>Arrab</span>elle",
+		price: "₣ 71 455",
+		period: "5 ночей",
+		country: "Франция",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/5.jpg",
+				image2x: "img/choose-chalet/5@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "<span>Arra</span>belle Retreat",
+		price: "€ 6 860",
+		period: "5 ночей",
+		country: "Франция",
+		location: "Альп д'Юэз"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/6.jpg",
+				image2x: "img/choose-chalet/6@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/2.jpg",
+				image2x: "img/choose-chalet/2@2x.jpg",
+			}
+		],
+		title: "Chalet <span>A</span>vanti",
+		price: "₣ 3 870",
+		period: "10 ночей",
+		country: "Франция",
+		location: "Цюрс"
+	},
+	{
+		images: [
+			{
+				image: "img/choose-chalet/6.jpg",
+				image2x: "img/choose-chalet/6@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/1.jpg",
+				image2x: "img/choose-chalet/1@2x.jpg",
+			},
+			{
+				image: "img/choose-chalet/3.jpg",
+				image2x: "img/choose-chalet/3@2x.jpg",
+			}
+		],
+		title: "Chalet <span>Alp</span>in Roc",
+		price: "€ 12 890",
+		period: "10 ночей",
+		country: "Франция",
+		location: "Цюрс"
+	},
+]
+---
+
+<Layout title="Результаты поиска">
+    <Breadcrumbs title="Результаты поиска"></Breadcrumbs>
+    <div class="p-search">
+        <div class="container">
+            <h1 class="p-search__title heading-title">Результаты поиска</h1>
+            <form action="" class="p-search__form">
+                <div class="p-search__form-box">
+                    <button type="submit" class="p-search__form-submit" title="Найти" aria-label="Найти">
+                        <Icon class="p-search__form-submit-icon" name="search"></Icon>
+                    </button>
+                    <Input class="p-search__form-input" name="search" value="Альпы" autocomplete="off"></Input>
+                    <button class="p-search__form-clear" title="Очистить" aria-label="Очистить">
+                        <Icon class="p-search__form-clear-icon" name="cross"></Icon>
+                    </button>
+                </div>
+                <div class="p-search__form-result">44 результата</div>
+            </form>
+            <TabMenu class="p-search__tab-menu" list={['Везде', 'Каталог шале', 'Коллекции', 'Отели', 'Журнал', 'Курорты',
+            ]} activeIndex={1}></TabMenu>
+            <div class="p-search__result p-search__result_chalet">
+                <div class="p-search__result-items">
+                    {listItems.map((item) => (
+                         <ChaletItem title={item.title} price={item.price} period={item.period} infoList={item.infoList} country={item.country} location={item.location} images={item.images}></ChaletItem>
+                    ))}
+                </div>
+                <div class="p-search__more">
+                    <ButtonMore class="p-search__more-button" direction="down">Показать еще 16 шале</ButtonMore>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</Layout>

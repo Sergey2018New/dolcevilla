@@ -1,0 +1,64 @@
+---
+import Icon from '@components/modules/Icon.astro';
+
+interface Props {
+    type?: "button" | "link";
+    direction?: "down";
+    style?: "light";
+    noBorder?: boolean;
+    href?: string;
+    ariaLabel?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    type = "button",
+    direction,
+    style,
+    noBorder = false,
+    href = "",
+    ariaLabel,
+    class: className,
+    ...rest
+} = Astro.props;
+
+const buttonClass = 'ui-button-more';
+
+
+const styles = {
+  light: `${buttonClass}_style_light`,
+};
+
+const directions = {
+  down: `${buttonClass}_direction_down`,
+};
+
+const iconClass = direction == 'down' ? 'arrow-down' : 'arrow';
+
+const classList =[
+    buttonClass,
+    styles[style],
+    directions[direction],
+    noBorder ? `${buttonClass}_no-border`: '',
+    className,
+]
+---
+{type == 'link' ? 
+    <a
+        href={href} 
+        class:list={classList}
+        {...rest}
+    >
+        <span class={`${buttonClass}__text`}><slot /></span>
+        <Icon class={`${buttonClass}__icon`} name={iconClass}></Icon>
+    </a>
+:  <button
+        type={type}
+        class:list={classList}
+        {...rest}
+    >
+        <span class={`${buttonClass}__text`}><slot /></span>
+        <Icon class={`${buttonClass}__icon`} name={iconClass}></Icon>
+    </button>
+}

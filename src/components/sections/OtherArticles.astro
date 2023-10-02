@@ -1,0 +1,74 @@
+---
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import ButtonMore from '@components/modules/ButtonMore.astro';
+import ArticleItem from '@components/blocks/ArticleItem.astro';
+
+const items = [
+	{
+		image: "img/latest-articles/2.jpg",
+		image2x: "img/latest-articles/2@2x.jpg",
+		title: "Как добраться до&nbsp;Санкт-Морица",
+		date: "26&nbsp;января 2023",
+		category: "Как добраться"
+	},
+	{
+		image: "img/latest-articles/3.jpg",
+		image2x: "img/latest-articles/3@2x.jpg",
+		title: "Гид по&nbsp;катанию в&nbsp;Порт дю&nbsp;Солей",
+		date: "18&nbsp;мая 2021",
+		category: "Лето"
+	},
+	{
+		image: "img/latest-articles/2.jpg",
+		image2x: "img/latest-articles/2@2x.jpg",
+		title: "Как добраться до&nbsp;Санкт-Морица",
+		date: "26&nbsp;января 2023",
+		category: "Как добраться"
+	},
+	{
+		image: "img/latest-articles/3.jpg",
+		image2x: "img/latest-articles/3@2x.jpg",
+		title: "Гид по&nbsp;катанию в&nbsp;Порт дю&nbsp;Солей",
+		date: "18&nbsp;мая 2021",
+		category: "Лето"
+	},
+	{
+		image: "img/latest-articles/2.jpg",
+		image2x: "img/latest-articles/2@2x.jpg",
+		title: "Как добраться до&nbsp;Санкт-Морица",
+		date: "26&nbsp;января 2023",
+		category: "Как добраться"
+	},
+	{
+		image: "img/latest-articles/3.jpg",
+		image2x: "img/latest-articles/3@2x.jpg",
+		title: "Гид по&nbsp;катанию в&nbsp;Порт дю&nbsp;Солей",
+		date: "18&nbsp;мая 2021",
+		category: "Лето"
+	},
+]
+---
+
+<section class="section other-articles">
+	<div class="container">
+		<div class="other-articles__content">
+			<h2 class="other-articles__title section-title">Другие статьи из журнала</h2>
+			<div class="other-articles__slider swiper js-other-articles" >
+                <div class="other-articles__controls slider-controls">
+					<SwiperControl class="other-articles__prev slider-controls__prev js-other-articles-prev" direction="prev"></SwiperControl>
+					<SwiperControl class="other-articles__next slider-controls__next js-other-articles-next" direction="next"></SwiperControl>
+				</div>
+				<div class="swiper-wrapper">
+                    {items.map((item) => (
+                        <ArticleItem class="swiper-slide other-articles__item" title={item.title} image={item.image} image2x={item.image2x} date={item.date} category={item.category}></ArticleItem>
+                    ))}
+				</div>
+			</div>
+            <div class="other-articles__more">
+                <ButtonMore type='link'>Смотреть все</ButtonMore>
+            </div>
+		</div>
+	</div>
+</section>

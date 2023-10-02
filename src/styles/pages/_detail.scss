@@ -1,0 +1,1071 @@
+/* ------- Detailed page -------- */
+.p-detail {
+    padding-bottom: calc(var(--section-space) * 0.5);
+
+    &:last-child {
+        padding-bottom: calc(var(--section-space));
+    }
+
+    &__heading {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) max-content;
+        gap: $space-default;
+        margin-bottom: $space-default;
+
+        @include media(tab-l) {
+            grid-template-columns: minmax(0, 1fr);
+            margin-bottom: 3.4rem;
+        }
+
+        @include media(mob) {
+            margin-bottom: 3rem;
+            gap: 2rem;
+        }
+    }
+
+    &__title {
+        margin: 0;
+    }
+
+    &__heading-left {
+        align-self: center;
+    }
+
+    &__heading-right {
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        gap: 1rem;
+        height: 5.8rem;
+
+        @include media(tab-l) {
+            justify-content: flex-start;
+            align-items: flex-start;
+            height: auto;
+        }
+
+        @include media(mob) {
+            grid-template-columns: auto minmax(0, 1fr);
+            grid-auto-flow: row;
+            gap: 1.5rem 0.5rem;
+        }
+    }
+
+    &__info {
+        display: grid;
+        grid-auto-flow: column;
+        gap: 1rem;
+
+        @include media(tab-l) {
+            justify-content: flex-start;
+        }
+
+        @include media(mob) {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            grid-column: span 2;
+            justify-content: flex-start;
+        }
+    }
+
+    &__info-item {
+        display: grid;
+        grid-auto-flow: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 2rem;
+        border: 1px solid $accent;
+        border-radius: $button-height;
+        height: $button-height;
+
+        @include media(mob) {
+            height: 3.4rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        &_second {
+            border-color: $second;
+            color: $white;
+            background: $second;
+        }
+    }
+
+    &__info-icon {
+        width: 2.4rem;
+        height: 2.4rem;
+
+        @include media(mob) {
+            margin-left: -0.5rem;
+        }
+    }
+
+    &__info-button {
+        @include media(mob) {
+            height: 3.4rem;
+        }
+
+        @include media(mob-m) {
+            grid-column: span 2;
+            width: 100%;
+            order: 1;
+            height: 3.8rem;
+        }
+    }
+
+    &__control {
+        display: grid;
+        grid-auto-flow: column;
+        gap: 1rem;
+
+        @include media(mob) {
+            justify-content: flex-end;
+            gap: 0.5rem;
+        }
+    }
+
+    &__control-button {
+        &.is-active {
+            background: $accent;
+
+            svg {
+                fill: currentColor;
+            }
+
+            &:hover {
+                background: $second;
+            }
+        }
+
+        &_compare {
+            .ui-button-icon__icon {
+                &:last-child {
+                    display: none;
+                }
+            }
+
+            &.is-active {
+                .ui-button-icon__icon {
+                    &:first-child {
+                        display: none;
+                    }
+
+                    &:last-child {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        @include media(mob) {
+            width: 3.4rem;
+            height: 3.4rem;
+
+            .ui-button-icon__icon {
+                width: 2rem;
+                height: 2rem;
+            }
+        }
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 31rem;
+        gap: $space-default;
+        padding-top: 2rem;
+
+        @include media(tab-l) {
+            grid-template-columns: minmax(0, 1fr);
+            padding-top: 0;
+        }
+    }
+
+    &__content {
+        max-width: 89.4rem;
+
+        @include media(tab-l) {
+            max-width: none;
+        }
+    }
+
+    &__tab-menu {
+        padding-top: 2rem;
+
+        @include media(tab-l) {
+            padding-top: 0;
+        }
+    }
+
+    &__section {
+        margin-bottom: var(--section-space-sm);
+
+        @include media(mob) {
+            margin-bottom: 4rem;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &_description {
+            padding-top: 4rem;
+
+            @include media(mob) {
+                padding-top: 3rem;
+            }
+        }
+    }
+
+    &__gallery {
+        margin-bottom: 4rem;
+        flex: none;
+        width: 100%;
+
+        @include media(mob) {
+            margin-bottom: 3rem;
+        }
+
+        &_chalet {
+            position: relative;
+            display: flex;
+            justify-content: center;
+
+
+            .p-detail__gallery-image-box {
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: var(--color-second-2);
+                    opacity: 0.5;
+                    transition: $duration opacity;
+
+                }
+            }
+
+            .swiper-slide-active {
+                .p-detail__gallery-image-box {
+                    &::after {
+                        opacity: 0;
+                    }
+                }
+            }
+
+            .p-detail__gallery-slider {
+                flex: none;
+                width: calc(d-adaptive(1126) * 3 + $gutters * 2);
+                max-width: calc(112.6rem * 3 + $gutters * 2);
+                max-height: 59.7rem;
+
+                &.swiper-initialized {
+                    position: static;
+                    overflow: hidden;
+                }
+
+                @include media(pc-md) {
+                    width: calc(d-adaptive(1050) * 3 + $gutters * 2);
+                }
+
+                @include media(tab-l) {
+                    width: calc(tab-adaptive(542) * 3 + $gutters * 2);
+                }
+
+                @include media(mob) {
+                    width: calc(m-adaptive(315) * 3 + $gutters * 2);
+                }
+            }
+
+            &.is-gallery {
+                display: block;
+
+                .p-detail__gallery-slider {
+                    display: none;
+                }
+            }
+
+            &:not(.is-gallery) {
+                .p-detail__gallery-items {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &__gallery-items {
+        display: grid;
+        gap: $space-default;
+
+        @include grid-columns(4);
+
+        @include media(mob-m) {
+            @include grid-columns(2);
+        }
+    }
+
+    &__gallery-link {
+        position: relative;
+        display: none;
+
+        .p-detail__gallery-image-box {
+            padding-top: 0;
+            height: 20.6rem;
+
+            @include media(pc-l) {
+                height: d-adaptive(206);
+            }
+
+            @include media(mob-m) {
+                height: m-adaptive(100);
+            }
+
+            &::after {
+                display: none;
+            }
+        }
+
+        &:nth-child(-n + 6) {
+            display: block;
+        }
+
+        &:first-child,
+        &:nth-child(6) {
+            grid-row: span 2;
+            grid-column: span 2;
+
+            @include media(mob-m) {
+                grid-row: auto;
+                grid-column: auto;
+            }
+
+            .p-detail__gallery-image-box {
+                height: 45.2rem;
+
+                @include media(pc-l) {
+                    height: d-adaptive(452);
+                }
+
+                @include media(mob-m) {
+                    height: m-adaptive(100);
+                }
+            }
+        }
+
+        &:nth-child(4) {
+            grid-column: 1/2;
+
+            @include media(mob-m) {
+                grid-column: auto;
+            }
+        }
+
+        &:nth-child(6) {
+            grid-row: 2/4;
+            grid-column: 3/5;
+
+            @include media(mob-m) {
+                grid-column: 1/3;
+                grid-row: auto;
+                grid-column: auto;
+            }
+        }
+    }
+
+    &__gallery-image-box {
+        position: relative;
+        overflow: hidden;
+        padding-top: 53.02%;
+        transform: translateZ(0);
+    }
+
+    &__gallery-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translateZ(0);
+    }
+
+    &__gallery-prev,
+    &__gallery-next {
+        width: 6.4rem;
+        height: 6.4rem;
+        border: 1px solid currentColor;
+        border-radius: 50%;
+        color: $white;
+
+        @include media(tab-l) {
+            display: none;
+        }
+    }
+
+    &__gallery-pagination {
+        margin-left: calc(112.6rem * -0.5);
+        padding: 0 4rem;
+        justify-content: flex-start;
+        max-width: 112.6rem;
+        width: d-adaptive(1126);
+
+        @include media(pc-l) {
+            margin-left: calc(d-adaptive(1126) * -0.5);
+        }
+
+        @include media(pc-md) {
+            width: d-adaptive(1050);
+            margin-left: calc(d-adaptive(1050) * -0.5);
+        }
+
+        @include media(tab-l) {
+            display: none;
+        }
+
+
+        &.swiper-pagination {
+            bottom: 4rem;
+            left: 50%;
+
+            @include media(pc-md) {
+
+            }
+        }
+    }
+
+    &__thumbs {
+        margin-top: 2rem;
+
+        @include media(mob) {
+            margin-top: 1rem;
+        }
+    }
+
+    &__thumbs-prev,
+    &__thumbs-next {
+        border-radius: 50%;
+        height: $button-height;
+        width: $button-height;
+        color: $white;
+        background: var(--color-second-3);
+
+        &:hover {
+            color: $white;
+            background: $accent;
+        }
+
+        svg {
+            width: 3.6rem;
+            height: 1.6rem;
+            fill: currentColor;
+        }
+
+        &.swiper-button-disabled {
+            opacity: 0;
+        }
+
+        @include media(tab) {
+            display: none;
+        }
+    }
+
+    &__thumbs-prev {
+        left: 2rem;
+    }
+
+    &__thumbs-next {
+        right: 2rem;
+    }
+
+    &__thumbs-slide {
+        width: 19.3rem;
+        user-select: none;
+        cursor: pointer;
+
+        @include media(mob) {
+            width: m-adaptive(125);
+            max-width: 19.3rem;
+        }
+
+        &.swiper-slide-thumb-active {
+            .p-detail__thumbs-image-box {
+                &::after {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    &__thumbs-image-box {
+        position: relative;
+        padding-top: 52.8497%;
+        transform: translateZ(0);
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-second-2);
+            opacity: 0;
+            transition: $duration opacity;
+        }
+    }
+
+    &__thumbs-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform: translateZ(0);
+    }
+
+    &__sidebar {
+        padding-top: 2rem;
+    }
+
+    &__infrastructure-adapative {
+        margin-bottom: 3rem;
+
+        @include media-min(mob) {
+           display: none;
+        }
+    }
+
+    &__infrastructure {
+        @include media(tab-l) {
+            margin-bottom: 4rem;
+        }
+
+        @include media(mob) {
+            margin-bottom: 3rem;
+        }
+
+        .info-block__content {
+            padding-top: 2rem;
+
+            @include media(tab-l) {
+                padding-top: 0;
+            }
+        }
+
+        .info-block__title {
+            @include media(tab-l) {
+                padding-bottom: 1rem;
+            }
+        }
+    }
+
+    &__view-chalet {
+        margin-top: $space-default;
+    }
+
+    &__view-chalet-button {
+        @include media(mob) {
+            height: 3.2rem;
+            font-size: var(--text-size);
+        }
+    }
+
+    &__gallery-control {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        justify-content: space-between;
+        margin-bottom: 4rem;
+
+        @include media(tab-l) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__gallery-see-all {
+        display: grid;
+        align-items: center;
+        grid-auto-flow: column;
+        gap: 1rem;
+        color: $accent;
+        transition: $duration color;
+
+        &:hover {
+            color: $second;
+        }
+    }
+
+    &__gallery-see-all-text {
+        @include media(tab-l) {
+            &::first-letter {
+                text-transform: uppercase;
+            }
+        }
+
+        span {
+            @include media(tab-l) {
+                display: none;
+            }
+        }
+    }
+
+    &__gallery-see-all-icon {
+        fill: currentColor;
+    }
+
+    &__gallery-switch {
+        .ui-switch-block__button {
+            @include media(mob) {
+                height: 3.4rem;
+                font-size: var(--text-size);
+            }
+        }
+
+        .ui-switch-block__background {
+            @include media(mob) {
+                height: 3.4rem;
+            }
+        }
+    }
+
+    &__main-description {
+        margin-bottom: 4rem;
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__book {
+        display: grid;
+        gap: $space-default;
+        padding: $space-default;
+        background: var(--color-bg);
+
+        @include media(tab-l) {
+            padding: 2rem;
+            gap: 2rem;
+        }
+
+        &_mobile {
+            margin-top: 4rem;
+            padding: 0.5rem 0 0;
+            gap: 1rem;
+            background: none;
+
+            .p-detail__book-price {
+                font-size: var(--text-size);
+            }
+
+            .p-detail__book-period {
+                padding: 0;
+                border: none;
+            }
+
+            .p-detail__book-price-box {
+                padding-top: 1.5rem;
+            }
+        }
+    }
+
+    &__book-info {
+        display: grid;
+        gap: 1rem;
+
+        @include media(mob) {
+            padding-bottom: 1rem;
+            gap: 0.5rem;
+        }
+    }
+
+    &__book-info-item {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    &__book-info-name {
+        color: $grey;
+    }
+
+    &__book-info-value {
+    }
+
+    &__book-price-box {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: flex-start;
+        gap: 1.5rem 1rem;
+        padding-top: 2rem;
+        border-top: 1px solid;
+
+        @include media-between(mob, tab-l) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+    }
+
+    &__book-price {
+        font-family: $font-alethia-pro;
+        line-height: 120%;
+        font-size: var(	--title-size-sm);
+
+        @include media(tab-l) {
+            font-size: 3.2rem;
+            line-height: 1.2;
+        }
+
+        @include media(mob) {
+            font-size: 2.8rem;
+        }
+    }
+
+    &__book-period {
+        padding: 0.5rem 1.5rem;
+        border: 1px solid $accent;
+        border-radius: 4rem;
+        width: fit-content;
+    }
+
+    &__book-buttons {
+        display: grid;
+        gap: 1rem;
+    }
+
+    &__book-button {
+        width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    &__book-adaptive {
+        margin-bottom: 3.5rem;
+
+        @include media-min(mob) {
+            display: none;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__book-wrapper {
+        @include media(mob) {
+            display: none;
+        }
+    }
+
+    &__features {
+        margin-bottom: 6rem;
+
+        @include media(mob) {
+            margin-bottom: 1.1rem;
+        }
+
+
+    }
+
+    &__features-items {
+        display: grid;
+        grid-auto-flow: column;
+        grid-template-rows: repeat(3, auto);
+        gap: 1rem $space-default;
+
+        @include grid-columns(3);
+
+        @include media(tab-l) {
+            grid-template-rows: repeat(4, auto);
+            margin-right: -0.5rem;
+
+            @include grid-columns(2);
+        }
+    }
+
+    &__features-item {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: flex-start;
+        align-content: flex-start;
+        gap: 1rem;
+    }
+
+    &__features-icon {
+        width: 3.2rem;
+        height: 3.2rem;
+        fill: none;
+        stroke: $accent;
+        stroke-width: 1.5;
+
+        @include media(mob) {
+            width: 2.4rem;
+            height: 2.4rem;
+        }
+    }
+
+    &__features-name {
+        align-self: center;
+    }
+
+    &__content-adaptive {
+        padding-top: 1.4rem;
+
+        @include media(tab-l) {
+            padding-top: 3.4rem;
+        }
+
+        @include media-min(pc-md) {
+            display: none;
+        }
+    }
+
+    &__content-desktop-wrapper {
+        @include media(pc-md) {
+            display: none;
+        }
+    }
+
+    &__tabs-info {
+        margin-top: $section-space;
+
+        @include media(tab-l) {
+            margin-top: 4rem;
+        }
+
+        @include media(mob) {
+            margin-top: 3rem;
+            gap: 2rem;
+        }
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        .tabs-info__menu-list {
+            @include media(mob) {
+                position: relative;
+                gap: 2rem;
+                grid-auto-flow: column;
+                margin-right: calc($gutters * (-1));
+                margin-left: calc($gutters * (-1));
+                padding: 0 $gutters;
+                width: auto;
+                overflow: auto;
+                opacity: 1;
+                visibility: visible;
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+                background: none;
+
+                &::-webkit-scrollbar {
+                    display: none;
+                }
+            }
+
+            li {
+                @include media(mob) {
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        .tabs-info__menu-link {
+            @include media(mob) {
+                padding: 0;
+                font-size: var(--text-size);
+            }
+        }
+    }
+
+    &__booking {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+        box-shadow: 0 -0.4rem 3rem 0 rgba(var(--color-base-rgb), 0.07);
+        width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        background: $white;
+        transition: $duration opacity, $duration visibility;
+
+        .is-modal-active & {
+            padding-right: var(--modal-lock-padding-right);
+        }
+
+        &.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+    }
+
+    &__booking-inner {
+        display: grid;
+        gap: 2rem;
+        padding: 2rem $gutters;
+
+        @include media(mob) {
+            gap: 1.5rem;
+        }
+    }
+
+    &__booking-line {
+        height: 1px;
+        background: currentColor;
+
+    }
+
+    &__booking-dates {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 1rem;
+        color: $grey;
+    }
+
+    &__booking-date {
+    }
+
+    &__booking-row {
+        display: grid;
+        align-items: center;
+        grid-template-columns: minmax(0, 1fr) max-content max-content;
+        gap: 2rem;
+
+        @include media(mob) {
+            gap: 1rem;
+        }
+    }
+
+    &__booking-period {
+    }
+
+    &__booking-price {
+        font-family: $font-alethia-pro;
+        font-size: 2.4rem;
+        line-height: 1.4;
+
+        @include media(mob) {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__booking-button {
+    }
+
+    &_resort {
+        .p-detail {
+            &__title {
+                @include media-between(mob, tab-l) {
+                    font-size: 4.8rem;
+                }
+            }
+        }
+
+        .p-detail__sidebar {
+            @include media(tab-l) {
+                display: none;
+            }
+        }
+    }
+
+    &_chalet,
+    &_hotel {
+        .p-detail__row {
+            grid-template-columns: minmax(0, 1fr) 42.7rem;
+            padding-top: 0;
+
+            @include media(tab-l) {
+                grid-template-columns: minmax(0, 1fr) 26rem;
+            }
+
+            @include media(mob) {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .p-detail__sidebar {
+            padding-top: 0;
+
+            @include media(mob) {
+                display: none;
+            }
+        }
+
+        .p-detail__heading-right {
+            @include media(tab-l) {
+                grid-template-columns: minmax(0, 1fr) auto auto;
+            }
+
+            @include media(mob-m) {
+                grid-template-columns: minmax(0, 1fr) auto;
+            }
+
+        }
+
+        .p-detail__info {
+            @include media(tab-l) {
+                grid-column: auto;
+            }
+
+            @include media-between(mob, tab-l) {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: -1rem;
+                gap: 0;
+            }
+        }
+
+        .p-detail__info-item {
+            @include media-between(mob, tab-l) {
+                margin-right: 1rem;
+                margin-bottom: 1rem;
+            }
+        }
+    }
+
+    &_hotel {
+        .detailed-description__text {
+            max-height: 21.6rem;
+
+            @include media(tab-l) {
+                max-height: 24.3rem;
+            }
+
+            @include media(tab-l) {
+                max-height: 30rem;
+            }
+        }
+
+        .p-detail__booking-row {
+            @include media(mob-xs) {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            }
+        }
+
+        .p-detail__booking-price {
+            @include media(mob-xs) {
+                text-align: right;
+            }
+        }
+
+        .p-detail__booking-button {
+            @include media(mob-xs) {
+                grid-column: span 2;
+                width: 100%;
+            }
+        }
+    }
+
+
+}

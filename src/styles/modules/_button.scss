@@ -1,0 +1,79 @@
+/* ------- UI - Button ------- */
+.ui-button {
+	appearance: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0 2.5rem;
+	border: none;
+	border-radius: calc($button-height * 0.5);
+	box-shadow: none;
+	width: fit-content;
+	height: $button-height;
+	font-family: inherit;
+	font-weight: 400;
+	font-size: $text-size-desktop;
+	line-height: 1.5;
+	text-align: left;
+	text-decoration: none;
+	color: $white;
+	background: $accent;
+	transition: $duration background, $duration color, $duration border-color, $duration box-shadow, $duration opacity;
+	cursor: pointer;
+	user-select: none;
+
+    @include media(mob) {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        height: $button-height-sm;
+    }
+
+	&_fill {
+		width: 100%;
+	}
+
+	&_center {
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+	&:hover {
+		background: $second;
+  	}
+
+	&:focus-visible {
+		outline-color: $accent;
+	}
+
+	&_style_outline {
+		border: 1px solid $accent;
+		color: $base-color;
+		background: transparent;
+
+		&:hover {
+			color: $accent;
+			background: transparent;
+		}
+	}
+
+	&_size_sm {
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+		height: $button-height-sm;
+	}
+
+
+	@include disabled {
+		opacity: 0.3;
+		cursor: default;
+		pointer-events: none;
+		// color: $white;
+		// background: $disabled-background;
+		// cursor: default;
+
+		// &:hover {
+		// 	color: $white;
+		// 	background: $disabled-background;
+		// }
+	}
+}

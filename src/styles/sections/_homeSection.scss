@@ -1,0 +1,174 @@
+/* ------- homeSection -------- */
+.home-section {
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: 0.8s opacity;
+        transform: translateZ(0) scale(1.1);
+
+        .simpleParallax {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        &.is-active {
+            opacity: 1;
+        }
+    }
+
+    &__bg-item {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transform: scale(1.2);
+		transition: 1.5s transform;
+		will-change: transform;
+		transition-delay: 0.3s;
+
+        .html-is-loaded & {
+			transform: none;
+			will-change: auto;
+            opacity: 1;
+		}
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+        }
+
+        &_mobile {
+            @include media-min(tab) {
+                display: none;
+            }
+        }
+
+        &_desktop {
+            @include media(mob) {
+                display: none;
+            }
+        }
+
+    }
+
+    &__bg-parallax {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+
+    }
+
+
+    &__bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-position: center 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-color: $black;
+    }
+
+    &__inner {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: flex-end;
+        padding-top: $header;
+        min-height: calc(var(--vh, 1vh) * 100);
+    }
+
+    &__content-inner {
+        transform: translate3d(0, 100%, 0);
+		opacity: 0;
+		transition: 1.5s transform, 1s opacity;
+		will-change: transform, opacity;
+		transition-delay: 0.3s;
+
+        .html-is-loaded & {
+			transform: none;
+			will-change: auto;
+			opacity: 1;
+		}
+    }
+
+    &__content {
+        padding: $space-default 0;
+        width: 100%;
+        background: linear-gradient(180deg, rgba(26, 26, 26, 0) 0%, #1A1A1A 100%);
+
+        opacity: 0;
+		transition: 0.05s opacity;
+		transition-delay: 0s;
+
+        .html-is-loaded & {
+            opacity: 1;
+		}
+
+    }
+
+    &__container {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: flex-end;
+        gap: 2rem;
+
+        @include media(mob) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    &__title {
+        margin: 0;
+        max-width: 56.2rem;
+        font-family: $font-alethia-next;
+        font-weight: 350;
+        font-size: 6.4rem;
+        line-height: 110%;
+        color: $white;
+
+        @include media(tab-l) {
+            max-width: 41.6rem;
+            font-size: 4.8rem;
+            line-height: 120%;
+        }
+
+        @include media(mob) {
+            max-width: 35rem;
+            font-size: 4rem;
+        }
+
+        h1 {
+            margin: 0;
+            font-weight: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            color: inherit;
+        }
+
+    }
+}

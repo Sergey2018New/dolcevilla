@@ -1,0 +1,43 @@
+---
+const items = [
+	{
+		title: "Опыт и&nbsp;профессионализм",
+		text: "Работая более 15&nbsp;лет в&nbsp;индустрии аренды люксовых шале с&nbsp;обслуживанием и&nbsp;аренды престижных вилл ​​уровень профессионализма команды постоянно растет"
+	},
+	{
+		title: "Надежность и&nbsp;забота",
+		text: "Компания Дольче Вилла основана и&nbsp;расположена в&nbsp;Швейцарии, что позволяет нам гарантировать всем клиентам надежность и&nbsp;конфиденциальность в&nbsp;совокупности с&nbsp;высоким уровнем сервиса"
+	},
+	{
+		title: "Портфолио",
+		text: "Наше портфолио насчитывает порядка 600 тщательно подобранных шале и&nbsp;вилл класса люкс"
+	}
+]
+---
+
+<section class="section why-we">
+	<div class="why-we__inner">
+		<div class="why-we__bg-image lazy" data-bg="img/why-we-bg.png" data-bg-hidpi="img/why-we-bg@2x.png"></div>
+		<div class="container why-we__container">
+			<div class="why-we__row">
+				<div class="why-we__column">
+					<h2 class="why-we__title section-title">Почему мы?</h2>
+				</div>
+				<div class="why-we__column">
+					<div class="why-we__items">
+						{items.map((item) => (
+							<div class="why-we__item">
+								<div class="why-we__item-title">
+									<div class="why-we__item-title-inner" set:html={item.title}></div>
+								</div>
+								<div class="why-we__item-text">
+									<p set:html={item.text}></p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

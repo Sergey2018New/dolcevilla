@@ -1,0 +1,161 @@
+/* ------- aboutCompany -------- */
+.about-company {
+
+    @include media(tab-l) {
+        padding-top: 5rem;
+    }
+
+    @include media(mob) {
+        padding-top: calc($section-space * 0.5);
+    }
+
+    &__image-box {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        height: d-adaptive(440);
+        min-height: 20rem;
+        margin-bottom: $section-space;
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    &__inner {
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__container {
+    }
+
+    &__row {
+        display: grid;
+        gap: 6rem $space-default;
+
+        @include grid-columns(2);
+
+        @include media(tab-l) {
+            @include grid-columns(1);
+        }
+
+        @include media(mob) {
+            row-gap: 3rem;
+        }
+    }
+
+    &__column {
+    }
+
+    &__location-wrapper {
+        padding-top: 22.7rem;
+
+        @include media(tab-l) {
+            padding-top: 5.2rem;
+            height: 16.7rem;
+        }
+
+        @include media(mob) {
+            padding-top: 2.2rem;
+            height: 13.7rem;
+        }
+    }
+
+    &__location {
+        position: relative;
+        left: -1rem;
+        width: 7.8rem;
+        height: 7.8rem;
+        margin: 0 auto;
+
+        @include media(tab-l) {
+            width: 5.4rem;
+            height: 5.4rem;
+        }
+
+        @include media(mob) {
+            left: -4rem;
+        }
+    }
+
+    &__location-map {
+        position: absolute;
+        bottom: -9.2rem;
+        left: 50%;
+        width: 143.6rem;
+        height: 92.5rem;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: center 0;
+        transform: translate(-65.2%, 0);
+
+        @include media(tab-l) {
+            bottom: -6rem;
+            width: 97.7rem;
+            height: 62.9rem;
+        }
+    }
+
+    &__location-pointer {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 7.8rem;
+        height: 7.8rem;
+        border-radius: 50%;
+        background: $second;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -0.8rem;
+            margin-left: -0.85rem;
+            border-top: 1.8rem solid $second;
+            border-right: 0.9rem solid transparent;
+            border-left: 0.9rem solid transparent;
+
+            @include media(tab-l) {
+                bottom: -0.6rem;
+                border-top-width: 1.4rem;
+            }
+        }
+
+        @include media(tab-l) {
+            width: 5.4rem;
+            height: 5.4rem;
+        }
+    }
+
+    &__location-pointer-logo {
+        position: relative;
+    }
+
+    &__content {
+        position: relative;
+    }
+
+    &__title {
+        margin-bottom: var(--title-section-margin);
+    }
+
+    &__text {
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+    }
+
+    &__more-wrapper {
+        padding-top: 8rem;
+
+        @include media(tab-l) {
+            padding-top: 4rem;
+        }
+    }
+
+}

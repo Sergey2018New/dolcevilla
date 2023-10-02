@@ -1,0 +1,70 @@
+/* ------- Text page -------- */
+.p-text-page {
+    padding: calc($section-space-sm - $space-default) 0 calc($section-space);
+
+    @include media(tab-l) {
+        padding-top: calc(4rem - var(--space-default));
+    }
+
+    @include media(mob) {
+        padding-top: calc(3rem - var(--space-default));
+    }
+
+    &:last-child {
+        padding-bottom: $section-space;
+    }
+
+    &__title {
+        margin-bottom: 4rem;
+
+        @include media(tab-l) {
+            margin-bottom: 3rem;
+        }
+
+        @include media(mob) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__description {
+        max-width: 89.3rem;
+
+        a {
+            border-bottom: none;
+            color: $second;
+
+            &:hover {
+                color: $accent;
+            }
+        }
+    }
+
+    &__section {
+        display: grid;
+        grid-template-columns: minmax(0, 32.3fr) minmax(0, 67.7fr);
+        gap: $space-default;
+        margin-top: var(--section-space-sm);
+        padding-top: $space-default;
+        border-top: 1px solid var(--color-line);
+
+        @include media(tab-l) {
+            padding-top: 3rem;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 3rem;
+        }
+
+        @include media(mob) {
+            gap: 2rem;
+            margin-top: 4rem;
+            padding-top: 2rem;
+        }
+
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+
+    &__column {
+    }
+}
+

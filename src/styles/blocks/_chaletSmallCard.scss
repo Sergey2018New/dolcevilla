@@ -1,0 +1,107 @@
+/* ------- chalet-small-card -------- */
+.chalet-small-card {
+    width: 21.4rem;
+    font-family: $font-primary;
+    font-weight: 400;
+    font-size: var(--text-size);
+    line-height: var(--text-line-height);
+    background: $white;
+    transform: translateZ(0);
+
+    @include media(mob) {
+        gap: 0.5rem;
+    }
+
+    &__image-box {
+        position: relative;
+        height: 12.8rem;
+        overflow: hidden;
+        transform: translateZ(0);
+    }
+
+    &__image {
+        display: block;
+        width: 105%;
+        height: 105%;
+        max-width: none;
+        object-fit: cover;
+        transition: calc($duration * 1.5) transform;
+    }
+
+    &__link {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+        padding: 1rem;
+        width: 100%;
+        min-height: 100%;
+        text-decoration: none;
+
+        &:hover {
+            .chalet-small-card {
+                &__title {
+                    color: $accent;
+                }
+            }
+        }
+
+        @include hover {
+            .chalet-small-card {
+                &__image {
+                    // transform: scale(var(--scale-image)) ;
+                }
+            }
+        }
+    }
+
+    &__content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.5rem;
+    }
+
+    &__row {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: minmax(0, 1fr) max-content;
+        align-items: center;
+    }
+
+    &__title {
+        grid-column: span 2;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid $base-color;
+        transition: $duration color;
+    }
+
+    &__price {
+        white-space: nowrap;
+    }
+
+    &__info {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__info-item {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: 1rem;
+    }
+
+    &__info-title {
+        margin-right: 1rem;
+        color: $grey;
+    }
+
+
+    &__more-link {
+        text-decoration: none;
+        color: $accent;
+        transition: $duration color;
+
+        &:hover {
+            color: $second;
+        }
+    }
+}

@@ -1,0 +1,64 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import Modal from '@components/modules/Modal.astro';
+import ChaletItem from '@components/blocks/ChaletItem.astro';
+
+const items = [
+    {
+        image: "img/favorites/1.jpg",
+        image2x: "img/favorites/1@2x.jpg",
+        title: "Chalet Alpin Roc",
+        price: "€ 12 890",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Цюрс",
+    },
+    {
+        image: "img/favorites/2.jpg",
+        image2x: "img/favorites/2@2x.jpg",
+        title: "Пентхаус Altesse",
+        price: "€ 4 890",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Альп д'Юэз",
+    },
+    {
+        image: "img/favorites/3.jpg",
+        image2x: "img/favorites/3@2x.jpg",
+        title: "Пентхаус Balegia",
+        price: "€ 790",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Цюрс",
+    },
+    {
+        image: "img/favorites/4.jpg",
+        image2x: "img/favorites/4@2x.jpg",
+        title: "Пентхаус Balegia",
+        price: "€ 23 880",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Цюрс",
+    },
+    {
+        image: "img/favorites/5.jpg",
+        image2x: "img/favorites/5@2x.jpg",
+        title: "Chalet Arrabelle",
+        price: "€ 12 890",
+        period: "7 ночей",
+        country: "Франция",
+        location: "Цюрс",
+    },
+]
+---
+<Modal id="modal_favorites" type={'side'} class="modal-favorites" title="Избранное" isFooter={true}>
+    <div class="modal-favorites__items">
+        {items.map((item) => (
+            <ChaletItem class="modal-favorites__item" type="short" title={item.title} price={item.price} period={item.period} country={item.country} location={item.location} image={item.image} image2x={item.image2x} isFavorite={true}></ChaletItem>
+        ))}
+    </div>
+    <button class="modal__clear-button" slot="footer">
+        <Icon class="modal__clear-button-icon" name="cross"></Icon>
+        <span>Очистить список</span>
+    </button>
+</Modal>

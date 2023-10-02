@@ -1,0 +1,222 @@
+---
+import Layout from '@layouts/layout.astro';
+import Icon from '@components/modules/Icon.astro';
+import Button from '@components/modules/Button.astro';
+import ButtonIcon from '@components/modules/ButtonIcon.astro';
+import SwitchBlock from '@components/modules/SwitchBlock.astro';
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperPagination from '@components/modules/swiper/SwiperPagination.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import Breadcrumbs from '@components/blocks/Breadcrumbs.astro';
+import TabMenu from '@components/blocks/TabMenu.astro';
+import DetailedDescription from '@components/blocks/DetailedDescription.astro';
+import TabsInfo from '@components/blocks/TabsInfo.astro';
+
+import EstimatedPrices from '@components/sections/EstimatedPrices.astro';
+import ChaletLocations from '@components/sections/ChaletLocations.astro';
+import SimilarChalets  from '@components/sections/SimilarChalets.astro';
+import Feedback  from '@components/sections/Feedback.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+
+const features = [
+    {
+        icon: 'pool',
+        text: 'Бассейн',
+    },
+    {
+        icon: 'shower',
+        text: 'Хаммам',
+    },
+    {
+        icon: 'tv',
+        text: 'Телевизор',
+    },
+    {
+        icon: 'router',
+        text: 'Wi-Fi',
+    },
+    {
+        icon: 'animal',
+        text: 'Можно с животными',
+    },
+    {
+        icon: 'children-slide',
+        text: 'Детская площадка',
+    },
+    {
+        icon: 'skating',
+        text: 'Каток',
+    },
+    {
+        icon: 'help',
+        text: 'Круглосуточная поддержка',
+    },
+]
+
+const galleryImages = [1,2,3,1,2,3,1,2,3];
+
+---
+
+<Layout title="Страница отеля" booking="hotel" isMap={true}>
+    <Breadcrumbs list={['Отели']} title="Hotel L'Apogee"></Breadcrumbs>
+    <div class="p-detail p-detail_hotel">
+        <div class="container">
+            <div class="p-detail__heading">
+                <div class="p-detail__heading-left">
+                    <h1 class="p-detail__title heading-title">Hotel L'Apogee</h1>
+                </div>
+                <div class="p-detail__heading-right">
+                    <div class="p-detail__info">
+                        <div class="p-detail__info-item">
+                            <span>Франция</span>
+                        </div>
+                        <div class="p-detail__info-item">
+                            <span>Альп д'Юэз</span>
+                        </div>
+                    </div>
+                    <Button class="p-detail__info-button" data-modal-open="#modal_booking">Забронировать</Button>
+                    <div class="p-detail__control">
+                        <ButtonIcon class={`p-detail__control-button p-detail__control-button_share`} icon="share" style="second" size='sm'></ButtonIcon>
+                        <ButtonIcon class={`p-detail__control-button p-detail__control-button_favorite`} icon="star" style="second" size='sm' mod="favorite" title="Добавить в избранное" aria-label="Добавить в избранное"></ButtonIcon>
+                        <ButtonIcon class={`p-detail__control-button p-detail__control-button_compare`} icon="scales" icon2="scales-fill" style="second" size='sm' title="Добавить в сравнение" aria-label="Добавить в сравнение"></ButtonIcon>
+                    </div>
+                </div>
+            </div>
+            <div class="p-detail__gallery p-detail__gallery_chalet js-detail-gallery">
+                <div class="p-detail__gallery-slider swiper js-detail-slider">
+                    <div class="swiper-wrapper">
+                        {galleryImages.map((item) => (
+                            <a href={`img/hotel-gallery/${item}_big.jpg`} data-fancybox="slider" data-thumb={`img/hotel-gallery/${item}_thumb.jpg`} class="p-detail__gallery-slide swiper-slide">
+                                <div class="p-detail__gallery-image-box">
+                                    <img class="p-detail__gallery-image lazy" data-src={`img/hotel-gallery/${item}_big.jpg`} alt="" width="1126" height="596" />
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                    <SwiperControl class="p-detail__gallery-prev js-detail-slider-prev" direction="prev"></SwiperControl>
+                    <SwiperControl class="p-detail__gallery-next js-detail-slider-next" direction="next"></SwiperControl>
+                    <SwiperPagination  type='line' class="p-detail__gallery-pagination js-detail-slider-pagination"></SwiperPagination>
+                </div>
+                <div class="p-detail__gallery-items">
+                    {galleryImages.map((item) => (
+                        <a href={`img/hotel-gallery/${item}_big.jpg`} data-thumb={`img/hotel-gallery/${item}_thumb.jpg`} class="p-detail__gallery-link js-detail-gallery-link" data-fancybox="gallery">
+                            <div class="p-detail__gallery-image-box">
+                                <img class="p-detail__gallery-image lazy" data-src={`img/hotel-gallery/${item}.jpg`} alt="" width="1126" height="596" />
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+            <div class="p-detail__row">
+                <div class="p-detail__content">
+                    <div class="p-detail__gallery-control">
+                        <SwitchBlock class="p-detail__gallery-switch js-detail-gallery-switch" items={[
+                            {
+                                text: 'Слайдер фото',
+                                isActive: true,
+                            },
+                            {
+                                text: 'Галерея'
+                            }
+                        ]}></SwitchBlock>
+                        <button type="button" class="p-detail__gallery-see-all js-detail-gallery-all">
+                            <span class="p-detail__gallery-see-all-text"><span>Смотреть </span> все фото</span>
+                            <Icon class="p-detail__gallery-see-all-icon" name="fullscreen"></Icon>
+                        </button>
+                    </div>
+                    <div class="p-detail__main-description">
+                        <p>Благодаря идеальному расположению лыжных трасс недалеко от&nbsp;центра деревни, Tivoli Lodge является одним из&nbsp;самых привлекательных мест для отдыха в&nbsp;горах по&nbsp;всей Швейцарии.</p>
+                    </div>
+                    <div class="p-detail__book-adaptive js-detail-book-adaptive"></div>
+                    <div class="p-detail__features">
+                        <div class="p-detail__features-items">
+                            {features.map((item) => (
+                                <div class="p-detail__features-item">
+                                    <Icon class="p-detail__features-icon" name={item.icon}></Icon>
+                                    <div class="p-detail__features-name" set:html={item.text}></div>
+                                </div>
+                            ))}
+                         </div>
+                    </div>
+                    <div class="p-detail__content-desktop-wrapper">
+                        <div class="p-detail__content-desktop" data-da=".js-detail-content-adaptive,1299.98,first">
+                            <TabMenu class="p-detail__tab-menu" type="navigation" list={[
+                                {
+                                    text: 'Описание',
+                                    goto: '#hotel_description',
+                                },
+                                {
+                                    text: 'Цена и доступность',
+                                    goto: '#estimated_prices',
+                                },
+                                {
+                                    text: 'Местоположение',
+                                    goto: '#hotel_location',
+                                },
+                            ]}></TabMenu>
+                            <div class="p-detail__section p-detail__section_description" id="hotel_description" data-navigation-section>
+                                <DetailedDescription class="p-detail__description" text={`<p>Отель L&rsquo;Apogee является частью роскошной коллекции Oetker, связанной с&nbsp;несколькими всемирно известными отелями, такими как The Bristol в&nbsp;Париже и&nbsp;Hotel Du&nbsp;Cap Eden Roc в&nbsp;Антибах, на&nbsp;юге Франции. Отель L&rsquo;Apogee является первым роскошным горнолыжным отелем из&nbsp;этой коллекции, предлагающим идеальное расположение для лыжных трасс в&nbsp;Куршевеле 1850, а&nbsp;также превосходные удобства, включая большой спа-салон, крытый бассейн и&nbsp;отличный ресторан.
+                                    Отель L&rsquo;Apogee в&nbsp;Куршевеле 1850 идеально подходит для взрослых, которые хотят расслабиться и&nbsp;отдохнуть в&nbsp;фантастическом ресторане и&nbsp;оздоровительных центрах, а&nbsp;также для семей с&nbsp;отличными удобствами для детей. Отель L&rsquo;Apogee является частью роскошной коллекции Oetker, связанной с&nbsp;несколькими всемирно известными отелями, такими как The Bristol в&nbsp;Париже и&nbsp;Hotel Du&nbsp;Cap Eden Roc в&nbsp;Антибах, на&nbsp;юге Франции. Отель L&rsquo;Apogee является первым роскошным горнолыжным отелем из&nbsp;этой коллекции, предлагающим идеальное расположение для лыжных трасс в&nbsp;Куршевеле 1850, а&nbsp;также превосходные удобства, включая большой спа-салон, крытый бассейн и&nbsp;отличный ресторан.
+                                    Отель L&rsquo;Apogee в&nbsp;Куршевеле 1850 идеально подходит для взрослых, которые хотят расслабиться и&nbsp;отдохнуть в&nbsp;фантастическом ресторане и&nbsp;оздоровительных центрах, а&nbsp;также для семей с&nbsp;отличными удобствами для детей.</p>`}></DetailedDescription>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <aside class="p-detail__sidebar">
+                    <div class="p-detail__book-wrapper">
+                        <div class="p-detail__book" data-da=".js-detail-book-adaptive,767.98,first">
+                            <div class="p-detail__book-info">
+                                <div class="p-detail__book-info-item">
+                                    <div class="p-detail__book-info-name">Номера и люксы</div>
+                                    <div class="p-detail__book-info-value">30</div>
+                                </div>
+                            </div>
+                            <div class="p-detail__book-price-box">
+                                <div class="p-detail__book-price">от 120 €</div>
+                                <div class="p-detail__book-period">1 ночь</div>
+                            </div>
+                            <div class="p-detail__book-buttons">
+                                <Button class="p-detail__book-button js-detail-booking-button" data-modal-open="#modal_booking">Забронировать номер</Button>
+                                <Button class="p-detail__book-button" style='outline'>Добавить в избранное</Button>
+                                <Button class="p-detail__book-button" style='outline'>Добавить в сравнение</Button>
+                                <Button class="p-detail__book-button" style='outline'>Скачать PDF описание</Button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="p-detail__content-adaptive js-detail-content-adaptive"></div>
+            <div class="p-detail__book p-detail__book_mobile u-mobile-visible">
+                <div class="p-detail__book-info">
+                    <div class="p-detail__book-info-item">
+                        <div class="p-detail__book-info-name">Номера и люксы</div>
+                        <div class="p-detail__book-info-value">30</div>
+                    </div>
+                </div>
+                <div class="p-detail__book-price-box">
+                    <div class="p-detail__book-price">от 120 €</div>
+                    <div class="p-detail__book-period">1 ночь</div>
+                </div>
+                <div class="p-detail__book-buttons">
+                    <Button class="p-detail__book-button js-detail-booking-button" data-modal-open="#modal_booking">Забронировать номер</Button>
+                </div>
+            </div>
+            <TabsInfo class="p-detail__tabs-info" type="hotel"></TabsInfo>
+            <div class="p-detail__booking js-detail-booking-fixed">
+                <div class="p-detail__booking-inner">
+                    <div class="p-detail__booking-row">
+                        <div class="p-detail__booking-period">7 ночей</div>
+                        <div class="p-detail__booking-price">€ 210</div>
+                        <Button class="p-detail__booking-button" data-modal-open="#modal_booking">Забронировать номер</Button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <EstimatedPrices id="estimated_prices"></EstimatedPrices>
+    <ChaletLocations type="chalet" id="hotel_location" title="Местоположение" data-navigation-section></ChaletLocations>
+    <Feedback title='Забронировать шале'></Feedback>
+    <SimilarChalets type="similarHotels" title="Похожие отели на&nbsp;курорте Валь-Торанс"></SimilarChalets>
+    <WhyWe></WhyWe>
+</Layout>

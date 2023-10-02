@@ -1,0 +1,131 @@
+/* ------- whyWe -------- */
+.why-we {
+    padding-bottom: 0;
+
+    &__inner {
+        position: relative;
+        padding-top: $section-space-sm;
+        padding-bottom: calc($section-space + $space-default);
+        background: var(--color-bg);
+
+        @include media(tab-l) {
+            padding-top: 4rem;
+        }
+
+        @include media(mob) {
+            padding-top: 3rem;
+            padding-bottom: calc($section-space);
+        }
+    }
+
+    &__bg-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center bottom;
+        mix-blend-mode: darken;
+
+        @include media(mob) {
+            background-position: 31% bottom;
+        }
+
+    }
+
+    &__container {
+        position: relative;
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: minmax(0, 25fr) minmax(0, 75fr);
+        gap: $space-default;
+
+        @include media(pc) {
+            grid-template-columns: minmax(0, 1fr);
+        }
+    }
+
+    &__column {
+    }
+
+    &__title {
+        margin-bottom: var(--title-section-margin);
+        max-width: 28rem;
+
+        @include media(pc) {
+            margin-bottom: 1rem;
+            max-width: none;
+        }
+
+        @include media(tab-l) {
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__items {
+        display: grid;
+        gap: calc($space-default * 2) $space-default;
+
+        @include grid-columns(3);
+
+        @include media(tab-l) {
+            @include grid-columns(2);
+        }
+
+        @include media(mob-m) {
+            @include grid-columns(1);
+        }
+    }
+
+    &__item-title {
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid currentColor;
+        min-height: 8.8rem;
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 140%;
+
+        @include media(tab-l) {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            min-height: 0;
+        }
+    }
+
+    &__item-title-inner {
+        max-width: 23rem;
+
+        @include media(tab-l) {
+            max-width: none;
+        }
+    }
+
+    &__item-text {
+        color: rgba(var(--color-base-rgb), 0.5);
+    }
+
+    &__item {
+        &:nth-child(3) {
+            @include media(tab-l) {
+                grid-column: span 2;
+            }
+
+            @include media(mob-m) {
+                grid-column: auto;
+            }
+        }
+
+
+    }
+
+    &:last-child {
+        padding-bottom: 0;
+    }
+}

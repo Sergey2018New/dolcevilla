@@ -1,0 +1,178 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import SwitchBlock from '@components/modules/SwitchBlock.astro';
+import Swiper from '@components/modules/swiper/Swiper.astro';
+import SwiperSlide from '@components/modules/swiper/SwiperSlide.astro';
+import SwiperControl from '@components/modules/swiper/SwiperControl.astro';
+import Filters from '@components/blocks/Filters.astro';
+
+interface Props {
+    id?: string;
+    [x: string]: any;
+}
+
+const {
+    id,
+    ...rest
+} = Astro.props;
+
+
+const shedule = [
+    {
+        dateFrom: 'Cб&nbsp;02.12.2023',
+        dateTo: 'Cб&nbsp;09.12.2023',
+        period: '7 ночей',
+        price: '€ 120',
+    },
+    {
+        dateFrom: 'Cб&nbsp;16.12.2023',
+        dateTo: 'Cб&nbsp;23.12.2023',
+        period: '7 ночей',
+        price: '€ 120',
+    },
+    {
+        dateFrom: 'Cб&nbsp;09.12.2023',
+        dateTo: 'Cб&nbsp;16.12.2023',
+        period: '7 ночей',
+        price: '€ 210',
+    },
+    {
+        dateFrom: 'Cб&nbsp;23.12.2023',
+        dateTo: 'Cб&nbsp;30.12.2023',
+        period: '7 ночей',
+        price: '€ 180',
+    },
+];
+---
+
+<section class="section availability" id={id} data-navigation-section>
+	<div class="container">
+        <h2 class="availability__title section-title">Цена и&nbsp;доступность</h2>
+        <Filters type="availability" class="availability__filters"></Filters>
+        <Swiper class="availability__slider js-slider-availability">
+            <div slot="before" class="availability__slider-controls slider-controls">
+                <SwiperControl class="availability__slider-prev slider-controls__prev js-slider-availability-prev" direction="prev"></SwiperControl>
+                <SwiperControl class="availability__slider-next slider-controls__next js-slider-availability-next" direction="next" ></SwiperControl>
+            </div>
+            <SwiperSlide class="availability__slide">
+                <div class="availability__shedule">
+                    <div class="availability__shedule-title">Декабрь 2023</div>
+                    <div class="availability__slide-row">
+                        <div class="availability__slide-column">
+                            <div class="availability__calendar">
+                                <div class="availability__calendar-datepicker js-shedule-calendar"></div>
+                            </div>
+                        </div>
+                        <div class="availability__slide-column">
+                            <div class="availability__shedule-items">
+                                {shedule.map((item, index) => (
+                                    <div class={`availability__shedule-item${index === 0 ? ' is-active' : ''} ${index === 2 ? ' is-no-selected' : ''}`}>
+                                        <div class="availability__shedule-dates">
+                                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
+                                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                                        </div>
+                                        <div class="availability__shedule-info">
+                                            <div class="availability__shedule-period" set:html={item.period}></div>
+                                            <div class="availability__shedule-price" set:html={item.price}></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide class="availability__slide">
+                <div class="availability__shedule">
+                    <div class="availability__shedule-title">Январь 2023</div>
+                    <div class="availability__slide-row">
+                        <div class="availability__slide-column">
+                            <div class="availability__calendar">
+                                <div class="availability__calendar-datepicker js-shedule-calendar"></div>
+                            </div>
+                        </div>
+                        <div class="availability__slide-column">
+                            <div class="availability__shedule-items">
+                                {shedule.map((item, index) => (
+                                   <div class={`availability__shedule-item${index === 0 ? ' is-active' : ''} ${index === 2 ? ' is-no-selected' : ''}`}>
+                                        <div class="availability__shedule-dates">
+                                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
+                                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                                        </div>
+                                        <div class="availability__shedule-info">
+                                            <div class="availability__shedule-period" set:html={item.period}></div>
+                                            <div class="availability__shedule-price" set:html={item.price}></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </SwiperSlide>
+            <SwiperSlide class="availability__slide">
+                <div class="availability__shedule">
+                    <div class="availability__shedule-title">Февраль 2023</div>
+                    <div class="availability__slide-row">
+                        <div class="availability__slide-column">
+                            <div class="availability__calendar">
+                                <div class="availability__calendar-datepicker js-shedule-calendar"></div>
+                            </div>
+                        </div>
+                        <div class="availability__slide-column">
+                            <div class="availability__shedule-items">
+                                {shedule.map((item, index) => (
+                                     <div class={`availability__shedule-item${index === 0 ? ' is-active' : ''} ${index === 2 ? ' is-no-selected' : ''}`}>
+                                        <div class="availability__shedule-dates">
+                                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
+                                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                                        </div>
+                                        <div class="availability__shedule-info">
+                                            <div class="availability__shedule-period" set:html={item.period}></div>
+                                            <div class="availability__shedule-price" set:html={item.price}></div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </SwiperSlide>
+        </Swiper>
+
+        <div class="availability__shedule availability__shedule_section">
+            <div class="availability__shedule-title">Январь 2023</div>
+            <div class="availability__shedule-items">
+                {shedule.map((item, index) => (
+                  <div class={`availability__shedule-item${index === 1 ? ' is-no-selected' : ''}`}>
+                        <div class="availability__shedule-dates">
+                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
+                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                        </div>
+                        <div class="availability__shedule-info">
+                            <div class="availability__shedule-period" set:html={item.period}></div>
+                            <div class="availability__shedule-price" set:html={item.price}></div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+        <div class="availability__shedule availability__shedule_section">
+            <div class="availability__shedule-title">Февраль 2023</div>
+            <div class="availability__shedule-items">
+                {shedule.map((item, index) => (
+                    <div class={`availability__shedule-item`}>
+                        <div class="availability__shedule-dates">
+                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
+                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                        </div>
+                        <div class="availability__shedule-info">
+                            <div class="availability__shedule-period" set:html={item.period}></div>
+                            <div class="availability__shedule-price" set:html={item.price}></div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+	</div>
+</section>

@@ -1,0 +1,171 @@
+/* ------- articleItem -------- */
+.article-item {
+    display: grid;
+    gap: $space-default;
+    grid-template-columns: auto minmax(0, 1fr);
+
+    @include media(mob-m) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+	&__image-box {
+        position: relative;
+        width: 31rem;
+        height: 20rem;
+        overflow: hidden;
+
+        @include media(tab-l) {
+            width: 24.6rem;
+            height: 15.8rem;
+        }
+
+        @include media(mob-m) {
+            width: 100%;
+            height: auto;
+            padding-top: 64.3478%;
+        }
+    }
+
+    &__image-link {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        &:focus-visible {
+            .article-item {
+                &__image {
+                    transform: scale(var(--scale-image));
+                }
+            }
+        }
+    }
+
+    &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: calc($duration * 1.5) transform;
+        will-change: transform;
+
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__title {
+        flex-grow: 1;
+        font-family: $font-alethia-pro;
+        font-size: var(--text-size-md);
+        line-height: 1.4;
+    }
+
+    &__title-link {
+        display: block;
+        min-height: 100%;
+
+        text-decoration: none;
+
+        &:hover,
+        &:focus-visible {
+            color: $accent;
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+
+    &__text {
+        margin-top: 2rem;
+        color: $grey;
+
+        @include media(tab) {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__footer {
+        display: flex;
+        flex-wrap: wrap;
+        grid-template-columns: auto auto;
+        margin-top: auto;
+        padding: 2rem 0;
+        border-bottom: 1px solid currentColor;
+
+        @include media(tab-l) {
+            padding: 1rem 0;
+        }
+
+        @include media(mob) {
+
+        }
+    }
+
+    &__date {
+        margin-right: 1rem;
+        color: $grey;
+    }
+
+    &__category-link {
+        text-decoration: none;
+
+        &:hover {
+            color: $accent;
+        }
+    }
+
+    &_full {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto minmax(0, 1fr);
+        gap: 2rem;
+
+        @include media(tab-l) {
+            row-gap: 1rem;
+        }
+
+        .article-item {
+            &__image-box {
+                width: 100%;
+                height: 44rem;
+
+                @include media(tab-l) {
+                    height: tab-adaptive(485);
+                }
+
+                @include media(mob) {
+                    height: m-adaptive(252);
+                }
+            }
+
+            &__title {
+                font-family: $font-alethia-next;
+                font-size: var(--title-size);
+                font-weight: 350;
+                line-height: 120%;
+
+                @include media(tab-l) {
+                    min-height: 13rem;
+                }
+
+                @include media(mob) {
+                    min-height: 0;
+                }
+            }
+        }
+    }
+
+    @include hover {
+        .article-item {
+            &__image {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

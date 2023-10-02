@@ -1,0 +1,80 @@
+/* ------- Form ------- */
+.form {
+	&__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 2rem;
+
+        @include media(mob) {
+            gap: 1rem;
+        }
+	}
+
+	&__button-wrapper {
+		display: grid;
+		gap: 2rem;
+		margin-top: 4rem;
+
+        @include media(mob) {
+            margin-top: 2rem;
+        }
+	}
+
+	&__agreement {
+		margin-top: 4rem;
+		line-height: 140%;
+		font-size: var(--text-size-sm);
+		color: $grey;
+
+        @include media(mob) {
+            margin-top: 2rem;
+        }
+
+		a {
+			border-bottom: 1px solid;
+			text-decoration: none;
+
+			&:hover {
+				color: $base-color;
+			}
+		}
+	}
+
+	&__checkbox {
+		.ui-checkbox__text {
+			@include media(tab-l) {
+				padding-top: 0.5rem;
+				font-size: 1.4rem;
+			}
+		}
+	}
+
+    &__field-row {
+        display: grid;
+        gap: 2rem 4rem;
+
+        @include grid-columns(2);
+
+        @include media(mob) {
+            row-gap: 1rem;
+
+            @include grid-columns(1);
+        }
+
+        &_col_3 {
+            @include grid-columns(3);
+
+            @include media(mob) {
+                @include grid-columns(1);
+            }
+        }
+
+        &_dates {
+            column-gap: 2rem;
+
+            @include media(mob) {
+                @include grid-columns(2);
+            }
+        }
+    }
+}

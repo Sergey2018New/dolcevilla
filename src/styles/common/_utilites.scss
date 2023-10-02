@@ -1,0 +1,16 @@
+/* ------- utilites ------- */
+.u-text-highlighted {
+    color: $accent;
+}
+
+.u-mobile-hidden {
+    @include media(mob) {
+        display: none !important;
+    }
+}
+
+.u-mobile-visible {
+    @include media-min(mob) {
+        display: none !important;
+    }
+}

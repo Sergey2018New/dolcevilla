@@ -1,0 +1,180 @@
+/* ------- similar chalets -------- */
+.similar-chalets {
+    &__content {
+        position: relative;
+    }
+
+    &__title {
+        margin-bottom: var(--title-section-margin);
+        padding-right: 17rem;
+
+        @include media(tab-l) {
+            min-height: 6.3rem;
+            padding-right: 15rem;
+        }
+
+        @include media(mob) {
+            padding-right: 0;
+            margin-bottom: 1rem;
+            min-height: 0;
+        }
+    }
+
+    &__slider {
+        position: static;
+        overflow: visible;
+
+        @include media-min(pc-l) {
+            width: calc(var(--container-max-width) + (100vw - var(--container-max-width)) * 0.5 - 5rem);
+        }
+
+        @include media(pc) {
+            overflow: hidden;
+        }
+
+        @include media(mob) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .similar-chalets__item {
+            user-select: none;
+        }
+    }
+
+    &__item {
+
+
+        .chalet-item__info {
+            @include media(mob-m) {
+                display: none;
+            }
+        }
+
+        .chalet-item__location {
+            @include media(mob-m) {
+                margin-top: 0;
+            }
+        }
+
+        .chalet-item__slider-wrapper {
+            min-height: 13.5rem;
+        }
+
+        .chalet-item__row {
+            @include media(mob-m) {
+                grid-template-columns: minmax(0, 1fr);
+                grid-auto-flow: row;
+            }
+
+            .chalet-item__title {
+                @include media(mob-m) {
+                    grid-column: auto;
+                }
+            }
+        }
+
+        .chalet-item__period {
+            @include media(mob-m) {
+                margin-top: 0.6rem;
+            }
+        }
+
+        @include media-min(pc) {
+            width: d-adaptive(310);
+            max-width: 31rem;
+        }
+
+        &._size_lg {
+            @include media-min(pc) {
+                width: d-adaptive(660);
+                max-width: 66rem;
+            }
+
+            .chalet-item__control {
+                @include media-min(pc) {
+                    top: 4rem;
+                    right: 4rem;
+                }
+            }
+        }
+
+        &._size_sm {
+            .chalet-item__row {
+                @include media-min(tab-l) {
+                    grid-template-columns: minmax(0, 1fr) max-content;
+                    grid-template-rows: auto auto;
+                }
+            }
+
+            .chalet-item__title {
+                @include media-min(tab-l) {
+                    grid-column: span 2;
+                }
+            }
+
+            .chalet-item__info-item {
+                &:first-child {
+                    margin-right: 0;
+                    width: 100%;
+                }
+            }
+
+            .chalet-item__slider-pagination {
+                display: none;
+            }
+        }
+    }
+
+    &__controls {
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        @include media(mob) {
+            position: relative;
+            width: 100%;
+            order: -1;
+            margin-bottom: 2.5rem;
+            justify-content: space-between;
+        }
+    }
+
+    &__prev {
+    }
+
+    &__next {
+    }
+
+    &__more {
+        display: grid;
+        gap: $space-default;
+        margin-top: var(--section-space-sm);
+
+        @include grid-columns(2);
+
+        @include media(tab-l) {
+            margin-top: 4rem;
+        }
+
+        &_center {
+            justify-items: center;
+
+            @include grid-columns(1);
+        }
+    }
+
+    &__more-button {
+        @include media(mob-m) {
+            .ui-button-more__text {
+                &::first-letter {
+                    text-transform: uppercase;
+                }
+
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}

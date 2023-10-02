@@ -1,0 +1,74 @@
+---
+import Button from '@components/modules/Button.astro';
+import FieldBox from '@components/modules/FieldBox.astro';
+import Checkbox from '@components/modules/Checkbox.astro';
+import Modal from '@components/modules/Modal.astro';
+
+interface Props {
+    title?: string;
+    submitText?: string;
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+    title,
+    submitText,
+	class: className,
+	...rest
+} = Astro.props;
+
+---
+<Modal id="modal_booking" class="modal-request modal-booking" title={title ? title : 'Бронирование Chalet Le Rocher'} text="Обратите внимание, что это не&nbsp;моментальное бронирование. Наш сотрудник свяжется с&nbsp;Вами, чтобы завершить бронирование." isForm={true}>
+    <form action="" class="modal-request__form form" autocomplete="off" data-js-form>
+        <div class="modal-request__form-top">
+            <div class="form__grid">
+                <div class="form__field-row">
+                    <div class="form__field-column">
+                        <FieldBox class="form__field" label="Имя *" name="name" isRequired={true} required></FieldBox>
+                    </div>
+                    <div class="form__field-column">
+                        <FieldBox class="form__field" label="Фамилия *" name="surname" isRequired={true} required></FieldBox>
+                    </div>
+                </div>
+
+                <FieldBox class="form__field" label="Почта или номер телефона" name="email" isRequired={true} required></FieldBox>
+
+                <div class="form__field-row form__field-row_dates">
+                    <div class="form__field-column">
+                        <FieldBox type="datepicker" class="form__field modal-booking__field-date-from" label="Дата заезда *" name="date_from" isRequired={true} required></FieldBox>
+                    </div>
+                    <div class="form__field-column">
+                        <FieldBox type="datepicker" class="form__field modal-booking__field-date-to" label="Дата выезда *" name="date_to" isRequired={true} required></FieldBox>
+                    </div>
+                </div>
+
+                <div class="form__field-row form__field-row_col_3">
+                    <div class="form__field-column">
+                        <FieldBox class="form__field" type="counter" value="1" valueMin="1" valueMax="10" label="Взрослые (12+) *" name="number_of_adults" isRequired={true} role="group" aria-label="Взрослые (12+)"></FieldBox>
+                    </div>
+                    <div class="form__field-column">
+                        <FieldBox class="form__field" type="counter" value="0" valueMin="0" valueMax="10" label="Дети (до 12 лет) *" name="amount_of_children" isRequired={true} role="group" aria-label="Дети (до 12 лет)"></FieldBox>
+                    </div>
+                    <div class="form__field-column">
+                        <FieldBox class="form__field" type="counter" value="0" valueMin="0" valueMax="10" label="Дети (до 2 лет) *" name="number_of_small_children" isRequired={true} role="group" aria-label="Дети (до 2 лет)"></FieldBox>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-request__form-center">
+            <FieldBox class="form__field modal-request__form-message" label="Комментарий" name="message" type="textarea"></FieldBox>
+        </div>
+        <div class="modal-booking__form-footer">
+            <Checkbox class="form__checkbox" name="receive_newsletter" checked={true}>Я хочу получать информационную рассылку</Checkbox>
+            <div class="modal-booking__button-wrapper">
+                <div class="modal-booking__period">7 ночей</div>
+                <div class="modal-booking__price">€ 210</div>
+                <Button type="submit" class="modal-booking__submit form__submit" set:html={submitText ? submitText : 'Забронировать шале'}></Button>
+            </div>
+            <div class="form__agreement">
+                Нажимая кнопку Забронировать вы&nbsp;соглашаетесь с&nbsp;<a href="">политикой конфиденциальности</a>
+            </div>
+        </div>
+    </form>
+</Modal>
