@@ -99,3 +99,7 @@ validation();
 
 // Lazy Load
 new LazyLoad();
+
+document.addEventListener("loadPage", function(event) {
+    new LazyLoad();
+});

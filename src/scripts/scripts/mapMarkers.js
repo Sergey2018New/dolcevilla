@@ -211,95 +211,19 @@ export default function mapMarkers() {
         },
     ];
 
-    const dataResorts = [
-        {
-            name: 'Церматт',
-            link: '#',
-            price: 'от € 50',
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 45.458610,
-            lng: 9.183222,
-        },
-        {
-            name: 'Циллерталь',
-            link: '#',
-            price: 'от € 7 500',
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 45.558610,
-            lng: 9.293222,
-        },
-        {
-            name: 'Лех',
-            link: '#',
-            price: 'от € 8 334',
-            image: 'img/chalet-map-2.jpg',
-            image2x: 'img/chalet-map-2@2x.jpg',
-            lat: 45.458610,
-            lng: 9.193222,
-        },
-        {
-            name: 'Санкт-Антон',
-            link: '#',
-            price: 'от € 6 860',
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 44.558610,
-            lng: 8.283222,
-        },
-        {
-            name: 'Церматт',
-            link: '#',
-            price: 'от € 7 500',
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 45.258610,
-            lng: 9.298222,
-        },
-        {
-            name: 'Лех',
-            link: '#',
-            price: 'от € 8 334',
-            period: '10 ночей',
-            image: 'img/chalet-map-2.jpg',
-            image2x: 'img/chalet-map-2@2x.jpg',
-            lat: 45.358610,
-            lng: 10.193222,
-        },
-        {
-            name: 'Андерматт',
-            link: '#',
-            price: 'от € 6 860',
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 43.551610,
-            lng: 8.683222,
-        },
-        {
-            name: 'Санкт-Антон',
-            link: '#',
-            price: 'от € 7 500',
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 45.458610,
-            lng: 9.598222,
-        },
-        {
-            name: 'Валь Торанс',
-            link: '#',
-            price: 'от € 8 334',
-            image: 'img/chalet-map-2.jpg',
-            image2x: 'img/chalet-map-2@2x.jpg',
-            lat: 45.658610,
-            lng: 10.393222,
-        },
-    ];
+
+    function getDataResorts(){
+        var result = [];
+        if(document.getElementById('map_resorts').dataset.items){
+            result = JSON.parse(document.getElementById('map_resorts').dataset.items);
+        }
+        return  result;
+    }
 
     const getMarkerIcon = (width, height) => {
         return {
             size: { width: width ? width : 48, height: height ? height : 53 },
-            url: './img/marker.svg',
+            url: '/_/dist/img/marker.svg',
             scaledSize: new google.maps.Size(width ? width : 48, height ? height : 53)
         };
     };
@@ -307,7 +231,7 @@ export default function mapMarkers() {
     const getMarkerIconActive = () => {
         return {
             size: { width: 48, height: 53 },
-            url: './img/marker-active.svg',
+            url: '/_/dist/img/marker-active.svg',
         };
     };
 
@@ -404,9 +328,9 @@ export default function mapMarkers() {
 
             for (let i = 0; i < data.length; i += 1) {
                 const item = data[i];
-                const markerPosition = new google.maps.LatLng(item.lat, item.lng);
+                const markerPosition = new google.maps.LatLng(parseFloat(item.lat), parseFloat(item.lng));
                 const marker = new google.maps.Marker({
-                    position: {lat: item.lat, lng: item.lng},
+                    position: {lat: parseFloat(item.lat), lng: parseFloat(item.lng)},
                     map: map,
                     icon: getMarkerIcon(),
                     id: i,
@@ -456,10 +380,15 @@ export default function mapMarkers() {
         initMap();
     };
 
+
     if (document.getElementById('map')) {
         loadMap('map', data, getContentCard);
     } else if (document.getElementById('map_resorts')) {
-        loadMap('map_resorts', dataResorts, getContentCardResort);
+        document.addEventListener("map_resorts", function(event) {
+            loadMap('map_resorts',  getDataResorts(), getContentCardResort);
+        });
+        let event = new Event("map_resorts", {bubbles: true});
+        document.getElementById('map_resorts').dispatchEvent(event);;
     } else if (document.getElementById('map_chalet')) {
         async function initMap() {
             const { Map } = await google.maps.importLibrary('maps');
