@@ -101,5 +101,7 @@ validation();
 new LazyLoad();
 
 document.addEventListener("loadPage", function(event) {
+    swiper();
     new LazyLoad();
+    console.log('loadPage');
 });

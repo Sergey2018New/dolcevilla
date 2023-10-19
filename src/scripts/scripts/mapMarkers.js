@@ -28,189 +28,14 @@ export default function mapMarkers() {
         }
     ];
 
-    const data = [
-        {
-            name: 'Chalet Alpin Roc',
-            link: '#',
-            price: 'от € 6 860',
-            period: '5 ночей',
-            infoList: [
-                {
-                    text: 'Спален',
-                    value: '1'
-                },
-                {
-                    text: 'Мест',
-                    value: '3'
-                },
-            ],
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 45.458610,
-            lng: 9.183222,
-        },
-        {
-            name: 'Chalet Arielle',
-            link: '#',
-            price: 'от € 7 500',
-            period: '7 ночей',
-            infoList: [
-                {
-                    text: 'Спален',
-                    value: '1'
-                },
-                {
-                    text: 'Мест',
-                    value: '3'
-                },
-            ],
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 45.558610,
-            lng: 9.293222,
-        },
-        {
-            name: 'Arrabelle Retreat',
-            link: '#',
-            price: 'от € 8 334',
-            period: '10 ночей',
-             infoList: [
-                {
-                    text: 'Спален',
-                    value: '1'
-                },
-                {
-                    text: 'Мест',
-                    value: '3'
-                },
-            ],
-            image: 'img/chalet-map-2.jpg',
-            image2x: 'img/chalet-map-2@2x.jpg',
-            lat: 45.458610,
-            lng: 9.193222,
-        },
-        {
-            name: 'Chalet Alpin Roc',
-            link: '#',
-            price: 'от € 6 860',
-            period: '5 ночей',
-             infoList: [
-                {
-                    text: 'Спален',
-                    value: '1'
-                },
-                {
-                    text: 'Мест',
-                    value: '3'
-                },
-            ],
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 44.558610,
-            lng: 8.283222,
-        },
-        {
-            name: 'Chalet Arielle',
-            link: '#',
-            price: 'от € 7 500',
-            period: '7 ночей',
-             infoList: [
-                {
-                    text: 'Спален',
-                    value: '1'
-                },
-                {
-                    text: 'Мест',
-                    value: '3'
-                },
-            ],
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 45.258610,
-            lng: 9.298222,
-        },
-        {
-            name: 'Arrabelle Retreat',
-            link: '#',
-            price: 'от € 8 334',
-            period: '10 ночей',
-             infoList: [
-                {
-                    text: 'Спален',
-                    value: '1'
-                },
-                {
-                    text: 'Мест',
-                    value: '3'
-                },
-            ],
-            image: 'img/chalet-map-2.jpg',
-            image2x: 'img/chalet-map-2@2x.jpg',
-            lat: 45.358610,
-            lng: 10.193222,
-        },
-        {
-            name: 'Chalet Alpin Roc',
-            link: '#',
-            price: 'от € 6 860',
-            period: '5 ночей',
-             infoList: [
-                {
-                    text: 'Спален',
-                    value: '1'
-                },
-                {
-                    text: 'Мест',
-                    value: '3'
-                },
-            ],
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 43.551610,
-            lng: 8.683222,
-        },
-        {
-            name: 'Chalet Arielle',
-            link: '#',
-            price: 'от € 7 500',
-            period: '7 ночей',
-             infoList: [
-                {
-                    text: 'Спален',
-                    value: '1'
-                },
-                {
-                    text: 'Мест',
-                    value: '3'
-                },
-            ],
-            image: 'img/chalet-map.jpg',
-            image2x: 'img/chalet-map@2x.jpg',
-            lat: 45.458610,
-            lng: 9.598222,
-        },
-        {
-            name: 'Arrabelle Retreat',
-            link: '#',
-            price: 'от € 8 334',
-            period: '10 ночей',
-             infoList: [
-                {
-                    text: 'Спален',
-                    value: '1'
-                },
-                {
-                    text: 'Мест',
-                    value: '3'
-                },
-            ],
-            image: 'img/chalet-map-2.jpg',
-            image2x: 'img/chalet-map-2@2x.jpg',
-            lat: 45.658610,
-            lng: 10.393222,
-        },
-    ];
 
+    function getDataChalet(){
+        var result = [];
+        if(document.getElementById('map').dataset.items){
+            result = JSON.parse(document.getElementById('map').dataset.items);
+        }
+        return  result;
+    }
 
     function getDataResorts(){
         var result = [];
@@ -262,7 +87,7 @@ export default function mapMarkers() {
                     </div>
                     ${infoList.length ? `<div class="chalet-small-card__info">${infoList}</div>` : ''}
                     <div class="chalet-small-card__more">
-                        <span class="chalet-small-card__more-link">Узнать больше</span>
+                        <span class="chalet-small-card__more-link">`+document.getElementById('map').dataset.text+`</span>
                     </div>
                 </div>
             </a>
@@ -382,7 +207,7 @@ export default function mapMarkers() {
 
 
     if (document.getElementById('map')) {
-        loadMap('map', data, getContentCard);
+        loadMap('map', getDataChalet(), getContentCard);
     } else if (document.getElementById('map_resorts')) {
         document.addEventListener("map_resorts", function(event) {
             loadMap('map_resorts',  getDataResorts(), getContentCardResort);

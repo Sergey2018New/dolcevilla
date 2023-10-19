@@ -1,4 +1,5 @@
 import JustValidate from 'just-validate';
+import {modal} from './components/modal.js';
 // import IMask from 'imask';
 // import { Fancybox } from "@fancyapps/ui";
 // import { modal } from "./components/modal.js";
@@ -79,7 +80,21 @@ export default function validation() {
         // });
 
         validate.onSuccess((event) => {
-            alert('Форма отправлена');
+
+            var activeModal = document.querySelector('[data-modal].is-active');
+            console.log(modal);
+            //modal.closeModal(activeModal, true);
+
+            var data = $(form).serialize();
+            BX.ajax.runComponentAction('dev:form','add',{
+                mode: 'class',
+                data: $(form).serialize(),
+            }).then(function(response) {
+                if(response.status === 'success' && response.data){
+
+                }
+            });
+            console.log('Форма отправлена');
         });
     });
 
