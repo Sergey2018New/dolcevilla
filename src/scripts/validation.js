@@ -13,6 +13,18 @@ export default function validation() {
     // 	});
     // });
 
+    // Is valid Email
+    const isValidEmail = (email) => {
+        var objRE = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+        return objRE.test(email);
+    };
+
+    // Is valid phone
+    const isValidPhone = (phone) => {
+        var objRE = /^((8|\+7)[\- ]?)?(\(?\d{3,4}\)?[\- ]?)?[\d\- ]{5,14}$/;
+        return objRE.test(phone);
+    };
+
     const options = {
         errorFieldCssClass: 'is-error',
         errorLabelStyle: false,
@@ -32,9 +44,15 @@ export default function validation() {
             errorMessage: 'Заполните поле',
         },
         {
-            rule: 'email',
+            validator: function(value) {
+                return isValidEmail(value) || isValidPhone(value);
+            },
             errorMessage: 'Недопустимый формат',
         },
+        // {
+        //     rule: 'email',
+        //     errorMessage: 'Недопустимый формат',
+        // },
     ]
 
     const phoneFieldOptions = [
@@ -123,3 +141,5 @@ export default function validation() {
         }
     }
 }
+
+
