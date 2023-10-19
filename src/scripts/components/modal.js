@@ -27,11 +27,6 @@ let modal = {};
 let unlock = true;
 let isOpen = false;
 
-let touchstartX = 0;
-let touchstartY = 0;
-let touchendX = 0;
-let touchendY = 0;
-
 const focusElements = [
 	'a[href]',
 	'area[href]',
@@ -46,136 +41,31 @@ const focusElements = [
 	'[tabindex]:not([tabindex^="-"])'
 ];
 
-modal.beforeOpen = (callbackCurrent) => {
-	callback(callbackCurrent);
-};
-modal.beforeClose = (callbackCurrent) => {
-	callback(callbackCurrent);
-};
-modal.afterOpen = (callbackCurrent) => {
-	callback(callbackCurrent);
-};
-modal.afterClose = (callbackCurrent) => {
-	callback(callbackCurrent);
+const bodyLock = () => {
+	const scrollbarCompensate = `${window.innerWidth - document.body.offsetWidth}px`;
+	html.style.setProperty('--modal-lock-padding-right', scrollbarCompensate);
+	body.classList.add('is-modal-active');
+
+	unlock = false;
+	setTimeout(() => {
+		unlock = true;
+	}, timeout);
 };
 
-modal.init = (beforeOpenCallback, beforeCloseCallback) => {
-	document.addEventListener('click', (e) => {
-		const target = e.target;
+const bodyUnlock = () => {
+	unlock = false;
 
-		if (target.closest('[data-modal-open]') || target.hasAttribute('data-modal-open')) {
-			const modalSelector = target.getAttribute('data-modal-open') || target.closest('[data-modal-open]').getAttribute('data-modal-open');
-			const currentModal = modalSelector ? document.querySelector(modalSelector) : '';
+	setTimeout(() => {
+		html.style.removeProperty('--modal-lock-padding-right');
+		body.classList.remove('is-modal-active');
 
-			modalSelectorOpen = target.hasAttribute('data-modal-open') ? target :
-            target.closest('[data-modal-open]');
-
-			e.preventDefault();
-
-			if (currentModal) {
-				if (isOpen) {
-					const activeModal = document.querySelector('[data-modal].is-active');
-
-					if (activeModal) {
-						closeModal(activeModal, true);
-					}
-
-					openModal(currentModal, true);
-
-					setTimeout(() => {
-
-					}, timeout);
-				} else {
-					openModal(currentModal);
-				}
-			}
-		}
-
-		if (isOpen && (target.closest('[data-modal-close]') || target.hasAttribute('data-modal-close') ||
-			!target.closest('[data-modal-window]') && !target.hasAttribute('data-modal-window'))
-		) {
-			const currentModal = target.hasAttribute("data-modal") ? target : target.closest('[data-modal]') || '';
-			closeModal(currentModal);
-			e.preventDefault();
-		}
-	});
-
-	document.addEventListener('keydown', (e) => {
-		const modalActive = document.querySelector('[data-modal].is-active');
-
-		if (e.which === 27 && isOpen) {
-			closeModal(modalActive);
-			return;
-		}
-
-		if (e.which == 9 && isOpen) {
-			focusCatcher(e, modalActive);
-			return;
-		}
-	});
+		unlock = true;
+	}, timeout);
 };
 
-modal.open = (selector, callbackCurrent) => {
-	const currentModal = selector && typeof selector == 'string' ? document.querySelector(selector) : '';
-
-	callback(callbackCurrent);
-	openModal(currentModal);
-};
-
-document.addEventListener('touchstart', function(event) {
-	touchstartX = event.changedTouches[0].screenX;
-	touchstartY = event.changedTouches[0].screenY;
-}, false);
-
-addEventListener("touchmove", (event) => {
-	const target = event.changedTouches[0].target;
-	touchendX = event.changedTouches[0].screenX;
-	touchendY = event.changedTouches[0].screenY;
-
-	const touchY = Math.abs(touchendY - touchstartY);
-
-	if (handleGesture() === 'down' && touchY > 0 && !target.hasAttribute('data-modal-window') && !target.closest('[data-modal-window]') && (target.hasAttribute('data-modal') || target.closest('[data-modal]'))) {
-		const activeModal = document.querySelector('[data-modal].is-active');
-
-		if (activeModal) {
-			const modalWrap = activeModal.querySelector('[data-modal-wrap]');
-
-			if (modalWrap) {
-				activeModal.classList.add('is-dragged');
-				modalWrap.style.transform = `translate3d(0,${touchY}px,0)`;
-			}
-		}
-	}
-});
-
-document.addEventListener('touchend', function(event) {
-	const target = event.changedTouches[0].target;
-
-	touchendX = event.changedTouches[0].screenX;
-	touchendY = event.changedTouches[0].screenY;
-
-	const touchY = Math.abs(touchendY - touchstartY);
-
-	if (!target.hasAttribute('data-modal-window') && !target.closest('[data-modal-window]') && (target.hasAttribute('data-modal') || target.closest('[data-modal]'))) {
-		const activeModal = document.querySelector('[data-modal].is-active');
-
-		if (activeModal) {
-			const modalWrap = activeModal.querySelector('[data-modal-wrap]');
-
-			if (modalWrap) {
-				modalWrap.style.removeProperty('transform');
-				activeModal.classList.remove('is-dragged')
-
-				// if (handleGesture() === 'down' && touchY >= 30) {
-				// 	closeModal(activeModal);
-				// }
-			}
-		}
-	}
-}, false);
-
-function openModal(currentModal, isDoubleModal = false) {
+const openModal = (currentModal, isDoubleModal = false) => {
 	if (currentModal && !isOpen && unlock || isDoubleModal) {
+		const modalWindow = currentModal.querySelector('[data-modal-window]');
 
 		if (!isDoubleModal) {
 			modal.beforeOpen();
@@ -183,9 +73,6 @@ function openModal(currentModal, isDoubleModal = false) {
 
 		currentModal.setAttribute('aria-hidden', false);
 		currentModal.classList.add('is-visible');
-
-		const modalWindow = currentModal.querySelector('[data-modal-window]');
-
 
 		setTimeout(() => {
 			currentModal.classList.add('is-active');
@@ -205,10 +92,17 @@ function openModal(currentModal, isDoubleModal = false) {
 
 			}, timeout);
 		}
-	}
-}
 
-function closeModal(activeModal, isDoubleModal = false) {
+		setTimeout(() => {
+			if (modalWindow) {
+				modalWindow.focus();
+			}
+
+		}, timeout);
+	}
+};
+
+const closeModal = (activeModal, isDoubleModal = false) => {
 	if (isOpen && unlock && activeModal) {
 		modal.beforeClose();
 
@@ -235,38 +129,15 @@ function closeModal(activeModal, isDoubleModal = false) {
 			}
 		}, timeout);
 	}
-}
+};
 
-function bodyLock() {
-	const lockPaddingValue = window.innerWidth - body.offsetWidth + 'px';
-
-	html.style.setProperty('--modal-lock-padding-right', lockPaddingValue);
-	body.classList.add('is-modal-active');
-
-	unlock = false;
-	setTimeout(() => {
-		unlock = true;
-	}, timeout);
-}
-
-function bodyUnlock() {
-	unlock = false;
-
-	setTimeout(() => {
-		html.style.removeProperty('--modal-lock-padding-right');
-		body.classList.remove('is-modal-active');
-
-		unlock = true;
-	}, timeout);
-}
-
-function callback (callbackCurrent) {;
+const callback = (callbackCurrent) => {
 	if (callbackCurrent && typeof callbackCurrent === 'function') {
 		callbackCurrent();
 	}
-}
+};
 
-function focusCatcher(e, modal){
+const focusCatcher = (e, modal) => {
     // Находим все элементы на которые можно сфокусироваться
     const nodes = modal.querySelectorAll(focusElements);
 
@@ -292,31 +163,97 @@ function focusCatcher(e, modal){
             e.preventDefault();
         }
     }
-}
+};
 
-function handleGesture() {
-	const touchX = touchendX - touchstartX;
-	const touchY = Math.abs(touchendY - touchstartY);
+modal.beforeOpen = (callbackCurrent) => {
+	callback(callbackCurrent);
+};
+modal.beforeClose = (callbackCurrent) => {
+	callback(callbackCurrent);
+};
+modal.afterOpen = (callbackCurrent) => {
+	callback(callbackCurrent);
+};
+modal.afterClose = (callbackCurrent) => {
+	callback(callbackCurrent);
+};
 
-	if (touchY <= 30 && touchX < 0 && Math.abs(touchX) >= 40) {
-		return 'left';
-	}
+modal.init = () => {
+	document.addEventListener('click', (e) => {
+		const target = e.target;
 
-	if (touchY <= 30 && touchX > 0 && Math.abs(touchX) >= 40) {
-		return 'right';
-	}
+		if (target.closest('[data-modal-open]') || target.hasAttribute('data-modal-open')) {
+			const modalSelector = target.getAttribute('data-modal-open') || target.closest('[data-modal-open]').getAttribute('data-modal-open');
+			const currentModal = modalSelector ? document.querySelector(modalSelector) : '';
 
-	if (touchendY < touchstartY ) {
-		return 'up';
-	}
+			e.preventDefault();
 
-	if (touchendY > touchstartY ) {
-		return 'down';
-	}
+			if (isOpen) {
+				const activeModal = document.querySelector('[data-modal].is-active');
 
-	if (touchendY === touchstartY) {
-		return 'tap';
-	}
-}
+				if (activeModal !== currentModal) {
+					closeModal(activeModal, true);
+					openModal(currentModal, true);
+				}
+			} else {
+				modalSelectorOpen = target.hasAttribute('data-modal-open') ? target :
+				target.closest('[data-modal-open]');
+
+				openModal(currentModal);
+			}
+		} else if (isOpen && (target.closest('[data-modal-close]') || target.hasAttribute('data-modal-close') ||
+			!target.closest('[data-modal-window]') && !target.hasAttribute('data-modal-window'))
+		) {
+			const currentModal = target.hasAttribute('data-modal') ? target : target.closest('[data-modal]') || '';
+			e.preventDefault();
+
+			closeModal(currentModal);
+		}
+	});
+
+	document.addEventListener('keydown', (e) => {
+		const modalActive = document.querySelector('[data-modal].is-active');
+
+		if ((e.code === 'Escape' || e.key === 'Escape') && isOpen) {
+			closeModal(modalActive);
+		}
+
+		if ((e.code === 'Tab' || e.key === 'Tab') && isOpen && modalActive) {
+			focusCatcher(e, modalActive);
+		}
+	});
+};
+
+document.documentElement.openModal = modal.open = (selector) => {
+	const currentModal = selector && typeof selector === 'string' ? document.querySelector(selector) : '';
+
+    if (currentModal) {
+        modalSelectorOpen = null;
+
+        if (isOpen) {
+            const activeModal = document.querySelector('[data-modal].is-active');
+
+            if (activeModal) {
+                closeModal(activeModal, true);
+
+                if (activeModal !== currentModal) {
+                    closeModal(activeModal, true);
+                    openModal(currentModal, true);
+                }
+            }
+        } else {
+            openModal(currentModal);
+        }
+    }
+
+};
+
+document.documentElement.closeModal = modal.close = (selector) => {
+    const currentModal = selector && typeof selector === 'string' ? document.querySelector(selector) : '';
+
+    if (currentModal) {
+        closeModal(currentModal);
+    }
+};
 
 export {modal};
