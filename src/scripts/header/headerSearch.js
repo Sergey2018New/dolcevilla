@@ -64,7 +64,18 @@ export default function headerSearch() {
         if (searchInput) {
             searchInput.addEventListener('input', () => {
                 if (searchInput.value.trim() !== '' && searchInput.value.length >= 2) {
-                    openResult();
+
+                    BX.ajax.runComponentAction('dev:search.title','list',{
+                        mode: 'class',
+                        data: {q:searchInput.value},
+                    }).then(function(response) {
+                        if(response.status === 'success' && response.data){
+                            $('.js-header-search-result').html(response.data.template);
+                            openResult();
+                        }
+                    });
+
+
                 } else {
                     closeResult();
                 }

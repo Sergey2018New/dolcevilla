@@ -207,18 +207,24 @@ export default function mapMarkers() {
 
 
     if (document.getElementById('map')) {
-        loadMap('map', getDataChalet(), getContentCard);
+        document.addEventListener("map_resorts", function(event) {
+            loadMap('map', getDataChalet(), getContentCard);
+        });
+        let event = new Event("map_resorts", {bubbles: true});
+        document.getElementById('map').dispatchEvent(event);
     } else if (document.getElementById('map_resorts')) {
         document.addEventListener("map_resorts", function(event) {
             loadMap('map_resorts',  getDataResorts(), getContentCardResort);
         });
         let event = new Event("map_resorts", {bubbles: true});
-        document.getElementById('map_resorts').dispatchEvent(event);;
+        document.getElementById('map_resorts').dispatchEvent(event);
     } else if (document.getElementById('map_chalet')) {
         async function initMap() {
+            var lat = parseFloat(document.getElementById('map_chalet').dataset.lat);
+            var lng = parseFloat(document.getElementById('map_chalet').dataset.lng);
             const { Map } = await google.maps.importLibrary('maps');
             const map = new Map(document.getElementById('map_chalet'), {
-                center: { lat: 47.1684992, lng: 11.3893003 },
+                center: { lat: lat, lng: lng },
                 zoom: 13,
                 minZoom: 3,
                 maxZoom: 17,
@@ -229,7 +235,7 @@ export default function mapMarkers() {
             map.setOptions({ styles: newStyles });
 
             new google.maps.Marker({
-                position: { lat: 47.1684992, lng: 11.3893003 },
+                position: { lat: lat, lng: lng },
                 map: map,
                 icon: getMarkerIcon(64, 71),
             });
