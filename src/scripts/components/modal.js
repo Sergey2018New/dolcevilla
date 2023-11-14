@@ -245,7 +245,6 @@ document.documentElement.openModal = modal.open = (selector) => {
             openModal(currentModal);
         }
     }
-
 };
 
 document.documentElement.closeModal = modal.close = (selector) => {
