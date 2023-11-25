@@ -14,6 +14,7 @@ interface Props {
     valueMin?: number;
     valueMax?: number;
     ariaLabel?: string;
+    classInput?: string;
     class?: string;
     [x: string]: any;
 }
@@ -30,15 +31,15 @@ const {
     valueMin,
     valueMax,
     ariaLabel,
+    classInput,
     class: className,
     ...rest
 } = Astro.props;
 
 const classInputs = () => {
-    return `field-box__input${type === 'textarea' ? ' field-box__textarea' : ''}`
+    return `field-box__input${type === 'textarea' ? ' field-box__textarea' : ''} ${classInput}`
 }
 ---
-
 {
     type === 'counter' ?
     <div
@@ -68,9 +69,9 @@ const classInputs = () => {
             <label class="field-box__label" set:html={label}></label>
             {
                 isRequired ?
-                <Input class={classInputs()} type={type} name={name} ariaLabel={label} placeholder={placeholder} data-field-box-input  data-js-form-field aria-required></Input>
+                <Input class={classInputs()} type={type} name={name} value={value} ariaLabel={label} placeholder={placeholder} data-field-box-input  data-js-form-field aria-required></Input>
                 :
-                <Input class={classInputs()} type={type} name={name} ariaLabel={label} placeholder={placeholder} data-field-box-input></Input>
+                <Input class={classInputs()} type={type} name={name} value={value} ariaLabel={label} placeholder={placeholder} data-field-box-input></Input>
             }
         </div>
     </div>

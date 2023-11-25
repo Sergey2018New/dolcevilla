@@ -934,6 +934,10 @@
     }
 
     &__booking-date {
+
+        &::first-letter {
+            text-transform: uppercase;
+        }
     }
 
     &__booking-row {

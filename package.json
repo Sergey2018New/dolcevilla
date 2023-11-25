@@ -23,6 +23,7 @@
     "autoprefixer": "^10.4.14",
     "flatpickr": "^4.6.13",
     "just-validate": "^4.2.0",
+    "moment": "^2.29.4",
     "normalize.css": "^8.0.1",
     "sass": "^1.59.3",
     "simple-parallax-js": "^5.6.2",

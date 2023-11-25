@@ -19,26 +19,26 @@ const {
 
 const shedule = [
     {
-        dateFrom: 'Cб&nbsp;02.12.2023',
-        dateTo: 'Cб&nbsp;09.12.2023',
+        dateFrom: '02.12.2023',
+        dateTo: '09.12.2023',
         period: '7 ночей',
         price: '€ 120',
     },
     {
-        dateFrom: 'Cб&nbsp;16.12.2023',
-        dateTo: 'Cб&nbsp;23.12.2023',
+        dateFrom: '16.12.2023',
+        dateTo: '23.12.2023',
         period: '7 ночей',
         price: '€ 120',
     },
     {
-        dateFrom: 'Cб&nbsp;09.12.2023',
-        dateTo: 'Cб&nbsp;16.12.2023',
+        dateFrom: '09.12.2023',
+        dateTo: '16.12.2023',
         period: '7 ночей',
         price: '€ 210',
     },
     {
-        dateFrom: 'Cб&nbsp;23.12.2023',
-        dateTo: 'Cб&nbsp;30.12.2023',
+        dateFrom: '23.12.2023',
+        dateTo: '30.12.2023',
         period: '7 ночей',
         price: '€ 180',
     },
@@ -60,16 +60,27 @@ const shedule = [
                     <div class="availability__slide-row">
                         <div class="availability__slide-column">
                             <div class="availability__calendar">
-                                <div class="availability__calendar-datepicker js-shedule-calendar"></div>
+                                <input
+                                    type="hidden"
+                                    class="availability__calendar-datepicker js-shedule-calendar"
+                                    data-month="11"
+                                    data-year="2023"
+                                 />
                             </div>
                         </div>
+                        <!-- data-disabled-dates='[{"from": "09.12.2023", "to": "16.12.2023"}]' -->
                         <div class="availability__slide-column">
                             <div class="availability__shedule-items">
                                 {shedule.map((item, index) => (
-                                    <div class={`availability__shedule-item${index === 0 ? ' is-active' : ''} ${index === 2 ? ' is-no-selected' : ''}`}>
+                                    <div class={`availability__shedule-item${index === 0 ? ' is-active' : ''} ${index === 2 ? ' is-no-selected' : ''} js-select-period`}
+                                        data-date-from={item.dateFrom}
+                                        data-date-to={item.dateTo}
+                                        data-price={item.price}
+                                        data-period={item.period}
+                                    >
                                         <div class="availability__shedule-dates">
-                                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
-                                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
+                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
                                         </div>
                                         <div class="availability__shedule-info">
                                             <div class="availability__shedule-period" set:html={item.period}></div>
@@ -84,20 +95,25 @@ const shedule = [
             </SwiperSlide>
             <SwiperSlide class="availability__slide">
                 <div class="availability__shedule">
-                    <div class="availability__shedule-title">Январь 2023</div>
+                    <div class="availability__shedule-title">Январь 2024</div>
                     <div class="availability__slide-row">
                         <div class="availability__slide-column">
                             <div class="availability__calendar">
-                                <div class="availability__calendar-datepicker js-shedule-calendar"></div>
+                                <input type="hidden" class="availability__calendar-datepicker js-shedule-calendar" data-month="0" data-year="2024" />
                             </div>
                         </div>
                         <div class="availability__slide-column">
                             <div class="availability__shedule-items">
                                 {shedule.map((item, index) => (
-                                   <div class={`availability__shedule-item${index === 0 ? ' is-active' : ''} ${index === 2 ? ' is-no-selected' : ''}`}>
+                                   <div class={`availability__shedule-item js-select-period`}
+                                    data-date-from={item.dateFrom}
+                                    data-date-to={item.dateTo}
+                                    data-price={item.price}
+                                    data-period={item.period}
+                                   >
                                         <div class="availability__shedule-dates">
-                                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
-                                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
+                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
                                         </div>
                                         <div class="availability__shedule-info">
                                             <div class="availability__shedule-period" set:html={item.period}></div>
@@ -112,20 +128,25 @@ const shedule = [
             </SwiperSlide>
             <SwiperSlide class="availability__slide">
                 <div class="availability__shedule">
-                    <div class="availability__shedule-title">Февраль 2023</div>
+                    <div class="availability__shedule-title">Февраль 2024</div>
                     <div class="availability__slide-row">
                         <div class="availability__slide-column">
                             <div class="availability__calendar">
-                                <div class="availability__calendar-datepicker js-shedule-calendar"></div>
+                                <input type="hidden" class="availability__calendar-datepicker js-shedule-calendar" data-month="1" data-year="2024"/>
                             </div>
                         </div>
                         <div class="availability__slide-column">
                             <div class="availability__shedule-items">
                                 {shedule.map((item, index) => (
-                                     <div class={`availability__shedule-item${index === 0 ? ' is-active' : ''} ${index === 2 ? ' is-no-selected' : ''}`}>
+                                     <div class={`availability__shedule-item js-select-period`}
+                                     data-date-from={item.dateFrom}
+                                     data-date-to={item.dateTo}
+                                     data-price={item.price}
+                                     data-period={item.period}
+                                     >
                                         <div class="availability__shedule-dates">
-                                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
-                                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
+                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
                                         </div>
                                         <div class="availability__shedule-info">
                                             <div class="availability__shedule-period" set:html={item.period}></div>
@@ -144,10 +165,15 @@ const shedule = [
             <div class="availability__shedule-title">Январь 2023</div>
             <div class="availability__shedule-items">
                 {shedule.map((item, index) => (
-                  <div class={`availability__shedule-item${index === 1 ? ' is-no-selected' : ''}`}>
+                  <div class={`availability__shedule-item${index === 1 ? ' is-no-selected' : ''} js-select-period`}
+                    data-date-from={item.dateFrom}
+                    data-date-to={item.dateTo}
+                    data-price={item.price}
+                    data-period={item.period}
+                  >
                         <div class="availability__shedule-dates">
-                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
-                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
+                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
                         </div>
                         <div class="availability__shedule-info">
                             <div class="availability__shedule-period" set:html={item.period}></div>
@@ -161,10 +187,15 @@ const shedule = [
             <div class="availability__shedule-title">Февраль 2023</div>
             <div class="availability__shedule-items">
                 {shedule.map((item, index) => (
-                    <div class={`availability__shedule-item`}>
+                    <div class={`availability__shedule-item js-select-period`}
+                        data-date-from={item.dateFrom}
+                        data-date-to={item.dateTo}
+                        data-price={item.price}
+                        data-period={item.period}
+                    >
                         <div class="availability__shedule-dates">
-                            <div class="availability__shedule-date" set:html={item.dateFrom}></div>
-                            <div class="availability__shedule-date" set:html={item.dateTo}></div>
+                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
+                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
                         </div>
                         <div class="availability__shedule-info">
                             <div class="availability__shedule-period" set:html={item.period}></div>

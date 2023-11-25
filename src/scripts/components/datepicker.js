@@ -9,6 +9,12 @@ import { Russian } from "flatpickr/dist/l10n/ru.js";
 	https://mymth.github.io/vanillajs-datepicker/#/
 */
 
+const getWeek = (date) => {
+    var day = date.getDay() || 7; // Get current day number, converting Sun. to 7
+    if (day !== 1) // Only manipulate the date if it isn't Mon.
+    date.setHours(-24 * (day - 1));
+};
+
 export default function datepicker(datepickerSelectors) {
 	/*
 		@param  {Element} datepickerSelectors - HTML container element, default document
@@ -29,10 +35,12 @@ export default function datepicker(datepickerSelectors) {
             let datepicker;
             let isApplyDate = false;
             let isClosing = false;
+            let defaultDate;
+            const todayDate = new Date();
+            const weekCurrentDay = todayDate.getDay();
 
             const checkControlApply = (controlApply, selectedDates) => {
                 if (controlApply) {
-
                     if (selectedDates.length > 1) {
                         controlApply.removeAttribute('disabled');
                         controlApply.classList.remove('is-disabled');
@@ -49,6 +57,21 @@ export default function datepicker(datepickerSelectors) {
                 }
             };
 
+            // const defaultDate = datepickerInput ? datepickerInput.value;
+            if (datepickerInput) {
+                let weekDiff;
+
+                if (weekCurrentDay === 0) {
+                    weekDiff = -1;
+                } else {
+                    weekDiff = 6 - weekCurrentDay;
+                }
+
+                defaultDate = [todayDate.fp_incr(weekDiff), todayDate.fp_incr(weekDiff + 7)];
+            } else {
+                defaultDate = datepickerEl.value ? datepickerEl.value : new Date().getDay();
+            }
+
             const options = {
                 static: datepickerInput ? false : true,
                 monthSelectorType: 'static',
@@ -58,7 +81,7 @@ export default function datepicker(datepickerSelectors) {
                 mode: datepickerInput ? 'range' : 'single',
                 minDate: "today",
                 dateFormat: 'd.m.Y',
-                defaultDate: datepickerInput ? [new Date(), new Date().fp_incr(6)] : new Date(),
+                defaultDate: defaultDate,
 
                 onReady: function(selectedDates, dateStr, instance){
                     const eventChange = new Event('change');
