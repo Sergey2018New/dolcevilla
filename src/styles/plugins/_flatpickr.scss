@@ -177,14 +177,22 @@ span.flatpickr-weekday {
     line-height: 3.6rem;
     color: $grey;
     user-select: none;
+    pointer-events: none;
+    background: transparent;
+    opacity: 0.2;
 
     @include media(mob-m) {
         font-size: 1.6rem;
     }
 
+    &:nth-child(7n + 6) {
+        pointer-events: auto;
+        opacity: 1;
+    }
+
     &:focus-visible {
-        z-index: 1;
-        outline: 1px solid $second !important;
+        // z-index: 1;
+        // outline: 1px solid $second !important;
 
         &::before {
             opacity: 0;
@@ -202,6 +210,7 @@ span.flatpickr-weekday {
 
     &.inRange {
         box-shadow: none;
+        opacity: 1;
     }
 
     &.selected.startRange,
@@ -227,6 +236,7 @@ span.flatpickr-weekday {
                     left: -50%;
                     width: 50%;
                     height: 100%;
+                    opacity: 1;
                     background: var(--color-bg);
                 }
             }
@@ -243,6 +253,7 @@ span.flatpickr-weekday {
                 left: 0;
                 width: 50%;
                 height: 100%;
+                opacity: 1;
                 background: var(--color-bg);
             }
         }

@@ -1131,13 +1131,13 @@
                     <div class="p-detail__booking js-detail-booking-fixed">
                         <div class="p-detail__booking-inner">
                             <div class="p-detail__booking-dates">
-                                <div class="p-detail__booking-date">Cб 09.12.2023</div>
+                                <div class="p-detail__booking-date"><span class="js-booking-week-from">Cб</span> <span class="js-booking-date-from">02.12.2023</span></div>
                                 <span class="p-detail__booking-line"></span>
-                                <div class="p-detail__booking-date">Cб 16.12.2023</div>
+                                <div class="p-detail__booking-date"><span class="js-booking-week-to">Cб</span> <span class="js-booking-date-to">09.12.2023</span></div>
                             </div>
                             <div class="p-detail__booking-row">
-                                <div class="p-detail__booking-period">7 ночей</div>
-                                <div class="p-detail__booking-price">€ 210</div>
+                                <div class="p-detail__booking-period js-booking-period">7 ночей</div>
+                                <div class="p-detail__booking-price js-booking-price">€ 210</div>
                                 <button type="button" class="ui-button p-detail__booking-button" data-modal-open="#modal_booking">Забронировать шале
                                 </button>
                             </div>
@@ -1283,12 +1283,13 @@
                                     <div class="availability__slide-row">
                                         <div class="availability__slide-column">
                                             <div class="availability__calendar">
-                                                <div class="availability__calendar-datepicker js-shedule-calendar"></div>
+                                                <input type="hidden" class="availability__calendar-datepicker js-shedule-calendar" data-month="11" data-year="2023">
                                             </div>
                                         </div>
+                                        <!-- data-disabled-dates='[{"from": "09.12.2023", "to": "16.12.2023"}]' -->
                                         <div class="availability__slide-column">
                                             <div class="availability__shedule-items">
-                                                <div class="availability__shedule-item is-active ">
+                                                <div class="availability__shedule-item is-active  js-select-period" data-date-from="02.12.2023" data-date-to="09.12.2023" data-price="€ 120" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;02.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
@@ -1298,7 +1299,7 @@
                                                         <div class="availability__shedule-price">€ 120</div>
                                                     </div>
                                                 </div>
-                                                <div class="availability__shedule-item ">
+                                                <div class="availability__shedule-item  js-select-period" data-date-from="16.12.2023" data-date-to="23.12.2023" data-price="€ 120" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
@@ -1308,7 +1309,7 @@
                                                         <div class="availability__shedule-price">€ 120</div>
                                                     </div>
                                                 </div>
-                                                <div class="availability__shedule-item  is-no-selected">
+                                                <div class="availability__shedule-item  is-no-selected js-select-period" data-date-from="09.12.2023" data-date-to="16.12.2023" data-price="€ 210" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
@@ -1318,7 +1319,7 @@
                                                         <div class="availability__shedule-price">€ 210</div>
                                                     </div>
                                                 </div>
-                                                <div class="availability__shedule-item ">
+                                                <div class="availability__shedule-item  js-select-period" data-date-from="23.12.2023" data-date-to="30.12.2023" data-price="€ 180" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;30.12.2023</div>
@@ -1337,16 +1338,16 @@
                             <div class="swiper-slide availability__slide">
 
                                 <div class="availability__shedule">
-                                    <div class="availability__shedule-title">Январь 2023</div>
+                                    <div class="availability__shedule-title">Январь 2024</div>
                                     <div class="availability__slide-row">
                                         <div class="availability__slide-column">
                                             <div class="availability__calendar">
-                                                <div class="availability__calendar-datepicker js-shedule-calendar"></div>
+                                                <input type="hidden" class="availability__calendar-datepicker js-shedule-calendar" data-month="0" data-year="2024">
                                             </div>
                                         </div>
                                         <div class="availability__slide-column">
                                             <div class="availability__shedule-items">
-                                                <div class="availability__shedule-item is-active ">
+                                                <div class="availability__shedule-item js-select-period" data-date-from="02.12.2023" data-date-to="09.12.2023" data-price="€ 120" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;02.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
@@ -1356,7 +1357,7 @@
                                                         <div class="availability__shedule-price">€ 120</div>
                                                     </div>
                                                 </div>
-                                                <div class="availability__shedule-item ">
+                                                <div class="availability__shedule-item js-select-period" data-date-from="16.12.2023" data-date-to="23.12.2023" data-price="€ 120" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
@@ -1366,7 +1367,7 @@
                                                         <div class="availability__shedule-price">€ 120</div>
                                                     </div>
                                                 </div>
-                                                <div class="availability__shedule-item  is-no-selected">
+                                                <div class="availability__shedule-item js-select-period" data-date-from="09.12.2023" data-date-to="16.12.2023" data-price="€ 210" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
@@ -1376,7 +1377,7 @@
                                                         <div class="availability__shedule-price">€ 210</div>
                                                     </div>
                                                 </div>
-                                                <div class="availability__shedule-item ">
+                                                <div class="availability__shedule-item js-select-period" data-date-from="23.12.2023" data-date-to="30.12.2023" data-price="€ 180" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;30.12.2023</div>
@@ -1395,16 +1396,16 @@
                             <div class="swiper-slide availability__slide">
 
                                 <div class="availability__shedule">
-                                    <div class="availability__shedule-title">Февраль 2023</div>
+                                    <div class="availability__shedule-title">Февраль 2024</div>
                                     <div class="availability__slide-row">
                                         <div class="availability__slide-column">
                                             <div class="availability__calendar">
-                                                <div class="availability__calendar-datepicker js-shedule-calendar"></div>
+                                                <input type="hidden" class="availability__calendar-datepicker js-shedule-calendar" data-month="1" data-year="2024">
                                             </div>
                                         </div>
                                         <div class="availability__slide-column">
                                             <div class="availability__shedule-items">
-                                                <div class="availability__shedule-item is-active ">
+                                                <div class="availability__shedule-item js-select-period" data-date-from="02.12.2023" data-date-to="09.12.2023" data-price="€ 120" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;02.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
@@ -1414,7 +1415,7 @@
                                                         <div class="availability__shedule-price">€ 120</div>
                                                     </div>
                                                 </div>
-                                                <div class="availability__shedule-item ">
+                                                <div class="availability__shedule-item js-select-period" data-date-from="16.12.2023" data-date-to="23.12.2023" data-price="€ 120" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
@@ -1424,7 +1425,7 @@
                                                         <div class="availability__shedule-price">€ 120</div>
                                                     </div>
                                                 </div>
-                                                <div class="availability__shedule-item  is-no-selected">
+                                                <div class="availability__shedule-item js-select-period" data-date-from="09.12.2023" data-date-to="16.12.2023" data-price="€ 210" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
@@ -1434,7 +1435,7 @@
                                                         <div class="availability__shedule-price">€ 210</div>
                                                     </div>
                                                 </div>
-                                                <div class="availability__shedule-item ">
+                                                <div class="availability__shedule-item js-select-period" data-date-from="23.12.2023" data-date-to="30.12.2023" data-price="€ 180" data-period="7 ночей">
                                                     <div class="availability__shedule-dates">
                                                         <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
                                                         <div class="availability__shedule-date">Cб&nbsp;30.12.2023</div>
@@ -1458,7 +1459,7 @@
                     <div class="availability__shedule availability__shedule_section">
                         <div class="availability__shedule-title">Январь 2023</div>
                         <div class="availability__shedule-items">
-                            <div class="availability__shedule-item">
+                            <div class="availability__shedule-item js-select-period" data-date-from="02.12.2023" data-date-to="09.12.2023" data-price="€ 120" data-period="7 ночей">
                                 <div class="availability__shedule-dates">
                                     <div class="availability__shedule-date">Cб&nbsp;02.12.2023</div>
                                     <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
@@ -1468,7 +1469,7 @@
                                     <div class="availability__shedule-price">€ 120</div>
                                 </div>
                             </div>
-                            <div class="availability__shedule-item is-no-selected">
+                            <div class="availability__shedule-item is-no-selected js-select-period" data-date-from="16.12.2023" data-date-to="23.12.2023" data-price="€ 120" data-period="7 ночей">
                                 <div class="availability__shedule-dates">
                                     <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
                                     <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
@@ -1478,7 +1479,7 @@
                                     <div class="availability__shedule-price">€ 120</div>
                                 </div>
                             </div>
-                            <div class="availability__shedule-item">
+                            <div class="availability__shedule-item js-select-period" data-date-from="09.12.2023" data-date-to="16.12.2023" data-price="€ 210" data-period="7 ночей">
                                 <div class="availability__shedule-dates">
                                     <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
                                     <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
@@ -1488,7 +1489,7 @@
                                     <div class="availability__shedule-price">€ 210</div>
                                 </div>
                             </div>
-                            <div class="availability__shedule-item">
+                            <div class="availability__shedule-item js-select-period" data-date-from="23.12.2023" data-date-to="30.12.2023" data-price="€ 180" data-period="7 ночей">
                                 <div class="availability__shedule-dates">
                                     <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
                                     <div class="availability__shedule-date">Cб&nbsp;30.12.2023</div>
@@ -1503,7 +1504,7 @@
                     <div class="availability__shedule availability__shedule_section">
                         <div class="availability__shedule-title">Февраль 2023</div>
                         <div class="availability__shedule-items">
-                            <div class="availability__shedule-item">
+                            <div class="availability__shedule-item js-select-period" data-date-from="02.12.2023" data-date-to="09.12.2023" data-price="€ 120" data-period="7 ночей">
                                 <div class="availability__shedule-dates">
                                     <div class="availability__shedule-date">Cб&nbsp;02.12.2023</div>
                                     <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
@@ -1513,7 +1514,7 @@
                                     <div class="availability__shedule-price">€ 120</div>
                                 </div>
                             </div>
-                            <div class="availability__shedule-item">
+                            <div class="availability__shedule-item js-select-period" data-date-from="16.12.2023" data-date-to="23.12.2023" data-price="€ 120" data-period="7 ночей">
                                 <div class="availability__shedule-dates">
                                     <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
                                     <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
@@ -1523,7 +1524,7 @@
                                     <div class="availability__shedule-price">€ 120</div>
                                 </div>
                             </div>
-                            <div class="availability__shedule-item">
+                            <div class="availability__shedule-item js-select-period" data-date-from="09.12.2023" data-date-to="16.12.2023" data-price="€ 210" data-period="7 ночей">
                                 <div class="availability__shedule-dates">
                                     <div class="availability__shedule-date">Cб&nbsp;09.12.2023</div>
                                     <div class="availability__shedule-date">Cб&nbsp;16.12.2023</div>
@@ -1533,7 +1534,7 @@
                                     <div class="availability__shedule-price">€ 210</div>
                                 </div>
                             </div>
-                            <div class="availability__shedule-item">
+                            <div class="availability__shedule-item js-select-period" data-date-from="23.12.2023" data-date-to="30.12.2023" data-price="€ 180" data-period="7 ночей">
                                 <div class="availability__shedule-dates">
                                     <div class="availability__shedule-date">Cб&nbsp;23.12.2023</div>
                                     <div class="availability__shedule-date">Cб&nbsp;30.12.2023</div>
@@ -1630,7 +1631,7 @@
                                             <div class="field-box__content">
                                                 <label class="field-box__label">Ваше имя</label>
 
-                                                <input class="ui-input field-box__input" type="text" name="name" aria-label="Ваше имя" data-field-box-input data-js-form-field aria-required="true">
+                                                <input class="ui-input field-box__input undefined" type="text" name="name" aria-label="Ваше имя" data-field-box-input data-js-form-field aria-required="true">
 
                                             </div>
                                         </div>
@@ -1638,14 +1639,14 @@
                                             <div class="field-box__content">
                                                 <label class="field-box__label">Почта или номер телефона</label>
 
-                                                <input class="ui-input field-box__input" type="text" name="email" aria-label="Почта или номер телефона" data-field-box-input data-js-form-field aria-required="true">
+                                                <input class="ui-input field-box__input undefined" type="text" name="email" aria-label="Почта или номер телефона" data-field-box-input data-js-form-field aria-required="true">
 
                                             </div>
                                         </div>
                                         <div class="field-box field-box_textarea form__field feedback__form-email" data-field-box>
                                             <div class="field-box__content">
                                                 <label class="field-box__label">Ваш вопрос</label>
-                                                <textarea class="ui-textarea field-box__input field-box__textarea" name="message" aria-label="Ваш вопрос" data-field-box-input></textarea>
+                                                <textarea class="ui-textarea field-box__input field-box__textarea undefined" name="message" aria-label="Ваш вопрос" data-field-box-input></textarea>
 
                                             </div>
                                         </div>
@@ -3597,7 +3598,7 @@
                                             <div class="field-box__content">
                                                 <label class="field-box__label">Ваше имя</label>
 
-                                                <input class="ui-input field-box__input" type="text" name="name" aria-label="Ваше имя" data-field-box-input data-js-form-field aria-required="true">
+                                                <input class="ui-input field-box__input undefined" type="text" name="name" aria-label="Ваше имя" data-field-box-input data-js-form-field aria-required="true">
 
                                             </div>
                                         </div>
@@ -3605,7 +3606,7 @@
                                             <div class="field-box__content">
                                                 <label class="field-box__label">Почта или номер телефона</label>
 
-                                                <input class="ui-input field-box__input" type="text" name="email" aria-label="Почта или номер телефона" data-field-box-input data-js-form-field aria-required="true">
+                                                <input class="ui-input field-box__input undefined" type="text" name="email" aria-label="Почта или номер телефона" data-field-box-input data-js-form-field aria-required="true">
 
                                             </div>
                                         </div>
@@ -3615,7 +3616,7 @@
                                     <div class="field-box field-box_textarea form__field modal-request__form-message" data-field-box>
                                         <div class="field-box__content">
                                             <label class="field-box__label">Ваш вопрос</label>
-                                            <textarea class="ui-textarea field-box__input field-box__textarea" name="message" aria-label="Ваш вопрос" data-field-box-input></textarea>
+                                            <textarea class="ui-textarea field-box__input field-box__textarea undefined" name="message" aria-label="Ваш вопрос" data-field-box-input></textarea>
 
                                         </div>
                                     </div>
@@ -4814,7 +4815,7 @@
                                                     <div class="field-box__content">
                                                         <label class="field-box__label">Имя *</label>
 
-                                                        <input class="ui-input field-box__input" type="text" name="name" aria-label="Имя *" data-field-box-input data-js-form-field aria-required="true">
+                                                        <input class="ui-input field-box__input undefined" type="text" name="name" aria-label="Имя *" data-field-box-input data-js-form-field aria-required="true">
 
                                                     </div>
                                                 </div>
@@ -4824,7 +4825,7 @@
                                                     <div class="field-box__content">
                                                         <label class="field-box__label">Фамилия *</label>
 
-                                                        <input class="ui-input field-box__input" type="text" name="surname" aria-label="Фамилия *" data-field-box-input data-js-form-field aria-required="true">
+                                                        <input class="ui-input field-box__input undefined" type="text" name="surname" aria-label="Фамилия *" data-field-box-input data-js-form-field aria-required="true">
 
                                                     </div>
                                                 </div>
@@ -4835,7 +4836,7 @@
                                             <div class="field-box__content">
                                                 <label class="field-box__label">Почта или номер телефона</label>
 
-                                                <input class="ui-input field-box__input" type="text" name="email" aria-label="Почта или номер телефона" data-field-box-input data-js-form-field aria-required="true">
+                                                <input class="ui-input field-box__input undefined" type="text" name="email" aria-label="Почта или номер телефона" data-field-box-input data-js-form-field aria-required="true">
 
                                             </div>
                                         </div>
@@ -4846,7 +4847,7 @@
                                                     <div class="field-box__content">
                                                         <label class="field-box__label">Дата заезда *</label>
 
-                                                        <input class="ui-input ui-input-datepicker field-box__input" type="text" name="date_from" aria-label="Дата заезда *" data-datepicker autocomplete="off" data-field-box-input data-js-form-field aria-required="true">
+                                                        <input class="ui-input ui-input-datepicker field-box__input js-booking-input-date-from" type="text" name="date_from" value="02.12.2023" aria-label="Дата заезда *" data-datepicker autocomplete="off" data-field-box-input data-js-form-field aria-required="true">
                                                     </div>
                                                 </div>
                                             </div>
@@ -4855,7 +4856,7 @@
                                                     <div class="field-box__content">
                                                         <label class="field-box__label">Дата выезда *</label>
 
-                                                        <input class="ui-input ui-input-datepicker field-box__input" type="text" name="date_to" aria-label="Дата выезда *" data-datepicker autocomplete="off" data-field-box-input data-js-form-field aria-required="true">
+                                                        <input class="ui-input ui-input-datepicker field-box__input js-booking-input-date-to" type="text" name="date_to" value="09.12.2023" aria-label="Дата выезда *" data-datepicker autocomplete="off" data-field-box-input data-js-form-field aria-required="true">
                                                     </div>
                                                 </div>
                                             </div>
@@ -4917,7 +4918,7 @@
                                     <div class="field-box field-box_textarea form__field modal-request__form-message" data-field-box>
                                         <div class="field-box__content">
                                             <label class="field-box__label">Комментарий</label>
-                                            <textarea class="ui-textarea field-box__input field-box__textarea" name="message" aria-label="Комментарий" data-field-box-input></textarea>
+                                            <textarea class="ui-textarea field-box__input field-box__textarea undefined" name="message" aria-label="Комментарий" data-field-box-input></textarea>
 
                                         </div>
                                     </div>

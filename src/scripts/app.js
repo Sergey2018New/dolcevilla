@@ -47,6 +47,7 @@ import detailGallery from './scripts/detailGallery.js';
 import detailBooking from './scripts/detailBooking.js';
 import sheduleCalendar from './scripts/sheduleCalendar.js';
 import mapMarkers from './scripts/mapMarkers.js';
+import selectPeriod from './scripts/selectPeriod.js';
 
 /* Import validation ******************* */
 import validation from './validation.js';
@@ -93,6 +94,7 @@ detailGallery();
 detailBooking();
 sheduleCalendar();
 mapMarkers();
+selectPeriod();
 
 /* Validation ************************ */
 validation();

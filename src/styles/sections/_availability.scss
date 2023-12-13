@@ -148,6 +148,7 @@
 
 
 
+
         &.is-active {
             color: $white;
             background: $second;
@@ -352,6 +353,9 @@
         .flatpickr-calendar {
             width: 100%;
             padding: 0;
+            background: none;
+            box-shadow: none;
+            user-select: none;
         }
 
         .flatpickr-weekdays {
@@ -367,9 +371,17 @@
         }
 
         .flatpickr-day {
-            pointer-events: none;
-            cursor: default;
-            user-select: none;
+            &.inRange {
+                color: $white;
+
+                background: var(--color-second-3);
+
+                + .endRange::before {
+                    background: var(--color-second-3);
+
+                }
+
+            }
 
             &.is-selected {
                 color: $white;
@@ -384,11 +396,19 @@
                 background: var(--color-second-3);
             }
 
-            &.flatpickr-disabled {
-                opacity: 1;
+            &.startRange:not(:nth-child(7n+7)) + .inRange::before {
+                background: var(--color-second-3);
             }
 
+            &.flatpickr-disabled {
 
+            }
         }
+    }
+
+    &__calendar-datepicker {
+        position: absolute;
+        pointer-events: none;
+        visibility: hidden;
     }
 }
