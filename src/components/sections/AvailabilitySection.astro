@@ -42,6 +42,12 @@ const shedule = [
         period: '7 ночей',
         price: '€ 180',
     },
+    {
+        dateFrom: '23.12.2023',
+        dateTo: '30.12.2023',
+        period: '7 ночей',
+        price: '€ 180',
+    },
 ];
 ---
 
@@ -105,21 +111,27 @@ const shedule = [
                         <div class="availability__slide-column">
                             <div class="availability__shedule-items">
                                 {shedule.map((item, index) => (
-                                   <div class={`availability__shedule-item js-select-period`}
-                                    data-date-from={item.dateFrom}
-                                    data-date-to={item.dateTo}
-                                    data-price={item.price}
-                                    data-period={item.period}
-                                   >
-                                        <div class="availability__shedule-dates">
-                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
-                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
-                                        </div>
-                                        <div class="availability__shedule-info">
-                                            <div class="availability__shedule-period" set:html={item.period}></div>
-                                            <div class="availability__shedule-price" set:html={item.price}></div>
-                                        </div>
-                                    </div>
+                                   <Fragment>
+                                        {
+                                            index < 4 ?
+                                            <div class={`availability__shedule-item js-select-period`}
+                                                data-date-from={item.dateFrom}
+                                                data-date-to={item.dateTo}
+                                                data-price={item.price}
+                                                data-period={item.period}
+                                            >
+                                                    <div class="availability__shedule-dates">
+                                                        <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
+                                                        <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
+                                                    </div>
+                                                    <div class="availability__shedule-info">
+                                                        <div class="availability__shedule-period" set:html={item.period}></div>
+                                                        <div class="availability__shedule-price" set:html={item.price}></div>
+                                                    </div>
+                                                </div>
+                                            : ''
+                                        }
+                                    </Fragment>
                                 ))}
                             </div>
                         </div>
@@ -138,21 +150,27 @@ const shedule = [
                         <div class="availability__slide-column">
                             <div class="availability__shedule-items">
                                 {shedule.map((item, index) => (
-                                     <div class={`availability__shedule-item js-select-period`}
-                                     data-date-from={item.dateFrom}
-                                     data-date-to={item.dateTo}
-                                     data-price={item.price}
-                                     data-period={item.period}
-                                     >
-                                        <div class="availability__shedule-dates">
-                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
-                                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
-                                        </div>
-                                        <div class="availability__shedule-info">
-                                            <div class="availability__shedule-period" set:html={item.period}></div>
-                                            <div class="availability__shedule-price" set:html={item.price}></div>
-                                        </div>
-                                    </div>
+                                       <Fragment>
+                                        {
+                                            index < 4 ?
+                                            <div class={`availability__shedule-item js-select-period`}
+                                                data-date-from={item.dateFrom}
+                                                data-date-to={item.dateTo}
+                                                data-price={item.price}
+                                                data-period={item.period}
+                                            >
+                                                    <div class="availability__shedule-dates">
+                                                        <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
+                                                        <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
+                                                    </div>
+                                                    <div class="availability__shedule-info">
+                                                        <div class="availability__shedule-period" set:html={item.period}></div>
+                                                        <div class="availability__shedule-price" set:html={item.price}></div>
+                                                    </div>
+                                                </div>
+                                            : ''
+                                        }
+                                    </Fragment>
                                 ))}
                             </div>
                         </div>
@@ -165,21 +183,28 @@ const shedule = [
             <div class="availability__shedule-title">Январь 2023</div>
             <div class="availability__shedule-items">
                 {shedule.map((item, index) => (
-                  <div class={`availability__shedule-item${index === 1 ? ' is-no-selected' : ''} js-select-period`}
-                    data-date-from={item.dateFrom}
-                    data-date-to={item.dateTo}
-                    data-price={item.price}
-                    data-period={item.period}
-                  >
-                        <div class="availability__shedule-dates">
-                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
-                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
-                        </div>
-                        <div class="availability__shedule-info">
-                            <div class="availability__shedule-period" set:html={item.period}></div>
-                            <div class="availability__shedule-price" set:html={item.price}></div>
-                        </div>
-                    </div>
+
+                    <Fragment>
+                        {
+                            index < 4 ?
+                            <div class={`availability__shedule-item${index === 1 ? ' is-no-selected' : ''} js-select-period`}
+                            data-date-from={item.dateFrom}
+                            data-date-to={item.dateTo}
+                            data-price={item.price}
+                            data-period={item.period}
+                        >
+                                <div class="availability__shedule-dates">
+                                    <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
+                                    <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
+                                </div>
+                                <div class="availability__shedule-info">
+                                    <div class="availability__shedule-period" set:html={item.period}></div>
+                                    <div class="availability__shedule-price" set:html={item.price}></div>
+                                </div>
+                            </div>
+                            : ''
+                        }
+                    </Fragment>
                 ))}
             </div>
         </div>
@@ -187,21 +212,28 @@ const shedule = [
             <div class="availability__shedule-title">Февраль 2023</div>
             <div class="availability__shedule-items">
                 {shedule.map((item, index) => (
-                    <div class={`availability__shedule-item js-select-period`}
-                        data-date-from={item.dateFrom}
-                        data-date-to={item.dateTo}
-                        data-price={item.price}
-                        data-period={item.period}
-                    >
-                        <div class="availability__shedule-dates">
-                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
-                            <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
-                        </div>
-                        <div class="availability__shedule-info">
-                            <div class="availability__shedule-period" set:html={item.period}></div>
-                            <div class="availability__shedule-price" set:html={item.price}></div>
-                        </div>
-                    </div>
+
+                    <Fragment>
+                        {
+                            index < 4 ?
+                            <div class={`availability__shedule-item js-select-period`}
+                                data-date-from={item.dateFrom}
+                                data-date-to={item.dateTo}
+                                data-price={item.price}
+                                data-period={item.period}
+                            >
+                                <div class="availability__shedule-dates">
+                                    <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateFrom}></div>
+                                    <div class="availability__shedule-date" set:html={'Cб&nbsp;' + item.dateTo}></div>
+                                </div>
+                                <div class="availability__shedule-info">
+                                    <div class="availability__shedule-period" set:html={item.period}></div>
+                                    <div class="availability__shedule-price" set:html={item.price}></div>
+                                </div>
+                            </div>
+                            : ''
+                        }
+                    </Fragment>
                 ))}
             </div>
         </div>

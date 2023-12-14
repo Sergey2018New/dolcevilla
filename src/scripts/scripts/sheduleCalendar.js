@@ -33,7 +33,7 @@ export default function sheduleCalendar() {
             locale: Russian,
             inline: true,
             mode: 'range',
-            // minDate: minDate || 'today',
+            minDate: 'today',
             dateFormat: 'd.m.Y',
             disable: disabledDatesArray,
             // enable: [
