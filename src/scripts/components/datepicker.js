@@ -67,7 +67,7 @@ export default function datepicker(datepickerSelectors) {
                     weekDiff = 6 - weekCurrentDay;
                 }
 
-                defaultDate = [todayDate.fp_incr(weekDiff), todayDate.fp_incr(weekDiff + 7)];
+                defaultDate = null;//[todayDate.fp_incr(weekDiff), todayDate.fp_incr(weekDiff + 7)];
             } else {
                 defaultDate = datepickerEl.value ? datepickerEl.value : new Date().getDay();
             }
@@ -192,6 +192,7 @@ export default function datepicker(datepickerSelectors) {
 
                     setTimeout(() => {
                         if (dropdownActive && isClosing) {
+                            instance.element.dispatchEvent(new Event("close", {bubbles: true,date:dateStr}));
                             dropdownActive.classList.remove('is-active');
                         }
                     }, 100);
