@@ -75,6 +75,7 @@ export default function selectPeriod() {
 
             if (bookingDateTo && price) {
                 bookingPrice.textContent = price;
+                $('.js-modal-booking').data('price',price);
             }
         }
 
