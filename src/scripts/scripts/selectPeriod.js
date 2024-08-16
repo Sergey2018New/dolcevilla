@@ -24,7 +24,6 @@ export default function selectPeriod() {
 
         if (target.classList.contains('.js-select-period') || target.closest('.js-select-period')) {
             const selectPeriodEl = target.closest('.js-select-period') ? target.closest('.js-select-period') : target;
-
             const dateFrom = selectPeriodEl.getAttribute('data-date-from');
             const dateTo = selectPeriodEl.getAttribute('data-date-to');
             const period = selectPeriodEl.getAttribute('data-period');
@@ -39,10 +38,10 @@ export default function selectPeriod() {
                 const year = sheduleCalendars[i].getAttribute('data-year');
                 sheduleCalendars[i]._flatpickr.clear();
                 sheduleCalendars[i]._flatpickr.jumpToDate(new Date(year, month, 1));
-
             }
 
             selectPeriodEl.classList.add('is-active');
+
 
             if (bookingDateFrom && dateFrom) {
                 bookingDateFrom.textContent = dateFrom;
@@ -79,6 +78,12 @@ export default function selectPeriod() {
             }
         }
 
+
+
+
+
+
+
         if (target.classList.contains('js-shedule-calendar')) {
             const dateFrom = target._flatpickr.selectedDates[0];
             const dateTo = target._flatpickr.selectedDates[1];
@@ -98,8 +103,10 @@ export default function selectPeriod() {
                         bookingWeekFrom.textContent = weekFrom;
                     }
 
+
+                    //console.log(moment(dateFrom, 'DD.MM.YYYY')._d);
                     if (bookingInputDateFrom) {
-                        bookingInputDateFrom._flatpickr.setDate(dateFrom);
+                        bookingInputDateFrom._flatpickr.setDate(moment(dateFrom, 'DD.MM.YYYY')._d);
                     }
                 }
 
@@ -109,12 +116,36 @@ export default function selectPeriod() {
                     if (bookingWeekTo) {
                         bookingWeekTo.textContent = weekTo;
                     }
-
+                    //console.log(moment(dateTo, 'DD.MM.YYYY')._d);
                     if (bookingInputDateTo) {
-                        bookingInputDateTo._flatpickr.setDate(dateTo);
+                        bookingInputDateTo._flatpickr.setDate(moment(dateTo, 'DD.MM.YYYY')._d);
                     }
                 }
             }
+
+            let start = dateFrom;
+            let price = 0;
+            let days = 0;
+            let date_to = '';
+            // Итерация через все дни между двумя датами
+            while (start < dateTo) {
+                days++;
+                date_to = start.toLocaleString('ru-RU', { year: "numeric", month: "numeric", day: "numeric"});
+                if($('.js-select-period[data-date-from="'+date_to+'"]').data('price')){
+                    price += Number(($('.js-select-period[data-date-from="'+date_to+'"]').data('price').match(/\d+/) || [null])[0]);
+
+                   var sum = ($('.js-select-period[data-date-from="'+date_to+'"]').data('price').replace(/\d/g, ''))+' '+price;
+
+                    $('.js-booking-price').text(sum);
+                    $('.js-modal-booking').data('price',$('.js-booking-price').eq(0).text());
+                }
+                $('.p-detail__booking-period').text(days+$('.js-modal-booking').data('period').replace(/\d/g, ''));
+                $('.js-modal-booking').data('period',$('.p-detail__booking-period').text())
+
+                start.setDate(start.getDate() + 1); // Переход к следующему дню
+            }
+
+
         }
     };
 
@@ -122,7 +153,7 @@ export default function selectPeriod() {
         changeBooking(event);
     });
 
-    document.addEventListener('change', (event) => {
-        changeBooking(event);
-    });
+        document.addEventListener('change', (event) => {
+            changeBooking(event);
+        });
 }

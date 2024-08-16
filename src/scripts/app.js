@@ -104,6 +104,7 @@ new LazyLoad();
 
 document.addEventListener("loadPage", function(event) {
     swiper();
+    sheduleCalendar();
+    selectPeriod();
     new LazyLoad();
-    console.log('loadPage');
 });
