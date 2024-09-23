@@ -37,8 +37,9 @@ const spriteSvg = () => {
 
 const beautifyTask = () => {
 	return gulp.src(`${dist}*.html`)
-        .pipe(replace('/css', 'css'))
-        .pipe(replace('/assets', 'assets'))
+        .pipe(replace('href="/css', 'href="css'))
+        .pipe(replace('href="/assets', 'href="assets'))
+        .pipe(replace('src="/assets', 'src="assets'))
         .pipe(replace('src="/js', 'src="js'))
         .pipe(beautify.html({ indent_size: 4,  "max_preserve_newlines": 1,    }))
         .pipe(gulp.dest(dist))
