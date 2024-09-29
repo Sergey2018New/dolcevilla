@@ -1,0 +1,205 @@
+---
+import Icon from '@components/modules/Icon.astro';
+import Dropdown from '@components/modules/Dropdown.astro';
+import Input from '@components/modules/Input.astro';
+import Button from '@components/modules/Button.astro';
+import Checkbox from '@components/modules/Checkbox.astro';
+import Counter from '@components/modules/Counter.astro';
+import FilterPopup from '@components/blocks/FilterPopup.astro';
+
+interface Props {
+    class?: string;
+    [x: string]: any;
+}
+
+const {
+	class: className,
+	...rest
+} = Astro.props;
+
+const optionsChoose = [
+	{
+        name: "option_serviced",
+		text: "С&nbsp;обслуживанием",
+		checked: true
+	},
+	{
+        name: "option_pool",
+		text: "C&nbsp;бассейном",
+		checked: true
+	},
+	{
+        name: "option_ski_in",
+		text: "Ски-ин&nbsp;/ Ски-аут",
+		checked: false
+	},
+	{
+        name: "option_sauna",
+		text: "Сауна&nbsp;/ Джакузи",
+		checked: false
+	},
+]
+
+const options = optionsChoose;
+---
+
+<div
+	class:list={[
+		'filters filters_choose',
+		className,
+        'js-filters'
+	]}
+	{...rest}
+>
+    <div class="filters__content js-filters-content">
+        <div class="filters__box">
+            <div class="filters__items">
+                <div class="filters__item js-filters-item" role="group" aria-label="Куда вы хотите поехать?">
+                    <div class="filters__item-title">Куда вы хотите поехать?</div>
+                    <div class="filters__item-content">
+                        <Input class="filters__item-input js-filter-popup-input" placeholder="Начните вводить название" data-id="choice-location"></Input>
+                        <FilterPopup class="filters__item-popup" data-id="choice-location"></FilterPopup>
+                    </div>
+                </div>
+                <div class="filters__item js-filters-item">
+                    <div class="filters__item-title">Даты отдыха</div>
+                    <div class="filters__item-content">
+                        <Dropdown class="filters__item-dropdown" type="datepickerSelect" inputPlaceholder="Выберите даты" inputName="check_in_dates" ariaLabel="Выберите даты" isSelectedDate={false} isExtendedDatepicker={true}></Dropdown>
+                    </div>
+                </div>
+                <div class="filters__item filters__item_cols_2 js-filters-item" role="group" aria-label="Количество гостей?">
+                    <div class="filters__item-content">
+                        <Dropdown
+                            class="filters__item-dropdown"
+                            type="content"
+                            dropdownStyle="select"
+                            buttonIcon={`<svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 19.5V17.5C17 15.2909 15.2091 13.5 13 13.5H5C2.79086 13.5 1 15.2909 1 17.5V19.5"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M9 9.5C11.2091 9.5 13 7.70914 13 5.5C13 3.29086 11.2091 1.5 9 1.5C6.79086 1.5 5 3.29086 5 5.5C5 7.70914 6.79086 9.5 9 9.5Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M23 19.4999V17.4999C22.9986 15.677 21.765 14.0856 20 13.6299" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 1.62988C17.7699 2.08305 19.0078 3.67787 19.0078 5.50488C19.0078 7.33189 17.7699 8.92671 16 9.37988" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                `}
+                            buttonTitle={`
+                                <span>Взрослые</span>
+                                <span class="divided">·</span>
+                                <span>Дети</span>
+                                <span class="divided">·</span>
+                                <span>Спальни</span>
+                            `}>
+                            <div class="filters__item-fields">
+                                <div class="filters__item-field">
+                                    <div class="filters__item-field-title">
+                                        Взрослые
+                                    </div>
+                                    <div class="filters__item-field-content">
+                                        <Counter min={1}
+                                        name={'number_of_adults'}
+                                        style="outline"
+                                        class="filters__item-counter"></Counter>
+                                    </div>
+                                </div>
+                                <div class="filters__item-field">
+                                    <div class="filters__item-field-title">
+                                        Дети
+                                    </div>
+                                    <div class="filters__item-field-content">
+                                        <Counter
+                                            min={0}
+                                            name="number_of_children" class="filters__item-counter"
+                                            style="outline"
+                                        ></Counter>
+                                    </div>
+                                </div>
+                                <div class="filters__item-field filters__item-field_align_start">
+                                    <div class="filters__item-field-title">
+                                        Спальни
+                                    </div>
+                                    <div class="filters__item-field-content">
+                                        <Dropdown
+                                            class="filters__item-select"
+                                            isSelected={true}
+                                            type="select"
+                                            buttonTitle='2-4'
+                                            options={['2-4', '5-7', '8-10']} inputName="number_of_bedrooms"></Dropdown>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="filters__item-fields-buttons">
+                                <Button
+                                    class="filters__item-fields-button"
+                                    data-dropdown-close=""
+                                    size="sm"
+                                >Применить</Button>
+                                <Button
+                                    class="filters__item-fields-button"
+                                    size="sm"
+                                    style="outline"
+                                >Сбросить<span class="u-mobile-hidden-sm"> фильтр</span></Button>
+                            </div>
+                        </Dropdown>
+                    </div>
+                </div>
+                <div class="filters__item js-filters-item is-hidden" data-filter-hidden  role="group" aria-label="Цена за неделю">
+                    <div class="filters__item-title">Цена за неделю</div>
+                    <div class="filters__item-content">
+                        <Dropdown class="filters__item-dropdown"
+                        type="select"
+                        buttonTitle='Любая'
+                        isSelected={true}
+                        options={['Любая', 'Значение 1', 'Значение 2', 'Значение 3', 'Значение 4']}
+                        inputName="price"></Dropdown>
+                    </div>
+                </div>
+                <div class="filters__item js-filters-item is-hidden" data-filter-hidden  role="group" aria-label="Коллекция">
+                    <div class="filters__item-title">Коллекция</div>
+                    <div class="filters__item-content">
+                        <Dropdown class="filters__item-dropdown"
+                        type="select"
+                        buttonTitle='Любая'
+                        isSelected={true}
+                        options={['Любая', 'Значение 1', 'Значение 2', 'Значение 3', 'Значение 4']}
+                        inputName="collection"></Dropdown>
+                    </div>
+                </div>
+                <div class="filters__item js-filters-item is-hidden" data-filter-hidden  role="group" aria-label="Тип размещения">
+                    <div class="filters__item-title">Тип размещения</div>
+                    <div class="filters__item-content">
+                        <Dropdown class="filters__item-dropdown"
+                        type="select"
+                        buttonTitle='Любой'
+                        isSelected={true}
+                        options={['Любой', 'Значение 1', 'Значение 2', 'Значение 3', 'Значение 4']}
+                        inputName="type"></Dropdown>
+                    </div>
+                </div>
+                <div class="filters__item js-filters-item is-hidden" data-filter-hidden  role="group" aria-label="Тип сервиса">
+                    <div class="filters__item-title">Тип сервиса</div>
+                    <div class="filters__item-content">
+                        <Dropdown class="filters__item-dropdown"
+                        type="select"
+                        buttonTitle='Любой'
+                        isSelected={true}
+                        options={['Любой', 'Значение 1', 'Значение 2', 'Значение 3', 'Значение 4']}
+                        inputName="service_type"></Dropdown>
+                    </div>
+                </div>
+            </div>
+            <div class="filters__options">
+                {options.map((item, index) => (
+                    <div class="filters__options-item">
+                        <Checkbox class="filters__options-checkbox" name={item.name} checked={item.checked} set:html={item.text}></Checkbox>
+                    </div>
+                ))}
+
+            </div>
+        </div>
+        <div class="filters__more">
+            <button type="button" class="filters__more-button js-filters-more-button">
+                <span class="js-filters-more-text" data-toggle-text="Меньше параметров">Больше параметров</span>
+                <Icon class="filters__more-button-icon" name="settings"></Icon>
+                <Icon class="filters__more-button-icon" name="cross"></Icon>
+            </button>
+        </div>
+    </div>
+</div>

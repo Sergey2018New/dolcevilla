@@ -43,6 +43,14 @@
             max-width: 100%;
         }
 
+        .filters__item {
+            &:not(.is-hidden) {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+        }
+
         @include media(mob) {
             margin-bottom: 3rem;
         }

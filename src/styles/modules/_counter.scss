@@ -18,9 +18,8 @@
             margin-left: -0.5rem;
             margin-top: -1px;
             width: 1rem;
-            height: 1px;
-            background: $base-color;
-            transition: $duration background;
+            border-top:1px solid $base-color;
+            transition: $duration border-color;
         }
 
         &::after {
@@ -30,7 +29,7 @@
         &:hover {
             &::before,
             &::after {
-                background: $accent;
+                border-color: $accent;
             }
         }
 
@@ -74,6 +73,29 @@
         @include media(mob) {
             padding-bottom: 1rem;
             height: 3.7rem;
+        }
+    }
+
+    &_style_outline {
+        .ui-counter__input {
+            height: 4.3rem;
+            padding: 0.5rem 4rem;
+            border: 1px solid var(--color-base, #1A1A1A);
+            border-radius: 0.5rem;
+        }
+
+        .ui-counter__button {
+            top: 50%;
+            margin: 0;
+            transform: translateY(-50%);
+
+            &_decrease {
+                left: 1.2rem;
+            }
+
+            &_increase {
+                right: 1.2rem;
+            }
         }
     }
 }

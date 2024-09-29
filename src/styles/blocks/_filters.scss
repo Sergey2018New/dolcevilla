@@ -32,6 +32,20 @@
             }
         }
 
+
+        .ui-dropdown__button .divided {
+            @include media(mob-m) {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+        }
+
+        .ui-dropdown__button-main-icon-box {
+            @include media(mob-m) {
+                margin-right: 1.8rem;
+            }
+        }
+
         &_dropdown {
             border-bottom: 1px solid var(--color-line);
             transition: $duration border-color;
@@ -63,6 +77,12 @@
                     max-height: none;
                     overflow: visible;
                 }
+            }
+        }
+
+        &_cols_2 {
+            @include media-min(mob-m) {
+                grid-column: span 2;
             }
         }
 
@@ -239,6 +259,84 @@
         fill: none;
         transition: $duration transform;
         will-change: transform;
+    }
+
+    &__item-fields {
+
+    }
+
+    &__item-field {
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        &_align_start {
+            align-items: flex-start;
+        }
+    }
+
+    &__item-field-title {
+        width: 22.8rem;
+        flex-shrink: 0;
+        margin-right: 2rem;
+        font-size: 1.8rem;
+        color: #7A8084;
+
+        @include media(mob-m) {
+            flex-grow: 1;
+            width: auto;
+        }
+
+
+    }
+
+    &__item-field-content {
+        @include media(mob-m) {
+            flex-shrink: 0;
+        }
+    }
+
+    &__item-counter {
+        width: 17rem;
+
+          @include media(mob-xxs) {
+            width: 15rem;
+        }
+    }
+
+    &__item-select {
+        width: 17rem;
+
+          @include media(mob-xxs) {
+                width: 15rem;
+        }
+
+        .ui-dropdown__button {
+            height: 3.7rem;
+        }
+
+    }
+
+    &__item-fields-buttons {
+        margin-top: 2rem;
+        padding: 2rem 0;
+        display: flex;
+        gap: 1rem;
+
+        @include media(mob-m) {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        }
+    }
+
+    &__item-fields-button {
+        @include media(mob-m) {
+            width: 100%;
+        }
     }
 
     &_choose {

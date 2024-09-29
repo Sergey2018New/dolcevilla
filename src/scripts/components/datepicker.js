@@ -32,6 +32,9 @@ export default function datepicker(datepickerSelectors) {
         datepickers.forEach((datepickerEl) => {
             const datepickerInput = datepickerEl.querySelector('[data-datepicker-input]');
             const datepickerInputSelected = datepickerEl.querySelector('[data-datepicker-input-selected]');
+            const datepickerInfoEl = datepickerEl.querySelector('[data-datepicker-info]');
+            const isNoDelected = datepickerEl.classList.contains('no-selected');
+            const isExtended = datepickerEl.classList.contains('is-extended');
             let datepicker;
             let isApplyDate = false;
             let isClosing = false;
@@ -81,15 +84,32 @@ export default function datepicker(datepickerSelectors) {
                 mode: datepickerInput ? 'range' : 'single',
                 minDate: "today",
                 dateFormat: 'd.m.Y',
-                defaultDate: defaultDate,
+                defaultDate: !isNoDelected ? defaultDate : null,
+                // enable: [
+                //     function(date) {
+                //         // return true to enable
+
+                //         return (date.getDay() === 0);
+
+                //     }
+                // ],
+                onDayCreate: function(dObj, dStr, fp, dayElem) {
+                    if ([1,2,3,4,5].indexOf(dayElem.dateObj.getDay()) !== -1) {
+                        dayElem.classList.add('isNotAllowed');
+                    }
+                },
 
                 onReady: function(selectedDates, dateStr, instance){
                     const eventChange = new Event('change');
                     const calendarContainer = instance.calendarContainer;
                     const container = instance.rContainer;
                     const currentMonth = calendarContainer.querySelector('.flatpickr-current-month');;
+                    const header = document.createElement('div');
                     const footer = document.createElement('div');
                     const currentYear = document.createElement('div');
+                    const buttonsHTML = `
+                        <button type="button" class="flatpickr-button flatpickr-button-apply ui-button ui-button_size_sm">Применить</button>
+                        <button type="button" class="flatpickr-button flatpickr-button-cancel ui-button ui-button_size_sm ui-button_style_outline">Отмена</button>`;
                     let controlApply;
                     let controlCancel;
                     const setApplyDate = () => {
@@ -103,10 +123,24 @@ export default function datepicker(datepickerSelectors) {
                         }
                     }
 
+                    if (isExtended) {
+                        calendarContainer.classList.add('is-extended')
+                    }
+
                     if (datepickerInput) {
-                        footer.className = 'flatpickr-footer';
-                        footer.innerHTML = `<button type="button" class="flatpickr-button flatpickr-button-apply ui-button ui-button_size_sm">Применить</button><button type="button" class="flatpickr-button flatpickr-button-cancel ui-button ui-button_size_sm ui-button_style_outline">Отмена</button>`;
-                        container.append(footer);
+                        if (isExtended) {
+                            header.className = 'flatpickr-header';
+                            header.innerHTML = buttonsHTML;
+                            calendarContainer.prepend(header);
+                        } else {
+                            footer.className = 'flatpickr-footer';
+                            footer.innerHTML = buttonsHTML;
+                            container.append(footer);
+                        }
+                    }
+
+                    if (datepickerInfoEl) {
+                        container.append(datepickerInfoEl);
                     }
 
                     currentYear.className = 'flatpickr-current-year';
@@ -114,7 +148,7 @@ export default function datepicker(datepickerSelectors) {
 
                     if (datepickerInput) {
                         // Cancel
-                        controlCancel = footer.querySelector('.flatpickr-button-cancel');
+                        controlCancel = calendarContainer.querySelector('.flatpickr-button-cancel');
 
                         if (controlCancel) {
                             controlCancel.addEventListener('click', () => {
@@ -124,11 +158,14 @@ export default function datepicker(datepickerSelectors) {
                         }
 
                         // Apply
-                        controlApply = footer.querySelector('.flatpickr-button-apply');
+                        controlApply = calendarContainer.querySelector('.flatpickr-button-apply');
 
                         if (datepickerInputSelected) {
-                            datepickerInputSelected.value = instance.input.value;
-                            datepickerInputSelected.dispatchEvent(eventChange);
+                            if (!isNoDelected) {
+
+                                datepickerInputSelected.value = instance.input.value;
+                                datepickerInputSelected.dispatchEvent(eventChange);
+                            }
 
                             datepickerInputSelected.addEventListener('change', () => {
                                 if (datepickerInputSelected.value === '' ) {
@@ -161,6 +198,29 @@ export default function datepicker(datepickerSelectors) {
                 },
 
                 onChange: function(selectedDates, dateStr, instance) {
+                    if (selectedDates.length === 2) {
+                        let minRange = 7;
+
+                        if (selectedDates[0].getDay() == 0) {
+                            minRange = 6;
+                        }
+
+                        if (selectedDates.length === 2) {
+                            let diffTime = Math.abs(selectedDates[1] - selectedDates[0]);
+                            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            let addDays = Math.max(0, minRange - diffDays);
+
+                            if (addDays > 0) {
+                                selectedDates[1].setDate(selectedDates[1].getDate() + addDays);
+                                datepicker.setDate(selectedDates);
+                                setTimeout(() => {
+                                    datepicker.jumpToDate(selectedDates[0]);
+                                    // datepicker.open();
+                                });
+                            }
+                        }
+                    }
+
                     if (datepickerInput) {
                         const calendarContainer = instance.calendarContainer;
                         const controlApply = calendarContainer.querySelector('.flatpickr-button-apply');
@@ -170,6 +230,8 @@ export default function datepicker(datepickerSelectors) {
                         datepicker.open();
                         isClosing = false;
                     }
+
+
                 },
 
                 onYearChange: function(selectedDates, dateStr, instance) {

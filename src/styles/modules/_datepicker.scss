@@ -8,4 +8,47 @@
             opacity: 1;
         }
     }
+
+
+	&__info-wrapper {
+		display: none;
+	}
+
+	&__info-block {
+		padding-top: 2rem;
+		margin-top: 2rem;
+		border-top: 1px solid #E1E4E7;
+		text-align: left;
+		font-size: var(--text-size-sm, 1.4rem);
+		line-height: 1.4;
+
+		a {
+			text-decoration: none;
+			border-bottom: 1px solid;
+
+			&:hover {
+				color: var(--color-accent);
+			}
+
+			&[href*="tel"],
+			&[href*="mailto"] {
+				border-bottom: none;
+			}
+		}
+	}
+
+    &__info-checkbox {
+        font-size: inherit;
+        line-height: 1.4;
+
+        .ui-checkbox__checked {
+            top: -1px;
+        }
+    }
+
+    &.is-extended {
+        .ui-datepicker {
+
+        }
+    }
 }

@@ -776,17 +776,16 @@
 
     &__features-items {
         display: grid;
-        grid-auto-flow: column;
-        grid-template-rows: repeat(3, auto);
         gap: 1rem $space-default;
 
         @include grid-columns(3);
 
-        @include media(tab-l) {
-            grid-template-rows: repeat(4, auto);
-            margin-right: -0.5rem;
-
+        @include media(pc-md) {
             @include grid-columns(2);
+        }
+
+        @include media(tab-l) {
+            margin-right: -0.5rem;
         }
     }
 
@@ -901,7 +900,7 @@
             padding-right: var(--modal-lock-padding-right);
         }
 
-        &.is-visible {
+        &.is-visible.is-active {
             opacity: 1;
             visibility: visible;
         }
