@@ -35,6 +35,10 @@
         animation-name: none;
     }
 
+    &.open {
+        z-index: 150;
+    }
+
     &.is-extended {
         max-height: none;
 
