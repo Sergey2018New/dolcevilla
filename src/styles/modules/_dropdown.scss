@@ -47,7 +47,7 @@
 		height: 0.6rem;
 		// transition: $duration transform;
 		will-change: transform;
-        stroke: var(--color-base, #000);
+        stroke: currentColor;
 	}
 
     &__button-main-icon-box {

@@ -94,7 +94,17 @@ export default function datepicker(datepickerSelectors) {
                 //     }
                 // ],
                 onDayCreate: function(dObj, dStr, fp, dayElem) {
-                    if ([1,2,3,4,5].indexOf(dayElem.dateObj.getDay()) !== -1) {
+                    let arrayAllowedDays = [1,2,3,4,5];
+
+                    if (dObj.length === 1) {
+                        if (dObj[0].getDay() === 6) {
+                            arrayAllowedDays = [0,1,2,3,4,5];
+                        } else if (dObj[0].getDay() === 0) {
+                            arrayAllowedDays = [1,2,3,4,5,6];
+                        }
+                    }
+
+                    if (arrayAllowedDays.indexOf(dayElem.dateObj.getDay()) !== -1) {
                         dayElem.classList.add('isNotAllowed');
                     }
                 },
@@ -198,6 +208,7 @@ export default function datepicker(datepickerSelectors) {
                 },
 
                 onChange: function(selectedDates, dateStr, instance) {
+                    console.log(instance)
                     if (selectedDates.length === 2) {
                         let minRange = 7;
 
@@ -219,6 +230,8 @@ export default function datepicker(datepickerSelectors) {
                                 });
                             }
                         }
+                    } else {
+                        console.log(selectedDates[0].getDay())
                     }
 
                     if (datepickerInput) {

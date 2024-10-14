@@ -210,7 +210,20 @@ const items = [
 			></HomeFilters>
 			<div class="choose-chalet__items-wrapper anim anim_slideUpLarge" data-animation>
 				<div class="choose-chalet__sorting" >
-					<TabMenu class="choose-chalet__sorting-menu" list={['Рейтинговые', 'Дорогие', 'Дешевые']} size='sm'></TabMenu>
+					<TabMenu
+					class="choose-chalet__sorting-menu"
+					list={[
+						{
+							text: 'Рейтинговые',
+						},
+						{
+							text: 'Цена ↑',
+						},
+						{
+							text: 'Цена ↓',
+						},
+					]}
+					size='sm'></TabMenu>
 				</div>
 				<div class="choose-chalet__items">
 					{items.map((item) => (
