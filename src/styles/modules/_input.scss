@@ -53,8 +53,9 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 	}
 
 	@include disabled {
-		color: $disabled-color;
-		background-color: $disabled-background;
+        opacity: 1;
+        // background: #fafafa;
+        cursor: default;
 	}
 
 	@include error {

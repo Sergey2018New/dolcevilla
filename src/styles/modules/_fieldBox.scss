@@ -70,7 +70,20 @@
 
         .field-box__input:not(.is-error) {
             border-bottom-color: $base-color;
+
+
 		}
 	}
+
+    &.is-disabled {
+        opacity: 0.6;
+        // background: #eee;
+
+        .field-box__input:not(.is-error) {
+            border-bottom-color: var(--color-grey-second);
+
+
+		}
+    }
 }
 

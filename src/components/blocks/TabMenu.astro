@@ -62,8 +62,9 @@ const {
                             [
                                 'tab-menu__item',
                                 activeIndex === index ? 'is-active' : index === 0 && !activeIndex ? 'is-active' : '',
+                                item.class ? item.class : ''
                             ]
-                        } data-tab-menu-item set:html={item}></button>
+                        } data-tab-menu-item set:html={item.text ? item.text : item}></button>
                     ))}
                 </div>
             </div>

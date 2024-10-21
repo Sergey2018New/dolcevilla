@@ -5,6 +5,8 @@ import Swiper, {
     Pagination,
     Thumbs,
     Scrollbar,
+    Autoplay,
+	Parallax,
 } from 'swiper';
 
 /*
@@ -13,6 +15,37 @@ import Swiper, {
 */
 
 export default function swiper() {
+	new Swiper('.js-home-slider', {
+		modules: [Keyboard, Navigation, Pagination, Autoplay, Parallax],
+		speed: 1200,
+		keyboard: {
+			enabled: true,
+			onlyInViewport: true,
+		},
+		parallax: true,
+		slidesPerView: 1,
+		spaceBetween: 0,
+		loop: true,
+		navigation: {
+		  prevEl: '.js-home-slider-prev',
+		  nextEl: '.js-home-slider-next',
+		},
+        pagination: {
+			el: '.js-home-slider-pagination',
+			type: 'bullets',
+			clickable: true,
+		},
+        autoplay: {
+            delay: 7000,
+            disableOnInteraction: false,
+        },
+		// breakpoints: {
+        //     768: {
+		// 	    spaceBetween: 20,
+		// 	},
+		// },
+	});
+
     const sliderCompare = () => {
         const sliderCompareEl = document.querySelector('.js-slider-compare');
         let swiperCompare;

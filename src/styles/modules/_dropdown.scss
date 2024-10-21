@@ -17,6 +17,12 @@
 		line-height: var(--text-line-height);
 		text-align: left;
 		cursor: pointer;
+
+        .divided {
+            position: relative;
+            flex-shrink: 0;
+            margin: 0 1.6rem;
+        }
 	}
 
 	&__button-text {
@@ -39,9 +45,22 @@
 	&__button-icon {
 		width: 1.1rem;
 		height: 0.6rem;
-		transition: $duration transform;
+		// transition: $duration transform;
 		will-change: transform;
+        stroke: currentColor;
 	}
+
+    &__button-main-icon-box {
+        position: relative;
+        top: 2px;
+        flex-shrink: 0;
+        margin-right: 2.5rem;
+
+        svg {
+            fill: none;
+            stroke: var(--color-accent);
+        }
+    }
 
 	&__popup {
 		position: absolute;
@@ -50,9 +69,10 @@
 		padding: 0.75rem 0;
 		width: 24rem;
 		background: $white;
-		opacity: 0;
-		visibility: hidden;
-		transition: $duration visibility, $duration opacity;
+		// opacity: 0;
+		// visibility: hidden;
+        display: none;
+		// transition: $duration visibility, $duration opacity;
         box-shadow: 0 0.4rem 3rem 0 rgba(var(--color-base-rgb), 0.07);
 
 		.flatpickr-calendar.inline {
@@ -138,6 +158,8 @@
 
 	}
 
+
+	&_style_select,
 	&_select {
 		width: auto;
 
@@ -189,22 +211,40 @@
 		}
 	}
 
-	@include active {
-		.ui-dropdown {
-			&__button-icon {
-				top: 1px;
-                transform: rotate(180deg);
-			}
+    &_content {
+        > .ui-dropdown__popup {
+            margin-top: 0;
+            padding: 2rem;
+        }
+    }
 
-			&__popup {
-				opacity: 1;
-				visibility: visible;
-				pointer-events: auto;
-
-				.flatpickr-calendar.inline {
-					visibility: visible;
-				}
-			}
+	&.is-placeholder {
+		> .ui-dropdown__button {
+			color: #7A8084;
 		}
+	}
+
+	@include active {
+        > .ui-dropdown__button {
+
+            .ui-dropdown {
+                &__button-icon {
+                    top: 1px;
+                    transform: rotate(180deg);
+                }
+
+
+            }
+        }
+        > .ui-dropdown__popup {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            display: block;
+
+            .flatpickr-calendar.inline {
+                visibility: visible;
+            }
+        }
 	}
 }

@@ -8,6 +8,7 @@ interface Props {
     max?: number;
     value?: number;
     ariaLabel?: string;
+    style?: string;
     class?: string;
     classInput?: string;
     [x: string]: any;
@@ -21,6 +22,7 @@ const {
     value = 1,
     classInput,
     ariaLabel,
+    style,
     class: className,
     ...rest
 } = Astro.props;
@@ -28,6 +30,7 @@ const {
 ---
 <div class:list={[
         'ui-counter',
+        style ? `ui-counter_style_${style}` : '',
         className
     ]}
     data-counter

@@ -4,34 +4,44 @@ import Button from '@components/modules/Button.astro';
 import Datepicker from '@components/modules/Datepicker.astro';
 
 interface Props {
-    type?: "select" | "menu" | "datepicker" | "datepickerSelect";
+    type?: "select" | "menu" | "datepicker" | "datepickerSelect" | "content";
+    dropdownStyle?: string;
     buttonTitle?: string;
+    buttonIcon?: string;
     value?: string;
     inputName?: string;
+    inputPlaceholder?: string;
     inputClass?: string;
     ariaLabel?: string;
     isSelected?: boolean;
+    isSelectedDate?: boolean;
     isField?: boolean;
     isRequired?: boolean;
     popupClass?: string;
     isInputFilter?: boolean;
+    isExtendedDatepicker?: boolean;
     class?: string;
     [x: string]: any;
 }
 
 const {
     type = "select",
+    dropdownStyle,
     buttonTitle,
+    buttonIcon,
     value,
     inputName,
     inputClass,
+    inputPlaceholder,
     options = [],
     menu = [],
     isSelected,
+    isSelectedDate= true,
     isField,
     isRequired,
     popupClass,
     isInputFilter,
+    isExtendedDatepicker,
     ariaLabel,
     class: className,
     ...rest
@@ -42,6 +52,7 @@ const listItems = options ? options : menu ? menu : [];
 const dropdownClass = 'ui-dropdown';
 
 const types = {
+    content: `${dropdownClass}_content`,
     select: `${dropdownClass}_select`,
     datepicker: `${dropdownClass}_datepicker`,
     datepickerSelect: `${dropdownClass}_select ${dropdownClass}_datepicker`,
@@ -51,6 +62,7 @@ const classList =[
     dropdownClass,
     types[type],
     !isSelected ? 'is-placeholder' : '',
+    dropdownStyle ? `${dropdownClass}_style_${dropdownStyle}` : '',
     className
 ]
 ---
@@ -80,7 +92,7 @@ const classList =[
             >
                 <Fragment set:html={buttonTitle} />
             </span>
-            <Datepicker  class={`${dropdownClass}__datepicker`} inputClass={`${dropdownClass}__input${inputClass ? ' ' + inputClass : ''}`} isDropdown={true} value="" name="check_in_dates" isInputFilter={isInputFilter} ariaLabel={ariaLabel}></Datepicker>
+            <Datepicker isExtended={isExtendedDatepicker} inputPlaceholder={inputPlaceholder} isSelectedDate={isSelectedDate}  class={`${dropdownClass}__datepicker`} inputClass={`${dropdownClass}__input${inputClass ? ' ' + inputClass : ''}`} isDropdown={true} value="" name="check_in_dates" isInputFilter={isInputFilter} ariaLabel={ariaLabel}></Datepicker>
             <span class={`${dropdownClass}__button-icon-box`}><Icon class={`${dropdownClass}__button-icon`} name="arrow-sm"></Icon></span>
         </div>
     :
@@ -125,6 +137,11 @@ const classList =[
             aria-expanded="false"
             aria-label={ariaLabel}
         >
+            {
+                buttonIcon ?
+                <span class={`${dropdownClass}__button-main-icon-box`} set:html={buttonIcon}></span>
+                : ''
+            }
             <span
                 class:list={
                     [
@@ -204,6 +221,22 @@ const classList =[
                     )) : ''}
                 </div>
             </div>
+        </div>
+        : ''
+    }
+    {
+        type === 'content' ?
+        <div
+            class:list={
+                [
+                    `${dropdownClass}__popup`,
+                    popupClass ? popupClass : ''
+                ]
+            }
+            data-dropdown-popup
+            aria-hidden="true"
+        >
+            <div class={`${dropdownClass}__popup-content`}><slot></slot></div>
         </div>
         : ''
     }

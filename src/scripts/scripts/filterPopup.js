@@ -182,7 +182,6 @@ export default function filterPopupInit() {
                     && document.activeElement !== filterInput
                     && document.activeElement.closest('.js-filter-popup') !== filterPopup) {
 
-                        console.log(12234);
                     closePopup(filterPopup, filterInput);
                 }
             });

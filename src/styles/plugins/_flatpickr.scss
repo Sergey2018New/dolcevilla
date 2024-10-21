@@ -32,7 +32,20 @@
     }
 
     &.animate.open {
-        animation-name: fadeIn;
+        animation-name: none;
+    }
+
+    &.open {
+        z-index: 150;
+    }
+
+    &.is-extended {
+        max-height: none;
+
+        .flatpickr-current-month {
+            font-size: 1.8rem;
+            font-family: var(--font-family, sans-serif);
+        }
     }
 }
 
@@ -177,17 +190,23 @@ span.flatpickr-weekday {
     line-height: 3.6rem;
     color: $grey;
     user-select: none;
-    pointer-events: none;
     background: transparent;
-    opacity: 0.2;
+    opacity: 1;
 
     @include media(mob-m) {
         font-size: 1.6rem;
     }
 
+    &:nth-child(7n + 7),
     &:nth-child(7n + 6) {
-        pointer-events: auto;
-        opacity: 1;
+        // pointer-events: auto;
+        // opacity: 1;
+    }
+
+    &.isNotAllowed,
+    &.notAllowed {
+        opacity: 0.2;
+        pointer-events: none;
     }
 
     &:focus-visible {
@@ -297,10 +316,47 @@ span.flatpickr-weekday {
     opacity: 0.2;
 }
 
+.flatpickr-header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #E1E4E7;
+
+    .flatpickr-button {
+        margin: 0;
+        height: auto;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        color: var(--color-base, #1A1A1A);
+        background: none;
+
+        &:hover {
+            color: var(--color-accent);
+            background: none;
+        }
+    }
+
+    .flatpickr-button-apply {
+        order: 1;
+    }
+}
+
 .flatpickr-footer {
     display: flex;
     flex-wrap: wrap;
     padding-top: 2rem;
+}
+
+.flatpickr-footer-checkbox {
+
+}
+
+.flatpickr-footer-info {
+
 }
 
 .flatpickr-button {

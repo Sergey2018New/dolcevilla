@@ -145,8 +145,29 @@
 
         }
 
+        &:hover {
+            background: rgba(78, 133, 128, 0.06);
+        }
+
+        &.is-range {
+            background: var(--color-second-3);
+            color: $white;
+
+            .availability__shedule-dates {
+                color: inherit;
+            }
+        }
 
         &.is-active {
+            // color: $white;
+            // background: $second;
+
+            // .availability__shedule-dates {
+            //     color: inherit;
+            // }
+        }
+
+        &.is-selected {
             color: $white;
             background: $second;
 
@@ -155,9 +176,16 @@
             }
         }
 
+        &.is-disabled {
+            opacity: 0.3;
+            pointer-events: none;
+            user-select: none;
+        }
+
         &.is-no-selected {
             z-index: auto;
             cursor: default;
+            opacity: 1;
             pointer-events: none;
             background: var(--color-bg);
 
@@ -165,6 +193,8 @@
                 border-color: var(--color-bg);
             }
         }
+
+
     }
 
     &__shedule-dates {

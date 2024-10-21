@@ -1,26 +1,32 @@
 ---
 import Icon from '@components/modules/Icon.astro';
-import Button from '@components/modules/Button.astro';
+import Checkbox from '@components/modules/Checkbox.astro';
 
 interface Props {
     inputClass?: string;
+    inputPlaceholder?: string;
     isDropdown?: boolean;
     name?: string;
     value?: string;
     ariaLabel?: string;
     readonly?: boolean;
     isInputFilter?: boolean;
+    isSelectedDate?: boolean;
+    isExtended?: boolean;
     class?: string;
     [x: string]: any;
 }
 
 const {
     inputClass,
+    inputPlaceholder,
     isDropdown,
     readonly,
     name,
     value,
     isInputFilter,
+    isSelectedDate = true,
+    isExtended,
     ariaLabel,
     class: className,
     ...rest
@@ -33,7 +39,7 @@ const getInput = () => {
 }
 
 const getInputSelected = () => {
-    return `<input type="text" class="ui-input ${datepickerClass}__input ${datepickerClass}__input_visible ${inputClass ? inputClass : ''} ${isInputFilter ? 'js-filters-input' : ''}" value="${value}" name="${name}" data-datepicker-input-selected tabindex="-1" readonly="readonly" />`
+    return `<input type="text" class="ui-input ${datepickerClass}__input ${datepickerClass}__input_visible ${inputClass ? inputClass : ''} ${isInputFilter ? 'js-filters-input' : ''}" value="${value}" name="${name}" data-datepicker-input-selected tabindex="-1" ${inputPlaceholder ? `placeholder="${inputPlaceholder}"` : ''} readonly="readonly" />`
 }
 
 ---
@@ -42,6 +48,8 @@ const getInputSelected = () => {
     class:list={
         [
             datepickerClass,
+            !isSelectedDate ? 'no-selected' : '',
+            isExtended ? 'is-extended' : '',
             className
         ]
     }
@@ -50,4 +58,20 @@ const getInputSelected = () => {
 >
     <Fragment set:html={getInput()}></Fragment>
     <Fragment set:html={getInputSelected()}></Fragment>
+    {
+        isExtended ?
+        <div class="ui-datepicker__info-wrapper">
+            <div class="ui-datepicker__info" data-datepicker-info>
+                <div class="ui-datepicker__info-block">
+                    <Checkbox checked={true} class="ui-datepicker__info-checkbox">День заезда может быть как суббота, так и&nbsp;воскресенье</Checkbox>
+                </div>
+                <div class="ui-datepicker__info-block">
+                    Для обсуждения индивидуальных дат поездки свяжитесь с&nbsp;нами по&nbsp;телефону
+                    <a href="tel:+41765895428"><strong>+41 76&nbsp;589 5428</strong></a>, электронной почте
+                    <a href="mailto:info@mydolcevilla.com"><strong>info@mydolcevilla.com</strong></a> или оставьте <a href="#" data-modal-open="#modal_request">заявку на&nbsp;сайте</a>.
+                </div>
+            </div>
+        </div>
+        : ''
+    }
 </div>

@@ -1,0 +1,24 @@
+---
+import Layout from '@layouts/layout.astro';
+import HomeSection from '@components/sections/HomeSection.astro';
+import BestResorts from '@components/sections/BestResorts.astro';
+import ChooseChaletHome from '@components/sections/ChooseChaletHome.astro';
+import ChaletLocations from '@components/sections/ChaletLocations.astro';
+import EliteChalets  from '@components/sections/EliteChalets.astro';
+import PopularResorts from '@components/sections/PopularResorts.astro';
+import AboutCompany from '@components/sections/AboutCompany.astro';
+import LatestArticles from '@components/sections/LatestArticles.astro';
+import WhyWe from '@components/sections/WhyWe.astro';
+---
+
+<Layout title="Главная" headerType='second' class="page-home" isMap={true}>
+    <HomeSection></HomeSection>
+    <BestResorts></BestResorts>
+    <ChooseChaletHome></ChooseChaletHome>
+    <ChaletLocations title="Наши шале расположены на&nbsp;лучших курортах" isTags={true}></ChaletLocations>
+    <EliteChalets></EliteChalets>
+    <PopularResorts type="amazing" title="Невероятные виды ждут вас" textMore="Все курорты"></PopularResorts>
+    <AboutCompany></AboutCompany>
+    <LatestArticles></LatestArticles>
+    <WhyWe></WhyWe>
+</Layout>

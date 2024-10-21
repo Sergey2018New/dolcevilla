@@ -19,8 +19,6 @@ export default function detailBooking() {
             } else {
                 bookingBlockFixed.classList.remove('is-visible');
             }
-
-
         }
 
         fixedDetailedBooking();

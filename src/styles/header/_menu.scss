@@ -277,6 +277,7 @@
 	&__burger {
 		position: relative;
 		z-index: 1;
+        display: block;
 		border: 1px solid $accent;
 		border-radius: 50%;
 		width: $button-height;
