@@ -4,6 +4,7 @@ import JustValidate from 'just-validate';
 // import { modal } from "./components/modal.js";
 
 export default function validation() {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\.[a-zA-Z]{2,})?$/gi;
     // const maskPhones = document.querySelectorAll('.js-mask-phone');
 
     // maskPhones.forEach(phone => {
@@ -21,7 +22,8 @@ export default function validation() {
 
     // Is valid phone
     const isValidPhone = (phone) => {
-        var objRE = /^((8|\+7)[\- ]?)?(\(?\d{3,4}\)?[\- ]?)?[\d\- ]{5,14}$/;
+        // var objRE = /^\+?[1-9][0-9]{7,14}$/;
+        var objRE = /^[\d-()\+\s]+$/;
         return objRE.test(phone);
     };
 
@@ -44,10 +46,9 @@ export default function validation() {
             errorMessage: 'Заполните поле',
         },
         {
-            validator: function(value) {
-                return isValidEmail(value) || isValidPhone(value);
-            },
-            errorMessage: 'Недопустимый формат',
+            rule: 'customRegexp',
+            value: emailRegex,
+            errorMessage: 'Введите корректный email',
         },
         // {
         //     rule: 'email',
@@ -61,8 +62,9 @@ export default function validation() {
             errorMessage: 'Заполните поле',
         },
         {
-            rule: 'minLength',
-            value: 18,
+            validator: function(value) {
+                return isValidPhone(value);
+            },
             errorMessage: 'Недопустимый формат',
         },
     ];
@@ -84,9 +86,9 @@ export default function validation() {
                     fieldOptions = emailFieldOptions;
                 }
 
-                // if (fieldName === "phone") {
-                // 	fieldOptions = phoneFieldOptions;
-                // }
+                if (fieldName === "phone") {
+                	fieldOptions = phoneFieldOptions;
+                }
 
                 validate.addField(`[name="${fieldName}"]`, fieldOptions);
             }
