@@ -1,5 +1,5 @@
-
 import flatpickr from "flatpickr";
+import English from "flatpickr/dist/l10n/default.js";
 import { Russian } from "flatpickr/dist/l10n/ru.js";
 
 // import IMask from 'imask';
@@ -11,30 +11,42 @@ import { Russian } from "flatpickr/dist/l10n/ru.js";
 
 const getWeek = (date) => {
     var day = date.getDay() || 7; // Get current day number, converting Sun. to 7
-    if (day !== 1) // Only manipulate the date if it isn't Mon.
-    date.setHours(-24 * (day - 1));
+    if (day !== 1)
+        // Only manipulate the date if it isn't Mon.
+        date.setHours(-24 * (day - 1));
 };
 
 export default function datepicker(datepickerSelectors) {
-	/*
+    /*
 		@param  {Element} datepickerSelectors - HTML container element, default document
 	*/
 
-	let datepickers;
+    let datepickers;
 
-	if (datepickerSelectors && typeof datepickerSelectors === 'object' && datepickerSelectors.length > 0) {
-		datepickers = datepickerSelectors;
-	} else {
-		datepickers = document.querySelectorAll('[data-datepicker]');
-	}
+    if (
+        datepickerSelectors &&
+        typeof datepickerSelectors === "object" &&
+        datepickerSelectors.length > 0
+    ) {
+        datepickers = datepickerSelectors;
+    } else {
+        datepickers = document.querySelectorAll("[data-datepicker]");
+    }
 
-	if (datepickers) {
+    if (datepickers) {
         datepickers.forEach((datepickerEl) => {
-            const datepickerInput = datepickerEl.querySelector('[data-datepicker-input]');
-            const datepickerInputSelected = datepickerEl.querySelector('[data-datepicker-input-selected]');
-            const datepickerInfoEl = datepickerEl.querySelector('[data-datepicker-info]');
-            const isNoDelected = datepickerEl.classList.contains('no-selected');
-            const isExtended = datepickerEl.classList.contains('is-extended');
+            const datepickerInput = datepickerEl.querySelector(
+                "[data-datepicker-input]"
+            );
+            const datepickerInputSelected = datepickerEl.querySelector(
+                "[data-datepicker-input-selected]"
+            );
+            const datepickerInfoEl = datepickerEl.querySelector(
+                "[data-datepicker-info]"
+            );
+            const isNoDelected = datepickerEl.classList.contains("no-selected");
+            const isExtended = datepickerEl.classList.contains("is-extended");
+            const lang = datepickerEl.getAttribute("data-lang") || "ru";
             let datepicker;
             let isApplyDate = false;
             let isClosing = false;
@@ -45,16 +57,16 @@ export default function datepicker(datepickerSelectors) {
             const checkControlApply = (controlApply, selectedDates) => {
                 if (controlApply) {
                     if (selectedDates.length > 1) {
-                        controlApply.removeAttribute('disabled');
-                        controlApply.classList.remove('is-disabled');
+                        controlApply.removeAttribute("disabled");
+                        controlApply.classList.remove("is-disabled");
                         isApplyDate = true;
 
                         setTimeout(() => {
                             controlApply.focus();
                         }, 10);
                     } else {
-                        controlApply.setAttribute('disabled', 'disabled');
-                        controlApply.classList.add('is-disabled');
+                        controlApply.setAttribute("disabled", "disabled");
+                        controlApply.classList.add("is-disabled");
                         isApplyDate = false;
                     }
                 }
@@ -70,20 +82,25 @@ export default function datepicker(datepickerSelectors) {
                     weekDiff = 6 - weekCurrentDay;
                 }
 
-                defaultDate = null;//[todayDate.fp_incr(weekDiff), todayDate.fp_incr(weekDiff + 7)];
+                defaultDate = [
+                    todayDate.fp_incr(weekDiff),
+                    todayDate.fp_incr(weekDiff + 7),
+                ];
             } else {
-                defaultDate = datepickerEl.value ? datepickerEl.value : new Date().getDay();
+                defaultDate = datepickerEl.value
+                    ? datepickerEl.value
+                    : new Date().getDay();
             }
 
             const options = {
                 static: datepickerInput ? false : true,
-                monthSelectorType: 'static',
-                locale: Russian,
+                monthSelectorType: "static",
+                locale: lang === "ru" ? Russian : English,
                 position: "auto left",
                 disableMobile: true,
-                mode: datepickerInput ? 'range' : 'single',
+                mode: datepickerInput ? "range" : "single",
                 minDate: "today",
-                dateFormat: 'd.m.Y',
+                dateFormat: "d.m.Y",
                 defaultDate: !isNoDelected ? defaultDate : null,
                 // enable: [
                 //     function(date) {
@@ -93,30 +110,35 @@ export default function datepicker(datepickerSelectors) {
 
                 //     }
                 // ],
-                onDayCreate: function(dObj, dStr, fp, dayElem) {
-                    let arrayAllowedDays = [1,2,3,4,5];
+                onDayCreate: function (dObj, dStr, fp, dayElem) {
+                    let arrayAllowedDays = [1, 2, 3, 4, 5];
 
                     if (dObj.length === 1) {
                         if (dObj[0].getDay() === 6) {
-                            arrayAllowedDays = [0,1,2,3,4,5];
+                            arrayAllowedDays = [0, 1, 2, 3, 4, 5];
                         } else if (dObj[0].getDay() === 0) {
-                            arrayAllowedDays = [1,2,3,4,5,6];
+                            arrayAllowedDays = [1, 2, 3, 4, 5, 6];
                         }
                     }
 
-                    if (arrayAllowedDays.indexOf(dayElem.dateObj.getDay()) !== -1) {
-                        dayElem.classList.add('isNotAllowed');
+                    if (
+                        arrayAllowedDays.indexOf(dayElem.dateObj.getDay()) !==
+                        -1
+                    ) {
+                        dayElem.classList.add("isNotAllowed");
                     }
                 },
 
-                onReady: function(selectedDates, dateStr, instance){
-                    const eventChange = new Event('change');
+                onReady: function (selectedDates, dateStr, instance) {
+                    const eventChange = new Event("change");
                     const calendarContainer = instance.calendarContainer;
                     const container = instance.rContainer;
-                    const currentMonth = calendarContainer.querySelector('.flatpickr-current-month');;
-                    const header = document.createElement('div');
-                    const footer = document.createElement('div');
-                    const currentYear = document.createElement('div');
+                    const currentMonth = calendarContainer.querySelector(
+                        ".flatpickr-current-month"
+                    );
+                    const header = document.createElement("div");
+                    const footer = document.createElement("div");
+                    const currentYear = document.createElement("div");
                     const buttonsHTML = `
                         <button type="button" class="flatpickr-button flatpickr-button-apply ui-button ui-button_size_sm">Применить</button>
                         <button type="button" class="flatpickr-button flatpickr-button-cancel ui-button ui-button_size_sm ui-button_style_outline">Отмена</button>`;
@@ -128,22 +150,23 @@ export default function datepicker(datepickerSelectors) {
                         datepicker.close();
 
                         if (isApplyDate && datepickerInputSelected) {
-                            datepickerInputSelected.value = instance.input.value;
+                            datepickerInputSelected.value =
+                                instance.input.value;
                             datepickerInputSelected.dispatchEvent(eventChange);
                         }
-                    }
+                    };
 
                     if (isExtended) {
-                        calendarContainer.classList.add('is-extended')
+                        calendarContainer.classList.add("is-extended");
                     }
 
                     if (datepickerInput) {
                         if (isExtended) {
-                            header.className = 'flatpickr-header';
+                            header.className = "flatpickr-header";
                             header.innerHTML = buttonsHTML;
                             calendarContainer.prepend(header);
                         } else {
-                            footer.className = 'flatpickr-footer';
+                            footer.className = "flatpickr-footer";
                             footer.innerHTML = buttonsHTML;
                             container.append(footer);
                         }
@@ -153,49 +176,70 @@ export default function datepicker(datepickerSelectors) {
                         container.append(datepickerInfoEl);
                     }
 
-                    currentYear.className = 'flatpickr-current-year';
+                    currentYear.className = "flatpickr-current-year";
                     currentYear.innerHTML = instance.currentYear;
 
                     if (datepickerInput) {
                         // Cancel
-                        controlCancel = calendarContainer.querySelector('.flatpickr-button-cancel');
+                        controlCancel = calendarContainer.querySelector(
+                            ".flatpickr-button-cancel"
+                        );
 
                         if (controlCancel) {
-                            controlCancel.addEventListener('click', () => {
+                            controlCancel.addEventListener("click", () => {
+                                datepicker.clear();
+                                if (datepickerInputSelected) {
+                                    datepickerInputSelected.value =
+                                        instance.input.value;
+                                    datepickerInputSelected.dispatchEvent(
+                                        eventChange
+                                    );
+                                }
                                 isClosing = true;
                                 datepicker.close();
                             });
                         }
 
                         // Apply
-                        controlApply = calendarContainer.querySelector('.flatpickr-button-apply');
+                        controlApply = calendarContainer.querySelector(
+                            ".flatpickr-button-apply"
+                        );
 
                         if (datepickerInputSelected) {
                             if (!isNoDelected) {
-
-                                datepickerInputSelected.value = instance.input.value;
-                                datepickerInputSelected.dispatchEvent(eventChange);
+                                datepickerInputSelected.value =
+                                    instance.input.value;
+                                datepickerInputSelected.dispatchEvent(
+                                    eventChange
+                                );
                             }
 
-                            datepickerInputSelected.addEventListener('change', () => {
-                                if (datepickerInputSelected.value === '' ) {
-                                    datepicker.clear();
-                                    datepicker.close();
+                            datepickerInputSelected.addEventListener(
+                                "change",
+                                () => {
+                                    if (datepickerInputSelected.value === "") {
+                                        datepicker.clear();
+                                        datepicker.close();
+                                    }
                                 }
-                            });
+                            );
                         }
 
                         checkControlApply(controlApply, selectedDates);
 
                         if (controlApply) {
-                            controlApply.addEventListener('mousedown', () => {
+                            controlApply.addEventListener("mousedown", () => {
                                 setApplyDate();
                             });
                         }
 
-                        calendarContainer.addEventListener('keyup', (e) => {
-                            if ((e.code === 'Space' || e.code === 'Enter' || e.key === 'Enter')
-                                && document.activeElement === controlApply) {
+                        calendarContainer.addEventListener("keyup", (e) => {
+                            if (
+                                (e.code === "Space" ||
+                                    e.code === "Enter" ||
+                                    e.key === "Enter") &&
+                                document.activeElement === controlApply
+                            ) {
                                 setApplyDate();
                             }
                         });
@@ -207,8 +251,7 @@ export default function datepicker(datepickerSelectors) {
                     }
                 },
 
-                onChange: function(selectedDates, dateStr, instance) {
-                    console.log(instance)
+                onChange: function (selectedDates, dateStr, instance) {
                     if (selectedDates.length === 2) {
                         let minRange = 7;
 
@@ -217,12 +260,18 @@ export default function datepicker(datepickerSelectors) {
                         }
 
                         if (selectedDates.length === 2) {
-                            let diffTime = Math.abs(selectedDates[1] - selectedDates[0]);
-                            let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                            let diffTime = Math.abs(
+                                selectedDates[1] - selectedDates[0]
+                            );
+                            let diffDays = Math.ceil(
+                                diffTime / (1000 * 60 * 60 * 24)
+                            );
                             let addDays = Math.max(0, minRange - diffDays);
 
                             if (addDays > 0) {
-                                selectedDates[1].setDate(selectedDates[1].getDate() + addDays);
+                                selectedDates[1].setDate(
+                                    selectedDates[1].getDate() + addDays
+                                );
                                 datepicker.setDate(selectedDates);
                                 setTimeout(() => {
                                     datepicker.jumpToDate(selectedDates[0]);
@@ -230,55 +279,59 @@ export default function datepicker(datepickerSelectors) {
                                 });
                             }
                         }
-                    } else {
-                        console.log(selectedDates[0].getDay())
                     }
 
                     if (datepickerInput) {
                         const calendarContainer = instance.calendarContainer;
-                        const controlApply = calendarContainer.querySelector('.flatpickr-button-apply');
+                        const controlApply = calendarContainer.querySelector(
+                            ".flatpickr-button-apply"
+                        );
 
                         checkControlApply(controlApply, selectedDates);
 
                         datepicker.open();
                         isClosing = false;
                     }
-
-
                 },
 
-                onYearChange: function(selectedDates, dateStr, instance) {
+                onYearChange: function (selectedDates, dateStr, instance) {
                     const calendarContainer = instance.calendarContainer;
-                    const currentYear = calendarContainer.querySelector('.flatpickr-current-year');
+                    const currentYear = calendarContainer.querySelector(
+                        ".flatpickr-current-year"
+                    );
 
                     if (currentYear) {
                         currentYear.innerHTML = instance.currentYear;
                     }
                 },
 
-                onOpen: function(selectedDates, dateStr, instance) {
+                onOpen: function (selectedDates, dateStr, instance) {
                     if (datepickerInput) {
                         isClosing = true;
                     }
                 },
 
-                onClose: function(selectedDates, dateStr, instance) {
-                    const dropdownActive = document.querySelector('[data-dropdown].is-active');
+                onClose: function (selectedDates, dateStr, instance) {
+                    const dropdownActive = document.querySelector(
+                        "[data-dropdown].is-active"
+                    );
 
                     setTimeout(() => {
                         if (dropdownActive && isClosing) {
-                            instance.element.dispatchEvent(new Event("close", {bubbles: true,date:dateStr}));
-                            dropdownActive.classList.remove('is-active');
+                            dropdownActive.classList.remove("is-active");
                         }
                     }, 100);
-                }
+                },
             };
 
             if (datepickerInput) {
-                document.addEventListener('click', (event) => {
+                document.addEventListener("click", (event) => {
                     const target = event.target;
 
-                    if (!target.closest('.flatpickr-calendar') && !target.classList.contains('flatpickr-calendar')) {
+                    if (
+                        !target.closest(".flatpickr-calendar") &&
+                        !target.classList.contains("flatpickr-calendar")
+                    ) {
                         isClosing = true;
                     }
                 });
@@ -288,7 +341,5 @@ export default function datepicker(datepickerSelectors) {
                 flatpickr(datepickerEl, options);
             }
         });
-
-
     }
 }

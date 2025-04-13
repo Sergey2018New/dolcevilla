@@ -1,6 +1,5 @@
 ---
-import Icon from '@components/modules/Icon.astro';
-import Checkbox from '@components/modules/Checkbox.astro';
+import Checkbox from '@components/modules/Checkbox.astro'
 
 interface Props {
     inputClass?: string;
@@ -14,6 +13,7 @@ interface Props {
     isSelectedDate?: boolean;
     isExtended?: boolean;
     class?: string;
+    lang?: string;
     [x: string]: any;
 }
 
@@ -28,6 +28,7 @@ const {
     isSelectedDate = true,
     isExtended,
     ariaLabel,
+    lang,
     class: className,
     ...rest
 } = Astro.props;
@@ -54,6 +55,7 @@ const getInputSelected = () => {
         ]
     }
    data-datepicker
+    data-lang={lang}
     {...rest}
 >
     <Fragment set:html={getInput()}></Fragment>

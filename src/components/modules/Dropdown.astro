@@ -1,10 +1,11 @@
 ---
-import Icon from '@components/modules/Icon.astro';
-import Button from '@components/modules/Button.astro';
-import Datepicker from '@components/modules/Datepicker.astro';
+import Checkbox from "@components/modules/Checkbox.astro"
+import Datepicker from "@components/modules/Datepicker.astro"
+import Icon from "@components/modules/Icon.astro"
 
 interface Props {
-    type?: "select" | "menu" | "datepicker" | "datepickerSelect" | "content";
+    // added multiselect
+    type?: "select" | "menu" | "datepicker" | "datepickerSelect" | "content" | "multiselect";
     dropdownStyle?: string;
     buttonTitle?: string;
     buttonIcon?: string;
@@ -21,7 +22,9 @@ interface Props {
     isInputFilter?: boolean;
     isExtendedDatepicker?: boolean;
     class?: string;
+    lang?: string;
     [x: string]: any;
+    checked?: boolean;
 }
 
 const {
@@ -36,7 +39,7 @@ const {
     options = [],
     menu = [],
     isSelected,
-    isSelectedDate= true,
+    isSelectedDate = true,
     isField,
     isRequired,
     popupClass,
@@ -44,200 +47,393 @@ const {
     isExtendedDatepicker,
     ariaLabel,
     class: className,
+    lang,
+    checked,
     ...rest
 } = Astro.props;
 
 const listItems = options ? options : menu ? menu : [];
 
-const dropdownClass = 'ui-dropdown';
+const dropdownClass = "ui-dropdown";
 
 const types = {
     content: `${dropdownClass}_content`,
     select: `${dropdownClass}_select`,
+    // added
+    multiselect: `${dropdownClass}_multiselect`,
+    // added
     datepicker: `${dropdownClass}_datepicker`,
     datepickerSelect: `${dropdownClass}_select ${dropdownClass}_datepicker`,
 };
 
-const classList =[
+const classList = [
     dropdownClass,
     types[type],
-    !isSelected ? 'is-placeholder' : '',
-    dropdownStyle ? `${dropdownClass}_style_${dropdownStyle}` : '',
-    className
-]
+    !isSelected ? "is-placeholder" : "",
+    dropdownStyle ? `${dropdownClass}_style_${dropdownStyle}` : "",
+    className,
+];
 ---
 
-<div
-    class:list={classList}
-    data-dropdown={type}
-    {...rest}
->
-    {type === 'datepicker' || type === 'datepickerSelect'  ?
-        <div
-            class:list={
-                [
+<div class:list={classList} data-dropdown={type} {...rest}>
+    {
+        type === "datepicker" || type === "datepickerSelect" ? (
+            <div
+                class:list={[
                     `${dropdownClass}__button`,
-                    isField ? `ui-input` : '',
-                ]
-            }
-            data-dropdown-button
-        >
-            <span
-                class:list={
-                    [
-                        `${dropdownClass}__button-text`,
-                    ]
-                }
-                data-dropdown-button-text
+                    isField ? `ui-input` : "",
+                ]}
+                data-dropdown-button
             >
-                <Fragment set:html={buttonTitle} />
-            </span>
-            <Datepicker isExtended={isExtendedDatepicker} inputPlaceholder={inputPlaceholder} isSelectedDate={isSelectedDate}  class={`${dropdownClass}__datepicker`} inputClass={`${dropdownClass}__input${inputClass ? ' ' + inputClass : ''}`} isDropdown={true} value="" name="check_in_dates" isInputFilter={isInputFilter} ariaLabel={ariaLabel}></Datepicker>
-            <span class={`${dropdownClass}__button-icon-box`}><Icon class={`${dropdownClass}__button-icon`} name="arrow-sm"></Icon></span>
-        </div>
-    :
-    type === 'select' ?
-        <button
-            class:list={
-                [
-                    `${dropdownClass}__button`,
-                    isField ? `ui-input` : '',
-                ]
-            }
-            type="button"
-            data-dropdown-button
-            aria-label={ariaLabel}
-            role="combobox"
-        >
-            <span
-                class:list={
-                    [
-                        `${dropdownClass}__button-text`,
-                    ]
-                }
-                data-dropdown-button-text
-                role="textbox"
-            >
-                <Fragment set:html={buttonTitle ? buttonTitle
-                : options.length ? options[0].text !== undefined ? options[0].text : options[0] : ''} />
-            </span>
-            <span class={`${dropdownClass}__button-icon-box`}><Icon class={`${dropdownClass}__button-icon`} name="arrow-sm"></Icon></span>
-        </button>
-    :
-        <button
-            class:list={
-                [
-                    `${dropdownClass}__button`,
-                    isField ? `ui-input` : '',
-                ]
-            }
-            type="button"
-            aria-haspopup="true"
-            data-dropdown-button
-            aria-expanded="false"
-            aria-label={ariaLabel}
-        >
-            {
-                buttonIcon ?
-                <span class={`${dropdownClass}__button-main-icon-box`} set:html={buttonIcon}></span>
-                : ''
-            }
-            <span
-                class:list={
-                    [
-                        `${dropdownClass}__button-text`,
-                    ]
-                }
-            >
-                <Fragment set:html={
-                buttonTitle ? buttonTitle
-                : menu.length ? menu[0].text !== undefined ? menu[0].text : menu[0] : ''} />
-            </span>
-            <span class={`${dropdownClass}__button-icon-box`}><Icon class={`${dropdownClass}__button-icon`} name="arrow-sm"></Icon></span>
-        </button>
-    }
-    {type === 'select'  ?
-        isField ?
-            isRequired ?
-            <input type={'text'} class:list={
-                [
-                    `${dropdownClass}__input`,
-                    `ui-input`,
-                    inputClass ? inputClass : '',
-                ]
-            } value={value} name={inputName} data-dropdown-input readonly required data-js-form-field tabindex="-1"/>
-            :
-            <input type={'text'} class:list={
-                [
-                    `${dropdownClass}__input`,
-                    `ui-input`,
-                    inputClass ? inputClass : '',
-                ]
-            } value={value} name={inputName} data-dropdown-input readonly tabindex="-1"/>
-        :
-            <input type={'hidden'} class:list={
-                [
-                    `${dropdownClass}__input`,
-                    inputClass ? inputClass : '',
-                ]
-            } value={value} name={inputName} data-dropdown-input/>
-        <div
-            class:list={
-                [
-                    `${dropdownClass}__popup`,
-                    popupClass ? popupClass : ''
-                ]
-            }
-            data-dropdown-popup
-            aria-hidden="true"
-        >
-            <div class={`${dropdownClass}__scroll`} data-dropdown-scroll>
-                <div class={`${dropdownClass}__menu`} data-dropdown-list tabindex="0" role="listbox">
-                    {listItems ? listItems.map((item, index) => (
-                        <div class={`${dropdownClass}__menu-item ${isSelected && index === 0 ? 'is-selected' : ''}`} data-dropdown-option data-value={item.value !== undefined ? item.value : item} role="option" aria-selected={item.selected ? 'true' : 'false'}>
-                            <Fragment set:html={item.text !== undefined ? item.text : item} />
-                        </div>
-                    )) : ''}
-                </div>
+                <span
+                    class:list={[`${dropdownClass}__button-text`]}
+                    data-dropdown-button-text
+                >
+                    <Fragment set:html={buttonTitle} />
+                </span>
+                <Datepicker
+                    isExtended={isExtendedDatepicker}
+                    inputPlaceholder={inputPlaceholder}
+                    isSelectedDate={isSelectedDate}
+                    class={`${dropdownClass}__datepicker`}
+                    inputClass={`${dropdownClass}__input${
+                        inputClass ? " " + inputClass : ""
+                    }`}
+                    isDropdown={true}
+                    value=""
+                    name="check_in_dates"
+                    lang={lang}
+                    isInputFilter={isInputFilter}
+                    ariaLabel={ariaLabel}
+                />
+                <span class={`${dropdownClass}__button-icon-box`}>
+                    <Icon
+                        class={`${dropdownClass}__button-icon`}
+                        name="arrow-sm"
+                    />
+                </span>
             </div>
-        </div>
-        : ''
-    }
-    {type === 'menu'  ?
-        <div
-            class:list={
-                [
-                    `${dropdownClass}__popup`,
-                    popupClass ? popupClass : ''
-                ]
-            }
-            data-dropdown-popup
-            aria-hidden="true"
-        >
-            <div class={`${dropdownClass}__scroll`} data-dropdown-scroll>
-                <div class={`${dropdownClass}__menu`}>
-                    {listItems ? listItems.map((item) => (
-                        <a href="" class={`${dropdownClass}__menu-item`}><Fragment set:html={item.text ? item.text : item} /></a>
-                    )) : ''}
-                </div>
-            </div>
-        </div>
-        : ''
+        ) : ['select', 'multiselect'].includes(type) ? (
+            <button
+                class:list={[
+                    `${dropdownClass}__button`,
+                    isField ? `ui-input` : "",
+                ]}
+                type="button"
+                data-dropdown-button
+                data-dropdown-button-default={buttonTitle}
+                aria-label={ariaLabel}
+                role="combobox"
+            >
+                <span
+                    class:list={[`${dropdownClass}__button-text`]}
+                    data-dropdown-button-text
+                    role="textbox"
+                >
+                    <Fragment
+                        set:html={
+                            buttonTitle
+                                ? buttonTitle
+                                : options.length
+                                ? options[0].text !== undefined
+                                    ? options[0].text
+                                    : options[0]
+                                : ""
+                        }
+                    />
+                </span>
+                <span class={`${dropdownClass}__button-icon-box`}>
+                    <Icon
+                        class={`${dropdownClass}__button-icon`}
+                        name="arrow-sm"
+                    />
+                </span>
+            </button>
+        ) : (
+            <button
+                class:list={[
+                    `${dropdownClass}__button`,
+                    isField ? `ui-input` : "",
+                ]}
+                type="button"
+                aria-haspopup="true"
+                data-dropdown-button
+                aria-expanded="false"
+                aria-label={ariaLabel}
+            >
+                {buttonIcon ? (
+                    <span
+                        class={`${dropdownClass}__button-main-icon-box`}
+                        set:html={buttonIcon}
+                    />
+                ) : (
+                    ""
+                )}
+                <span class:list={[`${dropdownClass}__button-text`]}>
+                    <Fragment
+                        set:html={
+                            buttonTitle
+                                ? buttonTitle
+                                : menu.length
+                                ? menu[0].text !== undefined
+                                    ? menu[0].text
+                                    : menu[0]
+                                : ""
+                        }
+                    />
+                </span>
+                <span class={`${dropdownClass}__button-icon-box`}>
+                    <Icon
+                        class={`${dropdownClass}__button-icon`}
+                        name="arrow-sm"
+                    />
+                </span>
+            </button>
+        )
     }
     {
-        type === 'content' ?
-        <div
-            class:list={
-                [
+        type === "select" ? (
+            isField ? (
+                isRequired ? (
+                    <input
+                        type={"text"}
+                        class:list={[
+                            `${dropdownClass}__input`,
+                            `ui-input`,
+                            inputClass ? inputClass : "",
+                        ]}
+                        value={value}
+                        name={inputName}
+                        data-dropdown-input
+                        readonly
+                        required
+                        data-js-form-field
+                        tabindex="-1"
+                    />
+                ) : (
+                    <input
+                        type={"text"}
+                        class:list={[
+                            `${dropdownClass}__input`,
+                            `ui-input`,
+                            inputClass ? inputClass : "",
+                        ]}
+                        value={value}
+                        name={inputName}
+                        data-dropdown-input
+                        readonly
+                        tabindex="-1"
+                    />
+                )
+            ) : (
+                <>
+                    <input
+                        type={"hidden"}
+                        class:list={[
+                            `${dropdownClass}__input`,
+                            inputClass ? inputClass : "",
+                        ]}
+                        value={value}
+                        name={inputName}
+                        data-dropdown-input
+                    />
+                    <div
+                        class:list={[
+                            `${dropdownClass}__popup`,
+                            popupClass ? popupClass : "",
+                        ]}
+                        data-dropdown-popup
+                        aria-hidden="true"
+                    >
+                        <div
+                            class={`${dropdownClass}__scroll`}
+                            data-dropdown-scroll
+                        >
+                            <div
+                                class={`${dropdownClass}__menu`}
+                                data-dropdown-list
+                                tabindex="0"
+                                role="listbox"
+                            >
+                                {listItems
+                                    ? listItems.map((item, index) => (
+                                          <div
+                                              class={`${dropdownClass}__menu-item ${
+                                                  isSelected && (type === 'multiselect' ? false : index === 0)
+                                                      ? "is-selected"
+                                                      : ""
+                                              }`}
+                                              data-dropdown-option
+                                              data-value={
+                                                  item.value !== undefined
+                                                      ? item.value
+                                                      : item
+                                              }
+                                              role="option"
+                                              aria-selected={
+                                                  item.selected
+                                                      ? "true"
+                                                      : "false"
+                                              }
+                                          >
+                                              <Fragment
+                                                  set:html={
+                                                      item.text !== undefined
+                                                          ? item.text
+                                                          : item
+                                                  }
+                                              />
+                                          </div>
+                                      ))
+                                    : ""}
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )
+        ) : (
+            ""
+        )
+    }
+    <!-- added multiselect -->
+    {
+        type === "multiselect" ? (
+            isField ? (
+                isRequired ? (
+                    <input
+                        type={"text"}
+                        class:list={[
+                            `${dropdownClass}__input`,
+                            `ui-input`,
+                            inputClass ? inputClass : "",
+                        ]}
+                        value={value}
+                        name={inputName}
+                        data-dropdown-input
+                        readonly
+                        required
+                        data-js-form-field
+                        tabindex="-1"
+                    />
+                ) : (
+                    <input
+                        type={"text"}
+                        class:list={[
+                            `${dropdownClass}__input`,
+                            `ui-input`,
+                            inputClass ? inputClass : "",
+                        ]}
+                        value={value}
+                        name={inputName}
+                        data-dropdown-input
+                        readonly
+                        tabindex="-1"
+                    />
+                )
+            ) : (
+                <>
+                    <input
+                        type={"hidden"}
+                        class:list={[
+                            `${dropdownClass}__input`,
+                            inputClass ? inputClass : "",
+                        ]}
+                        value={value}
+                        name={inputName}
+                        data-dropdown-input
+                    />
+                    <div
+                        class:list={[
+                            `${dropdownClass}__popup`,
+                            popupClass ? popupClass : "",
+                        ]}
+                        data-dropdown-popup
+                        aria-hidden="true"
+                    >
+                        <div
+                            class={`${dropdownClass}__scroll`}
+                            data-dropdown-scroll
+                        >
+                            <div
+                                class={`${dropdownClass}__menu`}
+                                data-dropdown-list
+                                tabindex="0"
+                                role="listbox"
+                            >
+                                {listItems
+                                    ? listItems.map((item, index) => (
+                                          <div
+                                              class={`${dropdownClass}__menu-item ${
+                                                  checked ? "checked" : ""
+                                              }`}
+                                          >
+                                              <Checkbox
+                                                  class="dropdown__options-checkbox"
+                                                  name={item.name}
+                                                  checked={item.checked}
+                                                  set:html={item.text}
+                                              />
+                                          </div>
+                                      ))
+                                    : ""}
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )
+        ) : (
+            ""
+        )
+    }
+    {
+        type === "menu" ? (
+            <div
+                class:list={[
                     `${dropdownClass}__popup`,
-                    popupClass ? popupClass : ''
-                ]
-            }
-            data-dropdown-popup
-            aria-hidden="true"
-        >
-            <div class={`${dropdownClass}__popup-content`}><slot></slot></div>
-        </div>
-        : ''
+                    popupClass ? popupClass : "",
+                ]}
+                data-dropdown-popup
+                aria-hidden="true"
+            >
+                <div class={`${dropdownClass}__scroll`} data-dropdown-scroll>
+                    <div class={`${dropdownClass}__menu`}>
+                        {listItems
+                            ? listItems.map((item) => (
+                                  <a
+                                      href=""
+                                      class={`${dropdownClass}__menu-item`}
+                                  >
+                                      <Fragment
+                                          set:html={
+                                              item.text ? item.text : item
+                                          }
+                                      />
+                                  </a>
+                              ))
+                            : ""}
+                    </div>
+                </div>
+            </div>
+        ) : (
+            ""
+        )
+    }
+    {
+        type === "content" ? (
+            <div
+                class:list={[
+                    `${dropdownClass}__popup`,
+                    popupClass ? popupClass : "",
+                ]}
+                data-dropdown-popup
+                aria-hidden="true"
+            >
+                <div class={`${dropdownClass}__popup-content`}>
+                    <slot />
+                </div>
+            </div>
+        ) : (
+            ""
+        )
     }
 </div>

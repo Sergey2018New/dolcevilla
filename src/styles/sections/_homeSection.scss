@@ -104,6 +104,21 @@
         + .home-section__inner {
             --content-bg: none;
         }
+
+        //added
+        .home-section {
+            &__title {
+                @include media(mob) {
+                    margin-bottom: 110px;
+                }
+            }
+        }
+        & ~ .home-section__inner .home-section__button {
+            @include media(mob) {
+                margin-bottom: 50px;
+            }
+        }
+        //added
     }
 
     &__title-wrapper {
@@ -149,6 +164,9 @@
         top: 0;
         width: 100%;
         height: 100%;
+        //added
+        object-fit: cover;
+        //added
     }
 
     &__slider-pagination {

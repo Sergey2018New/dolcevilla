@@ -1,54 +1,54 @@
 /* ------- UI - Dropdown ------- */
 .ui-dropdown {
-	position: relative;
-	width: fit-content;
-	max-width: 100%;
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
 
-	&__button {
-		position: relative;
-		display: flex;
-		align-items: center;
-		border: 1px solid $accent;
-		border-radius: calc($button-height * 0.5);
-		padding: 0 2rem;
-		max-width: 100%;
-		height: $button-height;
-		font-size: $text-size-desktop;
-		line-height: var(--text-line-height);
-		text-align: left;
-		cursor: pointer;
+    &__button {
+        position: relative;
+        display: flex;
+        align-items: center;
+        border: 1px solid $accent;
+        border-radius: calc($button-height * 0.5);
+        padding: 0 2rem;
+        max-width: 100%;
+        height: $button-height;
+        font-size: $text-size-desktop;
+        line-height: var(--text-line-height);
+        text-align: left;
+        cursor: pointer;
 
         .divided {
             position: relative;
             flex-shrink: 0;
             margin: 0 1.6rem;
         }
-	}
+    }
 
-	&__button-text {
-		padding: 0.5rem 1.9rem 0.5rem 0;
-		max-width: 100%;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
+    &__button-text {
+        padding: 0.5rem 1.9rem 0.5rem 0;
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 
-	&__button-icon-box {
-		position: absolute;
-		top: 50%;
-		right: 2rem;
-		display: flex;
-		align-items: center;
-		margin-top: -0.3rem;
-	}
+    &__button-icon-box {
+        position: absolute;
+        top: 50%;
+        right: 2rem;
+        display: flex;
+        align-items: center;
+        margin-top: -0.3rem;
+    }
 
-	&__button-icon {
-		width: 1.1rem;
-		height: 0.6rem;
-		// transition: $duration transform;
-		will-change: transform;
+    &__button-icon {
+        width: 1.1rem;
+        height: 0.6rem;
+        // transition: $duration transform;
+        will-change: transform;
         stroke: currentColor;
-	}
+    }
 
     &__button-main-icon-box {
         position: relative;
@@ -62,27 +62,27 @@
         }
     }
 
-	&__popup {
-		position: absolute;
-		z-index: 50;
-		margin-top: 0.5rem;
-		padding: 0.75rem 0;
-		width: 24rem;
-		background: $white;
-		// opacity: 0;
-		// visibility: hidden;
+    &__popup {
+        position: absolute;
+        z-index: 50;
+        margin-top: 0.5rem;
+        padding: 0.75rem 0;
+        width: 24rem;
+        background: $white;
+        // opacity: 0;
+        // visibility: hidden;
         display: none;
-		// transition: $duration visibility, $duration opacity;
+        // transition: $duration visibility, $duration opacity;
         box-shadow: 0 0.4rem 3rem 0 rgba(var(--color-base-rgb), 0.07);
 
-		.flatpickr-calendar.inline {
-			visibility: hidden;
-		}
-	}
+        .flatpickr-calendar.inline {
+            visibility: hidden;
+        }
+    }
 
-	&__scroll {
-		overflow: auto;
-		max-height: 4rem * 6;
+    &__scroll {
+        overflow: auto;
+        max-height: 4rem * 6;
         cursor: pointer;
 
         &::-webkit-scrollbar {
@@ -99,20 +99,20 @@
         &::-webkit-scrollbar-track {
             background: transparent;
         }
-	}
+    }
 
-	&__input {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		margin: 0;
-		overflow: hidden;
-		opacity: 0;
-		background: none;
-		pointer-events: none;
-	}
+    &__input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        opacity: 0;
+        background: none;
+        pointer-events: none;
+    }
 
     &__menu {
         &:focus,
@@ -121,95 +121,94 @@
         }
     }
 
-	&__menu-item {
-		display: block;
-		padding: 0.25rem 1rem;
-		width: 100%;
-		font-size: $text-size-desktop;
-		line-height: 1.42;
-		text-decoration: none;
-		text-align: left;
-		transition: $duration color, $duration background;
-		cursor: pointer;
-		user-select: none;
+    &__menu-item {
+        display: block;
+        padding: 0.25rem 1rem;
+        width: 100%;
+        font-size: $text-size-desktop;
+        line-height: 1.42;
+        text-decoration: none;
+        text-align: left;
+        transition: $duration color, $duration background;
+        cursor: pointer;
+        user-select: none;
 
-		&:hover {
-			color: $second;
-		}
+        &:hover {
+            color: $second;
+        }
 
-		&:focus-visible {
-			outline: none;
+        &:focus-visible {
+            outline: none;
             color: $white;
             background: $second;
-		}
+        }
 
-		&:last-child {
-			margin-bottom: 0;
-		}
+        &:last-child {
+            margin-bottom: 0;
+        }
 
-		&.is-selected {
+        &.is-selected {
             color: $second;
-		}
+        }
 
         &.is-focused {
             color: $white;
             background: $second;
         }
+    }
 
-	}
+    &_style_select,
+    &_multiselect,
+    &_select {
+        width: auto;
 
+        .ui-dropdown__button {
+            align-items: flex-start;
+            border: none;
+            border-bottom: 1px solid $base-color;
+            border-radius: 0;
+            padding: 0;
+            width: 100%;
+            height: 4.7rem;
 
-	&_style_select,
-	&_select {
-		width: auto;
+            @include media(mob) {
+                height: 3.7rem;
+            }
+        }
 
-		.ui-dropdown__button {
-			align-items: flex-start;
-			border: none;
-			border-bottom: 1px solid $base-color;
-			border-radius: 0;
-			padding: 0;
-			width: 100%;
-			height: 4.7rem;
+        .ui-dropdown__button-text {
+            padding: 0;
+        }
 
-			@include media(mob) {
-				height: 3.7rem;
-			}
-		}
+        .ui-dropdown__button-icon-box {
+            right: 0;
+            top: 0;
+            margin-top: 0;
+            height: 2.7rem;
+        }
 
-		.ui-dropdown__button-text {
-			padding: 0;
-		}
+        .ui-dropdown__popup {
+            width: 100%;
+            margin-top: 1rem;
+        }
+    }
 
-		.ui-dropdown__button-icon-box {
-			right: 0;
-			top: 0;
-			margin-top: 0;
-			height: 2.7rem;
-		}
+    &_datepicker {
+        .ui-dropdown__input {
+            padding-bottom: 1.9rem;
+            border: none;
 
-		.ui-dropdown__popup {
-			width: 100%;
-			margin-top: 1rem;
-		}
-	}
+            @include media(mob) {
+                padding-bottom: 1rem;
+            }
+        }
 
-	&_datepicker {
-		.ui-dropdown__input {
-			padding-bottom: 1.9rem;
-			border: none;
-
-			@include media(mob) {
-				padding-bottom: 1rem;
-			}
-		}
-
-		&.is-active {
-			.ui-datepicker__input {
-				pointer-events: none;
-			}
-		}
-	}
+        &.is-active {
+            .ui-datepicker__input {
+                pointer-events: none;
+            }
+        }
+    }
 
     &_content {
         > .ui-dropdown__popup {
@@ -218,22 +217,19 @@
         }
     }
 
-	&.is-placeholder {
-		> .ui-dropdown__button {
-			color: #7A8084;
-		}
-	}
-
-	@include active {
+    &.is-placeholder {
         > .ui-dropdown__button {
+            color: #7a8084;
+        }
+    }
 
+    @include active {
+        > .ui-dropdown__button {
             .ui-dropdown {
                 &__button-icon {
                     top: 1px;
                     transform: rotate(180deg);
                 }
-
-
             }
         }
         > .ui-dropdown__popup {
@@ -246,5 +242,5 @@
                 visibility: visible;
             }
         }
-	}
+    }
 }

@@ -110,11 +110,9 @@
                 height: 2rem;
             }
         }
-
     }
 
     &__compare-button {
-
         .ui-button-icon__icon {
             &:last-child {
                 display: none;
@@ -134,7 +132,7 @@
         }
     }
 
-	&__image-box {
+    &__image-box {
         position: absolute;
         left: 0;
         top: 0;
@@ -255,8 +253,10 @@
         font-family: $font-alethia-pro;
         font-size: var(--text-size-md);
         line-height: 1.4;
-        // white-space: nowrap;
-
+        // added
+        text-wrap: balance;
+        white-space: normal;
+        // added
         @include media(mob) {
             font-size: $text-size-desktop;
         }
@@ -270,7 +270,6 @@
         align-self: flex-start;
         gap: 1rem;
         width: fit-content;
-
     }
 
     &__period-icon {
@@ -286,7 +285,6 @@
             width: 2.4rem;
             height: 2.4rem;
         }
-
     }
 
     &__period-tooltip {
@@ -345,7 +343,6 @@
 
         @include media(mob-m) {
             margin-right: 0.5rem;
-
         }
     }
 
@@ -427,6 +424,11 @@
             }
 
             &__price {
+                // added
+                @media (max-width: 1160px) {
+                    font-size: 1.4rem;
+                }
+                // added
                 font-size: $base-font-size;
                 line-height: $base-line-height;
             }
@@ -487,7 +489,7 @@
             }
 
             .ui-icon-cross-circle {
-                fill: var(--color-error)
+                fill: var(--color-error);
             }
         }
     }
