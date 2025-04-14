@@ -29,7 +29,6 @@
     }
 
     &__content {
-
     }
 
     &__tags {
@@ -105,6 +104,13 @@
         @include media(tab-l) {
             row-gap: 6rem;
         }
+        // added
+        .chalet-item__price {
+            @media (max-width: 1440px) {
+                font-size: var(--text-size);
+            }
+        }
+        // added
 
         &_resorts {
             @include media(pc) {
@@ -218,7 +224,8 @@
                 @include media-min(pc) {
                     width: calc(63.92%);
 
-                    .chalet-item__slider-next, .chalet-item__slider-prev {
+                    .chalet-item__slider-next,
+                    .chalet-item__slider-prev {
                         display: none;
                     }
                 }
