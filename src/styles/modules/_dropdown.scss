@@ -34,6 +34,7 @@
     }
 
     &__button-icon-box {
+        pointer-events: none;
         position: absolute;
         top: 50%;
         right: 2rem;
