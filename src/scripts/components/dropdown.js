@@ -738,7 +738,7 @@ export default function dropdown(dropdownContainer, duration = 300) {
             ) {
                 closeDropdownActive(event);
             } else {
-                const dropdownInnerEl = dropdownEl.querySelector(
+                const dropdownInnerEl = dropdownEl?.querySelector(
                     "[data-dropdown].is-active"
                 );
 

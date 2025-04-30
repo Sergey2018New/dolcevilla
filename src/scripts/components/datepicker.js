@@ -16,6 +16,17 @@ const getWeek = (date) => {
         date.setHours(-24 * (day - 1));
 };
 
+const buttonTexts = {
+    apply: {
+        ru: "Применить",
+        en: "Apply",
+    },
+    cancel: {
+        ru: "Отмена",
+        en: "Cancel",
+    },
+};
+
 export default function datepicker(datepickerSelectors) {
     /*
 		@param  {Element} datepickerSelectors - HTML container element, default document
@@ -46,7 +57,7 @@ export default function datepicker(datepickerSelectors) {
             );
             const isNoDelected = datepickerEl.classList.contains("no-selected");
             const isExtended = datepickerEl.classList.contains("is-extended");
-            const lang = datepickerEl.getAttribute("data-lang") || "ru";
+            const lang = document.body.getAttribute("data-lang") || "ru";
             let datepicker;
             let isApplyDate = false;
             let isClosing = false;
@@ -140,8 +151,12 @@ export default function datepicker(datepickerSelectors) {
                     const footer = document.createElement("div");
                     const currentYear = document.createElement("div");
                     const buttonsHTML = `
-                        <button type="button" class="flatpickr-button flatpickr-button-apply ui-button ui-button_size_sm">Применить</button>
-                        <button type="button" class="flatpickr-button flatpickr-button-cancel ui-button ui-button_size_sm ui-button_style_outline">Отмена</button>`;
+                        <button type="button" class="flatpickr-button flatpickr-button-apply ui-button ui-button_size_sm">${
+                            buttonTexts.apply[lang] || buttonTexts.apply.ru
+                        }</button>
+                        <button type="button" class="flatpickr-button flatpickr-button-cancel ui-button ui-button_size_sm ui-button_style_outline">${
+                            buttonTexts.cancel[lang] || buttonTexts.cancel.ru
+                        }</button>`;
                     let controlApply;
                     let controlCancel;
                     const setApplyDate = () => {
@@ -228,9 +243,10 @@ export default function datepicker(datepickerSelectors) {
                         checkControlApply(controlApply, selectedDates);
 
                         if (controlApply) {
-                            controlApply.addEventListener("mousedown", () => {
-                                setApplyDate();
-                            });
+                            controlApply.addEventListener(
+                                "click",
+                                setApplyDate
+                            );
                         }
 
                         calendarContainer.addEventListener("keyup", (e) => {
